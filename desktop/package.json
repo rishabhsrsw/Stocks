@@ -1,0 +1,25 @@
+{
+  "name": "nse-weekly-picks",
+  "productName": "NSE Weekly Picks",
+  "version": "1.0.0",
+  "description": "Desktop app for the weekly NSE stock picks",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "copy-web": "node scripts/copy-web.js",
+    "start": "npm run copy-web && electron .",
+    "dist": "npm run copy-web && electron-builder --win nsis --publish never"
+  },
+  "devDependencies": {
+    "electron": "44.5.1",
+    "electron-builder": "26.16.1"
+  },
+  "build": {
+    "appId": "io.github.rishabhsrsw.nsepicks",
+    "productName": "NSE Weekly Picks",
+    "files": ["main.js", "preload.js", "settings.html", "web/**"],
+    "directories": { "output": "dist", "buildResources": "build" },
+    "win": { "target": "nsis", "icon": "build/icon.png" },
+    "nsis": { "oneClick": true, "perMachine": false, "createDesktopShortcut": true, "shortcutName": "NSE Weekly Picks" }
+  }
+}

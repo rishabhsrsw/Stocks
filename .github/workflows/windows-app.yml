@@ -1,0 +1,42 @@
+name: Windows app
+
+# Builds the Windows installer and publishes it as a GitHub Release in this repo.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["desktop/**", "docs/index.html", "docs/icons/**"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+      - name: Build installer
+        working-directory: desktop
+        run: |
+          npm ci
+          npm run dist
+      - name: Publish release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(node -p "require('./desktop/package.json').version")
+          tag="windows-app-v${version}"
+          installer=$(ls desktop/dist/*.exe | head -n 1)
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release upload "$tag" "$installer" --clobber
+          else
+            gh release create "$tag" "$installer" --title "NSE Weekly Picks for Windows v${version}" \
+              --notes "Download the .exe below, run it, and paste a read-only GitHub token when asked. Windows may warn that the app is from an unknown publisher: click More info, then Run anyway."
+          fi

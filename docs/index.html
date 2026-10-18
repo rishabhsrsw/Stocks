@@ -2,7 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f9f9f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NSE Picks">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <title>NSE Weekly Picks</title>
 <meta name="description" content="Weekly top-5 Indian stock picks from a chart model, news sentiment and fundamentals, with a walk-forward backtest.">
 <style>
@@ -31,7 +40,11 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-main { max-width: 1120px; margin: 0 auto; padding: 24px 16px 64px; }
+main { max-width: 1120px; margin: 0 auto;
+  padding: calc(24px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(64px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left)); }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.btn { font: inherit; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+.btn:hover { border-color: var(--axis); }
 h1 { font-size: 26px; margin: 0 0 4px; }
 h2 { font-size: 19px; margin: 40px 0 12px; }
 h3 { font-size: 16px; margin: 0; }
@@ -74,7 +87,10 @@ svg text { fill: var(--muted); font-size: 11px; }
 </head>
 <body>
 <main>
-  <h1>NSE Weekly Picks</h1>
+  <div class="top">
+    <h1>NSE Weekly Picks</h1>
+    <div><button class="btn" id="settings" hidden>Settings</button> <button class="btn" id="refresh">Refresh</button></div>
+  </div>
   <p class="sub" id="meta">Loading…</p>
   <div class="note"><b>Not investment advice.</b> These picks come from a statistical model trained on past prices, plus automated reading of news headlines and basic fundamentals. Markets are noisy, and a 5-month forecast has wide error bars (see each range and the backtest below). Size positions as if any single pick can fall 20–30%, and do your own research before buying.</div>
   <div class="note" id="err"></div>
@@ -268,7 +284,41 @@ function decileChart(host, dec) {
 
 function tile(v, l, c = "") { return `<div class="tile"><div class="v ${c}">${v}</div><div class="l">${l}</div></div>`; }
 
-fetch("data/latest.json", {cache: "no-store"}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
+// Data source: the Windows app injects window.picksApi (reads the private GitHub repo);
+// the website / iPhone home-screen app fetches data/latest.json and keeps a copy for offline use.
+const DATA_CACHE = "picks-data";
+async function loadData() {
+  if (window.picksApi) return window.picksApi.load();
+  try {
+    const r = await fetch("data/latest.json", {cache: "no-store", redirect: "error"});
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const d = await r.clone().json();
+    try { (await caches.open(DATA_CACHE)).put("data/latest.json", r); } catch (_) {}
+    return {data: d, stale: false};
+  } catch (e) {
+    let cached = null;
+    try { cached = await (await caches.open(DATA_CACHE)).match("data/latest.json"); } catch (_) {}
+    if (!cached) throw e;
+    return {data: await cached.json(), stale: true};
+  }
+}
+
+document.getElementById("refresh").onclick = () => location.reload();
+if (window.picksApi) {
+  const s = document.getElementById("settings");
+  s.hidden = false;
+  s.onclick = () => window.picksApi.openSettings();
+} else if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("sw.js").catch(() => {});
+}
+
+loadData().then(({data: d, stale}) => {
+  if (stale) {
+    const b = document.getElementById("err");
+    b.style.display = "block";
+    b.textContent = `Offline: showing the picks saved on this device (week of ${d.as_of}). Tap Refresh when you're back online.` +
+      (window.picksApi ? "" : " If it keeps failing, close and reopen the app to sign in again.");
+  }
   document.getElementById("meta").textContent =
     `Week of ${d.as_of} · ${d.eligible_size} of ${d.universe_size} stocks passed liquidity/risk filters · generated ${d.generated_at.replace("T", " ").slice(0, 16)} UTC` +
     (d.llm_news ? " · news read by Claude" : "");
@@ -302,7 +352,9 @@ fetch("data/latest.json", {cache: "no-store"}).then(r => { if (!r.ok) throw new 
 }).catch(e => {
   const b = document.getElementById("err");
   b.style.display = "block";
-  b.textContent = "No data yet. Run `python -m stockpicker run` (or the GitHub Action) to generate docs/data/latest.json. (" + e.message + ")";
+  b.textContent = e.message === "NO_TOKEN"
+    ? "Welcome! Click Settings and paste your GitHub access token so the app can read your picks."
+    : "No picks available yet. Run the \"Weekly picks\" GitHub Action once to generate them. (" + e.message + ")";
   document.getElementById("meta").textContent = "";
 });
 </script>

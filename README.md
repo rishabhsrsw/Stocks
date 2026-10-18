@@ -40,12 +40,45 @@ A full run on Nifty 200 takes about 10–20 minutes, mostly model training.
 
 ## Run it automatically every week (free, on GitHub)
 
-1. Push this repo to GitHub.
-2. **Settings → Pages**: Source = *Deploy from a branch*, Branch = your default branch, folder = `/docs`.
-3. (Optional) **Settings → Secrets and variables → Actions**: add `ANTHROPIC_API_KEY` to turn on the Claude news analyst.
-   It reads headlines for the top 20 candidates each week, which costs a few cents.
-4. **Actions → Weekly picks → Run workflow** to run it once now. After that it runs every Saturday morning (IST)
-   and commits the new picks, and the site updates itself.
+1. Merge into your default branch. Private repos are fine; the weekly run uses about 30 of the 2,000 free Actions minutes per month.
+2. (Optional) **Settings → Secrets and variables → Actions**: add `ANTHROPIC_API_KEY` to turn on the Claude news analyst.
+3. **Actions → Weekly picks → Run workflow** to run it once now. After that it runs every Saturday morning (IST)
+   and commits the new picks to `docs/data/`.
+
+## Apps
+
+### Windows
+
+1. **Actions → Windows app → Run workflow** (it also rebuilds by itself whenever the app or dashboard changes).
+2. Open **Releases** in the repo, download `NSE Weekly Picks Setup x.y.z.exe` and run it.
+   The installer isn't code-signed, so Windows SmartScreen will warn you: click **More info → Run anyway**.
+3. On first launch, paste a **read-only GitHub token** (the app explains how to make one:
+   fine-grained token → only this repo → *Contents: Read-only*). It is stored encrypted with your Windows account.
+
+The app reads the picks straight from the private repo, so it needs no website. It keeps the last picks for offline use.
+
+### iPhone (free home-screen app)
+
+Apple only allows App Store/TestFlight apps without a paid developer account, so the iPhone version is an
+installable web app. It has its own icon, opens full-screen and works offline. It needs hosting that can read a private repo,
+locked to you:
+
+1. **Cloudflare Pages** (free): *Workers & Pages → Create → Pages → Connect to Git*, pick this repo,
+   production branch = your default branch, framework = None, build command empty, **build output directory = `docs`**.
+2. **Lock it to you**: *Zero Trust → Access → Applications → Add → Self-hosted*, domain = your `*.pages.dev` URL,
+   policy *Allow → Emails → your email*. Opening the site then asks for a one-time code sent to your email.
+3. On the iPhone, open the URL in **Safari → Share → Add to Home Screen**, then open it from the icon and sign in once.
+
+Cloudflare redeploys automatically after each weekly commit. The same URL also works in any desktop browser.
+
+### Developing the apps
+
+```bash
+cd desktop && npm install
+NSE_PICKS_FILE=../docs/data/latest.json npm start   # preview the Windows app with local data
+```
+
+All three (website, iPhone app, Windows app) render the same `docs/index.html`.
 
 ## Tuning
 
@@ -72,6 +105,8 @@ stockpicker/
   news.py          headlines, sentiment, red flags, optional Claude analyst
   fundamentals.py  quality overlay
   pipeline.py      weekly run -> docs/data/*.json
-docs/index.html    the dashboard (static, no build step)
-.github/workflows/weekly-picks.yml
+docs/index.html    the dashboard (static, no build step), also an installable app (manifest, sw.js, icons/)
+desktop/           Windows app (Electron) that shows the same dashboard
+.github/workflows/weekly-picks.yml   weekly model run
+.github/workflows/windows-app.yml    builds the Windows installer into Releases
 ```
