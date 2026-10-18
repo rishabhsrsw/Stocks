@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NSE Weekly Picks</title>
+<meta name="description" content="Weekly top-5 Indian stock picks from a chart model, news sentiment and fundamentals, with a walk-forward backtest.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,0.10);
+  --series-1: #2a78d6; --series-2: #eb6834; --pos: #2a78d6; --neg: #e34948; --mid: #f0efec;
+  --good: #006300; --bad: #d03b3b; --warn: #fab219;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
+    --series-1: #3987e5; --series-2: #d95926; --pos: #3987e5; --neg: #e66767; --mid: #383835;
+    --good: #0ca30c; --bad: #e66767;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
+  --series-1: #3987e5; --series-2: #d95926; --pos: #3987e5; --neg: #e66767; --mid: #383835;
+  --good: #0ca30c; --bad: #e66767;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 1120px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 26px; margin: 0 0 4px; }
+h2 { font-size: 19px; margin: 40px 0 12px; }
+h3 { font-size: 16px; margin: 0; }
+.sub { color: var(--ink-2); margin: 0; }
+.muted { color: var(--muted); font-size: 13px; }
+.note { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--warn); border-radius: 8px; padding: 10px 14px; margin: 16px 0; color: var(--ink-2); font-size: 14px; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; min-width: 0; }
+.card-head { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+.rank { font-size: 12px; color: var(--muted); }
+.tag { display: inline-block; font-size: 12px; color: var(--ink-2); border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; margin-top: 4px; }
+.hero { font-size: 30px; font-weight: 650; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.up { color: var(--good); } .down { color: var(--bad); }
+.kv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; }
+.kv div { font-size: 12px; color: var(--muted); }
+.kv b { display: block; font-size: 15px; color: var(--ink); font-variant-numeric: tabular-nums; }
+ul.reasons { margin: 8px 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; }
+details { margin-top: 8px; font-size: 14px; }
+summary { cursor: pointer; color: var(--ink-2); }
+.hl { margin: 6px 0; font-size: 13px; color: var(--ink-2); }
+.hl a { color: var(--ink); text-decoration: none; } .hl a:hover { text-decoration: underline; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th { color: var(--muted); font-weight: 500; font-size: 12px; }
+td.num, th.num { text-align: right; }
+.scroll { overflow-x: auto; }
+.tiles { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); margin-bottom: 16px; }
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+.tile .v { font-size: 22px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.tile .l { font-size: 12px; color: var(--muted); }
+.chart-wrap { position: relative; }
+svg text { fill: var(--muted); font-size: 11px; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.12); display: none; white-space: nowrap; z-index: 2; }
+.legend { display: flex; gap: 16px; font-size: 13px; color: var(--ink-2); margin: 4px 0 8px; flex-wrap: wrap; }
+.legend span::before { content: ""; display: inline-block; width: 14px; height: 3px; border-radius: 2px; background: var(--c); vertical-align: middle; margin-right: 6px; }
+.flag { color: var(--bad); font-weight: 600; }
+#err { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>NSE Weekly Picks</h1>
+  <p class="sub" id="meta">Loading…</p>
+  <div class="note"><b>Not investment advice.</b> These picks come from a statistical model trained on past prices, plus automated reading of news headlines and basic fundamentals. Markets are noisy, and a 5-month forecast has wide error bars (see each range and the backtest below). Size positions as if any single pick can fall 20–30%, and do your own research before buying.</div>
+  <div class="note" id="err"></div>
+
+  <h2>This week's top 5 (5-month view)</h2>
+  <div class="grid" id="picks"></div>
+
+  <h2>Next in line</h2>
+  <div class="card scroll"><table id="watch"></table></div>
+
+  <h2>How well has the model done? (walk-forward backtest)</h2>
+  <p class="muted" id="bt-meta"></p>
+  <div class="tiles" id="bt-tiles"></div>
+  <div class="card">
+    <h3>Forward 5-month return of each week's top 5 vs Nifty 50</h3>
+    <div class="legend"><span style="--c:var(--series-1)">Top-5 picks (avg)</span><span style="--c:var(--series-2)">Nifty 50</span></div>
+    <div class="chart-wrap" id="bt-line"></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>Does a higher score mean a higher return?</h3>
+    <p class="muted">Average 5-month excess return over Nifty, by model-score decile (1 = lowest scored, 10 = highest). A rising staircase means the ranking works.</p>
+    <div class="chart-wrap" id="bt-dec"></div>
+  </div>
+
+  <h2>Live track record (picks published here)</h2>
+  <div class="card scroll"><table id="track"></table></div>
+
+  <h2>How it works</h2>
+  <div class="card" style="color:var(--ink-2);font-size:14px">
+    <ol>
+      <li><b>Universe:</b> Nifty 200 constituents, filtered for liquidity (₹10 cr+ median daily turnover) and extreme volatility.</li>
+      <li><b>Chart reading:</b> about 35 technical features per stock: momentum over 1, 3, 6 and 12 months, relative strength vs Nifty, moving-average trend, 52-week high and low, RSI, MACD, volatility, drawdown, beta and volume accumulation, plus market regime (Nifty trend, breadth, volatility).</li>
+      <li><b>Model:</b> gradient-boosted trees trained on 12 years of weekly snapshots. They predict (a) the stock's rank in 5-month excess return, (b) the probability of beating Nifty, and (c) the 10th, 50th and 90th percentile of its 3-, 4- and 5-month return. Training uses only data whose outcome was already known on the prediction date, so there is no look-ahead.</li>
+      <li><b>News:</b> recent Google News headlines for each shortlisted company, scored with a finance-tuned sentiment lexicon. When an Anthropic API key is configured, Claude also reads the headlines and flags material events. Stocks with fraud, raid, default or regulator red flags are excluded.</li>
+      <li><b>Fundamentals:</b> ROE, growth, margins, leverage and P/E percentile, used as a quality tilt.</li>
+      <li><b>Final score</b> = 70% model + 15% news + 15% quality, at most 2 picks per sector. Only the model part is backtested; news and fundamentals aren't available point-in-time historically.</li>
+    </ol>
+  </div>
+</main>
+<script>
+const pct = (x, d = 1) => x == null ? "–" : (x > 0 ? "+" : "") + (x * 100).toFixed(d) + "%";
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const cls = x => x == null ? "" : x >= 0 ? "up" : "down";
+const NS = "http://www.w3.org/2000/svg";
+
+function el(tag, attrs = {}, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+function sparkline(values) {
+  const w = 300, h = 56, pad = 3;
+  const v = values.filter(x => x != null);
+  const min = Math.min(...v), max = Math.max(...v);
+  const x = i => pad + i * (w - 2 * pad) / (v.length - 1);
+  const y = val => h - pad - (val - min) / (max - min || 1) * (h - 2 * pad);
+  const svg = el("svg", {viewBox: `0 0 ${w} ${h}`, width: "100%", height: h, role: "img",
+    "aria-label": `6-month price, from ${v[0]} to ${v[v.length - 1]}`});
+  el("path", {d: v.map((p, i) => (i ? "L" : "M") + x(i).toFixed(1) + "," + y(p).toFixed(1)).join(""),
+    fill: "none", stroke: "var(--series-1)", "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round"}, svg);
+  el("circle", {cx: x(v.length - 1), cy: y(v[v.length - 1]), r: 3, fill: "var(--series-1)"}, svg);
+  return svg;
+}
+
+// Forecast range: q10..q90 band with a q50 tick, on a shared −40%..+80% scale with a 0% line.
+function rangeBar(f) {
+  const w = 300, h = 34, lo = -0.4, hi = 0.8;
+  const sx = v => 4 + (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo) * (w - 8);
+  const svg = el("svg", {viewBox: `0 0 ${w} ${h}`, width: "100%", height: h, role: "img",
+    "aria-label": `5-month forecast range ${pct(f.q10)} to ${pct(f.q90)}, median ${pct(f.q50)}`});
+  el("line", {x1: sx(0), x2: sx(0), y1: 2, y2: 22, stroke: "var(--axis)", "stroke-width": 1}, svg);
+  el("rect", {x: sx(f.q10), y: 8, width: Math.max(2, sx(f.q90) - sx(f.q10)), height: 8, rx: 4, fill: "var(--series-1)", opacity: .35}, svg);
+  el("rect", {x: sx(f.q50) - 1.5, y: 4, width: 3, height: 16, rx: 1.5, fill: "var(--series-1)"}, svg);
+  const t1 = el("text", {x: sx(f.q10), y: 32, "text-anchor": "middle"}, svg); t1.textContent = pct(f.q10, 0);
+  const t2 = el("text", {x: sx(f.q90), y: 32, "text-anchor": "middle"}, svg); t2.textContent = pct(f.q90, 0);
+  const t0 = el("text", {x: sx(0), y: 32, "text-anchor": "middle"}, svg);
+  t0.textContent = Math.abs(sx(0) - sx(f.q10)) > 26 && Math.abs(sx(0) - sx(f.q90)) > 26 ? "0" : "";
+  return svg;
+}
+
+function pickCard(p, i) {
+  const f = p.forecast["5m"];
+  const card = document.createElement("div");
+  card.className = "card";
+  const llm = p.news.llm;
+  card.innerHTML = `
+    <div class="card-head">
+      <div><div class="rank">#${i + 1} · NSE: ${esc(p.symbol)}</div><h3>${esc(p.name)}</h3><span class="tag">${esc(p.sector || "")}</span></div>
+      <div style="text-align:right"><div class="muted">Price</div><b>₹${p.price?.toLocaleString("en-IN")}</b></div>
+    </div>
+    <div style="margin-top:12px" class="muted">Median 5-month forecast</div>
+    <div class="hero ${cls(f.q50)}">${pct(f.q50)}</div>
+    <div class="range"></div>
+    <div class="kv">
+      <div>3 months<b class="${cls(p.forecast["3m"].q50)}">${pct(p.forecast["3m"].q50)}</b></div>
+      <div>4 months<b class="${cls(p.forecast["4m"].q50)}">${pct(p.forecast["4m"].q50)}</b></div>
+      <div>P(beat Nifty)<b>${(f.p_beat_nifty * 100).toFixed(0)}%</b></div>
+      <div>Model<b>${(p.model_score * 100).toFixed(0)}</b></div>
+      <div>News<b class="${cls(p.news_score)}">${p.news_score >= 0 ? "+" : ""}${p.news_score.toFixed(2)}</b></div>
+      <div>Quality<b>${(p.quality_score * 100).toFixed(0)}</b></div>
+    </div>
+    <div class="muted">Last 6 months</div>
+    <div class="spark"></div>
+    <ul class="reasons">${p.reasons.map(r => `<li>${esc(r)}</li>`).join("")}</ul>
+    ${llm ? `<p style="font-size:14px;margin:8px 0"><b>News read:</b> ${esc(llm.summary)}</p>` : ""}
+    <details><summary>Headlines (${p.news.n_articles})</summary>
+      ${p.news.headlines.map(h => `<div class="hl"><span class="dot" style="background:${h.sentiment > 0.15 ? "var(--pos)" : h.sentiment < -0.15 ? "var(--neg)" : "var(--axis)"}" title="sentiment ${h.sentiment}"></span><a href="${esc(h.link)}" target="_blank" rel="noopener">${esc(h.title)}</a> <span class="muted">${esc(h.source)} · ${esc((h.published || "").slice(0, 10))}</span></div>`).join("") || '<div class="hl">No recent headlines.</div>'}
+    </details>
+    <details><summary>Risk & fundamentals</summary>
+      <table>
+        <tr><td>Volatility (3m, annualised)</td><td class="num">${pct(p.risk.volatility_63d, 0)}</td></tr>
+        <tr><td>Drawdown from 6m high</td><td class="num">${pct(p.risk.max_drawdown_6m, 0)}</td></tr>
+        <tr><td>Beta vs Nifty</td><td class="num">${p.risk.beta?.toFixed(2) ?? "–"}</td></tr>
+        <tr><td>P/E</td><td class="num">${p.fundamentals.pe?.toFixed(1) ?? "–"}</td></tr>
+        <tr><td>ROE</td><td class="num">${pct(p.fundamentals.roe, 0)}</td></tr>
+        <tr><td>Earnings growth (yoy)</td><td class="num">${pct(p.fundamentals.earnings_growth, 0)}</td></tr>
+        <tr><td>Debt / equity</td><td class="num">${p.fundamentals.debt_to_equity?.toFixed(0) ?? "–"}</td></tr>
+      </table>
+    </details>`;
+  card.querySelector(".range").appendChild(rangeBar(f));
+  card.querySelector(".spark").appendChild(sparkline(p.chart));
+  return card;
+}
+
+function lineChart(host, rows) {
+  const W = Math.max(320, host.clientWidth), H = W < 600 ? 220 : 300, m = {l: 44, r: 12, t: 10, b: 26};
+  const vals = rows.flatMap(r => [r.pick_ret, r.bench_ret]);
+  const lo = Math.min(0, ...vals), hi = Math.max(...vals);
+  const sx = i => m.l + i * (W - m.l - m.r) / (rows.length - 1);
+  const sy = v => m.t + (hi - v) / (hi - lo) * (H - m.t - m.b);
+  const svg = el("svg", {viewBox: `0 0 ${W} ${H}`, width: "100%", role: "img", "aria-label": "Forward 5-month return of the weekly top 5 versus Nifty 50"});
+  const step = (hi - lo) > 1 ? 0.25 : 0.1;
+  for (let t = Math.ceil(lo / step) * step; t <= hi + 1e-9; t += step) {
+    el("line", {x1: m.l, x2: W - m.r, y1: sy(t), y2: sy(t), stroke: Math.abs(t) < 1e-9 ? "var(--axis)" : "var(--grid)", "stroke-width": 1}, svg);
+    const tx = el("text", {x: m.l - 6, y: sy(t) + 4, "text-anchor": "end"}, svg); tx.textContent = pct(t, 0);
+  }
+  const years = [...new Set(rows.map(r => r.date.slice(0, 4)))];
+  years.filter((y, i) => W >= 600 || i % 2 === 0).forEach(y => {
+    const i = rows.findIndex(r => r.date.startsWith(y));
+    const tx = el("text", {x: sx(i), y: H - 6, "text-anchor": "start"}, svg); tx.textContent = y;
+  });
+  const path = k => rows.map((r, i) => (i ? "L" : "M") + sx(i).toFixed(1) + "," + sy(r[k]).toFixed(1)).join("");
+  el("path", {d: path("bench_ret"), fill: "none", stroke: "var(--series-2)", "stroke-width": 2, "stroke-linejoin": "round"}, svg);
+  el("path", {d: path("pick_ret"), fill: "none", stroke: "var(--series-1)", "stroke-width": 2, "stroke-linejoin": "round"}, svg);
+  const cross = el("line", {y1: m.t, y2: H - m.b, stroke: "var(--axis)", "stroke-width": 1, visibility: "hidden"}, svg);
+  const d1 = el("circle", {r: 4, fill: "var(--series-1)", stroke: "var(--surface)", "stroke-width": 2, visibility: "hidden"}, svg);
+  const d2 = el("circle", {r: 4, fill: "var(--series-2)", stroke: "var(--surface)", "stroke-width": 2, visibility: "hidden"}, svg);
+  const tip = document.createElement("div"); tip.className = "tip";
+  host.append(svg, tip);
+  svg.addEventListener("pointermove", ev => {
+    const b = svg.getBoundingClientRect();
+    const xv = (ev.clientX - b.left) / b.width * W;
+    const i = Math.max(0, Math.min(rows.length - 1, Math.round((xv - m.l) / (W - m.l - m.r) * (rows.length - 1))));
+    const r = rows[i];
+    for (const [c, k] of [[d1, "pick_ret"], [d2, "bench_ret"]]) { c.setAttribute("cx", sx(i)); c.setAttribute("cy", sy(r[k])); c.setAttribute("visibility", "visible"); }
+    cross.setAttribute("x1", sx(i)); cross.setAttribute("x2", sx(i)); cross.setAttribute("visibility", "visible");
+    tip.innerHTML = `<b>Picked ${r.date}</b><br><span class="dot" style="background:var(--series-1)"></span>Top 5: ${pct(r.pick_ret)}<br><span class="dot" style="background:var(--series-2)"></span>Nifty: ${pct(r.bench_ret)}`;
+    tip.style.display = "block";
+    const px = sx(i) / W * b.width;
+    tip.style.left = Math.min(px + 12, b.width - tip.offsetWidth) + "px";
+    tip.style.top = "8px";
+  });
+  svg.addEventListener("pointerleave", () => { tip.style.display = "none"; [cross, d1, d2].forEach(e => e.setAttribute("visibility", "hidden")); });
+}
+
+function decileChart(host, dec) {
+  const keys = Object.keys(dec).map(Number).sort((a, b) => a - b);
+  const W = Math.max(320, host.clientWidth), H = 220, m = {l: 12, r: 12, t: 18, b: 40};
+  const vals = keys.map(k => dec[k]);
+  const lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
+  const bw = (W - m.l - m.r) / keys.length;
+  const sy = v => m.t + (hi - v) / (hi - lo || 1) * (H - m.t - m.b);
+  const svg = el("svg", {viewBox: `0 0 ${W} ${H}`, width: "100%", role: "img", "aria-label": "Average excess return by score decile"});
+  const tip = document.createElement("div"); tip.className = "tip";
+  keys.forEach((k, i) => {
+    const v = dec[k], y0 = sy(0), y1 = sy(v);
+    const g = el("g", {}, svg);
+    el("rect", {x: m.l + i * bw + 2, y: Math.min(y0, y1), width: bw - 4, height: Math.max(1, Math.abs(y1 - y0)), rx: 4, fill: v >= 0 ? "var(--pos)" : "var(--neg)"}, g);
+    el("rect", {x: m.l + i * bw, y: m.t, width: bw, height: H - m.t - m.b, fill: "transparent"}, g);
+    const lab = el("text", {x: m.l + (i + .5) * bw, y: v >= 0 ? y1 - 4 : y1 + 13, "text-anchor": "middle"}, svg); lab.textContent = pct(v, bw < 44 ? 0 : 1);
+    const tx = el("text", {x: m.l + (i + .5) * bw, y: H - 4, "text-anchor": "middle"}, svg); tx.textContent = k + 1;
+    g.addEventListener("pointerenter", () => { tip.innerHTML = `Decile ${k + 1}: <b>${pct(v)}</b> vs Nifty`; tip.style.display = "block";
+      const b = svg.getBoundingClientRect(); tip.style.left = Math.min((m.l + i * bw) / W * b.width, b.width - tip.offsetWidth) + "px"; tip.style.top = "0px"; });
+    g.addEventListener("pointerleave", () => tip.style.display = "none");
+  });
+  el("line", {x1: m.l, x2: W - m.r, y1: sy(0), y2: sy(0), stroke: "var(--axis)", "stroke-width": 1}, svg);
+  host.append(svg, tip);
+}
+
+function tile(v, l, c = "") { return `<div class="tile"><div class="v ${c}">${v}</div><div class="l">${l}</div></div>`; }
+
+fetch("data/latest.json", {cache: "no-store"}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => {
+  document.getElementById("meta").textContent =
+    `Week of ${d.as_of} · ${d.eligible_size} of ${d.universe_size} stocks passed liquidity/risk filters · generated ${d.generated_at.replace("T", " ").slice(0, 16)} UTC` +
+    (d.llm_news ? " · news read by Claude" : "");
+  const picks = document.getElementById("picks");
+  d.picks.forEach((p, i) => picks.appendChild(pickCard(p, i)));
+
+  document.getElementById("watch").innerHTML = `<tr><th>Symbol</th><th>Company</th><th class="num">Score</th><th class="num">Median 5m</th><th></th></tr>` +
+    d.watchlist.map(w => `<tr><td>${esc(w.symbol)}</td><td>${esc(w.name)}</td><td class="num">${w.final_score < 0 ? "–" : (w.final_score * 100).toFixed(0)}</td><td class="num ${cls(w.q50_5m)}">${pct(w.q50_5m)}</td><td>${w.red_flag ? '<span class="flag">⚠ news red flag</span>' : ""}</td></tr>`).join("");
+
+  const bt = d.backtest;
+  if (bt) {
+    document.getElementById("bt-meta").textContent = `Out-of-sample, ${bt.period_start} to ${bt.period_end}, ${bt.n_weeks} weekly selections. Before costs and taxes.`;
+    document.getElementById("bt-tiles").innerHTML =
+      tile(pct(bt.avg_pick_return), "Avg 5-month return of top 5", cls(bt.avg_pick_return)) +
+      tile(pct(bt.avg_benchmark_return), "Avg 5-month Nifty return", cls(bt.avg_benchmark_return)) +
+      tile(pct(bt.avg_pick_excess), "Avg excess vs Nifty", cls(bt.avg_pick_excess)) +
+      tile((bt.pick_hit_rate * 100).toFixed(0) + "%", "Picks with a positive return") +
+      tile((bt.pick_beat_benchmark_rate * 100).toFixed(0) + "%", "Picks that beat Nifty") +
+      tile(bt.chained_cagr_picks == null ? "–" : pct(bt.chained_cagr_picks), `CAGR, non-overlapping (Nifty ${pct(bt.chained_cagr_benchmark)})`, cls(bt.chained_cagr_picks)) +
+      tile(bt.mean_ic.toFixed(3), `Rank IC (t ≈ ${bt.ic_t_stat.toFixed(1)})`) +
+      tile((bt.q10_q90_coverage * 100).toFixed(0) + "%", "Outcomes inside the forecast range (target 80%)");
+    lineChart(document.getElementById("bt-line"), bt.weekly);
+    decileChart(document.getElementById("bt-dec"), bt.decile_excess);
+  }
+
+  const tr = (d.track_record || []).slice().reverse();
+  document.getElementById("track").innerHTML = tr.length
+    ? `<tr><th>Week</th><th>Symbol</th><th class="num">Entry ₹</th><th class="num">Latest ₹</th><th class="num">Return</th><th class="num">Nifty</th><th class="num">Predicted</th><th class="num">Days</th></tr>` +
+      tr.map(t => `<tr><td>${t.week}</td><td>${esc(t.symbol)}</td><td class="num">${t.entry}</td><td class="num">${t.latest}</td><td class="num ${cls(t.return)}">${pct(t.return)}</td><td class="num">${pct(t.nifty_return)}</td><td class="num">${pct(t.predicted_q50)}</td><td class="num">${t.days_held}${t.complete ? " ✓" : ""}</td></tr>`).join("")
+    : `<tr><td class="muted">The track record fills in as weekly picks age.</td></tr>`;
+}).catch(e => {
+  const b = document.getElementById("err");
+  b.style.display = "block";
+  b.textContent = "No data yet. Run `python -m stockpicker run` (or the GitHub Action) to generate docs/data/latest.json. (" + e.message + ")";
+  document.getElementById("meta").textContent = "";
+});
+</script>
+</body>
+</html>
