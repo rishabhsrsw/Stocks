@@ -1,0 +1,2496 @@
+{
+ "generated_at": "2026-11-07T09:27:17+00:00",
+ "as_of": "2026-11-06",
+ "horizon_months": {
+  "3m": 3.0,
+  "4m": 4.0,
+  "5m": 5.0
+ },
+ "rank_horizon": "5m",
+ "universe_size": 191,
+ "eligible_size": 190,
+ "llm_news": false,
+ "picks": [
+  {
+   "symbol": "MAHABANK",
+   "name": "Bank of Maharashtra",
+   "sector": "Financial Services",
+   "price": 86.91,
+   "final_score": 0.8585,
+   "model_score": 0.9162,
+   "news_score": 0.2173,
+   "quality_score": 0.8391,
+   "forecast": {
+    "3m": {
+     "q10": -0.157,
+     "q50": 0.0873,
+     "q90": 0.3253,
+     "p_beat_nifty": 0.4807
+    },
+    "4m": {
+     "q10": -0.2463,
+     "q50": 0.0864,
+     "q90": 0.4059,
+     "p_beat_nifty": 0.4885
+    },
+    "5m": {
+     "q10": -0.2992,
+     "q50": 0.0507,
+     "q90": 0.4765,
+     "p_beat_nifty": 0.5719
+    }
+   },
+   "reasons": [
+    "Outperforming Nifty by +10% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)",
+    "RSI 63: momentum without being overbought"
+   ],
+   "risk": {
+    "volatility_63d": 0.3643,
+    "max_drawdown_6m": -0.0739,
+    "beta": 1.347
+   },
+   "fundamentals": {
+    "pe": 8.5373,
+    "pb": 1.7883,
+    "roe": 0.2329,
+    "debt_to_equity": null,
+    "earnings_growth": 0.281,
+    "revenue_growth": 0.327,
+    "profit_margin": 0.5265,
+    "market_cap": 668473032704.0,
+    "yf_sector": "Financial Services"
+   },
+   "news": {
+    "n_articles": 14,
+    "headlines": [
+     {
+      "title": "MAHABANK 23 Nov 26 Future Research Recommendation",
+      "source": "HDFC Sky",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQSGF1SXFadXN0ZXp1YUg1eXNwb1VIMnNrY3AtUVBveU1DcDdUU1RNMFotNExMYS1pYW8tcGcxT280X2FXVU40YjNsT3lXbWl2NkxOcUpiU1B4U2VMdWFKbnJWdUZlVE5qQWxKSUFxMTZkdFp0NDlmcFR4Q1dNUmdBSXRYRlFyRFRXNlotS0szQ283czY2LU9zMQ?oc=5",
+      "published": "2026-11-06T20:20:49+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "PSU stocks today, November 6: MTNL jumps 3.43%, NHPC up 2.18%; NALCO declines 3.38%",
+      "source": "Business Upturn",
+      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQQXFiM3ktbWQ4NlNQMGt6eENmajdnSUJTVzlGSThKdUd4cWNhSHk5VzFqODU5c3BSb3lDekNPMkVVbHY0em1tTkJLa2dkVWpiaW9MOUlFc1RRSkhYUVQ5MHM5M3RydXZ6YTJUc0VHWFg4czdqbHhWODB0TFNSbVBkWFVPVG9Mc1FUbVlrb0tWZXBqM1lXN0RPWjdpN0xsMVByVHNBRTBTYXoyWVEtV3J1eV9lZFg2eVR6S21vZnVTc18yOG8?oc=5",
+      "published": "2026-11-06T10:04:02+00:00",
+      "sentiment": 0.421
+     },
+     {
+      "title": "Banking sector stocks today, November 6: AU Small Finance Bank falls 3%, Yes Bank down 2.46%, IDFC First Bank declines 2.39%",
+      "source": "Business Upturn",
+      "link": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNR2pTamM3V2lQLXA1OFRKdnRfYWxUTWtWSTdJdXRQWjNhSGZCMlpoWlNqN0g5b2dvMkprbVUxeC04ZjVGdWgxTW91TDFyODBoc0x4M0FKUDlpWllZNW0yVVB2clEzdjJwaEEyc19SR3F1NWpGUnpoZ0ptaDVWZnNGRllGM3ZrVDV3eVZOaXRxckx0N0FSd1EyVVNGZ0hmRmhNMF9VQnltQzQ2UkZYanpEZGduTmtVazFnbXFXU29BejVzYUNCQmVKVVB3RENDZkkxXzhyM0tCeE5oQXI5em9qd1p2ZkJLbXlSUlU0T1NlRDlqTWxqTEhJblZR?oc=5",
+      "published": "2026-11-06T04:23:40+00:00",
+      "sentiment": 0.128
+     },
+     {
+      "title": "Trade Spotlight: How should you trade NSE, Bank of Maharashtra, Info Edge, JSW Energy, Petronet LNG, and...",
+      "source": "Moneycontrol.com",
+      "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxORHNIdmJqeDNtZjdScVFOT0ZlMUNOUEFpUmszTU5FQVJOSTJFNWdjazcwMmN0WHNvM1JMR25DVlNnOEhGWndBSFUwRUtqTHEzalpIY2xjWHdkOGR5YUprNVYzVlpMczhoWDBDZk1hY3N6SjVwdDU4T3hXaTlYSlJNTE5yN0JueE5mZmxCUjJHbEVjRWpCUVNJV3hYd05pWUJHQWx4QVNhOEhhX1VGWjZMWDFlZ3NQcHZFQWpGNUgyYzFYVGRiUTRwb1g3WWdUd2F1QkU5R1VxdTFMWEQxckQzQUdUa1NQbHk5MFNIWmhKOC14UVlVdlROMmM3bXVfdWQ2NG5aLTByZG0zVmNwLW02YVJR0gGXAkFVX3lxTE15bGFpTjhqcmJMQUExODNrRWlRZm1vd00yTHlNWGRPMEdrZ3UyUGdqcVVtV21Hd1k3TzJ2VDU5ajJlcU94WFpCcTlmbUZSY3JGdl83LXJLYmZScHRwMnhQemoxaUc5cU9FamxPZGwwdXpHNWt3VmUyaTZEOGZWQVZESXBqLVpMM1ZUeGJERkw3bnZaTGQtSEZnWVNSRHowaGQ4U2RBVEZNQ2lDaE9JVDMxb0kzRW1tOUR4b0JDSkpkQTFxNnUwNVlMbW01OHlwbU45U3NrdVhHbzFqQlBSYjRXNGJwU25YVUt1Wk1vN2lqUnVnUjIzTWZnNlhuQlRFazNTeURhajQ4aWV2dnFMQWFEYWJra1JyYw?oc=5",
+      "published": "2026-11-06T02:42:14+00:00",
+      "sentiment": 0.273
+     },
+     {
+      "title": "Bank of Maharashtra Valuation Shifts Signal Attractive Investment Opportunity",
+      "source": "MarketsMojo",
+      "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOOGFiTlhMWFBzY1oxcFE4OGNCaTYxdkdtM28zV1ZfLTFHMVRBcHBzMDFwZk9zRXVVYVRNcTE0WXczVDZMMHg5YlJmajdkMEtzMnRjSWRsR3A5WDdjY1Z5UW5SYmltTERKV3JtQm85UjA4SUF3RjBxc0tta3hjZ1c2NFFaVkJzMXBrdDM5MmhGbDhJaUhERldNM1ZlYTlOY3NsbC1LWV9zdXhxcjM5Z0Q0LWhvYl9jaGFMbExhSlZWWFNnLURhMHlQemFJLXZQUkhq?oc=5",
+      "published": "2026-11-05T10:49:03+00:00",
+      "sentiment": 0.691
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    82.64,
+    80.2,
+    77.19,
+    78.77,
+    77.32,
+    76.85,
+    76.63,
+    77.16,
+    77.57,
+    78.56,
+    78.84,
+    79.95,
+    78.98,
+    78.88,
+    78.08,
+    76.47,
+    77.72,
+    78.5,
+    78.7,
+    79.19,
+    79.61,
+    83.97,
+    84.18,
+    83.08,
+    87.3,
+    89.12,
+    88.19,
+    90.14,
+    89.5,
+    90.19,
+    89.47,
+    87.89,
+    88.53,
+    88.71,
+    93.85,
+    91.44,
+    91.2,
+    91.04,
+    88.53,
+    86.51,
+    83.19,
+    80.6,
+    82.01,
+    84.25,
+    82.56,
+    79.47,
+    80.1,
+    79.49,
+    79.9,
+    80.52,
+    81.75,
+    79.17,
+    78.48,
+    81.03,
+    80.63,
+    80.2,
+    80.73,
+    79.26,
+    79.33,
+    79.57,
+    78.42,
+    79.2,
+    78.17,
+    78.28,
+    78.88,
+    78.95,
+    81.87,
+    81.65,
+    80.12,
+    81.1,
+    80.49,
+    79.82,
+    80.28,
+    80.26,
+    80.7,
+    81.7,
+    85.6,
+    84.69,
+    83.8,
+    82.07,
+    82.7,
+    82.4,
+    86.32,
+    85.95,
+    85.0,
+    84.79,
+    84.56,
+    84.35,
+    84.2,
+    79.56,
+    80.21,
+    80.8,
+    83.54,
+    82.2,
+    82.4,
+    84.11,
+    82.38,
+    84.88,
+    80.85,
+    79.16,
+    79.37,
+    80.5,
+    80.9,
+    80.8,
+    84.15,
+    82.05,
+    83.16,
+    83.0,
+    83.74,
+    83.1,
+    80.16,
+    79.79,
+    80.96,
+    79.04,
+    78.48,
+    75.32,
+    76.12,
+    80.0,
+    79.95,
+    81.0,
+    81.36,
+    78.99,
+    80.6,
+    79.61,
+    85.1,
+    86.91
+   ]
+  },
+  {
+   "symbol": "MRF",
+   "name": "MRF Ltd.",
+   "sector": "Automobile and Auto Components",
+   "price": 125295.0,
+   "final_score": 0.8262,
+   "model_score": 0.9599,
+   "news_score": 0.1026,
+   "quality_score": 0.4776,
+   "forecast": {
+    "3m": {
+     "q10": -0.1264,
+     "q50": 0.0919,
+     "q90": 0.2443,
+     "p_beat_nifty": 0.5241
+    },
+    "4m": {
+     "q10": -0.1256,
+     "q50": 0.0977,
+     "q90": 0.2832,
+     "p_beat_nifty": 0.725
+    },
+    "5m": {
+     "q10": -0.1896,
+     "q50": 0.0388,
+     "q90": 0.3283,
+     "p_beat_nifty": 0.6473
+    }
+   },
+   "reasons": [
+    "RSI 63: momentum without being overbought",
+    "Lower volatility than most peers"
+   ],
+   "risk": {
+    "volatility_63d": 0.1856,
+    "max_drawdown_6m": -0.0947,
+    "beta": 0.7895
+   },
+   "fundamentals": {
+    "pe": 21.894,
+    "pb": 2.5335,
+    "roe": null,
+    "debt_to_equity": 15.288,
+    "earnings_growth": -0.01,
+    "revenue_growth": 0.096,
+    "profit_margin": 0.0758,
+    "market_cap": 531394002944.0,
+    "yf_sector": "Consumer Cyclical"
+   },
+   "news": {
+    "n_articles": 28,
+    "headlines": [
+     {
+      "title": "Biffa completes MRF upgrade with pEPR funding support",
+      "source": "Materials Recycling World",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPUV9BRU1xNjh5WkdEeHM4eFR1bXNXYllGc1BLSGhkNXZUWEZBV0tQcTFnR20wVFFsMnZCcUlVU0FpMGk2S0JuR0dIbW9jQ0pCQWRReHlTWU1IY2FfQS1qNmtaZHRCT3dPSUYtbGg4eURVVnZmdnJObi1OSnB4aHVzSFFicnRtWVpKQ000QWpPNWRpNWl6czgw?oc=5",
+      "published": "2026-11-06T17:15:29+00:00",
+      "sentiment": 0.735
+     },
+     {
+      "title": "BTA :: MRF: This Is Budget of Social Mirage, Fiscal Irresponsibility",
+      "source": "\u0411\u0422\u0410",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPd0dLZlRVdkFhcWZFN0FWVVpkcV9POHQyZDQ1WjFNMnlVM0VMSF9FMHFfeW9VSEJ6MmVwcUdHYjNWdFRqTU10dFpPZHdfR1FHNlIxNXE0bDdDRDEwb0hMTjZQaGZWZk9oMGJ0NXhmQkxwVHFyRmR2SmdZbHJ4WWFqcndud1pROG5IWTZHLWNKMjl5aUdxdVRZb3Zn?oc=5",
+      "published": "2026-11-06T14:53:36+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Council-owned Tom White Waste upgrades Coventry MRF",
+      "source": "letsrecycle.com",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQamhzZVJ6bC1ab0FKSFo4SjMwSHltZUhNRnlsRGlEaUtQZXNBVlF6MzZCZGp5T3AyUFFqTTBMRzUwQ29WYm9TNVMwWkRtWGdwWmlsMVBvTjN0dWp5VHhURUhQZlNfMk5yampkTWcyNmd6Z1JWLW5UN2k4TDVsUDZIeDQ4R1JUaE9uU2RIQ0Nn?oc=5",
+      "published": "2026-11-06T09:59:17+00:00",
+      "sentiment": -0.421
+     },
+     {
+      "title": "Alexander: Over $1.8m collected from MRF",
+      "source": "Trinidad Express Newspapers",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxObHE0bFN4YmdOZllYcDIyRDRjR0o2dzB3UDJRbE10amxnLXo3WG1seEp1c1gxRU80RDlfLVRxd2lUb0MxZWxDejRITnNZMXo5eXdJT1dsU0lyRnVUZlRlUTdYd094QXFkQ09rZ3MtTjB3LTNwb29NT1JBUjdrUHlUT0hONGFlaGpkZGRwNXV4RENJUHNyc0dNRlZBZllrSnpKQjFBZEYzZnlIZTlLUXI3cFEzNzJZRVBwcHN2SVlZeUs5dnZLNWfSAcsBQVVfeXFMUE9JQmNfczJNQ3NtNFU3NlE3Y2dZTlNZZEJTM1lBaEU3NFlMWnVsbWUzdm5jVUJKd2xnM180U2tSN3NYMDhQMWQtSGRaSTEzNmFvTU1fbTA2UHloMTVSN3ZrN09SeF92WWtEVjdMbTl2UDE0Yk9KWnBjY3R6MTVmX2kwLVNOc3NUd0lsNHFDR2lrU2s3aUlTLXZjbHJUd1dLdE4wNjh6M1dfWHRIdzVhMjJHZ05vYUo5eDdqdVJsNHJnYndkQlhvSTdWeWs?oc=5",
+      "published": "2026-11-06T09:30:00+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "DC Lohit Flags Off RDF Transportation Vehicle from Tezu MRF Centre",
+      "source": "Arunachal24",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNM3FwSnhBZ0I0YjlucVB5b1FZVHM5YkNkUHdVdEg5d3ZxX0haVGR6TjlOeV9VR2paT3E3Z1RpZzhfem9WYUJQSG1KRlkyVDdDb0lqdll6RkVkMEh5Uk0zQjVkWURYQ2pQY00tNjBDRWY2cnMwRmF2a09MU0YzZzY0bENiNTZWaW5ub25HTEE1MTZLSllL?oc=5",
+      "published": "2026-11-05T14:26:41+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    130197.75,
+    128685.39,
+    126284.59,
+    126259.62,
+    126234.67,
+    128415.86,
+    128885.05,
+    126509.19,
+    126903.5,
+    125850.34,
+    126564.09,
+    128430.84,
+    126938.44,
+    126818.65,
+    123204.96,
+    124208.2,
+    124477.73,
+    124572.57,
+    124497.7,
+    123289.81,
+    122606.0,
+    122536.12,
+    122381.4,
+    122720.8,
+    125296.3,
+    128316.04,
+    128246.16,
+    129019.8,
+    129858.34,
+    128420.85,
+    131330.78,
+    131121.14,
+    129893.28,
+    129324.27,
+    123833.86,
+    127597.29,
+    129204.48,
+    131834.89,
+    134420.38,
+    135403.67,
+    138408.42,
+    132708.38,
+    133636.75,
+    134190.78,
+    131056.25,
+    130796.7,
+    131445.58,
+    131201.0,
+    130695.0,
+    132800.0,
+    134000.0,
+    132945.0,
+    132030.0,
+    130755.0,
+    132020.0,
+    133140.0,
+    134200.0,
+    134860.0,
+    132770.0,
+    133730.0,
+    132745.0,
+    134405.0,
+    133930.0,
+    134190.0,
+    133850.0,
+    131125.0,
+    130785.0,
+    130985.0,
+    133490.0,
+    133015.0,
+    133505.0,
+    133630.0,
+    134000.0,
+    132665.0,
+    134365.0,
+    132295.0,
+    133520.0,
+    133600.0,
+    132080.0,
+    133745.0,
+    132335.0,
+    131880.0,
+    130510.0,
+    129945.0,
+    128890.0,
+    128245.0,
+    128315.0,
+    128270.0,
+    128290.0,
+    125795.0,
+    125010.0,
+    124585.0,
+    125670.0,
+    124855.0,
+    124770.0,
+    124580.0,
+    123985.0,
+    124035.0,
+    123425.0,
+    123080.0,
+    125280.0,
+    123715.0,
+    123330.0,
+    124080.0,
+    123075.0,
+    122465.0,
+    122090.0,
+    122410.0,
+    122510.0,
+    122365.0,
+    122270.0,
+    122790.0,
+    121905.0,
+    120880.0,
+    118860.0,
+    117915.0,
+    117380.0,
+    118030.0,
+    118020.0,
+    118065.0,
+    116775.0,
+    116920.0,
+    117690.0,
+    117985.0,
+    125920.0,
+    125295.0
+   ]
+  },
+  {
+   "symbol": "BOSCHLTD",
+   "name": "Bosch Ltd.",
+   "sector": "Automobile and Auto Components",
+   "price": 50700.0,
+   "final_score": 0.8235,
+   "model_score": 0.918,
+   "news_score": 0.4417,
+   "quality_score": 0.4854,
+   "forecast": {
+    "3m": {
+     "q10": -0.1366,
+     "q50": 0.0697,
+     "q90": 0.254,
+     "p_beat_nifty": 0.4759
+    },
+    "4m": {
+     "q10": -0.1701,
+     "q50": 0.0588,
+     "q90": 0.297,
+     "p_beat_nifty": 0.562
+    },
+    "5m": {
+     "q10": -0.2027,
+     "q50": 0.0458,
+     "q90": 0.3529,
+     "p_beat_nifty": 0.5375
+    }
+   },
+   "reasons": [
+    "Strong 6-month momentum (+35%, top 3% of universe)",
+    "Outperforming Nifty by +19% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)",
+    "Trading within 5% of its 52-week high",
+    "RSI 65: momentum without being overbought"
+   ],
+   "risk": {
+    "volatility_63d": 0.2989,
+    "max_drawdown_6m": -0.0338,
+    "beta": 1.0613
+   },
+   "fundamentals": {
+    "pe": 52.4096,
+    "pb": 10.0728,
+    "roe": null,
+    "debt_to_equity": 0.8,
+    "earnings_growth": -0.367,
+    "revenue_growth": 0.22,
+    "profit_margin": 0.1133,
+    "market_cap": null,
+    "yf_sector": "Consumer Cyclical"
+   },
+   "news": {
+    "n_articles": 34,
+    "headlines": [
+     {
+      "title": "Bosch Q2 profit rises 19 per cent as revenue jumps 28 per cent",
+      "source": "Indian Television Dot Com",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOMmZNOHF2WDA0cnhWM1BxdDUwbTQxcmQ4MFVuaVlJZ1FzWUJSdXROUk1COXQ0MU5Ma0NCUnotMWJxYzVhVjJaSzZXaXlsY1ZGczhld1VLNHlsdXhlNWdEN3lYaC1ra3dqTDVsVTVUV0RxQzN0bTYzUjlaUFlRdVpvWEVWcjlsby1td18wRzUxUTU1NEJ3MnQ2cGZ5a0g?oc=5",
+      "published": "2026-11-07T05:50:19+00:00",
+      "sentiment": 0.586
+     },
+     {
+      "title": "Bosch Bonus Issue and Stock Split: What Shareholders Need to Know",
+      "source": "Equitymaster",
+      "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOSkJPZTViQ1RubWpFcEt2SFJvRzN5dk9IMVdZOHNFQ1RaQkdZS2pncDd6ekRDUVlqV3VDbmFWakR1SkdMVHcwUGpaOEkxQjFmcElsVW9qbEVCZEFVZDBCeDFYLUg3SEw5NDJCOEZTTGFlVnF4eEp3MWZUNExldExaZnV4R0tQNHZCODkzTXdJU2hfcVhjTjNNTnIyVVlqQ1dzb2ZVVlY1NFIyVEdlUC1hS28xaUdESFFGSXYtbGVqbUI5UmNUM1Rab3ZQOFN3VV9J?oc=5",
+      "published": "2026-11-06T11:35:29+00:00",
+      "sentiment": 0.25
+     },
+     {
+      "title": "Bosch announces 1:5 stock split, 3:1 bonus issue. What this means for investors?",
+      "source": "The Economic Times",
+      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPZ0hMcUtmcEsxa2RZQ2lCeTFpTFc5c3dyUmZUMXoyODNNQ0g3akJGaUI1b2NQXzVEamxMZHZSbVlnQVBXaE9yS1p5eW5KQlBzWnlUNzV2T01kNFRmeGRVQ0pfdVZSdGhEQXdubFl4UnVvWlByZTdxeTY4Q05mZ0NtSlJ6d3BabnZGNkpOX3ZaUGQ0ZjBjT2FZNFc4cTA0WkI3WVlvZU5MbVE1OG50eGVpWHlKdDhzcWFjN2NNbDV6VmdtTFAwM1EzaldIbGk3VzJPYWR1Yks3dHNLYmRXd0hjdjRQd9IB6AFBVV95cUxPLTd6aVpfLVNQcEhYUmFxcnBSV2JKQkV1elQweEVRdGZSVEM1SjdpSWxTUEg1U3pmaWlxck40dEI2Z0JyTThXNXYzMUVIemJEMk10bEtPX2JaMUFDOExnQ3FQOXM3S3pxN2kwTWgwVkp5RVp2bjJHcG9nXzdNT012WTZiU1JDQldXZlhwcG1OcWJBREN6aHJyclJ2VGpnZ2ZRV3hsbmdUOTZQbmJoZ3ZkZWExWEFpbnhKa1JBMFNXdlM5WmxzZVl2blc4ZkplbG9ISUpuNHd0c2psS1A4c0RFS3Y0WEFzMWFh?oc=5",
+      "published": "2026-11-06T11:31:53+00:00",
+      "sentiment": 0.25
+     },
+     {
+      "title": "Bosch Limited Reports Q2 Standalone Net Profit of \u20b96.8 Billion and Approves 3:1 Bonus Issue",
+      "source": "Sahi",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPakhWbEltS18wblFDbGtmeWtHdTRjamZMN0o1SzBuYkF4emdvSWpYVnlxWmh5SHYxT1hWRy1NckhJcjRJTzR5ZHJsNGI1ay1JSkE2WkYwOWRHbGVhUndTNWdlTE5WYW1iTjAyUkx2YS1FWFNPeFVKTzR0UEozVEF2TXdmQlhhZUFXRzdYZ1E2Uk1PVzlsR2xuNXRjTkZhSmMwVDY4cUkzc3NvU0FSczYyV2cxbVVNTEU?oc=5",
+      "published": "2026-11-06T11:15:17+00:00",
+      "sentiment": 0.586
+     },
+     {
+      "title": "3:1 Bonus and 1:5 Stock Split: 10 Shares of This MNC Stock Could Turn Into 200 Shares; Check Details",
+      "source": "Dalal Street Investment Journal",
+      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPbHdDcFdrLXBuSklxSGFkbVdueS1mN29ZTFBTa2JkNW9VcVRXWmpLT181d09JcGx5dklXU2xCQThXbkR0TmZlbmZpOEZrMmVPb3Q4NFRfeHdiMFVtWXA1TjVlN1ZpSHd1d21rUmNzbkNTUFd2UHdUdnI5YmpxTEVYVXpQa0ZiaC1FNWZXQUFHOWRQNnlsQUVpUzdGQ2NkdGRWS2N6azdjQi1IRjMwcUJOdGFKQ2d4RWhrTlZTZUlwbTdXeXUwN3BQWllVRVM2aVhBS2I5S29n?oc=5",
+      "published": "2026-11-06T10:24:46+00:00",
+      "sentiment": 0.66
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    37895.62,
+    37071.05,
+    36271.31,
+    36077.59,
+    36703.47,
+    37493.27,
+    36912.1,
+    36887.26,
+    36589.22,
+    34979.81,
+    35829.22,
+    36072.62,
+    35600.73,
+    35799.42,
+    36385.56,
+    36465.04,
+    36976.67,
+    37513.14,
+    36758.11,
+    36996.54,
+    36370.66,
+    37572.75,
+    37542.95,
+    37319.42,
+    38804.64,
+    38814.58,
+    38789.74,
+    38973.53,
+    39773.27,
+    39932.22,
+    40036.54,
+    39927.25,
+    40101.11,
+    40175.62,
+    39624.25,
+    39639.15,
+    40518.37,
+    41243.59,
+    41621.11,
+    41849.61,
+    41660.85,
+    41337.97,
+    41948.95,
+    41541.63,
+    41422.42,
+    41188.95,
+    41174.05,
+    40841.24,
+    40587.91,
+    40692.22,
+    40602.81,
+    41288.3,
+    41963.86,
+    41482.02,
+    40980.32,
+    41039.93,
+    40796.54,
+    41278.36,
+    40816.41,
+    41030.0,
+    41200.0,
+    42920.0,
+    42000.0,
+    42950.0,
+    43505.0,
+    45185.0,
+    46480.0,
+    46750.0,
+    47100.0,
+    46970.0,
+    48730.0,
+    48460.0,
+    48750.0,
+    48200.0,
+    48100.0,
+    48680.0,
+    48895.0,
+    48780.0,
+    48640.0,
+    50000.0,
+    48550.0,
+    47250.0,
+    47000.0,
+    46820.0,
+    48025.0,
+    48785.0,
+    49100.0,
+    48775.0,
+    48385.0,
+    47070.0,
+    47555.0,
+    47735.0,
+    47000.0,
+    47565.0,
+    48290.0,
+    47955.0,
+    47750.0,
+    48250.0,
+    47020.0,
+    45700.0,
+    47100.0,
+    45480.0,
+    44960.0,
+    45000.0,
+    44410.0,
+    43155.0,
+    43545.0,
+    44585.0,
+    44900.0,
+    45000.0,
+    45035.0,
+    45560.0,
+    45195.0,
+    44500.0,
+    44070.0,
+    44085.0,
+    44900.0,
+    45600.0,
+    47625.0,
+    47565.0,
+    47200.0,
+    48100.0,
+    49645.0,
+    50925.0,
+    52475.0,
+    50700.0
+   ]
+  },
+  {
+   "symbol": "RADICO",
+   "name": "Radico Khaitan Ltd",
+   "sector": "Fast Moving Consumer Goods",
+   "price": 4515.2,
+   "final_score": 0.8195,
+   "model_score": 0.9145,
+   "news_score": 0.2275,
+   "quality_score": 0.5818,
+   "forecast": {
+    "3m": {
+     "q10": -0.1162,
+     "q50": 0.0938,
+     "q90": 0.2783,
+     "p_beat_nifty": 0.562
+    },
+    "4m": {
+     "q10": -0.1697,
+     "q50": 0.121,
+     "q90": 0.3505,
+     "p_beat_nifty": 0.6238
+    },
+    "5m": {
+     "q10": -0.21,
+     "q50": 0.0812,
+     "q90": 0.4293,
+     "p_beat_nifty": 0.5178
+    }
+   },
+   "reasons": [
+    "Strong 6-month momentum (+33%, top 4% of universe)",
+    "Trading within 5% of its 52-week high",
+    "RSI 57: momentum without being overbought"
+   ],
+   "risk": {
+    "volatility_63d": 0.3043,
+    "max_drawdown_6m": -0.046,
+    "beta": 0.7741
+   },
+   "fundamentals": {
+    "pe": 75.7838,
+    "pb": 16.4858,
+    "roe": 0.2396,
+    "debt_to_equity": 10.744,
+    "earnings_growth": 0.663,
+    "revenue_growth": 0.168,
+    "profit_margin": 0.1229,
+    "market_cap": 604987457536.0,
+    "yf_sector": "Consumer Defensive"
+   },
+   "news": {
+    "n_articles": 17,
+    "headlines": [
+     {
+      "title": "Diwali 2026 Muhurat Trading stock picks: Eternal, ICICI, Titan, Radico, 7 more Samvat 2083 stocks by Shriram Research",
+      "source": "Livemint",
+      "link": "https://news.google.com/rss/articles/CBMiigJBVV95cUxOR2pzbVBkbXhTcjk5WDhfdzRKa1U5WUJNR19xMmE2VGd1NFJFdDdpUnhULXRjN3pnbDBCelNxdGlKVFZmR29MdUNyM3h1V3BfZWYzZUlPbGFlX0pPanE2MDh5S0s3RTNvYjByNmtxR0FBNnpWRzBGTVlDWVRGeUlDaDVaWm9MSEZDUS1Kb2JxQkx1NlFTTGZDeHFsZHhkeGRqYVR5TWdnZVhPYVRYOTVmLWUzejRlOWw5NjhqcUpURC00UlExUkdxSlcxd290bVBkdWU1WVoyREJnd3NBamdxNnR2R0h4Ri1wZk1SQnF2NUhWV3I3Y2s3TlhiV3lKbjVnSFlHVV9LSkphQdIBjwJBVV95cUxNLVNJZ09GVnczOVI4Q0ZjTmsxQWRvVGVPTl8xaWtoYlM3bWxjeEFRUHp4dDh0QmJFSTc1RUNDajUtcFpYQlRvX3RCUUNBTXVGcUpNbGFmdG9RLW9NeUJxbUY3N0JhS2FKQ0hqeUhudUNDc2pmbWI5Q3Nad1cwX1Y4Ul9teU5tT0pGZURQWDI3WHFwRVpoLWhpOUdPZE9lRk9YS1VwTjhUSHh0bldzd1pRLTc1WmthNXVYRExaM1EwNnd0cWRrYUpFUExUZjZSM19oUnhMLVUwTThIaDFzdFp3UzBUWWYzd29qMXBVSmwtd2hLMm1md1N5ZXdpeGtMY21fY3dwY0tNZWdIS1k3X2tZ?oc=5",
+      "published": "2026-11-04T13:27:17+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Radico says vodka's share of India's IMFL market reaches 6.3%",
+      "source": "Multibagg AI",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNU3hzZ2JhemVjTFVONDFZdVFQVklyVEQ2U0ZQRkdIdDJRcExqWE02dGlIQjFfUGJxWEFjTnF3N2tnRHhrRFpTamxjNGJpcF92SWlDXy10R0lfeFNFcWp5ams4RXJ3ejhUTlJ1OHRidlpnUHFaTTdmQnJJWDVaX2lpbE1JbmhxV1MtQ3VzZjlTRGhyVW5uZXJCajJxYXhzeTlqMW5KUFNya0NYUjVtSWR6LQ?oc=5",
+      "published": "2026-11-04T01:24:24+00:00",
+      "sentiment": 0.34
+     },
+     {
+      "title": "Radico Khaitan upgrades FY27 P&A volume growth to 30%, sustains 20% EBITDA margin",
+      "source": "scanx.trade",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNYTYxQkRiNWVNYkRQZ1hwSXJvX2V4MGdmZ2N4UTluTjZ2eERlRUZEMHBtY01oOUF5RGdBOXd0NnJ2bHRweXhNZ3RFR0tLSG9RbFBQRTJOTE5COGJxUThfejlmc1NUbFctYmdUdXdpemRGdGVvUUxTS0JZaFYzZnRVVTNaY2FpY2ZDbnY0MmdlTjJlZmVJYWFpZDQyeVhoVGtycUlHSTg5ODNWNXNycmRkRDUyeDRyVXM?oc=5",
+      "published": "2026-11-03T08:00:00+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "Radico (RADICO.NS) at \u20b94100.00: Patience or Opportunity? 2026-11-02 - Factor Valuation",
+      "source": "https://www.siam.in/",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOUG9JazBXaEpzaVAzOTQ4ZUIwVS1qS0dnRjJ1eGluclk4SUNtLWJyczZEd3lGUTljMVd6ZGtOMWxDTnBGTzZfOTgwSDFHM0pLWWlqaHRRcmMtY0pNVFJkUnZCSTIxR201NjNncFFqTXgzNUNOVlAwVENqWkpsSWRFN0xIbV9xVlB5c0lWMkFTNk5LWHNQX2JwSjZXUnJmekZnMmw0?oc=5",
+      "published": "2026-11-02T13:46:45+00:00",
+      "sentiment": 0.421
+     },
+     {
+      "title": "RADICO KHAITAN LTD Option Chain - Live RADICO KHAITAN LTD Option Chain Data, OI & Price",
+      "source": "Upstox",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5aZHdUSGhXa055TWk5M1pXTFQ1WGFXYmpxX2ZPZzhKUmZUUXBKOTdUSTFNTVoyQm9IUGpRMlNVZFZMcVlPN0JZTkd2bVNhZnotcmFlNUl4aXowZk5BLVJLYw?oc=5",
+      "published": "2026-11-02T08:00:00+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    3469.5,
+    3481.97,
+    3421.01,
+    3442.86,
+    3453.34,
+    3491.45,
+    3463.71,
+    3591.93,
+    3558.01,
+    3563.99,
+    3553.22,
+    3531.56,
+    3570.48,
+    3431.69,
+    3510.81,
+    3498.34,
+    3479.78,
+    3456.43,
+    3494.65,
+    3482.97,
+    3477.18,
+    3492.95,
+    3469.4,
+    3442.26,
+    3533.86,
+    3584.05,
+    3570.78,
+    3564.29,
+    3681.83,
+    3760.86,
+    3770.23,
+    3710.67,
+    3749.38,
+    3821.32,
+    3868.32,
+    3936.77,
+    3943.85,
+    3963.61,
+    3883.68,
+    4097.61,
+    4089.53,
+    4068.57,
+    4079.95,
+    4064.68,
+    4036.44,
+    4042.23,
+    4080.95,
+    4096.91,
+    4088.83,
+    4123.25,
+    4079.35,
+    4138.32,
+    4056.3,
+    4091.3,
+    4149.5,
+    4289.7,
+    4373.8,
+    4366.6,
+    4340.8,
+    4459.1,
+    4450.0,
+    4550.0,
+    4470.0,
+    4499.0,
+    4550.0,
+    4545.0,
+    4533.0,
+    4675.2,
+    4650.0,
+    4693.4,
+    4732.9,
+    4696.0,
+    4696.0,
+    4639.8,
+    4600.0,
+    4630.0,
+    4614.0,
+    4606.0,
+    4605.0,
+    4485.0,
+    4474.3,
+    4476.2,
+    4559.0,
+    4494.0,
+    4444.0,
+    4485.0,
+    4414.0,
+    4460.0,
+    4368.1,
+    4360.0,
+    4466.0,
+    4380.0,
+    4535.4,
+    4480.0,
+    4448.8,
+    4601.9,
+    4481.3,
+    4557.1,
+    4478.3,
+    4364.0,
+    4366.0,
+    4237.0,
+    4289.1,
+    4460.1,
+    4495.0,
+    4415.0,
+    4550.0,
+    4555.0,
+    4540.0,
+    4554.1,
+    4449.0,
+    4473.4,
+    4435.5,
+    4356.1,
+    4201.3,
+    4157.3,
+    4200.0,
+    4290.0,
+    4135.1,
+    4235.0,
+    4086.7,
+    4100.0,
+    4250.0,
+    4396.5,
+    4525.0,
+    4515.2
+   ]
+  },
+  {
+   "symbol": "PHOENIXLTD",
+   "name": "Phoenix Mills Ltd.",
+   "sector": "Realty",
+   "price": 2154.9,
+   "final_score": 0.8194,
+   "model_score": 0.9599,
+   "news_score": 0.1221,
+   "quality_score": 0.4225,
+   "forecast": {
+    "3m": {
+     "q10": -0.1188,
+     "q50": 0.0865,
+     "q90": 0.2522,
+     "p_beat_nifty": 0.46
+    },
+    "4m": {
+     "q10": -0.1491,
+     "q50": 0.0812,
+     "q90": 0.308,
+     "p_beat_nifty": 0.5192
+    },
+    "5m": {
+     "q10": -0.2084,
+     "q50": 0.0514,
+     "q90": 0.3278,
+     "p_beat_nifty": 0.5432
+    }
+   },
+   "reasons": [
+    "Strong 6-month momentum (+18%, top 14% of universe)",
+    "Outperforming Nifty by +11% over 3 months",
+    "Trading within 5% of its 52-week high",
+    "Lower volatility than most peers"
+   ],
+   "risk": {
+    "volatility_63d": 0.2509,
+    "max_drawdown_6m": 0.0,
+    "beta": 1.2189
+   },
+   "fundamentals": {
+    "pe": 59.8417,
+    "pb": 8.4671,
+    "roe": 0.1294,
+    "debt_to_equity": 54.31,
+    "earnings_growth": 0.071,
+    "revenue_growth": 0.034,
+    "profit_margin": 0.2841,
+    "market_cap": 770790785024.0,
+    "yf_sector": "Real Estate"
+   },
+   "news": {
+    "n_articles": 9,
+    "headlines": [
+     {
+      "title": "Phoenix Mills to host investor meet at Morgan Stanley Summit on Nov 19",
+      "source": "scanx.trade",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOMnJzNWlZdUN4azZ6N1BsWVNYSzdVdUxWUnJSVWFobUJWU3haN3d2eURuLVRtMHlyaGZJcmY2aG1oc1NYX2VtbHY0T2UtZ2haSTN6QjUxRnR5NXhadmdhQjlEczdtWURGV0FheWJrdnlGWC1VeTRQQUZWekc3Y0t5NlFBcmhzR29uQlpOSHdrTDhCb09Qa0NnR1YyNXJucnRfTk1VRXpNdWtFTHpUWmVHNmg0NXY1X2ZFWGc?oc=5",
+      "published": "2026-11-06T11:22:48+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Phoenix Mills briefs investors on business overview at BofA conference",
+      "source": "scanx.trade",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPcTQtdFlmckl5ZTM2ckd0VUtlNmlqY0czUkZzaUlYdlZjWDBpbWdjRnAxbjJzeFhtZ3Z3U1pJVXFyeEctNW8yVm5yRHFSMGVaZ3dXYTlYRkxOMF9OTGFWMmxrS2dxbndCaFNoNTIzeVIyak5ySVZUM0lQR2ljY1g4OVFPSnRwQ0RhYS1qY1FiRmJKdk5GNWdWWmk3amNSRndhOFF6aWhTRDVkcjkzRUFXNnYtQUJrbnBiZDAzR1JjRmljUG96?oc=5",
+      "published": "2026-11-06T08:36:46+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "PHOENIXLTD Share Price Today - Phoenix Mills on NSE/BSE",
+      "source": "scanx.trade",
+      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE56UHFHNnh1MHdRRmVueWd3Vy14ZFVRcGtTRWttUlZZM2dQNHQ5ZFBvS2d4UHJmamFaUlM2UEFaaEg1TjU4anVDOGkya0twQ0V3aGh3TGQ4Vm8?oc=5",
+      "published": "2026-11-05T08:51:41+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "Phoenix Mills PHOENIXLTD SEBI Physical Share Demat Window Notice",
+      "source": "Kalkine India",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQTE45V2tBRTJYMm1Qd3VwcEZaMVJQZmw5NGdHSjlOQnFqOU90cGF2Tm5hVFA1Z0VOeXF4SjNxVS1PU2t0amNPMUJacHI0dVpOYmk5Szk0elJsa3ZZamtoWTZwYlE1RTZwYzVISGZrbVlzc21kQzFiRUZXdlhMd0FET3RsNmc2eEZIaElBY1BELWNPY2RnVkZJRi1td3ducm9xYUotVE42Z2c4SlllZUUxUGJBaXFERTFWOTE1YzhRa1I4cFRWWUxqZ1pn?oc=5",
+      "published": "2026-11-03T08:55:00+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "Phoenix Mills recommends \u20b92.50 per share final dividend for FY26",
+      "source": "scanx.trade",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQX1BBT1M2VWdIR0NCckg5MmU3UjlkM1I3MHJBQUhIZ0N5eFdLa2pubnJUNlBtZFYzel9iY2FMaWNsSVcwcEVVNnpEWU1tQjRVbmV2R0pjNnhjdTc2ZlhHams0eGVwRm1LeEJ4REowUDdDX2VZZWdPcHVXeGlsbzlyUHFMaTVEeGxoV2pucmNHX0xSSHZLT0RGLVBBc0lUeHhRTVNELVhZRVhXUnN1QnJGX2hJNVZtRmM?oc=5",
+      "published": "2026-11-01T05:17:02+00:00",
+      "sentiment": 0.625
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    1826.88,
+    1808.5,
+    1728.71,
+    1736.1,
+    1757.97,
+    1736.2,
+    1722.32,
+    1719.52,
+    1742.99,
+    1793.32,
+    1787.93,
+    1807.21,
+    1783.04,
+    1769.46,
+    1768.86,
+    1745.49,
+    1704.54,
+    1708.14,
+    1726.91,
+    1748.78,
+    1739.2,
+    1751.78,
+    1763.36,
+    1730.51,
+    1755.28,
+    1844.46,
+    1865.73,
+    1866.63,
+    1851.25,
+    1878.61,
+    1868.62,
+    1849.15,
+    1909.77,
+    1902.08,
+    1909.47,
+    1946.02,
+    2015.83,
+    2009.84,
+    2044.89,
+    2103.01,
+    2072.36,
+    2019.82,
+    2085.24,
+    2136.07,
+    2151.15,
+    2129.68,
+    2129.58,
+    2083.44,
+    2073.05,
+    2071.26,
+    2088.43,
+    2052.88,
+    2032.91,
+    2008.04,
+    2033.91,
+    2020.52,
+    1907.97,
+    1885.4,
+    1890.8,
+    1952.41,
+    1929.74,
+    1927.95,
+    1910.47,
+    1892.99,
+    1932.44,
+    1906.18,
+    1902.48,
+    1895.99,
+    1887.5,
+    1927.25,
+    1937.43,
+    1916.46,
+    1922.45,
+    1927.45,
+    1929.44,
+    1927.45,
+    1921.55,
+    1899.18,
+    1914.46,
+    1897.49,
+    1890.1,
+    1917.56,
+    1957.41,
+    1939.43,
+    1902.48,
+    1882.51,
+    1882.81,
+    1887.5,
+    1890.0,
+    1833.6,
+    1855.0,
+    1872.2,
+    1877.9,
+    1929.0,
+    1953.4,
+    1993.2,
+    1955.0,
+    1978.4,
+    1952.2,
+    1929.0,
+    1935.0,
+    1930.0,
+    1935.0,
+    1883.5,
+    1845.5,
+    1771.2,
+    1813.1,
+    1840.0,
+    1902.6,
+    1887.3,
+    1917.2,
+    1896.9,
+    1884.0,
+    1874.4,
+    1909.9,
+    1872.3,
+    1894.0,
+    1905.0,
+    1899.3,
+    1969.9,
+    1957.2,
+    2016.6,
+    2048.7,
+    2079.5,
+    2126.0,
+    2154.9
+   ]
+  }
+ ],
+ "watchlist": [
+  {
+   "symbol": "OBEROIRLTY",
+   "name": "Oberoi Realty Ltd.",
+   "final_score": 0.816,
+   "q50_5m": 0.0308,
+   "red_flag": false
+  },
+  {
+   "symbol": "ADANIENT",
+   "name": "Adani Enterprises Ltd.",
+   "final_score": 0.8041,
+   "q50_5m": 0.0684,
+   "red_flag": false
+  },
+  {
+   "symbol": "BAJAJHLDNG",
+   "name": "Bajaj Holdings & Investment Ltd.",
+   "final_score": 0.803,
+   "q50_5m": 0.0335,
+   "red_flag": false
+  },
+  {
+   "symbol": "ABCAPITAL",
+   "name": "Aditya Birla Capital Ltd.",
+   "final_score": 0.7966,
+   "q50_5m": 0.0282,
+   "red_flag": false
+  },
+  {
+   "symbol": "TATACOMM",
+   "name": "Tata Communications Ltd.",
+   "final_score": 0.7961,
+   "q50_5m": 0.048,
+   "red_flag": false
+  },
+  {
+   "symbol": "EXIDEIND",
+   "name": "Exide Industries Ltd.",
+   "final_score": 0.7955,
+   "q50_5m": 0.029,
+   "red_flag": false
+  },
+  {
+   "symbol": "PAGEIND",
+   "name": "Page Industries Ltd.",
+   "final_score": 0.7873,
+   "q50_5m": 0.0408,
+   "red_flag": false
+  },
+  {
+   "symbol": "SUZLON",
+   "name": "Suzlon Energy Ltd.",
+   "final_score": 0.7864,
+   "q50_5m": 0.0287,
+   "red_flag": false
+  },
+  {
+   "symbol": "DLF",
+   "name": "DLF Ltd.",
+   "final_score": 0.784,
+   "q50_5m": 0.0477,
+   "red_flag": false
+  },
+  {
+   "symbol": "MOTHERSON",
+   "name": "Samvardhana Motherson International Ltd.",
+   "final_score": 0.7833,
+   "q50_5m": 0.0342,
+   "red_flag": false
+  },
+  {
+   "symbol": "360ONE",
+   "name": "360 ONE WAM Ltd.",
+   "final_score": 0.7814,
+   "q50_5m": 0.0296,
+   "red_flag": false
+  },
+  {
+   "symbol": "MAZDOCK",
+   "name": "Mazagoan Dock Shipbuilders Ltd.",
+   "final_score": 0.778,
+   "q50_5m": 0.0225,
+   "red_flag": false
+  },
+  {
+   "symbol": "MOTILALOFS",
+   "name": "Motilal Oswal Financial Services Ltd.",
+   "final_score": 0.7773,
+   "q50_5m": 0.047,
+   "red_flag": false
+  },
+  {
+   "symbol": "YESBANK",
+   "name": "Yes Bank Ltd.",
+   "final_score": 0.7576,
+   "q50_5m": 0.0253,
+   "red_flag": false
+  },
+  {
+   "symbol": "INDUSINDBK",
+   "name": "IndusInd Bank Ltd.",
+   "final_score": 0.7554,
+   "q50_5m": 0.0175,
+   "red_flag": false
+  }
+ ],
+ "backtest": {
+  "horizon": "5m",
+  "period_start": "2021-06-08",
+  "period_end": "2026-06-08",
+  "n_weeks": 248,
+  "avg_pick_return": 0.2101620709839254,
+  "avg_pick_excess": 0.17720349327921198,
+  "avg_universe_return": 0.10010388454162149,
+  "avg_benchmark_return": 0.03295857770471342,
+  "pick_hit_rate": 0.6991935483870968,
+  "pick_beat_benchmark_rate": 0.6653225806451613,
+  "weeks_top5_beat_benchmark": 0.8266129032258065,
+  "mean_ic": 0.05588922103838899,
+  "ic_t_stat": 1.5073608287178122,
+  "q10_q90_coverage": 0.8469198388629883,
+  "chained_cagr_picks": 0.538363151245477,
+  "chained_cagr_benchmark": 0.08850123754501094,
+  "decile_excess": {
+   "0": 0.04464905935925833,
+   "1": 0.05310943775028192,
+   "2": 0.056481354362285144,
+   "3": 0.06186936298846229,
+   "4": 0.05567339703055334,
+   "5": 0.06469928871355483,
+   "6": 0.06132011150708507,
+   "7": 0.07232293415532406,
+   "8": 0.07796659320991156,
+   "9": 0.12269898926681812
+  },
+  "weekly": [
+   {
+    "date": "2021-06-08",
+    "pick_ret": 0.4294,
+    "bench_ret": 0.1464
+   },
+   {
+    "date": "2021-06-15",
+    "pick_ret": 0.4237,
+    "bench_ret": 0.1342
+   },
+   {
+    "date": "2021-06-22",
+    "pick_ret": 0.4581,
+    "bench_ret": 0.1041
+   },
+   {
+    "date": "2021-06-29",
+    "pick_ret": 0.6183,
+    "bench_ret": 0.0901
+   },
+   {
+    "date": "2021-07-06",
+    "pick_ret": 0.5121,
+    "bench_ret": 0.1044
+   },
+   {
+    "date": "2021-07-13",
+    "pick_ret": 0.6458,
+    "bench_ret": 0.0891
+   },
+   {
+    "date": "2021-07-20",
+    "pick_ret": 0.4909,
+    "bench_ret": 0.0847
+   },
+   {
+    "date": "2021-07-28",
+    "pick_ret": 0.4401,
+    "bench_ret": 0.0958
+   },
+   {
+    "date": "2021-08-04",
+    "pick_ret": 0.69,
+    "bench_ret": 0.1025
+   },
+   {
+    "date": "2021-08-11",
+    "pick_ret": 0.2549,
+    "bench_ret": 0.1185
+   },
+   {
+    "date": "2021-08-18",
+    "pick_ret": 0.3723,
+    "bench_ret": 0.0827
+   },
+   {
+    "date": "2021-08-26",
+    "pick_ret": 0.3113,
+    "bench_ret": 0.0284
+   },
+   {
+    "date": "2021-09-02",
+    "pick_ret": 0.3031,
+    "bench_ret": 0.0189
+   },
+   {
+    "date": "2021-09-09",
+    "pick_ret": 0.0374,
+    "bench_ret": 0.0136
+   },
+   {
+    "date": "2021-09-17",
+    "pick_ret": -0.0447,
+    "bench_ret": -0.016
+   },
+   {
+    "date": "2021-09-24",
+    "pick_ret": -0.0612,
+    "bench_ret": -0.0899
+   },
+   {
+    "date": "2021-10-01",
+    "pick_ret": -0.0388,
+    "bench_ret": -0.0734
+   },
+   {
+    "date": "2021-10-08",
+    "pick_ret": -0.1114,
+    "bench_ret": -0.0707
+   },
+   {
+    "date": "2021-10-18",
+    "pick_ret": -0.1039,
+    "bench_ret": -0.0736
+   },
+   {
+    "date": "2021-10-25",
+    "pick_ret": 0.1235,
+    "bench_ret": -0.0498
+   },
+   {
+    "date": "2021-11-01",
+    "pick_ret": 0.1345,
+    "bench_ret": 0.0069
+   },
+   {
+    "date": "2021-11-09",
+    "pick_ret": 0.2047,
+    "bench_ret": -0.0205
+   },
+   {
+    "date": "2021-11-16",
+    "pick_ret": 0.1385,
+    "bench_ret": -0.0479
+   },
+   {
+    "date": "2021-11-24",
+    "pick_ret": 0.0162,
+    "bench_ret": -0.0216
+   },
+   {
+    "date": "2021-12-01",
+    "pick_ret": -0.0253,
+    "bench_ret": -0.0282
+   },
+   {
+    "date": "2021-12-08",
+    "pick_ret": -0.074,
+    "bench_ret": -0.0951
+   },
+   {
+    "date": "2021-12-15",
+    "pick_ret": -0.0821,
+    "bench_ret": -0.082
+   },
+   {
+    "date": "2021-12-22",
+    "pick_ret": -0.0312,
+    "bench_ret": -0.0463
+   },
+   {
+    "date": "2021-12-29",
+    "pick_ret": -0.0098,
+    "bench_ret": -0.034
+   },
+   {
+    "date": "2022-01-05",
+    "pick_ret": 0.1428,
+    "bench_ret": -0.0807
+   },
+   {
+    "date": "2022-01-12",
+    "pick_ret": 0.0482,
+    "bench_ret": -0.1566
+   },
+   {
+    "date": "2022-01-19",
+    "pick_ret": 0.0025,
+    "bench_ret": -0.1328
+   },
+   {
+    "date": "2022-01-27",
+    "pick_ret": 0.0029,
+    "bench_ret": -0.0777
+   },
+   {
+    "date": "2022-02-03",
+    "pick_ret": 0.1332,
+    "bench_ret": -0.0813
+   },
+   {
+    "date": "2022-02-10",
+    "pick_ret": 0.0437,
+    "bench_ret": -0.0947
+   },
+   {
+    "date": "2022-02-17",
+    "pick_ret": 0.1227,
+    "bench_ret": -0.0404
+   },
+   {
+    "date": "2022-02-24",
+    "pick_ret": 0.053,
+    "bench_ret": 0.042
+   },
+   {
+    "date": "2022-03-04",
+    "pick_ret": 0.0811,
+    "bench_ret": 0.07
+   },
+   {
+    "date": "2022-03-11",
+    "pick_ret": 0.1985,
+    "bench_ret": 0.0642
+   },
+   {
+    "date": "2022-03-21",
+    "pick_ret": 0.2634,
+    "bench_ret": 0.0218
+   },
+   {
+    "date": "2022-03-28",
+    "pick_ret": 0.0715,
+    "bench_ret": 0.0053
+   },
+   {
+    "date": "2022-04-04",
+    "pick_ret": 0.1995,
+    "bench_ret": -0.022
+   },
+   {
+    "date": "2022-04-11",
+    "pick_ret": 0.1062,
+    "bench_ret": 0.0224
+   },
+   {
+    "date": "2022-04-20",
+    "pick_ret": 0.3864,
+    "bench_ret": 0.0397
+   },
+   {
+    "date": "2022-04-27",
+    "pick_ret": 0.2972,
+    "bench_ret": -0.0018
+   },
+   {
+    "date": "2022-05-05",
+    "pick_ret": 0.0837,
+    "bench_ret": 0.0355
+   },
+   {
+    "date": "2022-05-12",
+    "pick_ret": 0.2725,
+    "bench_ret": 0.0832
+   },
+   {
+    "date": "2022-05-19",
+    "pick_ret": 0.0072,
+    "bench_ret": 0.1077
+   },
+   {
+    "date": "2022-05-26",
+    "pick_ret": 0.0499,
+    "bench_ret": 0.0969
+   },
+   {
+    "date": "2022-06-02",
+    "pick_ret": 0.2554,
+    "bench_ret": 0.0857
+   },
+   {
+    "date": "2022-06-09",
+    "pick_ret": 0.1132,
+    "bench_ret": 0.1136
+   },
+   {
+    "date": "2022-06-16",
+    "pick_ret": 0.3076,
+    "bench_ret": 0.1919
+   },
+   {
+    "date": "2022-06-23",
+    "pick_ret": 0.4901,
+    "bench_ret": 0.19
+   },
+   {
+    "date": "2022-06-30",
+    "pick_ret": 0.495,
+    "bench_ret": 0.1848
+   },
+   {
+    "date": "2022-07-07",
+    "pick_ret": 0.1899,
+    "bench_ret": 0.1465
+   },
+   {
+    "date": "2022-07-14",
+    "pick_ret": 0.1662,
+    "bench_ret": 0.1462
+   },
+   {
+    "date": "2022-07-21",
+    "pick_ret": 0.0486,
+    "bench_ret": 0.0724
+   },
+   {
+    "date": "2022-07-28",
+    "pick_ret": 0.2283,
+    "bench_ret": 0.0694
+   },
+   {
+    "date": "2022-08-04",
+    "pick_ret": 0.1449,
+    "bench_ret": 0.0275
+   },
+   {
+    "date": "2022-08-12",
+    "pick_ret": 0.1304,
+    "bench_ret": 0.0146
+   },
+   {
+    "date": "2022-08-22",
+    "pick_ret": -0.0056,
+    "bench_ret": 0.0307
+   },
+   {
+    "date": "2022-08-29",
+    "pick_ret": -0.1004,
+    "bench_ret": 0.0194
+   },
+   {
+    "date": "2022-09-06",
+    "pick_ret": -0.0733,
+    "bench_ret": 0.0062
+   },
+   {
+    "date": "2022-09-13",
+    "pick_ret": -0.0839,
+    "bench_ret": -0.0166
+   },
+   {
+    "date": "2022-09-20",
+    "pick_ret": -0.1778,
+    "bench_ret": 0.0016
+   },
+   {
+    "date": "2022-09-27",
+    "pick_ret": 0.0591,
+    "bench_ret": 0.0227
+   },
+   {
+    "date": "2022-10-04",
+    "pick_ret": -0.0401,
+    "bench_ret": 0.0253
+   },
+   {
+    "date": "2022-10-12",
+    "pick_ret": -0.1351,
+    "bench_ret": -0.0047
+   },
+   {
+    "date": "2022-10-19",
+    "pick_ret": -0.0803,
+    "bench_ret": -0.0231
+   },
+   {
+    "date": "2022-10-27",
+    "pick_ret": -0.1051,
+    "bench_ret": -0.0443
+   },
+   {
+    "date": "2022-11-03",
+    "pick_ret": 0.139,
+    "bench_ret": -0.0251
+   },
+   {
+    "date": "2022-11-11",
+    "pick_ret": 0.0516,
+    "bench_ret": -0.035
+   },
+   {
+    "date": "2022-11-18",
+    "pick_ret": 0.0847,
+    "bench_ret": -0.0308
+   },
+   {
+    "date": "2022-11-25",
+    "pick_ret": 0.1073,
+    "bench_ret": -0.0197
+   },
+   {
+    "date": "2022-12-02",
+    "pick_ret": 0.2011,
+    "bench_ret": -0.023
+   },
+   {
+    "date": "2022-12-09",
+    "pick_ret": 0.2232,
+    "bench_ret": -0.0114
+   },
+   {
+    "date": "2022-12-16",
+    "pick_ret": 0.0493,
+    "bench_ret": 0.0043
+   },
+   {
+    "date": "2022-12-23",
+    "pick_ret": -0.0026,
+    "bench_ret": 0.0464
+   },
+   {
+    "date": "2022-12-30",
+    "pick_ret": 0.0724,
+    "bench_ret": 0.0273
+   },
+   {
+    "date": "2023-01-06",
+    "pick_ret": 0.1247,
+    "bench_ret": 0.048
+   },
+   {
+    "date": "2023-01-13",
+    "pick_ret": 0.1252,
+    "bench_ret": 0.0479
+   },
+   {
+    "date": "2023-01-20",
+    "pick_ret": 0.3199,
+    "bench_ret": 0.0438
+   },
+   {
+    "date": "2023-01-30",
+    "pick_ret": 0.2503,
+    "bench_ret": 0.0991
+   },
+   {
+    "date": "2023-02-06",
+    "pick_ret": 0.4046,
+    "bench_ret": 0.0912
+   },
+   {
+    "date": "2023-02-13",
+    "pick_ret": 0.2482,
+    "bench_ret": 0.116
+   },
+   {
+    "date": "2023-02-20",
+    "pick_ret": 0.4198,
+    "bench_ret": 0.1084
+   },
+   {
+    "date": "2023-02-27",
+    "pick_ret": 0.3417,
+    "bench_ret": 0.1227
+   },
+   {
+    "date": "2023-03-06",
+    "pick_ret": 0.2772,
+    "bench_ret": 0.1085
+   },
+   {
+    "date": "2023-03-14",
+    "pick_ret": 0.5566,
+    "bench_ret": 0.1362
+   },
+   {
+    "date": "2023-03-21",
+    "pick_ret": 0.29,
+    "bench_ret": 0.1332
+   },
+   {
+    "date": "2023-03-28",
+    "pick_ret": 0.1208,
+    "bench_ret": 0.1358
+   },
+   {
+    "date": "2023-04-06",
+    "pick_ret": 0.2943,
+    "bench_ret": 0.1209
+   },
+   {
+    "date": "2023-04-17",
+    "pick_ret": 0.4756,
+    "bench_ret": 0.1353
+   },
+   {
+    "date": "2023-04-24",
+    "pick_ret": 0.3534,
+    "bench_ret": 0.1088
+   },
+   {
+    "date": "2023-05-02",
+    "pick_ret": 0.3812,
+    "bench_ret": 0.0821
+   },
+   {
+    "date": "2023-05-09",
+    "pick_ret": 0.2947,
+    "bench_ret": 0.0682
+   },
+   {
+    "date": "2023-05-16",
+    "pick_ret": 0.336,
+    "bench_ret": 0.079
+   },
+   {
+    "date": "2023-05-23",
+    "pick_ret": 0.2657,
+    "bench_ret": 0.0509
+   },
+   {
+    "date": "2023-05-30",
+    "pick_ret": 0.2351,
+    "bench_ret": 0.0239
+   },
+   {
+    "date": "2023-06-06",
+    "pick_ret": 0.2682,
+    "bench_ret": 0.0434
+   },
+   {
+    "date": "2023-06-13",
+    "pick_ret": 0.2271,
+    "bench_ret": 0.0513
+   },
+   {
+    "date": "2023-06-20",
+    "pick_ret": 0.1879,
+    "bench_ret": 0.0529
+   },
+   {
+    "date": "2023-06-27",
+    "pick_ret": 0.2107,
+    "bench_ret": 0.0699
+   },
+   {
+    "date": "2023-07-05",
+    "pick_ret": 0.7232,
+    "bench_ret": 0.0775
+   },
+   {
+    "date": "2023-07-12",
+    "pick_ret": 0.5822,
+    "bench_ret": 0.0928
+   },
+   {
+    "date": "2023-07-19",
+    "pick_ret": 0.5637,
+    "bench_ret": 0.0717
+   },
+   {
+    "date": "2023-07-26",
+    "pick_ret": 0.6517,
+    "bench_ret": 0.0987
+   },
+   {
+    "date": "2023-08-02",
+    "pick_ret": 0.824,
+    "bench_ret": 0.1119
+   },
+   {
+    "date": "2023-08-09",
+    "pick_ret": 0.657,
+    "bench_ret": 0.1152
+   },
+   {
+    "date": "2023-08-17",
+    "pick_ret": 0.589,
+    "bench_ret": 0.1166
+   },
+   {
+    "date": "2023-08-24",
+    "pick_ret": 0.5771,
+    "bench_ret": 0.1101
+   },
+   {
+    "date": "2023-08-31",
+    "pick_ret": 0.4912,
+    "bench_ret": 0.139
+   },
+   {
+    "date": "2023-09-07",
+    "pick_ret": 0.4197,
+    "bench_ret": 0.1022
+   },
+   {
+    "date": "2023-09-14",
+    "pick_ret": 0.2771,
+    "bench_ret": 0.1042
+   },
+   {
+    "date": "2023-09-22",
+    "pick_ret": 0.4214,
+    "bench_ret": 0.1283
+   },
+   {
+    "date": "2023-09-29",
+    "pick_ret": 0.194,
+    "bench_ret": 0.1384
+   },
+   {
+    "date": "2023-10-09",
+    "pick_ret": 0.2168,
+    "bench_ret": 0.1274
+   },
+   {
+    "date": "2023-10-16",
+    "pick_ret": 0.3684,
+    "bench_ret": 0.1068
+   },
+   {
+    "date": "2023-10-23",
+    "pick_ret": 0.6389,
+    "bench_ret": 0.1579
+   },
+   {
+    "date": "2023-10-31",
+    "pick_ret": 0.3974,
+    "bench_ret": 0.18
+   },
+   {
+    "date": "2023-11-07",
+    "pick_ret": 0.3397,
+    "bench_ret": 0.1477
+   },
+   {
+    "date": "2023-11-15",
+    "pick_ret": 0.5029,
+    "bench_ret": 0.1368
+   },
+   {
+    "date": "2023-11-22",
+    "pick_ret": 0.4348,
+    "bench_ret": 0.141
+   },
+   {
+    "date": "2023-11-30",
+    "pick_ret": 0.4627,
+    "bench_ret": 0.1078
+   },
+   {
+    "date": "2023-12-07",
+    "pick_ret": 0.36,
+    "bench_ret": 0.0622
+   },
+   {
+    "date": "2023-12-14",
+    "pick_ret": 0.5957,
+    "bench_ret": 0.0843
+   },
+   {
+    "date": "2023-12-21",
+    "pick_ret": 0.3343,
+    "bench_ret": 0.058
+   },
+   {
+    "date": "2023-12-29",
+    "pick_ret": 0.1861,
+    "bench_ret": 0.0502
+   },
+   {
+    "date": "2024-01-05",
+    "pick_ret": 0.5118,
+    "bench_ret": 0.0778
+   },
+   {
+    "date": "2024-01-12",
+    "pick_ret": 0.4767,
+    "bench_ret": 0.0734
+   },
+   {
+    "date": "2024-01-19",
+    "pick_ret": 0.4763,
+    "bench_ret": 0.1105
+   },
+   {
+    "date": "2024-01-30",
+    "pick_ret": 0.6765,
+    "bench_ret": 0.1302
+   },
+   {
+    "date": "2024-02-06",
+    "pick_ret": 0.4577,
+    "bench_ret": 0.1173
+   },
+   {
+    "date": "2024-02-13",
+    "pick_ret": 0.3747,
+    "bench_ret": 0.1272
+   },
+   {
+    "date": "2024-02-20",
+    "pick_ret": 0.4762,
+    "bench_ret": 0.1189
+   },
+   {
+    "date": "2024-02-27",
+    "pick_ret": 0.474,
+    "bench_ret": 0.0837
+   },
+   {
+    "date": "2024-03-05",
+    "pick_ret": 0.4559,
+    "bench_ret": 0.089
+   },
+   {
+    "date": "2024-03-13",
+    "pick_ret": 0.5045,
+    "bench_ret": 0.1228
+   },
+   {
+    "date": "2024-03-20",
+    "pick_ret": 0.6051,
+    "bench_ret": 0.1455
+   },
+   {
+    "date": "2024-03-28",
+    "pick_ret": 0.4854,
+    "bench_ret": 0.1323
+   },
+   {
+    "date": "2024-04-05",
+    "pick_ret": 0.6155,
+    "bench_ret": 0.1123
+   },
+   {
+    "date": "2024-04-15",
+    "pick_ret": 0.5719,
+    "bench_ret": 0.1413
+   },
+   {
+    "date": "2024-04-23",
+    "pick_ret": 0.7027,
+    "bench_ret": 0.1597
+   },
+   {
+    "date": "2024-04-30",
+    "pick_ret": 0.6015,
+    "bench_ret": 0.1412
+   },
+   {
+    "date": "2024-05-08",
+    "pick_ret": 0.6244,
+    "bench_ret": 0.1201
+   },
+   {
+    "date": "2024-05-15",
+    "pick_ret": 0.5584,
+    "bench_ret": 0.1248
+   },
+   {
+    "date": "2024-05-23",
+    "pick_ret": 0.4821,
+    "bench_ret": 0.0639
+   },
+   {
+    "date": "2024-05-30",
+    "pick_ret": 0.3798,
+    "bench_ret": 0.0824
+   },
+   {
+    "date": "2024-06-06",
+    "pick_ret": 0.5376,
+    "bench_ret": 0.0729
+   },
+   {
+    "date": "2024-06-13",
+    "pick_ret": 0.3622,
+    "bench_ret": 0.0068
+   },
+   {
+    "date": "2024-06-21",
+    "pick_ret": 0.2993,
+    "bench_ret": 0.0173
+   },
+   {
+    "date": "2024-06-28",
+    "pick_ret": 0.2726,
+    "bench_ret": 0.005
+   },
+   {
+    "date": "2024-07-05",
+    "pick_ret": 0.2549,
+    "bench_ret": 0.0146
+   },
+   {
+    "date": "2024-07-12",
+    "pick_ret": 0.2471,
+    "bench_ret": 0.0109
+   },
+   {
+    "date": "2024-07-22",
+    "pick_ret": 0.1519,
+    "bench_ret": -0.0376
+   },
+   {
+    "date": "2024-07-29",
+    "pick_ret": 0.1143,
+    "bench_ret": -0.048
+   },
+   {
+    "date": "2024-08-05",
+    "pick_ret": 0.1177,
+    "bench_ret": -0.0183
+   },
+   {
+    "date": "2024-08-12",
+    "pick_ret": -0.0317,
+    "bench_ret": -0.0518
+   },
+   {
+    "date": "2024-08-20",
+    "pick_ret": -0.0041,
+    "bench_ret": -0.0548
+   },
+   {
+    "date": "2024-08-27",
+    "pick_ret": -0.0605,
+    "bench_ret": -0.0875
+   },
+   {
+    "date": "2024-09-03",
+    "pick_ret": -0.0237,
+    "bench_ret": -0.0711
+   },
+   {
+    "date": "2024-09-10",
+    "pick_ret": -0.0998,
+    "bench_ret": -0.0591
+   },
+   {
+    "date": "2024-09-17",
+    "pick_ret": -0.1778,
+    "bench_ret": -0.0979
+   },
+   {
+    "date": "2024-09-24",
+    "pick_ret": -0.1126,
+    "bench_ret": -0.1212
+   },
+   {
+    "date": "2024-10-01",
+    "pick_ret": -0.1425,
+    "bench_ret": -0.1426
+   },
+   {
+    "date": "2024-10-09",
+    "pick_ret": -0.0742,
+    "bench_ret": -0.1009
+   },
+   {
+    "date": "2024-10-16",
+    "pick_ret": -0.1286,
+    "bench_ret": -0.0856
+   },
+   {
+    "date": "2024-10-23",
+    "pick_ret": -0.0864,
+    "bench_ret": -0.0314
+   },
+   {
+    "date": "2024-10-30",
+    "pick_ret": -0.085,
+    "bench_ret": -0.0414
+   },
+   {
+    "date": "2024-11-06",
+    "pick_ret": -0.1388,
+    "bench_ret": -0.0852
+   },
+   {
+    "date": "2024-11-13",
+    "pick_ret": 0.0013,
+    "bench_ret": 0.024
+   },
+   {
+    "date": "2024-11-22",
+    "pick_ret": 0.0375,
+    "bench_ret": 0.0176
+   },
+   {
+    "date": "2024-11-29",
+    "pick_ret": 0.0519,
+    "bench_ret": 0.0103
+   },
+   {
+    "date": "2024-12-06",
+    "pick_ret": 0.0833,
+    "bench_ret": -0.004
+   },
+   {
+    "date": "2024-12-13",
+    "pick_ret": 0.0513,
+    "bench_ret": -0.0034
+   },
+   {
+    "date": "2024-12-20",
+    "pick_ret": 0.0012,
+    "bench_ret": 0.0525
+   },
+   {
+    "date": "2024-12-30",
+    "pick_ret": 0.1995,
+    "bench_ret": 0.038
+   },
+   {
+    "date": "2025-01-06",
+    "pick_ret": 0.136,
+    "bench_ret": 0.063
+   },
+   {
+    "date": "2025-01-13",
+    "pick_ret": 0.1748,
+    "bench_ret": 0.0766
+   },
+   {
+    "date": "2025-01-20",
+    "pick_ret": 0.2157,
+    "bench_ret": 0.0728
+   },
+   {
+    "date": "2025-01-27",
+    "pick_ret": 0.2153,
+    "bench_ret": 0.1188
+   },
+   {
+    "date": "2025-02-01",
+    "pick_ret": 0.1172,
+    "bench_ret": 0.0869
+   },
+   {
+    "date": "2025-02-07",
+    "pick_ret": 0.2908,
+    "bench_ret": 0.0694
+   },
+   {
+    "date": "2025-02-14",
+    "pick_ret": 0.5192,
+    "bench_ret": 0.093
+   },
+   {
+    "date": "2025-02-21",
+    "pick_ret": 0.3906,
+    "bench_ret": 0.0888
+   },
+   {
+    "date": "2025-03-03",
+    "pick_ret": 0.6039,
+    "bench_ret": 0.1144
+   },
+   {
+    "date": "2025-03-10",
+    "pick_ret": 0.3589,
+    "bench_ret": 0.0903
+   },
+   {
+    "date": "2025-03-18",
+    "pick_ret": 0.3443,
+    "bench_ret": 0.0971
+   },
+   {
+    "date": "2025-03-25",
+    "pick_ret": 0.2852,
+    "bench_ret": 0.0352
+   },
+   {
+    "date": "2025-04-02",
+    "pick_ret": 0.3294,
+    "bench_ret": 0.0601
+   },
+   {
+    "date": "2025-04-09",
+    "pick_ret": 0.4154,
+    "bench_ret": 0.1164
+   },
+   {
+    "date": "2025-04-21",
+    "pick_ret": 0.2064,
+    "bench_ret": 0.0538
+   },
+   {
+    "date": "2025-04-28",
+    "pick_ret": 0.1091,
+    "bench_ret": 0.0231
+   },
+   {
+    "date": "2025-05-06",
+    "pick_ret": 0.1718,
+    "bench_ret": 0.0211
+   },
+   {
+    "date": "2025-05-13",
+    "pick_ret": 0.0991,
+    "bench_ret": 0.0288
+   },
+   {
+    "date": "2025-05-20",
+    "pick_ret": 0.1864,
+    "bench_ret": 0.0416
+   },
+   {
+    "date": "2025-05-27",
+    "pick_ret": 0.0974,
+    "bench_ret": 0.0459
+   },
+   {
+    "date": "2025-06-03",
+    "pick_ret": 0.0711,
+    "bench_ret": 0.0497
+   },
+   {
+    "date": "2025-06-10",
+    "pick_ret": 0.0043,
+    "bench_ret": 0.0235
+   },
+   {
+    "date": "2025-06-17",
+    "pick_ret": -0.0895,
+    "bench_ret": 0.0425
+   },
+   {
+    "date": "2025-06-24",
+    "pick_ret": -0.0259,
+    "bench_ret": 0.0336
+   },
+   {
+    "date": "2025-07-01",
+    "pick_ret": -0.1103,
+    "bench_ret": 0.0192
+   },
+   {
+    "date": "2025-07-08",
+    "pick_ret": 0.1257,
+    "bench_ret": 0.0124
+   },
+   {
+    "date": "2025-07-15",
+    "pick_ret": -0.0334,
+    "bench_ret": 0.0264
+   },
+   {
+    "date": "2025-07-22",
+    "pick_ret": 0.0338,
+    "bench_ret": 0.0445
+   },
+   {
+    "date": "2025-07-29",
+    "pick_ret": -0.0671,
+    "bench_ret": 0.0527
+   },
+   {
+    "date": "2025-08-05",
+    "pick_ret": 0.003,
+    "bench_ret": 0.0605
+   },
+   {
+    "date": "2025-08-12",
+    "pick_ret": -0.0538,
+    "bench_ret": 0.0481
+   },
+   {
+    "date": "2025-08-20",
+    "pick_ret": -0.0545,
+    "bench_ret": 0.0043
+   },
+   {
+    "date": "2025-08-28",
+    "pick_ret": 0.2521,
+    "bench_ret": 0.0375
+   },
+   {
+    "date": "2025-09-04",
+    "pick_ret": 0.1032,
+    "bench_ret": 0.0367
+   },
+   {
+    "date": "2025-09-11",
+    "pick_ret": 0.2321,
+    "bench_ret": 0.0321
+   },
+   {
+    "date": "2025-09-18",
+    "pick_ret": 0.1741,
+    "bench_ret": 0.0012
+   },
+   {
+    "date": "2025-09-25",
+    "pick_ret": -0.0125,
+    "bench_ret": 0.0243
+   },
+   {
+    "date": "2025-10-03",
+    "pick_ret": 0.2399,
+    "bench_ret": -0.0178
+   },
+   {
+    "date": "2025-10-10",
+    "pick_ret": -0.0816,
+    "bench_ret": -0.0844
+   },
+   {
+    "date": "2025-10-17",
+    "pick_ret": 0.0154,
+    "bench_ret": -0.1009
+   },
+   {
+    "date": "2025-10-27",
+    "pick_ret": 0.0678,
+    "bench_ret": -0.14
+   },
+   {
+    "date": "2025-11-03",
+    "pick_ret": -0.0068,
+    "bench_ret": -0.0685
+   },
+   {
+    "date": "2025-11-11",
+    "pick_ret": -0.1661,
+    "bench_ret": -0.0583
+   },
+   {
+    "date": "2025-11-18",
+    "pick_ret": 0.0268,
+    "bench_ret": -0.067
+   },
+   {
+    "date": "2025-11-25",
+    "pick_ret": 0.0917,
+    "bench_ret": -0.0729
+   },
+   {
+    "date": "2025-12-02",
+    "pick_ret": 0.1188,
+    "bench_ret": -0.0713
+   },
+   {
+    "date": "2025-12-09",
+    "pick_ret": 0.1828,
+    "bench_ret": -0.085
+   },
+   {
+    "date": "2025-12-16",
+    "pick_ret": 0.1483,
+    "bench_ret": -0.0828
+   },
+   {
+    "date": "2025-12-23",
+    "pick_ret": 0.2344,
+    "bench_ret": -0.1068
+   },
+   {
+    "date": "2025-12-31",
+    "pick_ret": 0.2757,
+    "bench_ret": -0.1151
+   },
+   {
+    "date": "2026-01-07",
+    "pick_ret": 0.2887,
+    "bench_ret": -0.0875
+   },
+   {
+    "date": "2026-01-14",
+    "pick_ret": 0.4102,
+    "bench_ret": -0.0609
+   },
+   {
+    "date": "2026-01-21",
+    "pick_ret": 0.5956,
+    "bench_ret": -0.0513
+   },
+   {
+    "date": "2026-01-29",
+    "pick_ret": 0.3734,
+    "bench_ret": -0.0401
+   },
+   {
+    "date": "2026-02-05",
+    "pick_ret": 0.0238,
+    "bench_ret": -0.062
+   },
+   {
+    "date": "2026-02-12",
+    "pick_ret": 0.0539,
+    "bench_ret": -0.0628
+   },
+   {
+    "date": "2026-02-19",
+    "pick_ret": 0.0116,
+    "bench_ret": -0.0577
+   },
+   {
+    "date": "2026-02-26",
+    "pick_ret": -0.0198,
+    "bench_ret": -0.0346
+   },
+   {
+    "date": "2026-03-06",
+    "pick_ret": 0.2045,
+    "bench_ret": 0.0009
+   },
+   {
+    "date": "2026-03-13",
+    "pick_ret": 0.1289,
+    "bench_ret": 0.0434
+   },
+   {
+    "date": "2026-03-20",
+    "pick_ret": 0.3787,
+    "bench_ret": 0.0528
+   },
+   {
+    "date": "2026-03-30",
+    "pick_ret": 0.124,
+    "bench_ret": 0.0772
+   },
+   {
+    "date": "2026-04-08",
+    "pick_ret": 0.2899,
+    "bench_ret": -0.0151
+   },
+   {
+    "date": "2026-04-16",
+    "pick_ret": 0.029,
+    "bench_ret": -0.0405
+   },
+   {
+    "date": "2026-04-23",
+    "pick_ret": -0.0688,
+    "bench_ret": -0.03
+   },
+   {
+    "date": "2026-04-30",
+    "pick_ret": -0.0914,
+    "bench_ret": -0.0574
+   },
+   {
+    "date": "2026-05-08",
+    "pick_ret": -0.0948,
+    "bench_ret": -0.0804
+   },
+   {
+    "date": "2026-05-15",
+    "pick_ret": 0.0671,
+    "bench_ret": -0.0273
+   },
+   {
+    "date": "2026-05-22",
+    "pick_ret": -0.0083,
+    "bench_ret": -0.0472
+   },
+   {
+    "date": "2026-06-01",
+    "pick_ret": 0.1144,
+    "bench_ret": -0.0141
+   },
+   {
+    "date": "2026-06-08",
+    "pick_ret": 0.0544,
+    "bench_ret": 0.0825
+   }
+  ]
+ }
+}
