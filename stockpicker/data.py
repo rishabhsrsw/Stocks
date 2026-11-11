@@ -4,6 +4,7 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import pickle
+import time
 from dataclasses import dataclass
 
 import numpy as np
@@ -29,38 +30,50 @@ class Prices:
         return list(self.close.columns)
 
 
-def _download_chunk(tickers: list[str], start: str) -> pd.DataFrame:
+def _download_chunk(tickers: list[str], start: str | None = None, period: str | None = None,
+                    retries: int = 3) -> pd.DataFrame:
     import yfinance as yf
 
-    return yf.download(
-        tickers, start=start, auto_adjust=True, group_by="ticker",
-        threads=True, progress=False,
-    )
+    for attempt in range(retries):
+        try:
+            raw = yf.download(tickers, start=start, period=period, auto_adjust=True, group_by="ticker",
+                              threads=True, progress=False)
+            if raw is not None and not raw.empty:
+                return raw
+        except Exception as exc:  # rate limits and network blips: back off and retry
+            log.warning("Download failed (%s), attempt %d/%d", exc, attempt + 1, retries)
+        time.sleep(5 * (attempt + 1))
+    return pd.DataFrame()
 
 
-def download_prices(symbols: list[str], benchmark: str, years: int, use_cache: bool = True) -> Prices:
+def download_prices(symbols: list[str], benchmark: str, years: int, use_cache: bool = True,
+                    tickers: dict[str, str] | None = None, min_rows: int = 300) -> Prices:
+    """Daily OHLCV for `symbols`. `tickers` maps symbol -> Yahoo ticker (default SYMBOL.NS);
+    symbols with fewer than `min_rows` days of data are dropped."""
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    cache_file = CACHE_DIR / f"prices_{dt.date.today():%Y%m%d}_{len(symbols)}.pkl"
+    cache_file = CACHE_DIR / f"prices_{dt.date.today():%Y%m%d}_{len(symbols)}_{years}y.pkl"
     if use_cache and cache_file.exists():
         with open(cache_file, "rb") as fh:
             return pickle.load(fh)
 
     start = (dt.date.today() - dt.timedelta(days=int(365.25 * years))).isoformat()
     fields = {"Close": {}, "High": {}, "Low": {}, "Volume": {}}
-    tickers = [yahoo_symbol(s) for s in symbols]
-    for i in range(0, len(tickers), 50):
-        chunk = tickers[i:i + 50]
+    to_sym = {(tickers or {}).get(s, yahoo_symbol(s)): s for s in symbols}
+    ticker_list = list(to_sym)
+    for i in range(0, len(ticker_list), 50):
+        chunk = ticker_list[i:i + 50]
         raw = _download_chunk(chunk, start)
+        if raw.empty:
+            continue
         for t in chunk:
             if t not in raw.columns.get_level_values(0):
                 continue
             frame = raw[t]
-            if frame["Close"].notna().sum() < 300:  # need >~1y of history
+            if frame["Close"].notna().sum() < min_rows:
                 continue
-            sym = t[:-3]
             for f in fields:
-                fields[f][sym] = frame[f]
-        log.info("Downloaded %d/%d tickers", min(i + 50, len(tickers)), len(tickers))
+                fields[f][to_sym[t]] = frame[f]
+        log.info("Downloaded %d/%d tickers", min(i + 50, len(ticker_list)), len(ticker_list))
 
     bench_raw = _download_chunk([benchmark], start)
     bench = bench_raw[benchmark]["Close"] if benchmark in bench_raw.columns.get_level_values(0) else bench_raw["Close"]
@@ -107,3 +120,22 @@ def synthetic_prices(n_symbols: int = 60, n_days: int = 2600, seed: int = 0) -> 
         volume=vol,
         benchmark=pd.Series(100 * np.exp(np.cumsum(market)), index=dates),
     )
+
+
+def download_last_close(tickers: dict[str, str]) -> dict[str, float]:
+    """Latest closing price per symbol (symbol -> Yahoo ticker), from the last week of trading."""
+    to_sym = {t: s for s, t in tickers.items()}
+    ticker_list = list(to_sym)
+    out: dict[str, float] = {}
+    for i in range(0, len(ticker_list), 100):
+        chunk = ticker_list[i:i + 100]
+        raw = _download_chunk(chunk, period="7d")
+        if raw.empty:
+            continue
+        for t in chunk:
+            if t in raw.columns.get_level_values(0):
+                c = raw[t]["Close"].dropna()
+                if len(c):
+                    out[to_sym[t]] = round(float(c.iloc[-1]), 2)
+    log.info("Latest close for %d/%d tickers", len(out), len(ticker_list))
+    return out

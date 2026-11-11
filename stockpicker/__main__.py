@@ -7,11 +7,11 @@ import logging
 from pathlib import Path
 
 from .config import SITE_DATA_DIR, Config
-from .data import download_prices, synthetic_prices
+from .data import download_last_close, download_prices, synthetic_prices
 from .features import build_panel
 from .model import walk_forward_backtest
 from .pipeline import run_daily, run_weekly
-from .universe import load_universe
+from .universe import load_market_directory, load_universe
 
 
 def main() -> None:
@@ -53,8 +53,13 @@ def main() -> None:
     coverage = load_universe(args.coverage) if args.coverage != args.index else universe
     symbols = sorted(set(universe["symbol"]) | set(coverage["symbol"]))
     prices = download_prices(symbols, cfg.benchmark, cfg.history_years, use_cache=not args.no_cache)
+    # Every other listed company (NSE + BSE-only), for the holdings review.
+    directory = load_market_directory()
+    rest = directory[~directory["symbol"].isin(symbols)]
+    other = dict(zip(rest["symbol"], rest["yahoo"]))
     if args.command == "daily":
-        res = run_daily(prices, universe, cfg, coverage=coverage, with_news=not args.no_news,
+        extra = download_last_close(other) if other else {}
+        res = run_daily(prices, universe, cfg, coverage=coverage, extra_prices=extra, with_news=not args.no_news,
                         with_backtest=not args.no_backtest, out_dir=Path(args.out), force=args.force)
         if res is None:
             print("No new trading day: nothing to update.")
@@ -66,7 +71,10 @@ def main() -> None:
                   f"range {f['q10']:+.0%}..{f['q90']:+.0%}  P(beat Nifty) {f['p_beat_nifty']:.0%}")
         return
 
-    res = run_weekly(prices, universe, cfg, coverage=coverage, with_news=not args.no_news,
+    extended = (download_prices(list(other), cfg.benchmark, cfg.extended_years, use_cache=not args.no_cache,
+                                tickers=other, min_rows=cfg.extended_min_rows) if other else None)
+    res = run_weekly(prices, universe, cfg, coverage=coverage, extended=extended, directory=directory,
+                     with_news=not args.no_news,
                      with_fundamentals=not args.no_fundamentals, with_backtest=not args.no_backtest, out_dir=Path(args.out))
     print(f"\nTop {len(res['picks'])} picks for the week of {res['as_of']}:")
     for p in res["picks"]:

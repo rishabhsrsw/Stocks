@@ -32,6 +32,9 @@ def verdict_frame(df: pd.DataFrame) -> pd.Series:
 def warnings(row: pd.Series, p5: pd.Series) -> list[str]:
     """Plain-language concerns from the chart and the forecast."""
     out = []
+    traded = np.expm1(row.get("log_traded_value", np.nan))  # median daily turnover, ₹
+    if traded < 1e7:
+        out.append(f"Thinly traded (about ₹{traded / 1e5:.1f} lakh a day): may be hard to sell quickly")
     if row.get("dist_sma200", 0) < 0 and row.get("sma200_slope", 0) < 0:
         out.append(f"Below a falling 200-day average ({row['dist_sma200']:+.0%}): long-term downtrend")
     if row.get("ret_126_rank", 1) <= 0.2:

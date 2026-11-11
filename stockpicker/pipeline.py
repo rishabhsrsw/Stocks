@@ -14,7 +14,7 @@ from . import holdings
 from . import news as news_mod
 from .config import SITE_DATA_DIR, Config
 from .data import Prices
-from .features import build_panel, feature_columns
+from .features import RANKED, build_panel, feature_columns, stock_features
 from .fundamentals import fetch_fundamentals, quality_score
 from .model import HorizonModel, eligible, walk_forward_backtest
 
@@ -108,10 +108,12 @@ def select_picks(sl: pd.DataFrame, top_n: int, max_per_sector: int) -> list[str]
 
 
 def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: pd.DataFrame | None = None,
+               extended: Prices | None = None, directory: pd.DataFrame | None = None,
                with_news: bool = True, with_fundamentals: bool = True, with_backtest: bool = True,
                out_dir: Path = SITE_DATA_DIR) -> dict:
     """`universe` is where picks come from (and what the model trains and is backtested on);
-    `coverage` is the wider list scored for the holdings review."""
+    `coverage` is the wider list scored for the holdings review; `extended` holds shorter price
+    histories for every other listed company in `directory` (scored against `coverage`)."""
     universe = universe[universe["symbol"].isin(prices.symbols)].reset_index(drop=True)
     coverage = universe if coverage is None else coverage[coverage["symbol"].isin(prices.symbols)]
     meta = pd.concat([universe, coverage]).drop_duplicates("symbol").set_index("symbol")
@@ -127,11 +129,11 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
     backtest = walk_forward_backtest(train_panel, days, cfg) if with_backtest else None
 
     today = panel.xs(asof, level="date", drop_level=False)
-    preds = {}
+    preds, models = {}, {}
     for h in cfg.horizons:
-        model = HorizonModel(h, feats).fit(train_panel)
-        log.info("Trained %s model on %d rows", h, model.n_train)
-        preds[h] = model.predict(today).droplevel("date")
+        models[h] = HorizonModel(h, feats).fit(train_panel)
+        log.info("Trained %s model on %d rows", h, models[h].n_train)
+        preds[h] = models[h].predict(today).droplevel("date")
     today = today.droplevel("date")
     main = preds[cfg.rank_horizon]
 
@@ -195,15 +197,68 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
             for s in sl.sort_values("final", ascending=False).index[:20] if s not in picks
         ],
         "backtest": backtest,
-        "stocks": stock_scores(prices, today, preds, meta, news_res, red, cfg),
     }
     write_outputs(result, prices, out_dir)
-    return result
+
+    # Holdings review data goes in its own compact file: it covers thousands of stocks.
+    stocks = stock_scores(prices, today, preds, meta, news_res, red, cfg)
+    if extended is not None and not extended.close.empty and directory is not None:
+        ext_today, ext_preds = score_extended(extended, today, preds, models, feats, asof, cfg)
+        ext_meta = directory.drop_duplicates("symbol").set_index("symbol")
+        stocks += stock_scores(extended, ext_today, ext_preds, ext_meta, {}, set(), cfg, tested=False)
+    scored = {s["symbol"] for s in stocks}
+    unscored = [] if directory is None else [
+        {"symbol": r.symbol, "name": r.name, "exchange": r.exchange}
+        for r in directory.itertuples(index=False) if r.symbol not in scored
+    ]
+    (out_dir / "stocks.json").write_text(json.dumps(
+        {"as_of": result["as_of"], "generated_at": result["generated_at"], "stocks": stocks, "unscored": unscored},
+        separators=(",", ":"), default=str))
+    log.info("Holdings review: %d stocks scored, %d listed without a verdict", len(stocks), len(unscored))
+    return result | {"stocks": stocks, "unscored": unscored}
+
+
+def _pct_vs(ref: pd.Series, values: pd.Series) -> np.ndarray:
+    """Percentile of each value within the reference distribution (NaN stays NaN)."""
+    r = np.sort(ref.dropna().to_numpy())
+    v = values.to_numpy(dtype=float)
+    out = np.searchsorted(r, v, side="right") / max(len(r), 1)
+    return np.where(np.isnan(v), np.nan, out)
+
+
+def score_extended(ext: Prices, ref_today: pd.DataFrame, ref_preds: dict, models: dict, feats: list[str],
+                   asof: pd.Timestamp, cfg: Config) -> tuple[pd.DataFrame, dict]:
+    """Score stocks outside the training universe with the trained models.
+
+    Cross-sectional features and the model score are measured against the covered stocks
+    (`ref_today` / `ref_preds`), so a score means the same thing for every stock."""
+    raw = stock_features(ext)
+    close = ext.close.loc[:asof]
+    recent = close.index[-cfg.stale_days:]
+    live = close.columns[close.loc[recent].notna().any()]  # traded in the last `stale_days` sessions
+    X = pd.DataFrame({name: frame.loc[:asof].ffill(limit=cfg.stale_days).iloc[-1] for name, frame in raw.items()})
+    X = X.loc[X.index.intersection(live)]
+    for name in RANKED:
+        X[f"{name}_rank"] = _pct_vs(ref_today[name], X[name])
+    for c in ref_today.columns:
+        if c.startswith("mkt_"):
+            X[c] = ref_today[c].iloc[0]
+    X = X.reindex(columns=feats).replace([np.inf, -np.inf], np.nan)
+    X.index = pd.MultiIndex.from_product([[asof], X.index], names=["date", "symbol"])
+    preds = {}
+    for h, model in models.items():
+        p = model.predict(X).droplevel("date")
+        ref = ref_preds[h]
+        p["model_score"] = (_pct_vs(ref["rank_pred"], p["rank_pred"]) + _pct_vs(ref["p_beat"], p["p_beat"])
+                            + _pct_vs(ref["q50"], p["q50"])) / 3
+        preds[h] = p
+    return X.droplevel("date"), preds
 
 
 def stock_scores(prices: Prices, today: pd.DataFrame, preds: dict, meta: pd.DataFrame,
-                 news_res: dict, red: set, cfg: Config) -> list[dict]:
-    """Outlook and hold/sell verdict for every covered stock (used by the holdings review)."""
+                 news_res: dict, red: set, cfg: Config, tested: bool = True) -> list[dict]:
+    """Outlook and hold/sell verdict for every scored stock (used by the holdings review).
+    `tested` is False for stocks outside the universe the model was trained and backtested on."""
     main = preds[cfg.rank_horizon]
     frame = main.join(today[["dist_sma200", "sma200_slope"]])
     frame["red_flag"] = frame.index.isin(red)
@@ -218,6 +273,8 @@ def stock_scores(prices: Prices, today: pd.DataFrame, preds: dict, meta: pd.Data
             "symbol": s,
             "name": meta.loc[s, "name"],
             "sector": meta.loc[s, "sector"],
+            "exchange": meta.loc[s, "exchange"] if "exchange" in meta else "NSE",
+            "tested": tested,
             "price": _r(prices.close[s].dropna().iloc[-1], 2),
             "model_score": _r(main.loc[s, "model_score"]),
             "verdict": verdict[s],
@@ -268,8 +325,8 @@ def write_outputs(result: dict, prices: Prices, out_dir: Path) -> None:
 
 
 def run_daily(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: pd.DataFrame | None = None,
-              with_news: bool = True, with_backtest: bool = True, out_dir: Path = SITE_DATA_DIR,
-              force: bool = False) -> dict | None:
+              extra_prices: dict[str, float] | None = None, with_news: bool = True, with_backtest: bool = True,
+              out_dir: Path = SITE_DATA_DIR, force: bool = False) -> dict | None:
     """Short-term picks for the next ~2 weeks, plus today's closing prices for the holdings review.
 
     Returns None (and writes nothing) when there is no new trading day since the last run."""
@@ -350,6 +407,6 @@ def run_daily(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: 
     (hist / f"{result['as_of']}.json").write_text(json.dumps(result, indent=1, default=str))
     result["track_record"] = update_track_record(hist, prices, cfg.daily_horizon_days, h)
     # Latest closing prices so the holdings review stays current between weekly runs.
-    result["prices"] = {s: _r(prices.close[s].dropna().iloc[-1], 2) for s in meta.index}
+    result["prices"] = (extra_prices or {}) | {s: _r(prices.close[s].dropna().iloc[-1], 2) for s in meta.index}
     (out_dir / "daily.json").write_text(json.dumps(result, indent=1, default=str))
     return result

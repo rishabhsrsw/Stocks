@@ -195,3 +195,82 @@ def load_universe(index: str = "nifty200") -> pd.DataFrame:
 
 def yahoo_symbol(symbol: str) -> str:
     return f"{symbol}.NS"
+
+
+# ---------------------------------------------------------------- whole-market directory
+# Every listed company, so the holdings review can take any Indian stock, not just index members.
+NSE_LIST_URLS = [
+    "https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv",
+    "https://archives.nseindia.com/content/equities/EQUITY_L.csv",
+]
+NSE_SME_URL = "https://nsearchives.nseindia.com/emerge/corporates/content/SME_EQUITY_L.csv"
+BSE_LIST_URL = ("https://api.bseindia.com/BseIndiaAPI/api/ListofScripData/w"
+                "?Group=&Scripcode=&industry=&segment=Equity&status=Active")
+HEADERS = {"User-Agent": "Mozilla/5.0", "Accept": "*/*", "Referer": "https://www.bseindia.com/"}
+DIRECTORY_COLUMNS = ["symbol", "name", "exchange", "yahoo", "isin", "sector"]
+
+
+def parse_nse_csv(text: str) -> pd.DataFrame:
+    df = pd.read_csv(io.StringIO(text))
+    df.columns = [c.strip().upper() for c in df.columns]
+    if "SERIES" in df:  # main board: ordinary shares (EQ) and trade-for-trade (BE/BZ); SME file has SM/ST
+        df = df[df["SERIES"].astype(str).str.strip().isin(["EQ", "BE", "BZ", "SM", "ST"])]
+    out = pd.DataFrame({
+        "symbol": df["SYMBOL"].astype(str).str.strip(),
+        "name": df["NAME OF COMPANY"].astype(str).str.strip(),
+        "exchange": "NSE",
+        "isin": df.get("ISIN NUMBER", pd.Series("", index=df.index)).astype(str).str.strip(),
+        "sector": "",
+    })
+    out["yahoo"] = out["symbol"] + ".NS"
+    return out[DIRECTORY_COLUMNS]
+
+
+def parse_bse_json(rows: list[dict], taken_isins: set[str], taken_symbols: set[str]) -> pd.DataFrame:
+    """BSE companies that are not also on the NSE (matched by ISIN)."""
+    out = []
+    for r in rows:
+        r = {k.lower(): v for k, v in r.items()}
+        code, isin = str(r.get("scrip_cd") or "").strip(), str(r.get("isin_number") or "").strip()
+        if not code or isin in taken_isins or str(r.get("status", "Active")).strip().lower() != "active":
+            continue
+        sym = str(r.get("scrip_id") or code).strip().upper()
+        if sym in taken_symbols:  # same ticker as a different NSE company
+            sym = f"{sym}-BSE"
+        taken_symbols.add(sym)
+        out.append({"symbol": sym, "name": str(r.get("scrip_name") or r.get("issuer_name") or sym).strip(),
+                    "exchange": "BSE", "yahoo": f"{code}.BO", "isin": isin,
+                    "sector": str(r.get("industry") or "").strip()})
+    return pd.DataFrame(out, columns=DIRECTORY_COLUMNS)
+
+
+def load_market_directory() -> pd.DataFrame:
+    """All listed equities: NSE main board + SME, then BSE-only companies. Empty on failure."""
+    parts = []
+    for url in NSE_LIST_URLS:
+        try:
+            resp = requests.get(url, timeout=30, headers=HEADERS)
+            resp.raise_for_status()
+            parts.append(parse_nse_csv(resp.text))
+            break
+        except Exception as exc:
+            log.warning("NSE equity list failed from %s: %s", url, exc)
+    try:
+        resp = requests.get(NSE_SME_URL, timeout=30, headers=HEADERS)
+        resp.raise_for_status()
+        parts.append(parse_nse_csv(resp.text))
+    except Exception as exc:
+        log.warning("NSE SME list failed: %s", exc)
+    nse = pd.concat(parts).drop_duplicates("symbol") if parts else pd.DataFrame(columns=DIRECTORY_COLUMNS)
+    try:
+        resp = requests.get(BSE_LIST_URL, timeout=60, headers=HEADERS)
+        resp.raise_for_status()
+        rows = resp.json()
+        rows = rows.get("Table", rows) if isinstance(rows, dict) else rows
+        bse = parse_bse_json(rows, set(nse["isin"]), set(nse["symbol"]))
+    except Exception as exc:
+        log.warning("BSE scrip list failed: %s", exc)
+        bse = pd.DataFrame(columns=DIRECTORY_COLUMNS)
+    directory = pd.concat([nse, bse], ignore_index=True)
+    log.info("Market directory: %d NSE + %d BSE-only companies", len(nse), len(bse))
+    return directory

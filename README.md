@@ -48,7 +48,14 @@ average buy price and optionally the buy date. For each one it shows:
 * how each verdict actually performed in the backtest, so you can judge how much to trust it
 
 Verdicts are forward-looking: the buy price is only used for P&L and tax, because what you paid doesn't change what the
-stock does next. Every Nifty 500 stock is scored each week (`--coverage`), while picks still come from the Nifty 200.
+stock does next. Picks still come from the Nifty 200, but the holdings review covers **every NSE- and BSE-listed company**:
+
+* Nifty 500 stocks (`--coverage`) are scored with 12 years of history, as the model was trained and tested on.
+* Every other listed company (the full NSE list including SME, plus BSE-only companies, matched by ISIN) is scored each
+  week from about 2 years of prices, measured against the Nifty 500. The app labels these as outside the tested range,
+  and flags thinly traded stocks.
+* Companies with under a year of trading (recent IPOs), or that haven't traded for two weeks, get no verdict, but still
+  show price and P&L from the daily closing prices.
 Holdings are stored only on the device (with a copy/restore backup), never uploaded.
 
 ## Quick start (local)

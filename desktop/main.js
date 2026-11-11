@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const DEFAULT_REPO = "rishabhsrsw/Stocks";
-const DATA_FILES = ["latest", "daily"];  // docs/data/<name>.json
+const DATA_FILES = ["latest", "daily", "stocks"];  // docs/data/<name>.json
 const userFile = (name) => path.join(app.getPath("userData"), name);
 
 let mainWin = null;

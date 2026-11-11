@@ -45,6 +45,11 @@ class Config:
     w_daily_news: float = 0.20
     round_trip_cost: float = 0.004  # brokerage + STT + slippage for one buy and one sell, as a fraction
 
+    # Holdings review beyond the Nifty 500: every NSE/BSE-listed company with enough history.
+    extended_years: int = 2
+    extended_min_rows: int = 252  # about a year of trading, needed for the chart features
+    stale_days: int = 10  # skip stocks that haven't traded in this many sessions
+
     # Model / backtest
     sample_every_n_days: int = 5  # weekly snapshots for the training panel
     retrain_every_n_days: int = 63

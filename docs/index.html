@@ -170,10 +170,10 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
 
   <section id="tab-holdings" hidden>
   <h2>Should I hold or sell?</h2>
-  <p class="muted" style="margin-top:-4px">Add what you own. Each stock gets a verdict from the same model, based on its outlook from today. Your buy price is used for profit/loss and tax timing only: what you paid doesn't change what the stock does next. Covers the Nifty 500. Holdings are saved on this device only.</p>
+  <p class="muted" style="margin-top:-4px">Add what you own. Each stock gets a verdict from the same model, based on its outlook from today. Your buy price is used for profit/loss and tax timing only: what you paid doesn't change what the stock does next. Works for any NSE or BSE-listed stock. Holdings are saved on this device only.</p>
   <div class="card">
     <form id="h-form" class="hform" autocomplete="off">
-      <label>Stock (NSE symbol or name)<input id="h-sym" list="h-list" placeholder="e.g. TCS or Infosys" required></label>
+      <label>Stock (symbol or company name)<input id="h-sym" list="h-list" placeholder="e.g. TCS or Infosys" required></label>
       <label>Quantity<input id="h-qty" type="number" min="0" step="any" inputmode="decimal" required></label>
       <label>Avg buy price ₹<input id="h-price" type="number" min="0" step="any" inputmode="decimal" required></label>
       <label>Buy date (optional)<input id="h-date" type="date"></label>
@@ -183,7 +183,7 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
     <p class="muted" id="h-msg" style="margin:8px 0 0" role="status"></p>
   </div>
   <div class="tiles" id="h-summary" style="margin-top:16px"></div>
-  <div class="grid" id="h-cards"></div>
+  <div class="grid" id="h-cards" style="align-items:start"></div>
   <div id="h-alt"></div>
   <div class="card" id="h-evidence" style="margin-top:16px" hidden></div>
   <details class="card" style="margin-top:16px">
@@ -405,7 +405,7 @@ function renderDaily(d) {
     ? `<tr><th>Picked</th><th>Symbol</th><th class="num">Entry ₹</th><th class="num">Latest ₹</th><th class="num">Return</th><th class="num">Nifty</th><th class="num">Predicted</th><th class="num">Days</th></tr>` +
       tr.map(t => `<tr><td>${t.week}</td><td>${esc(t.symbol)}</td><td class="num">${t.entry}</td><td class="num">${t.latest}</td><td class="num ${cls(t.return)}">${pct(t.return)}</td><td class="num">${pct(t.nifty_return)}</td><td class="num">${pct(t.predicted_q50)}</td><td class="num">${t.days_held}${t.complete ? " ✓" : ""}</td></tr>`).join("")
     : `<tr><td class="muted">The track record fills in as daily picks age.</td></tr>`;
-  if (DATA && DATA.stocks) renderHoldings();  // holdings switch to the newer daily prices
+  renderHoldings();  // holdings switch to the newer daily prices
 }
 
 // ---------------------------------------------------------------- tabs
@@ -474,10 +474,11 @@ function holdingCard(h, s, i) {
   const tax = taxNote(h, s);
   card.innerHTML = `
     <div class="card-head">
-      <div><div class="rank">NSE: ${esc(s.symbol)}</div><h3>${esc(s.name)}</h3></div>
+      <div><div class="rank">${esc(s.exchange || "NSE")}: ${esc(s.symbol)}</div><h3>${esc(s.name)}</h3></div>
       <div>${badge(s.verdict)}</div>
     </div>
     <p style="margin:8px 0;font-size:14px">${VERDICT_TEXT[s.red_flag ? "exit_flag" : s.verdict]}</p>
+    ${s.tested === false ? '<p class="muted" style="margin:0 0 8px">Outside the Nifty 500: the model was built and tested on larger companies, so treat this verdict as a rough guide.</p>' : ""}
     <div class="kv">
       <div>Price<b>${inr(s.price, 2)}</b></div>
       <div>Your avg<b>${inr(h.price, 2)}</b></div>
@@ -507,22 +508,36 @@ function holdingCard(h, s, i) {
 }
 
 function renderHoldings() {
+  if (!STOCKS) return;
   const d = DATA, holdings = loadHoldings();
-  const fresh = DAILY && DAILY.prices && DAILY.as_of > d.as_of;  // newer closing prices from the daily run
-  const priceDate = fresh ? DAILY.as_of : d.as_of;
-  const bySym = new Map((d.stocks || []).map(s => [s.symbol, fresh && DAILY.prices[s.symbol] ? {...s, price: DAILY.prices[s.symbol]} : s]));
+  const base = STOCKS.as_of || d.as_of;
+  const fresh = DAILY && DAILY.prices && DAILY.as_of > base;  // newer closing prices from the daily run
+  const priceDate = fresh ? DAILY.as_of : base;
+  const bySym = new Map(STOCKS.stocks.map(s => [s.symbol, fresh && DAILY.prices[s.symbol] ? {...s, price: DAILY.prices[s.symbol]} : s]));
+  const noVerdict = new Map((STOCKS.unscored || []).map(u => [u.symbol, u]));
   const cards = document.getElementById("h-cards");
   cards.innerHTML = "";
   let cost = 0, value = 0;
   const counts = {};
   const rows = holdings.map((h, i) => ({h, i, s: bySym.get(h.symbol)}));
   const order = {exit: 0, review: 1, hold: 2, strong_hold: 3};
-  rows.sort((a, b) => (a.s ? order[a.s.verdict] : -1) - (b.s ? order[b.s.verdict] : -1));
+  rows.sort((a, b) => (a.s ? order[a.s.verdict] : 9) - (b.s ? order[b.s.verdict] : 9));  // no verdict last
   for (const {h, i, s} of rows) {
     if (!s) {
+      const u = noVerdict.get(h.symbol) || {symbol: h.symbol, name: h.symbol, exchange: ""};
+      const price = DAILY && DAILY.prices && DAILY.prices[h.symbol];
       const c = document.createElement("div");
       c.className = "card";
-      c.innerHTML = `<h3>${esc(h.symbol)}</h3><p class="muted">Not in this week's data (it may have left the Nifty 500). No verdict available.</p><button class="link" data-remove="${i}">Remove</button>`;
+      let money = "";
+      if (price) {
+        const v = price * h.qty, pnl = v - h.price * h.qty;
+        cost += h.price * h.qty; value += v;
+        money = `<div class="kv"><div>Price<b>${inr(price, 2)}</b></div><div>Your avg<b>${inr(h.price, 2)}</b></div><div>Qty<b>${Number(h.qty).toLocaleString("en-IN")}</b></div>
+          <div>Value<b>${inr(v)}</b></div><div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${inr(Math.abs(pnl))}</b></div><div>Return<b class="${cls(pnl)}">${pct(pnl / (h.price * h.qty))}</b></div></div>`;
+      }
+      c.innerHTML = `<div class="rank">${esc(u.exchange ? u.exchange + ": " : "")}${esc(h.symbol)}</div><h3>${esc(u.name)}</h3>
+        <p class="muted">No verdict: not enough recent trading history (listed less than a year ago, suspended, or rarely traded).${price ? "" : " No recent price either."}</p>
+        ${money}<button class="link" data-remove="${i}">Remove</button>`;
       cards.appendChild(c);
       continue;
     }
@@ -571,18 +586,32 @@ function renderEvidence(d) {
     </table></div>`;
 }
 
-function setupHoldings(d) {
-  const stocks = d.stocks || [];
-  if (!stocks.length) {
+let STOCKS = null;
+function setupHoldings(payload) {
+  STOCKS = {as_of: payload.as_of, stocks: payload.stocks || [], unscored: payload.unscored || []};
+  // Every listed stock is searchable; those without a verdict still get price and P&L.
+  const all = STOCKS.stocks.concat(STOCKS.unscored);
+  if (!all.length) {
     document.getElementById("h-cards").innerHTML = '<p class="muted">Holdings review will be available after the next weekly update.</p>';
     document.getElementById("h-form").querySelector("button").disabled = true;
     return;
   }
-  document.getElementById("h-list").innerHTML = stocks.map(s => `<option value="${esc(s.symbol)}">${esc(s.name)}</option>`).join("");
+  const keyed = all.map(s => ({s, sym: s.symbol.toLowerCase(), name: s.name.toLowerCase()}));
+  const list = document.getElementById("h-list"), input = document.getElementById("h-sym");
+  const matches = q => {
+    q = q.trim().toLowerCase();
+    if (!q) return [];
+    const starts = keyed.filter(k => k.sym.startsWith(q) || k.name.startsWith(q));
+    const contains = q.length >= 3 ? keyed.filter(k => !starts.includes(k) && k.name.includes(q)) : [];
+    return starts.concat(contains).slice(0, 25).map(k => k.s);
+  };
+  input.oninput = () => {  // only a short suggestion list: thousands of options would be slow on phones
+    list.innerHTML = matches(input.value).map(s => `<option value="${esc(s.symbol)}">${esc(s.name)} · ${esc(s.exchange || "NSE")}</option>`).join("");
+  };
   const find = q => {
     q = q.trim().toLowerCase();
-    return stocks.find(s => s.symbol.toLowerCase() === q) || stocks.find(s => s.name.toLowerCase() === q) ||
-      (q.length >= 3 ? stocks.find(s => s.name.toLowerCase().startsWith(q)) : undefined);
+    return (keyed.find(k => k.sym === q) || keyed.find(k => k.name === q) || {}).s ||
+      (q.length >= 3 ? matches(q)[0] : undefined);
   };
   const msg = document.getElementById("h-msg");
   document.getElementById("h-form").onsubmit = e => {
@@ -591,7 +620,7 @@ function setupHoldings(d) {
     const qty = parseFloat(document.getElementById("h-qty").value);
     const price = parseFloat(document.getElementById("h-price").value);
     const date = document.getElementById("h-date").value || null;
-    if (!s) { msg.textContent = "Couldn't find that stock in the Nifty 500. Type the NSE symbol (e.g. HDFCBANK) or pick from the list."; return; }
+    if (!s) { msg.textContent = "Couldn't find that stock. Type its NSE/BSE symbol (e.g. HDFCBANK) or part of the company name and pick from the list."; return; }
     if (!(qty > 0) || !(price > 0)) { msg.textContent = "Enter a quantity and a buy price above zero."; return; }
     const h = loadHoldings();
     const existing = h.find(x => x.symbol === s.symbol);
@@ -624,7 +653,7 @@ function setupHoldings(d) {
       renderHoldings();
     } catch (_) { msg.textContent = "That backup text isn't valid."; }
   };
-  renderEvidence(d);
+  renderEvidence(DATA);
   renderHoldings();
 }
 
@@ -698,7 +727,9 @@ loadData().then(({data: d, stale}) => {
     ? `<tr><th>Week</th><th>Symbol</th><th class="num">Entry ₹</th><th class="num">Latest ₹</th><th class="num">Return</th><th class="num">Nifty</th><th class="num">Predicted</th><th class="num">Days</th></tr>` +
       tr.map(t => `<tr><td>${t.week}</td><td>${esc(t.symbol)}</td><td class="num">${t.entry}</td><td class="num">${t.latest}</td><td class="num ${cls(t.return)}">${pct(t.return)}</td><td class="num">${pct(t.nifty_return)}</td><td class="num">${pct(t.predicted_q50)}</td><td class="num">${t.days_held}${t.complete ? " ✓" : ""}</td></tr>`).join("")
     : `<tr><td class="muted">The track record fills in as weekly picks age.</td></tr>`;
-  setupHoldings(d);
+  document.getElementById("h-cards").innerHTML = '<p class="muted">Loading stock data…</p>';
+  // Older data files carried the stock list inside latest.json.
+  loadData("stocks").then(({data}) => setupHoldings(data)).catch(() => setupHoldings({as_of: d.as_of, stocks: d.stocks || []}));
   loadData("daily").then(({data}) => renderDaily(data)).catch(() => {});
 }).catch(e => {
   const b = document.getElementById("err");

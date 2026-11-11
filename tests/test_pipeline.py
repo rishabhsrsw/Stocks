@@ -7,10 +7,11 @@ import pytest
 
 from stockpicker import holdings, news
 from stockpicker.config import Config
-from stockpicker.data import synthetic_prices
+from stockpicker.data import Prices, synthetic_prices
 from stockpicker.features import build_panel, stock_features
 from stockpicker.model import HorizonModel, train_cutoff
 from stockpicker.pipeline import run_daily, run_weekly
+from stockpicker.universe import parse_bse_json, parse_nse_csv
 
 
 @pytest.fixture(scope="module")
@@ -117,3 +118,53 @@ def test_daily_run(prices, tmp_path):
     assert (tmp_path / "daily-history" / f"{res['as_of']}.json").exists()
     # Same trading day again (weekend, holiday): nothing is rewritten.
     assert run_daily(prices, universe.iloc[:20], cfg, coverage=universe, with_news=False, out_dir=tmp_path) is None
+
+
+def test_market_directory_parsing():
+    nse = parse_nse_csv(
+        "SYMBOL,NAME OF COMPANY, SERIES, DATE OF LISTING, ISIN NUMBER\n"
+        "TCS,Tata Consultancy Services Limited,EQ,25-AUG-2004,INE467B01029\n"
+        "ABC,ABC Limited,BE,01-JAN-2020,INE000A01011\n"
+        "XYZ,XYZ Limited,N1,01-JAN-2020,INE000A01099\n")  # debt series: excluded
+    assert nse["symbol"].tolist() == ["TCS", "ABC"] and nse["yahoo"].tolist() == ["TCS.NS", "ABC.NS"]
+    bse = parse_bse_json([
+        {"SCRIP_CD": "532540", "Scrip_Name": "TCS Ltd", "Status": "Active", "ISIN_NUMBER": "INE467B01029", "scrip_id": "TCS"},
+        {"SCRIP_CD": "530001", "Scrip_Name": "Small Co", "Status": "Active", "ISIN_NUMBER": "INE111A01011", "scrip_id": "SMALL", "INDUSTRY": "Textiles"},
+        {"SCRIP_CD": "530002", "Scrip_Name": "Other ABC", "Status": "Active", "ISIN_NUMBER": "INE222A01011", "scrip_id": "ABC"},
+        {"SCRIP_CD": "530003", "Scrip_Name": "Gone Ltd", "Status": "Delisted", "ISIN_NUMBER": "INE333A01011", "scrip_id": "GONE"},
+    ], set(nse["isin"]), set(nse["symbol"]))
+    # TCS is already on NSE (same ISIN), ABC clashes with a different NSE company, GONE is delisted.
+    assert bse["symbol"].tolist() == ["SMALL", "ABC-BSE"]
+    assert bse["yahoo"].tolist() == ["530001.BO", "530002.BO"] and bse["sector"].iloc[0] == "Textiles"
+
+
+def test_weekly_scores_stocks_outside_coverage(prices, tmp_path):
+    cfg = Config(min_median_traded_value_cr=0, stale_days=10)
+    universe = pd.DataFrame({"symbol": prices.symbols, "name": prices.symbols,
+                             "sector": [f"S{i % 6}" for i in range(len(prices.symbols))]})
+    other = synthetic_prices(n_symbols=8, n_days=1500, seed=7)
+    rename = {s: f"EXT{i}" for i, s in enumerate(other.symbols)}
+    window = slice(-504, None)  # the extended download only has ~2 years
+    ext = Prices(*(f.iloc[window].rename(columns=rename) for f in (other.close, other.high, other.low, other.volume)),
+                 benchmark=other.benchmark.iloc[window])
+    ext.close.iloc[-20:, 0] = np.nan  # EXT0 stopped trading: no verdict
+    directory = pd.DataFrame({"symbol": list(rename.values()) + ["NEWIPO"], "name": "Co", "exchange": "BSE",
+                              "yahoo": "x.BO", "isin": "", "sector": ""})
+    res = run_weekly(prices, universe, cfg, extended=ext, directory=directory, with_news=False,
+                     with_fundamentals=False, with_backtest=False, out_dir=tmp_path)
+    by_sym = {s["symbol"]: s for s in res["stocks"]}
+    for i in range(1, 8):
+        s = by_sym[f"EXT{i}"]
+        assert s["tested"] is False and s["exchange"] == "BSE" and s["verdict"] in holdings.VERDICTS
+        assert 0 <= s["model_score"] <= 1
+    assert by_sym[prices.symbols[0]]["tested"] is True
+    assert {u["symbol"] for u in res["unscored"]} == {"EXT0", "NEWIPO"}
+    saved = json.loads((tmp_path / "stocks.json").read_text())
+    assert len(saved["stocks"]) == 30 + 7
+    assert "stocks" not in json.loads((tmp_path / "latest.json").read_text())
+
+
+def test_thin_trading_warning():
+    row = pd.Series({"log_traded_value": np.log1p(3e5)})
+    p5 = pd.Series({"p_beat": 0.5, "q10": -0.1})
+    assert holdings.warnings(row, p5)[0].startswith("Thinly traded (about ₹3.0 lakh a day)")
