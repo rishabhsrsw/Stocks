@@ -109,6 +109,7 @@ def select_picks(sl: pd.DataFrame, top_n: int, max_per_sector: int) -> list[str]
 
 def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: pd.DataFrame | None = None,
                extended: Prices | None = None, directory: pd.DataFrame | None = None,
+               funds: Prices | None = None,
                with_news: bool = True, with_fundamentals: bool = True, with_backtest: bool = True,
                out_dir: Path = SITE_DATA_DIR) -> dict:
     """`universe` is where picks come from (and what the model trains and is backtested on);
@@ -206,16 +207,50 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
         ext_today, ext_preds = score_extended(extended, today, preds, models, feats, asof, cfg)
         ext_meta = directory.drop_duplicates("symbol").set_index("symbol")
         stocks += stock_scores(extended, ext_today, ext_preds, ext_meta, {}, set(), cfg, tested=False)
-    scored = {s["symbol"] for s in stocks}
+    fund_list = fund_rows(funds, directory) if funds is not None and directory is not None else []
+    listed = {s["symbol"] for s in stocks} | {f["symbol"] for f in fund_list}
     unscored = [] if directory is None else [
-        {"symbol": r.symbol, "name": r.name, "exchange": r.exchange}
-        for r in directory.itertuples(index=False) if r.symbol not in scored
+        {"symbol": r.symbol, "name": r.name, "exchange": r.exchange, "kind": getattr(r, "kind", "stock")}
+        for r in directory.itertuples(index=False) if r.symbol not in listed
     ]
     (out_dir / "stocks.json").write_text(json.dumps(
-        {"as_of": result["as_of"], "generated_at": result["generated_at"], "stocks": stocks, "unscored": unscored},
-        separators=(",", ":"), default=str))
-    log.info("Holdings review: %d stocks scored, %d listed without a verdict", len(stocks), len(unscored))
-    return result | {"stocks": stocks, "unscored": unscored}
+        {"as_of": result["as_of"], "generated_at": result["generated_at"], "stocks": stocks, "funds": fund_list,
+         "unscored": unscored}, separators=(",", ":"), default=str))
+    log.info("Holdings review: %d stocks scored, %d funds/gold bonds, %d listed without a verdict",
+             len(stocks), len(fund_list), len(unscored))
+    return result | {"stocks": stocks, "funds": fund_list, "unscored": unscored}
+
+
+def fund_rows(funds: Prices, directory: pd.DataFrame) -> list[dict]:
+    """Price, trend and risk for ETFs and gold bonds. The stock model doesn't rate these (it was
+    trained on company shares against the Nifty), so they get facts, not a hold/sell verdict."""
+    meta = directory.drop_duplicates("symbol").set_index("symbol")
+    out = []
+    for sym in funds.close.columns:
+        c = funds.close[sym].dropna()
+        if c.empty or sym not in meta.index:
+            continue
+        last = float(c.iloc[-1])
+        ret = lambda n: _r(last / c.iloc[-1 - n] - 1) if len(c) > n else None
+        r = c.pct_change().dropna()
+        sma200 = c.rolling(200).mean().iloc[-1] if len(c) >= 200 else np.nan
+        hi = float(c.iloc[-252:].max())
+        notes = []
+        if np.isfinite(sma200):
+            notes.append(f"{'Above' if last >= sma200 else 'Below'} its 200-day average ({last / sma200 - 1:+.0%})")
+        if last / hi - 1 < -0.1:
+            notes.append(f"{-(last / hi - 1):.0%} below its 1-year high")
+        traded = (funds.close[sym] * funds.volume[sym]).iloc[-60:].median()
+        if np.isfinite(traded) and traded < 1e6:
+            notes.append(f"Thinly traded (about ₹{traded / 1e5:.1f} lakh a day): may be hard to sell at a fair price")
+        out.append({
+            "symbol": sym, "name": meta.loc[sym, "name"], "sector": meta.loc[sym, "sector"],
+            "exchange": meta.loc[sym, "exchange"], "kind": meta.loc[sym, "kind"], "price": _r(last, 2),
+            "returns": {"1m": ret(21), "6m": ret(126), "1y": ret(252)},
+            "vol": _r(r.iloc[-63:].std() * np.sqrt(252)) if len(r) >= 63 else None,
+            "notes": notes, "spark": holdings.spark(c),
+        })
+    return out
 
 
 def _pct_vs(ref: pd.Series, values: pd.Series) -> np.ndarray:

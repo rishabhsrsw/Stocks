@@ -173,7 +173,7 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
   <p class="muted" style="margin-top:-4px">Add what you own. Each stock gets a verdict from the same model, based on its outlook from today. Your buy price is used for profit/loss and tax timing only: what you paid doesn't change what the stock does next. Works for any NSE or BSE-listed stock. Holdings are saved on this device only.</p>
   <div class="card">
     <form id="h-form" class="hform" autocomplete="off">
-      <label>Stock (symbol or company name)<input id="h-sym" list="h-list" placeholder="e.g. TCS or Infosys" required></label>
+      <label>Stock or ETF (symbol or name)<input id="h-sym" list="h-list" placeholder="e.g. TCS, Infosys or GOLDBEES" required></label>
       <label>Quantity<input id="h-qty" type="number" min="0" step="any" inputmode="decimal" required></label>
       <label>Avg buy price ₹<input id="h-price" type="number" min="0" step="any" inputmode="decimal" required></label>
       <label>Buy date (optional)<input id="h-date" type="date"></label>
@@ -454,6 +454,20 @@ function saveHoldings(h) {
   try { localStorage.setItem(H_KEY, JSON.stringify(h)); return true; } catch (_) { return false; }
 }
 
+// Funds that aren't equity funds follow different rules (current rules; check with your tax adviser).
+function fundTaxNote(h, f) {
+  const cat = (f.sector || "").replace("ETF · ", "");
+  if (f.kind === "etf" && cat === "Equity") return taxNote(h, f);
+  if (f.kind === "etf" && cat === "Debt") return "Debt fund: gains are taxed at your income-tax slab rate however long you hold.";
+  if (f.kind !== "sgb" && !["Gold", "Silver"].includes(cat)) return "";
+  const base = f.kind === "sgb"
+    ? "Sold on the exchange: gains are taxed at your slab rate within 12 months, 12.5% after. Held to maturity and redeemed with RBI: tax-free."
+    : "Gains are taxed at your income-tax slab rate within 12 months, 12.5% after.";
+  if (!h.date) return base;
+  const days = Math.floor((Date.now() - new Date(h.date)) / 864e5);
+  return days >= 0 ? `Held ${days} days${days >= 365 ? " (long-term)" : ""}. ${base}` : base;
+}
+
 function taxNote(h, s) {
   if (!h.date) return "";
   const days = Math.floor((Date.now() - new Date(h.date)) / 864e5);
@@ -507,6 +521,43 @@ function holdingCard(h, s, i) {
   return card;
 }
 
+function fundCard(h, f, i) {
+  const value = f.price * h.qty, cost = h.price * h.qty, pnl = value - cost, pnlPct = cost ? pnl / cost : 0;
+  const r = f.returns || {}, tax = fundTaxNote(h, f);
+  const what = f.kind === "sgb" ? "a Sovereign Gold Bond" : "an exchange-traded fund";
+  const card = document.createElement("div");
+  card.className = "card";
+  const ret = x => x == null ? "–" : `<span class="${cls(x)}">${pct(x)}</span>`;
+  card.innerHTML = `
+    <div class="card-head">
+      <div><div class="rank">${esc(f.exchange || "NSE")}: ${esc(f.symbol)}</div><h3>${esc(f.name)}</h3></div>
+      <div><span class="badge" style="--vc: var(--muted)">${esc(f.kind === "sgb" ? "Gold bond" : f.sector || "ETF")}</span></div>
+    </div>
+    <p class="muted" style="margin:8px 0">This is ${what}. The hold/sell model rates company shares against the Nifty, so it doesn't give funds a verdict. Below is how it has been moving.</p>
+    <div class="kv">
+      <div>Price<b>${inr(f.price, 2)}</b></div>
+      <div>Your avg<b>${inr(h.price, 2)}</b></div>
+      <div>Qty<b>${Number(h.qty).toLocaleString("en-IN")}</b></div>
+      <div>Value<b>${inr(value)}</b></div>
+      <div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${inr(Math.abs(pnl))}</b></div>
+      <div>Return<b class="${cls(pnlPct)}">${pct(pnlPct)}</b></div>
+    </div>
+    <div class="muted">Past performance</div>
+    <div class="kv" style="margin-top:4px">
+      <div>1 month<b>${ret(r["1m"])}</b></div>
+      <div>6 months<b>${ret(r["6m"])}</b></div>
+      <div>1 year<b>${ret(r["1y"])}</b></div>
+      ${f.vol != null ? `<div>Volatility<b>${(f.vol * 100).toFixed(0)}% a year</b></div>` : ""}
+    </div>
+    <div class="muted">Last 6 months</div>
+    <div class="spark"></div>
+    ${f.notes && f.notes.length ? `<ul class="why">${f.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>` : ""}
+    ${tax ? `<p class="muted" style="margin:8px 0">${esc(tax)}</p>` : ""}
+    <button class="link" data-remove="${i}">Remove</button>`;
+  card.querySelector(".spark").appendChild(sparkline(f.spark));
+  return card;
+}
+
 function renderHoldings() {
   if (!STOCKS) return;
   const d = DATA, holdings = loadHoldings();
@@ -515,14 +566,21 @@ function renderHoldings() {
   const priceDate = fresh ? DAILY.as_of : base;
   const bySym = new Map(STOCKS.stocks.map(s => [s.symbol, fresh && DAILY.prices[s.symbol] ? {...s, price: DAILY.prices[s.symbol]} : s]));
   const noVerdict = new Map((STOCKS.unscored || []).map(u => [u.symbol, u]));
+  const byFund = new Map((STOCKS.funds || []).map(f => [f.symbol, fresh && DAILY.prices[f.symbol] ? {...f, price: DAILY.prices[f.symbol]} : f]));
   const cards = document.getElementById("h-cards");
   cards.innerHTML = "";
   let cost = 0, value = 0;
   const counts = {};
-  const rows = holdings.map((h, i) => ({h, i, s: bySym.get(h.symbol)}));
+  const rows = holdings.map((h, i) => ({h, i, s: bySym.get(h.symbol), f: byFund.get(h.symbol)}));
   const order = {exit: 0, review: 1, hold: 2, strong_hold: 3};
-  rows.sort((a, b) => (a.s ? order[a.s.verdict] : 9) - (b.s ? order[b.s.verdict] : 9));  // no verdict last
-  for (const {h, i, s} of rows) {
+  const rank = r => r.s ? order[r.s.verdict] : r.f ? 5 : 9;  // funds after stocks, no data last
+  rows.sort((a, b) => rank(a) - rank(b));
+  for (const {h, i, s, f} of rows) {
+    if (!s && f) {
+      cost += h.price * h.qty; value += f.price * h.qty;
+      cards.appendChild(fundCard(h, f, i));
+      continue;
+    }
     if (!s) {
       const u = noVerdict.get(h.symbol) || {symbol: h.symbol, name: h.symbol, exchange: ""};
       const price = DAILY && DAILY.prices && DAILY.prices[h.symbol];
@@ -536,7 +594,7 @@ function renderHoldings() {
           <div>Value<b>${inr(v)}</b></div><div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${inr(Math.abs(pnl))}</b></div><div>Return<b class="${cls(pnl)}">${pct(pnl / (h.price * h.qty))}</b></div></div>`;
       }
       c.innerHTML = `<div class="rank">${esc(u.exchange ? u.exchange + ": " : "")}${esc(h.symbol)}</div><h3>${esc(u.name)}</h3>
-        <p class="muted">No verdict: not enough recent trading history (listed less than a year ago, suspended, or rarely traded).${price ? "" : " No recent price either."}</p>
+        <p class="muted">${u.kind && u.kind !== "stock" ? "Fund with not enough trading history yet for a trend summary." : "No verdict: not enough recent trading history (listed less than a year ago, suspended, or rarely traded)."}${price ? "" : " No recent price either."}</p>
         ${money}<button class="link" data-remove="${i}">Remove</button>`;
       cards.appendChild(c);
       continue;
@@ -570,7 +628,7 @@ function renderHoldings() {
     </table><p class="muted">From the Weekly picks tab. Switching only makes sense if the gap outweighs taxes and brokerage.</p></div>` : "";
 
   document.getElementById("h-backup").value = JSON.stringify(holdings);
-  if (!holdings.length) cards.innerHTML = '<p class="muted">No holdings yet. Add your first stock above.</p>';
+  if (!holdings.length) cards.innerHTML = '<p class="muted">No holdings yet. Add your first stock or ETF above.</p>';
 }
 
 function renderEvidence(d) {
@@ -588,9 +646,9 @@ function renderEvidence(d) {
 
 let STOCKS = null;
 function setupHoldings(payload) {
-  STOCKS = {as_of: payload.as_of, stocks: payload.stocks || [], unscored: payload.unscored || []};
-  // Every listed stock is searchable; those without a verdict still get price and P&L.
-  const all = STOCKS.stocks.concat(STOCKS.unscored);
+  STOCKS = {as_of: payload.as_of, stocks: payload.stocks || [], funds: payload.funds || [], unscored: payload.unscored || []};
+  // Every listed stock, ETF and gold bond is searchable; those without a verdict still get price and P&L.
+  const all = STOCKS.stocks.concat(STOCKS.funds, STOCKS.unscored);
   if (!all.length) {
     document.getElementById("h-cards").innerHTML = '<p class="muted">Holdings review will be available after the next weekly update.</p>';
     document.getElementById("h-form").querySelector("button").disabled = true;
@@ -606,7 +664,7 @@ function setupHoldings(payload) {
     return starts.concat(contains).slice(0, 25).map(k => k.s);
   };
   input.oninput = () => {  // only a short suggestion list: thousands of options would be slow on phones
-    list.innerHTML = matches(input.value).map(s => `<option value="${esc(s.symbol)}">${esc(s.name)} · ${esc(s.exchange || "NSE")}</option>`).join("");
+    list.innerHTML = matches(input.value).map(s => `<option value="${esc(s.symbol)}">${esc(s.name)} · ${esc(s.kind && s.kind !== "stock" ? (s.kind === "sgb" ? "Gold bond" : "ETF") + " · " : "")}${esc(s.exchange || "NSE")}</option>`).join("");
   };
   const find = q => {
     q = q.trim().toLowerCase();
@@ -620,7 +678,7 @@ function setupHoldings(payload) {
     const qty = parseFloat(document.getElementById("h-qty").value);
     const price = parseFloat(document.getElementById("h-price").value);
     const date = document.getElementById("h-date").value || null;
-    if (!s) { msg.textContent = "Couldn't find that stock. Type its NSE/BSE symbol (e.g. HDFCBANK) or part of the company name and pick from the list."; return; }
+    if (!s) { msg.textContent = "Couldn't find that. Type its NSE/BSE symbol (e.g. HDFCBANK, GOLDBEES) or part of the name and pick from the list."; return; }
     if (!(qty > 0) || !(price > 0)) { msg.textContent = "Enter a quantity and a buy price above zero."; return; }
     const h = loadHoldings();
     const existing = h.find(x => x.symbol === s.symbol);

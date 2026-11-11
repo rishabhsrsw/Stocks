@@ -62,6 +62,10 @@ stock does next. Picks still come from the Nifty 200, but the holdings review co
   and each daily run adds that day. Splits and bonuses are adjusted automatically: outside F&O, stocks can't
   move more than 20% in a day, so a bigger jump is a corporate action.
 
+* ETFs (gold, silver, index, debt) and Sovereign Gold Bonds can be added too. The stock model rates company
+  shares against the Nifty, so funds get price, P&L, 1-month/6-month/1-year returns, trend and volatility
+  instead of a hold/sell verdict, plus the tax rules for their type.
+
 Holdings are stored only on the device (with a copy/restore backup), never uploaded.
 
 ## Quick start (local)

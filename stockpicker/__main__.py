@@ -18,7 +18,7 @@ from .universe import load_market_directory, load_universe
 def other_tickers(directory, symbols) -> dict[str, str]:
     """Symbol -> Yahoo ticker for every listed company outside `symbols`, limited to stocks that traded
     on the latest day when the exchange files are available (the others can't get a verdict anyway)."""
-    rest = directory[~directory["symbol"].isin(symbols)]
+    rest = directory[~directory["symbol"].isin(symbols) & (directory["kind"] == "stock")]
     traded = set(bhavcopy.closes_by_isin())
     if traded:
         rest = rest[rest["isin"].isin(traded)]
@@ -70,7 +70,7 @@ def main() -> None:
         extra = bhavcopy.closing_prices(directory)  # official closing prices for every listed stock
         try:  # keep the stored whole-market history current, so the weekly run has little to fetch
             store = history.load()
-            history.sync_bhavcopies(store, directory, cfg.extended_years, cfg.daily_history_minutes)
+            history.sync_bhavcopies(store, cfg.extended_years, cfg.daily_history_minutes)
             history.trim(store, cfg.extended_years)
             history.save(store)
         except Exception as exc:
@@ -90,14 +90,17 @@ def main() -> None:
     other = other_tickers(directory, symbols)
     store = history.load()
     try:
-        history.sync_bhavcopies(store, directory, cfg.extended_years, cfg.extended_history_minutes)
+        history.sync_bhavcopies(store, cfg.extended_years, cfg.extended_history_minutes)
     finally:  # keep whatever was fetched, even if this run fails later
         history.trim(store, cfg.extended_years)
         history.save(store)
-    extended = history.to_prices(store, list(other), prices.benchmark, cfg.extended_min_rows)
+    isin_of = dict(zip(directory["symbol"], directory["isin"]))
+    extended = history.to_prices(store, {s: isin_of[s] for s in other}, prices.benchmark, cfg.extended_min_rows)
+    fund_syms = directory.loc[directory["kind"].isin(["etf", "sgb"]), "symbol"]
+    funds = history.to_prices(store, {s: isin_of[s] for s in fund_syms}, prices.benchmark, min_rows=20)
     logging.info("Extended history ready for %d of %d other traded stocks",
                  0 if extended is None else extended.close.shape[1], len(other))
-    res = run_weekly(prices, universe, cfg, coverage=coverage, extended=extended, directory=directory,
+    res = run_weekly(prices, universe, cfg, coverage=coverage, extended=extended, directory=directory, funds=funds,
                      with_news=not args.no_news,
                      with_fundamentals=not args.no_fundamentals, with_backtest=not args.no_backtest, out_dir=Path(args.out))
     print(f"\nTop {len(res['picks'])} picks for the week of {res['as_of']}:")

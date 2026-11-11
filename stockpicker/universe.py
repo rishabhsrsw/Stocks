@@ -223,6 +223,10 @@ NSE_LIST_URLS = [
     "https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv",
     "https://archives.nseindia.com/content/equities/EQUITY_L.csv",
 ]
+NSE_ETF_URLS = [
+    "https://nsearchives.nseindia.com/content/equities/eq_etfseclist.csv",
+    "https://archives.nseindia.com/content/equities/eq_etfseclist.csv",
+]
 NSE_SME_URL = "https://nsearchives.nseindia.com/emerge/corporates/content/SME_EQUITY_L.csv"
 BSE_LIST_URL = ("https://api.bseindia.com/BseIndiaAPI/api/ListofScripData/w"
                 "?Group=&Scripcode=&industry=&segment=Equity&status=Active")
@@ -236,7 +240,34 @@ HEADERS = {
     "Referer": "https://www.bseindia.com/",
 }
 
-DIRECTORY_COLUMNS = ["symbol", "name", "exchange", "yahoo", "isin", "sector"]
+DIRECTORY_COLUMNS = ["symbol", "name", "exchange", "yahoo", "isin", "sector", "kind"]
+# kind: "stock" (scored by the model), "etf" (exchange-traded fund units, ISIN INF...) or
+# "sgb" (Sovereign Gold Bonds). Funds and bonds get price, P&L and trend, not a stock verdict.
+
+
+def etf_category(name: str, underlying: str = "", asset: str = "") -> str:
+    """Gold / Silver / Debt / Equity / Fund, from NSE's ETF list or (for BSE) the fund's name."""
+    text = f"{asset} {name}".upper()
+    if "GOLD" in text:
+        return "Gold"
+    if "SILVER" in text:
+        return "Silver"
+    u = underlying.upper()
+    if u == "DEBT" or any(w in text for w in ("LIQUID", "GILT", "BOND", "G-SEC", "GSEC", "SDL", "MONEY MARKET", "OVERNIGHT", "T-BILL")):
+        return "Debt"
+    if u == "EQUITY" or any(w in text for w in ("NIFTY", "SENSEX", "BSE", "NASDAQ", "BANK", "INDEX", "ETF", "BEES")):
+        return "Equity"
+    return "Fund"
+
+
+def instrument_kind(isin: str, name: str = "") -> str | None:
+    """'stock', 'etf', 'sgb', or None for instruments the app doesn't list (government bonds, T-bills)."""
+    isin = (isin or "").upper()
+    if isin.startswith("INF"):
+        return "etf"
+    if isin.startswith("IN00"):
+        return "sgb" if "GOLD" in name.upper() else None
+    return "stock"
 
 
 def parse_nse_csv(text: str) -> pd.DataFrame:
@@ -251,9 +282,40 @@ def parse_nse_csv(text: str) -> pd.DataFrame:
         "exchange": "NSE",
         "isin": df.get("ISIN NUMBER", pd.Series("", index=df.index)).astype(str).str.strip(),
         "sector": "",
+        "kind": "stock",
     })
     out["yahoo"] = out["symbol"] + ".NS"
     return out[DIRECTORY_COLUMNS]
+
+
+def parse_nse_etf_csv(text: str, names: dict[str, str] | None = None) -> pd.DataFrame:
+    """NSE's ETF list. `names` (ISIN -> name from the bhavcopy) gives fuller fund names."""
+    df = pd.read_csv(io.StringIO(text), dtype=str).fillna("")
+    df.columns = [c.strip().lower().replace(" ", "") for c in df.columns]
+    rows = []
+    for d in df.to_dict("records"):
+        sym, isin = d.get("symbol", "").strip(), d.get("isinnumber", "").strip()
+        asset, under = d.get("underlyingasset", "").strip(), d.get("etfunderlying", "").strip()
+        if not sym:
+            continue
+        cat = etf_category(d.get("securityname", ""), under, asset)
+        fund = (names or {}).get(isin, "").strip()
+        name = f"{fund} ({asset})" if fund else f"{asset or sym} ETF"
+        rows.append({"symbol": sym, "name": name, "exchange": "NSE", "yahoo": f"{sym}.NS", "isin": isin,
+                     "sector": f"ETF · {cat}", "kind": "etf"})
+    return pd.DataFrame(rows, columns=DIRECTORY_COLUMNS)
+
+
+def nse_sgb_rows(df: pd.DataFrame) -> pd.DataFrame:
+    """Sovereign Gold Bonds (series GB) from a parsed NSE bhavcopy."""
+    if df.empty or "SctySrs" not in df:
+        return pd.DataFrame(columns=DIRECTORY_COLUMNS)
+    g = df[df["SctySrs"].astype(str).str.strip() == "GB"]
+    return pd.DataFrame({
+        "symbol": g["TckrSymb"].str.strip(), "name": "Sovereign Gold Bond " + g["FinInstrmNm"].str.strip(),
+        "exchange": "NSE", "yahoo": g["TckrSymb"].str.strip() + ".NS", "isin": g["ISIN"].str.strip(),
+        "sector": "Sovereign Gold Bond", "kind": "sgb",
+    }, columns=DIRECTORY_COLUMNS)
 
 
 def parse_bse_json(rows: list[dict], taken_isins: set[str], taken_symbols: set[str]) -> pd.DataFrame:
@@ -265,12 +327,17 @@ def parse_bse_json(rows: list[dict], taken_isins: set[str], taken_symbols: set[s
         if not code or isin in taken_isins or str(r.get("status", "Active")).strip().lower() != "active":
             continue
         sym = str(r.get("scrip_id") or code).strip().upper()
+        name = str(r.get("scrip_name") or r.get("issuer_name") or sym).strip()
+        kind = instrument_kind(isin, name)
+        if kind is None:
+            continue
         if sym in taken_symbols:  # same ticker as a different NSE company
             sym = f"{sym}-BSE"
         taken_symbols.add(sym)
-        out.append({"symbol": sym, "name": str(r.get("scrip_name") or r.get("issuer_name") or sym).strip(),
-                    "exchange": "BSE", "yahoo": f"{code}.BO", "isin": isin,
-                    "sector": str(r.get("industry") or "").strip()})
+        sector = {"etf": f"ETF · {etf_category(name)}", "sgb": "Sovereign Gold Bond"}.get(
+            kind, str(r.get("industry") or "").strip())
+        out.append({"symbol": sym, "name": name, "exchange": "BSE", "yahoo": f"{code}.BO", "isin": isin,
+                    "sector": sector, "kind": kind})
     return pd.DataFrame(out, columns=DIRECTORY_COLUMNS)
 
 
@@ -310,8 +377,24 @@ def load_market_directory() -> pd.DataFrame:
         parts.append(parse_nse_csv(resp.text))
     except Exception as exc:
         log.warning("NSE SME list failed: %s", exc)
+    from . import bhavcopy
+
+    nse_bhav = bhavcopy.latest("NSE")[1]
+    names = dict(zip(nse_bhav.get("ISIN", pd.Series(dtype=str)).astype(str).str.strip(),
+                     nse_bhav.get("FinInstrmNm", pd.Series(dtype=str)).astype(str)))
+    for url in NSE_ETF_URLS:
+        try:
+            resp = requests.get(url, timeout=30, headers=HEADERS)
+            resp.raise_for_status()
+            parts.append(parse_nse_etf_csv(resp.text, names))
+            break
+        except Exception as exc:
+            log.warning("NSE ETF list failed from %s: %s", url, exc)
+    parts.append(nse_sgb_rows(nse_bhav))
     nse = pd.concat(parts).drop_duplicates("symbol") if parts else pd.DataFrame(columns=DIRECTORY_COLUMNS)
     bse = parse_bse_json(_bse_rows(), set(nse["isin"]), set(nse["symbol"]))
     directory = pd.concat([nse, bse], ignore_index=True)
-    log.info("Market directory: %d NSE + %d BSE-only companies", len(nse), len(bse))
+    counts = directory["kind"].value_counts().to_dict()
+    log.info("Market directory: %d NSE + %d BSE-only listings (%s)", len(nse), len(bse),
+             ", ".join(f"{v} {k}" for k, v in counts.items()))
     return directory

@@ -210,7 +210,6 @@ def test_bhavcopy_prices_by_isin(monkeypatch):
 
 def test_market_history_store(tmp_path):
     from stockpicker import history
-    directory = pd.DataFrame({"symbol": ["AAA", "BSEONLY"], "isin": ["IN1", "IN2"]})
     today = dt.date(2026, 11, 11)
     calls = []
 
@@ -224,23 +223,23 @@ def test_market_history_store(tmp_path):
         return rows, day != today
 
     store = history.Store()
-    history.sync_bhavcopies(store, directory, 2, budget_minutes=1, today=today, read_day=read_day, pause=0)
+    history.sync_bhavcopies(store, 2, budget_minutes=1, today=today, read_day=read_day, pause=0)
     assert calls[0] == today  # newest first
-    assert set(store.close.columns) == {"AAA", "BSEONLY"} and len(store.close) > 450
+    assert set(store.close.columns) == {"IN1", "IN2"} and len(store.close) > 450  # keyed by ISIN
     assert today not in store.done and dt.date(2026, 11, 10) not in store.done  # retried next run
     calls.clear()
-    history.sync_bhavcopies(store, directory, 2, budget_minutes=1, today=today, read_day=read_day, pause=0)
+    history.sync_bhavcopies(store, 2, budget_minutes=1, today=today, read_day=read_day, pause=0)
     assert sorted(calls) == [dt.date(2026, 11, 10), today]
     # Out of time: nothing read, and the store is untouched.
     calls.clear()
-    history.sync_bhavcopies(store, directory, 2, budget_minutes=-1, today=dt.date(2026, 11, 12),
+    history.sync_bhavcopies(store, 2, budget_minutes=-1, today=dt.date(2026, 11, 12),
                             read_day=read_day, pause=0)
     assert calls == []
 
     history.save(store, tmp_path / "h.pkl")
     again = history.load(tmp_path / "h.pkl")
     bench = pd.Series(1.0, index=pd.bdate_range("2024-01-01", "2026-11-11"))
-    p = history.to_prices(again, ["AAA", "BSEONLY"], bench, min_rows=252)
+    p = history.to_prices(again, {"AAA": "IN1", "BSEONLY": "IN2", "GONE": "IN9"}, bench, min_rows=252)
     assert list(p.close.columns) == ["AAA", "BSEONLY"] and p.benchmark.notna().all()
 
     # A 1:1 bonus halves the price: earlier history is scaled so it isn't a 50% crash.
@@ -250,7 +249,7 @@ def test_market_history_store(tmp_path):
     split = history.Store()
     for f in history.FIELDS:
         split.frames[f] = pd.DataFrame({"S": px if f != "volume" else 1000.0}, index=days)
-    p = history.to_prices(split, ["S"], pd.Series(1.0, index=days), min_rows=252)
+    p = history.to_prices(split, {"S": "S"}, pd.Series(1.0, index=days), min_rows=252)
     assert p.close["S"].nunique() == 1 and p.close["S"].iloc[0] == 50.0
     assert p.volume["S"].iloc[0] == 2000.0 and p.volume["S"].iloc[-1] == 1000.0
 
@@ -262,9 +261,42 @@ def test_market_history_gaps():
     traded = cal.delete([100, 101, 300])
     for f in history.FIELDS:
         gappy.frames[f] = pd.DataFrame({"SMALL": np.linspace(10, 20, len(traded))}, index=traded)
-    p = history.to_prices(gappy, ["SMALL"], pd.Series(1.0, index=cal), min_rows=252)
+    p = history.to_prices(gappy, {"SMALL": "SMALL"}, pd.Series(1.0, index=cal), min_rows=252)
     assert p.close.index.equals(cal) and p.close["SMALL"].notna().all()
     assert p.volume["SMALL"].iloc[100] == 0 and p.close["SMALL"].iloc[100] == p.close["SMALL"].iloc[99]
     feats = stock_features(p)
     assert feats["dist_sma200"]["SMALL"].iloc[-1] == feats["dist_sma200"]["SMALL"].iloc[-1]  # not NaN
     assert np.isfinite(feats["log_traded_value"]["SMALL"].iloc[-1])
+
+
+def test_etfs_and_gold_bonds():
+    from stockpicker.pipeline import fund_rows
+    from stockpicker.universe import instrument_kind, parse_nse_etf_csv
+    etf = parse_nse_etf_csv(
+        "Symbol,Underlying Asset,SecurityName,DateofListing,MarketLot,ISINNumber,FaceValue,ETF Underlying,Underlying Key\n"
+        "GOLDBEES,Gold,NIPINDETFGOLDBEES,19-Mar-07,1,INF204KB17I5,1,COMMODITY,GOL\n"
+        "SILVERBEES,Silver,NIPINDETFSILVERBEES,01-Feb-22,1,INF204KC1402,1,COMMODITY,SIL\n"
+        "LIQUIDBEES,Government Securities,NIPINDETFLIQUIDBEES,16-Jul-03,1,INF732E01037,1000,DEBT,Overnight\n",
+        {"INF204KB17I5": "Nippon India ETF Gold BeES"})
+    assert etf["sector"].tolist() == ["ETF · Gold", "ETF · Silver", "ETF · Debt"]
+    assert etf["name"][0] == "Nippon India ETF Gold BeES (Gold)" and set(etf["kind"]) == {"etf"}
+    # BSE rows are classified by ISIN: fund units are ETFs, not stocks; government bonds other than SGBs are left out.
+    rows = [{"scrip_cd": "1", "scrip_name": "Kotak Nifty 50 ETF", "isin_number": "INF174K01Z71", "scrip_id": "NIFTY1"},
+            {"scrip_cd": "2", "scrip_name": "2.50%GOLDBONDS2028SR-I", "isin_number": "IN0020200062", "scrip_id": "SGBAPR28I"},
+            {"scrip_cd": "3", "scrip_name": "7.26% GOI 2033", "isin_number": "IN0020230011", "scrip_id": "GS2033"},
+            {"scrip_cd": "4", "scrip_name": "Small Co", "isin_number": "INE111A01011", "scrip_id": "SMALL"}]
+    bse = parse_bse_json(rows, set(), set())
+    assert dict(zip(bse["symbol"], bse["kind"])) == {"NIFTY1": "etf", "SGBAPR28I": "sgb", "SMALL": "stock"}
+    assert bse.set_index("symbol").loc["NIFTY1", "sector"] == "ETF · Equity"
+    assert instrument_kind("INE002A01018") == "stock"
+
+    days = pd.bdate_range("2025-06-01", periods=300)
+    close = pd.DataFrame({"GOLDBEES": np.linspace(80, 120, 300), "SILVERBEES": np.linspace(150, 120, 300)}, index=days)
+    funds = Prices(close=close, high=close, low=close, volume=pd.DataFrame(1e6, index=days, columns=close.columns),
+                   benchmark=pd.Series(1.0, index=days))
+    directory = etf.assign(exchange="NSE")
+    out = {f["symbol"]: f for f in fund_rows(funds, directory)}
+    g, s = out["GOLDBEES"], out["SILVERBEES"]
+    assert g["price"] == 120.0 and g["returns"]["1y"] > 0 and "verdict" not in g and g["kind"] == "etf"
+    assert any(n.startswith("Above its 200-day") for n in g["notes"])
+    assert any(n.startswith("Below its 200-day") for n in s["notes"]) and any("below its 1-year high" in n for n in s["notes"])

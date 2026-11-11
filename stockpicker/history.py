@@ -36,10 +36,16 @@ HOLIDAY_AFTER_DAYS = 5  # a weekday with no file this long ago was a holiday, no
 UDIFF_START = dt.date(2024, 7, 8)  # first day both exchanges published in the current format
 
 
+STORE_VERSION = 2  # 2: columns are ISINs, every instrument in the files is kept
+
+
 @dataclass
 class Store:
+    """Daily close/high/low/volume, one column per ISIN (so new listings or a changed market list
+    never need old days read again)."""
     frames: dict[str, pd.DataFrame] = field(default_factory=lambda: {f: pd.DataFrame() for f in FIELDS})
     done: set = field(default_factory=set)  # trading days already read from both exchanges
+    version: int = STORE_VERSION
 
     @property
     def close(self) -> pd.DataFrame:
@@ -51,9 +57,9 @@ def load(path: Path = STORE_FILE) -> Store:
         try:
             with open(path, "rb") as fh:
                 store = pickle.load(fh)
-            if not isinstance(store, Store) or not hasattr(store, "done"):
+            if not isinstance(store, Store) or getattr(store, "version", 1) != STORE_VERSION:
                 raise ValueError("older format")
-            log.info("Market history: %d stocks, %d days read (%s to %s)", store.close.shape[1], len(store.done),
+            log.info("Market history: %d instruments, %d days read (%s to %s)", store.close.shape[1], len(store.done),
                      min(store.done, default="-"), max(store.done, default="-"))
             return store
         except Exception as exc:  # a corrupt or outdated cache just means starting over
@@ -81,7 +87,7 @@ def _read_day(day: dt.date) -> tuple[pd.DataFrame, bool]:
     return bhavcopy.ohlcv_from_frames(frames), complete
 
 
-def sync_bhavcopies(store: Store, directory: pd.DataFrame, years: int, budget_minutes: float,
+def sync_bhavcopies(store: Store, years: int, budget_minutes: float,
                     today: dt.date | None = None, read_day=_read_day, pause: float = 0.3) -> int:
     """Read every trading day of the last `years` not read yet, newest first, within the budget.
     Returns the number of days read."""
@@ -92,7 +98,6 @@ def sync_bhavcopies(store: Store, directory: pd.DataFrame, years: int, budget_mi
         return 0
     log.info("Market history: %d trading days to read from the exchange files (budget %.0f min)",
              len(todo), budget_minutes)
-    sym_of = {i: s for s, i in zip(directory["symbol"], directory["isin"]) if isinstance(i, str)}
     deadline = time.monotonic() + 60 * budget_minutes
     batch: dict[str, dict[pd.Timestamp, pd.Series]] = {f: {} for f in FIELDS}
     read = 0
@@ -103,8 +108,6 @@ def sync_bhavcopies(store: Store, directory: pd.DataFrame, years: int, budget_mi
         rows, complete = read_day(day)
         read += 1
         if not rows.empty:
-            rows = rows[rows.index.isin(sym_of.keys())]
-            rows.index = rows.index.map(sym_of)
             rows = rows[~rows.index.duplicated()]
             for f in FIELDS:
                 batch[f][pd.Timestamp(day)] = rows[f]
@@ -116,7 +119,7 @@ def sync_bhavcopies(store: Store, directory: pd.DataFrame, years: int, budget_mi
             new = pd.DataFrame(batch[f]).T.sort_index()
             old = store.frames[f]
             store.frames[f] = new if old.empty else old.combine_first(new)
-        log.info("Market history: now %d stocks from %s to %s", store.close.shape[1],
+        log.info("Market history: now %d instruments from %s to %s", store.close.shape[1],
                  store.close.index.min().date(), store.close.index.max().date())
     return read
 
@@ -139,13 +142,16 @@ def adjust_corporate_actions(close: pd.DataFrame, observed: pd.DataFrame) -> pd.
     return after
 
 
-def to_prices(store: Store, symbols, benchmark: pd.Series, min_rows: int, max_gap: int = 10) -> Prices | None:
+def to_prices(store: Store, isin_of: dict[str, str], benchmark: pd.Series, min_rows: int,
+              max_gap: int = 10) -> Prices | None:
     """Adjusted prices on the market's trading calendar. Small stocks skip days with no trades, and a
     gap anywhere in a 200-day window would blank out the moving averages, liquidity and volatility
     features, so the last close is carried over no-trade days (up to `max_gap` sessions, so a stock
-    that stopped trading still drops out) with zero volume."""
-    cols = [s for s in symbols if s in store.close.columns]
-    raw = store.close[cols]
+    that stopped trading still drops out) with zero volume. `isin_of` maps symbol -> ISIN; the
+    result has one column per symbol."""
+    pairs = {s: i for s, i in isin_of.items() if i in store.close.columns}
+    sym_frames = {f: store.frames[f][list(pairs.values())].set_axis(list(pairs), axis=1) for f in FIELDS}
+    raw = sym_frames["close"]
     raw = raw.loc[:, raw.notna().sum() >= min_rows]
     if raw.empty:
         return None
@@ -156,9 +162,9 @@ def to_prices(store: Store, symbols, benchmark: pd.Series, min_rows: int, max_ga
     factor = adjust_corporate_actions(raw.reindex(idx), observed)
     close = (raw.reindex(idx) * factor).ffill(limit=max_gap)
     filled = close.notna() & ~observed
-    high = (store.frames["high"][close.columns].reindex(idx) * factor).where(observed).fillna(close)
-    low = (store.frames["low"][close.columns].reindex(idx) * factor).where(observed).fillna(close)
-    volume = (store.frames["volume"][close.columns].reindex(idx) / factor).where(~filled, 0.0)
+    high = (sym_frames["high"][close.columns].reindex(idx) * factor).where(observed).fillna(close)
+    low = (sym_frames["low"][close.columns].reindex(idx) * factor).where(observed).fillna(close)
+    volume = (sym_frames["volume"][close.columns].reindex(idx) / factor).where(~filled, 0.0)
     return Prices(
         close=close, high=high, low=low, volume=volume.replace([np.inf, -np.inf], np.nan),
         benchmark=benchmark.reindex(benchmark.index.union(idx)).ffill().reindex(idx),
