@@ -7,7 +7,7 @@ import logging
 from pathlib import Path
 
 from .config import SITE_DATA_DIR, Config
-from . import bhavcopy
+from . import bhavcopy, history
 from .data import download_prices, synthetic_prices
 from .features import build_panel
 from .model import walk_forward_backtest
@@ -58,6 +58,13 @@ def main() -> None:
     directory = load_market_directory()
     if args.command == "daily":
         extra = bhavcopy.closing_prices(directory)  # official closing prices for every listed stock
+        try:  # keep the stored whole-market history current, so the weekly run has little to fetch
+            store = history.load()
+            if history.append_bhavcopies(store, directory):
+                history.trim(store, cfg.extended_years)
+                history.save(store)
+        except Exception as exc:
+            logging.warning("Market history update failed: %s", exc)
         res = run_daily(prices, universe, cfg, coverage=coverage, extra_prices=extra, with_news=not args.no_news,
                         with_backtest=not args.no_backtest, out_dir=Path(args.out), force=args.force)
         if res is None:
@@ -77,8 +84,16 @@ def main() -> None:
     if traded:
         rest = rest[rest["isin"].isin(traded)]
     other = dict(zip(rest["symbol"], rest["yahoo"]))
-    extended = (download_prices(list(other), cfg.benchmark, cfg.extended_years, use_cache=not args.no_cache,
-                                tickers=other, min_rows=cfg.extended_min_rows) if other else None)
+    store = history.load()
+    try:
+        history.append_bhavcopies(store, directory)
+        history.fill_from_yahoo(store, other, cfg.extended_years, cfg.extended_yahoo_minutes)
+    finally:  # keep whatever was fetched, even if this run fails later
+        history.trim(store, cfg.extended_years)
+        history.save(store)
+    extended = history.to_prices(store, list(other), prices.benchmark, cfg.extended_min_rows)
+    logging.info("Extended history ready for %d of %d other traded stocks",
+                 0 if extended is None else extended.close.shape[1], len(other))
     res = run_weekly(prices, universe, cfg, coverage=coverage, extended=extended, directory=directory,
                      with_news=not args.no_news,
                      with_fundamentals=not args.no_fundamentals, with_backtest=not args.no_backtest, out_dir=Path(args.out))

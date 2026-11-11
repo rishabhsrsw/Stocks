@@ -206,3 +206,46 @@ def test_bhavcopy_prices_by_isin(monkeypatch):
                               "isin": ["INE002A01018", "INE111A01011", "INE999Z01011"]})
     # Dual-listed stocks take the NSE close; untraded ones have no price.
     assert bhavcopy.closing_prices(directory) == {"RELIANCE": 1500.5, "SMALL": 12.5}
+
+
+def test_market_history_store(tmp_path, monkeypatch):
+    from stockpicker import history
+    days = pd.bdate_range("2026-10-01", "2026-11-06")
+    store = history.Store()
+    for f in history.FIELDS:
+        store.frames[f] = pd.DataFrame({"AAA": 100.0, "BBB": 50.0}, index=days)
+    directory = pd.DataFrame({"symbol": ["AAA", "BBB", "CCC"], "isin": ["IN1", "IN2", "IN3"]})
+
+    def fetch(day):  # Monday 9th: normal day; Tuesday 10th: holiday; BBB has a 1:2 split on the 11th
+        if day == dt.date(2026, 11, 10):
+            return pd.DataFrame(columns=["close", "high", "low", "volume"])
+        bbb = 51.0 if day == dt.date(2026, 11, 9) else 25.5
+        return pd.DataFrame({"close": [101.0, bbb], "high": [102.0, bbb], "low": [99.0, bbb], "volume": [1e5, 2e5]},
+                            index=pd.Index(["IN1", "IN2"]))
+
+    assert history.append_bhavcopies(store, directory, today=dt.date(2026, 11, 11), fetch=fetch) == 2
+    assert store.close.index.max() == pd.Timestamp("2026-11-11")
+    assert store.close["AAA"].iloc[-1] == 101.0
+    assert "BBB" not in store.close  # split-like jump: dropped so Yahoo refetches adjusted history
+
+    yahoo_days = pd.bdate_range("2025-01-01", "2026-11-12")  # Yahoo is ahead (12th) and has an intraday bar
+    frame = pd.DataFrame({k: 25.0 for k in ("Close", "High", "Low", "Volume")}, index=yahoo_days)
+
+    def download(tickers, start, deadline):
+        return {t: frame for t in tickers if t == "BBB.NS"}, [t for t in tickers if t != "BBB.NS"]
+
+    added = history.fill_from_yahoo(store, {"BBB": "BBB.NS", "CCC": "CCC.BO", "AAA": "AAA.NS"}, 2, 1,
+                                    today=dt.date(2026, 11, 12), download=download)
+    assert added == 1 and store.close.index.max() == pd.Timestamp("2026-11-11")  # never ahead of the rest
+    assert store.unavailable == {"CCC": "2026-11-12"}
+    # CCC isn't asked for again until four weeks have passed.
+    calls = []
+    history.fill_from_yahoo(store, {"CCC": "CCC.BO"}, 2, 1, today=dt.date(2026, 11, 20),
+                            download=lambda t, **k: calls.append(t) or ({}, t))
+    assert calls == []
+
+    history.save(store, tmp_path / "h.pkl")
+    again = history.load(tmp_path / "h.pkl")
+    bench = pd.Series(1.0, index=yahoo_days)
+    p = history.to_prices(again, ["AAA", "BBB", "CCC"], bench, min_rows=100)
+    assert list(p.close.columns) == ["BBB"] and p.benchmark.notna().all()  # AAA has only ~30 days

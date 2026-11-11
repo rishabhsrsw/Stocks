@@ -47,16 +47,21 @@ def _download_chunk(tickers: list[str], start: str | None = None, period: str | 
 
 
 def _paced_download(tickers: list[str], chunk: int = 20, pause: float = 1.5, retry_after: float = 60,
-                    **kw) -> dict[str, pd.DataFrame]:
+                    deadline: float | None = None, **kw) -> tuple[dict[str, pd.DataFrame], list[str]]:
     """Download in small paced batches, then retry once whatever came back empty.
 
     Yahoo rate-limits bulk downloads and reports it per ticker as empty data, so a ticker
-    that fails twice is treated as unavailable (e.g. a small BSE stock Yahoo doesn't carry)."""
+    that fails twice is treated as unavailable (e.g. a small BSE stock Yahoo doesn't carry).
+    Stops at `deadline` (a time.monotonic() value); tickers not tried by then are in neither result.
+    Returns (data per ticker, tickers that failed)."""
     got: dict[str, pd.DataFrame] = {}
-    todo = tickers
+    todo, failed = tickers, []
     for attempt in range(2):
         failed = []
         for i in range(0, len(todo), chunk):
+            if deadline is not None and time.monotonic() > deadline:
+                log.info("Time budget used up: stopping with %d tickers left for the next run", len(todo) - i)
+                break
             part = todo[i:i + chunk]
             raw = _download_chunk(part, **kw)
             for t in part:
@@ -67,13 +72,13 @@ def _paced_download(tickers: list[str], chunk: int = 20, pause: float = 1.5, ret
             if (i // chunk) % 25 == 0:
                 log.info("Prices: %d/%d tickers (pass %d)", min(i + chunk, len(todo)), len(todo), attempt + 1)
             time.sleep(pause)
-        if not failed or attempt == 1:
+        if not failed or attempt == 1 or (deadline is not None and time.monotonic() + retry_after > deadline):
             break
         log.info("Retrying %d tickers that came back empty in %.0fs", len(failed), retry_after)
         time.sleep(retry_after)
         todo = failed
     log.info("Prices for %d/%d tickers", len(got), len(tickers))
-    return got
+    return got, failed
 
 
 def download_prices(symbols: list[str], benchmark: str, years: int, use_cache: bool = True,
@@ -89,7 +94,7 @@ def download_prices(symbols: list[str], benchmark: str, years: int, use_cache: b
     start = (dt.date.today() - dt.timedelta(days=int(365.25 * years))).isoformat()
     fields = {"Close": {}, "High": {}, "Low": {}, "Volume": {}}
     to_sym = {(tickers or {}).get(s, yahoo_symbol(s)): s for s in symbols}
-    for t, frame in _paced_download(list(to_sym), start=start).items():
+    for t, frame in _paced_download(list(to_sym), start=start)[0].items():
         if frame["Close"].notna().sum() >= min_rows:
             for f in fields:
                 fields[f][to_sym[t]] = frame[f]

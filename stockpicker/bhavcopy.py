@@ -41,25 +41,52 @@ def parse(content: bytes) -> pd.DataFrame:
 
 
 @functools.lru_cache(maxsize=None)
-def latest(exchange: str) -> tuple[dt.date | None, pd.DataFrame]:
-    """The most recent bhavcopy of `exchange` ("NSE" or "BSE") from the last week."""
+def fetch(exchange: str, day: dt.date) -> pd.DataFrame | None:
+    """The bhavcopy of `exchange` ("NSE" or "BSE") for `day`, or None if there isn't one."""
     url = NSE_URL if exchange == "NSE" else BSE_URL
     headers = HEADERS | {"Referer": "https://www.nseindia.com/" if exchange == "NSE" else "https://www.bseindia.com/"}
+    try:
+        resp = requests.get(url.format(date=day), timeout=60, headers=headers)
+        # Before a file is published BSE answers 200 with an HTML page, so check it is the data.
+        if resp.status_code == 200 and (resp.content[:2] == b"PK" or b"FinInstrmId" in resp.content[:2000]):
+            df = parse(resp.content)
+            log.info("%s bhavcopy for %s: %d stocks", exchange, day, len(df))
+            return df
+        log.info("No %s bhavcopy for %s (HTTP %s)", exchange, day, resp.status_code)
+    except Exception as exc:
+        log.warning("%s bhavcopy for %s failed: %s", exchange, day, exc)
+    return None
+
+
+@functools.lru_cache(maxsize=None)
+def latest(exchange: str) -> tuple[dt.date | None, pd.DataFrame]:
+    """The most recent bhavcopy of `exchange` from the last week."""
     for back in range(8):
         day = dt.date.today() - dt.timedelta(days=back)
-        if day.weekday() >= 5:
-            continue
-        try:
-            resp = requests.get(url.format(date=day), timeout=60, headers=headers)
-            # Before a file is published BSE answers 200 with an HTML page, so check it is the data.
-            if resp.status_code == 200 and (resp.content[:2] == b"PK" or b"FinInstrmId" in resp.content[:2000]):
-                df = parse(resp.content)
-                log.info("%s bhavcopy for %s: %d stocks", exchange, day, len(df))
-                return day, df
-            log.info("No %s bhavcopy for %s (HTTP %s)", exchange, day, resp.status_code)
-        except Exception as exc:
-            log.warning("%s bhavcopy for %s failed: %s", exchange, day, exc)
+        if day.weekday() < 5 and (df := fetch(exchange, day)) is not None:
+            return day, df
     return None, pd.DataFrame(columns=["ISIN", "ClsPric"])
+
+
+OHLCV = {"ClsPric": "close", "HghPric": "high", "LwPric": "low", "TtlTradgVol": "volume"}
+
+
+def ohlcv_by_isin(day: dt.date) -> pd.DataFrame:
+    """ISIN -> close/high/low/volume for `day` (NSE row preferred for dual-listed stocks);
+    empty if neither exchange traded that day."""
+    frames = []
+    for ex in ("NSE", "BSE"):
+        df = fetch(ex, day)
+        if df is not None and "ISIN" in df:
+            out = pd.DataFrame({"isin": df["ISIN"].str.strip()})
+            for src, dst in OHLCV.items():
+                out[dst] = pd.to_numeric(df[src], errors="coerce").values if src in df else float("nan")
+            out["high"] = out["high"].fillna(out["close"])
+            out["low"] = out["low"].fillna(out["close"])
+            frames.append(out.dropna(subset=["isin", "close"]))
+    if not frames:
+        return pd.DataFrame(columns=["close", "high", "low", "volume"])
+    return pd.concat(frames).drop_duplicates("isin").set_index("isin")
 
 
 def closes_by_isin() -> dict[str, float]:

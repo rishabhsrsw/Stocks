@@ -48,6 +48,7 @@ class Config:
     # Holdings review beyond the Nifty 500: every NSE/BSE-listed company with enough history.
     extended_years: int = 2
     extended_min_rows: int = 252  # about a year of trading, needed for the chart features
+    extended_yahoo_minutes: float = 40  # per run; stocks not fetched in time wait for the next run
     stale_days: int = 10  # skip stocks that haven't traded in this many sessions
 
     # Model / backtest

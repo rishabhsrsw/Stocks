@@ -19,7 +19,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -28,10 +28,22 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python -m pytest -q tests
+      - name: Restore market history
+        uses: actions/cache/restore@v4
+        with:
+          path: data/cache/market_history.pkl
+          key: market-history-${{ github.run_id }}
+          restore-keys: market-history-
       - name: Generate picks
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}  # optional: enables the Claude news analyst
         run: python -m stockpicker run --index "${{ github.event.inputs.index || 'nifty200' }}"
+      - name: Save market history
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/cache/market_history.pkl
+          key: market-history-${{ github.run_id }}
       - name: Commit results
         run: |
           git config user.name "github-actions[bot]"
