@@ -1,6 +1,7 @@
 """Stock universe: official NSE index constituents, with a built-in fallback list."""
 from __future__ import annotations
 
+import datetime as dt
 import io
 import logging
 
@@ -206,13 +207,24 @@ NSE_LIST_URLS = [
 NSE_SME_URL = "https://nsearchives.nseindia.com/emerge/corporates/content/SME_EQUITY_L.csv"
 BSE_LIST_URL = ("https://api.bseindia.com/BseIndiaAPI/api/ListofScripData/w"
                 "?Group=&Scripcode=&industry=&segment=Equity&status=Active")
-HEADERS = {"User-Agent": "Mozilla/5.0", "Accept": "*/*", "Referer": "https://www.bseindia.com/"}
+# BSE's servers reject requests that don't look like a browser.
+HEADERS = {
+    "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                   "Chrome/130.0.0.0 Safari/537.36"),
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Origin": "https://www.bseindia.com",
+    "Referer": "https://www.bseindia.com/",
+}
+# Fallback for the BSE list: the daily bhavcopy (end-of-day file) names every traded stock with its ISIN.
+BSE_BHAVCOPY_URL = "https://www.bseindia.com/download/BhavCopy/Equity/BhavCopy_BSE_CM_0_0_0_{date:%Y%m%d}_F_0000.CSV"
 DIRECTORY_COLUMNS = ["symbol", "name", "exchange", "yahoo", "isin", "sector"]
 
 
 def parse_nse_csv(text: str) -> pd.DataFrame:
     df = pd.read_csv(io.StringIO(text))
-    df.columns = [c.strip().upper() for c in df.columns]
+    df.columns = [c.strip().upper().replace("_", " ") for c in df.columns]  # the SME file uses NAME_OF_COMPANY
+    df = df[~df["SYMBOL"].astype(str).str.upper().str.startswith("DUMMY")]  # NSE test securities
     if "SERIES" in df:  # main board: ordinary shares (EQ) and trade-for-trade (BE/BZ); SME file has SM/ST
         df = df[df["SERIES"].astype(str).str.strip().isin(["EQ", "BE", "BZ", "SM", "ST"])]
     out = pd.DataFrame({
@@ -244,6 +256,39 @@ def parse_bse_json(rows: list[dict], taken_isins: set[str], taken_symbols: set[s
     return pd.DataFrame(out, columns=DIRECTORY_COLUMNS)
 
 
+def parse_bse_bhavcopy(text: str) -> list[dict]:
+    """Rows in the same shape as the BSE scrip-list API, from a UDiFF bhavcopy CSV."""
+    df = pd.read_csv(io.StringIO(text), dtype=str)
+    df.columns = [c.strip() for c in df.columns]
+    if "FinInstrmTp" in df:
+        df = df[df["FinInstrmTp"].str.strip() == "STK"]
+    return [{"scrip_cd": r.FinInstrmId, "scrip_name": r.FinInstrmNm, "isin_number": r.ISIN,
+             "scrip_id": r.TckrSymb, "status": "Active"} for r in df.itertuples(index=False)]
+
+
+def _bse_rows() -> list[dict]:
+    try:
+        resp = requests.get(BSE_LIST_URL, timeout=60, headers=HEADERS)
+        resp.raise_for_status()
+        rows = resp.json()
+        return rows.get("Table", rows) if isinstance(rows, dict) else rows
+    except Exception as exc:
+        log.warning("BSE scrip list API failed (%s); trying the bhavcopy", exc)
+    today = dt.date.today()
+    for back in range(8):  # the latest trading day's file
+        day = today - dt.timedelta(days=back)
+        if day.weekday() >= 5:
+            continue
+        try:
+            resp = requests.get(BSE_BHAVCOPY_URL.format(date=day), timeout=60, headers=HEADERS)
+            if resp.status_code == 200 and "FinInstrmId" in resp.text[:2000]:
+                return parse_bse_bhavcopy(resp.text)
+            log.info("No BSE bhavcopy for %s (HTTP %s)", day, resp.status_code)
+        except Exception as exc:
+            log.warning("BSE bhavcopy for %s failed: %s", day, exc)
+    return []
+
+
 def load_market_directory() -> pd.DataFrame:
     """All listed equities: NSE main board + SME, then BSE-only companies. Empty on failure."""
     parts = []
@@ -262,15 +307,7 @@ def load_market_directory() -> pd.DataFrame:
     except Exception as exc:
         log.warning("NSE SME list failed: %s", exc)
     nse = pd.concat(parts).drop_duplicates("symbol") if parts else pd.DataFrame(columns=DIRECTORY_COLUMNS)
-    try:
-        resp = requests.get(BSE_LIST_URL, timeout=60, headers=HEADERS)
-        resp.raise_for_status()
-        rows = resp.json()
-        rows = rows.get("Table", rows) if isinstance(rows, dict) else rows
-        bse = parse_bse_json(rows, set(nse["isin"]), set(nse["symbol"]))
-    except Exception as exc:
-        log.warning("BSE scrip list failed: %s", exc)
-        bse = pd.DataFrame(columns=DIRECTORY_COLUMNS)
+    bse = parse_bse_json(_bse_rows(), set(nse["isin"]), set(nse["symbol"]))
     directory = pd.concat([nse, bse], ignore_index=True)
     log.info("Market directory: %d NSE + %d BSE-only companies", len(nse), len(bse))
     return directory
