@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T06:04:48+00:00",
+ "generated_at": "2026-11-11T06:16:49+00:00",
  "as_of": "2026-11-11",
  "horizon_days": 10,
  "eligible_size": 191,
@@ -8,20 +8,20 @@
    "symbol": "KEI",
    "name": "KEI Industries Ltd.",
    "sector": "Capital Goods",
-   "price": 4046.8,
-   "final_score": 0.8968,
-   "model_score": 0.9832,
+   "price": 4045.7,
+   "final_score": 0.8923,
+   "model_score": 0.9775,
    "news_score": 0.1031,
    "forecast": {
     "2w": {
-     "q10": -0.0825,
-     "q50": 0.0103,
-     "q90": 0.1167,
-     "p_beat_nifty": 0.5489
+     "q10": -0.0848,
+     "q50": 0.0096,
+     "q90": 0.1121,
+     "p_beat_nifty": 0.5689
     }
    },
    "reasons": [
-    "Up +4.3% over the last week",
+    "Up +4.2% over the last week",
     "MACD positive: short-term momentum turning up",
     "Volume 1.3x its 6-month average",
     "Volume 1.3x its 6-month average (accumulation)"
@@ -134,23 +134,155 @@
     4061.1,
     3988.0,
     4002.7,
-    4046.8
+    4045.7
+   ]
+  },
+  {
+   "symbol": "PIIND",
+   "name": "PI Industries Ltd.",
+   "sector": "Chemicals",
+   "price": 1753.4,
+   "final_score": 0.8778,
+   "model_score": 0.9768,
+   "news_score": -0.0368,
+   "forecast": {
+    "2w": {
+     "q10": -0.1298,
+     "q50": 0.0119,
+     "q90": 0.1571,
+     "p_beat_nifty": 0.5763
+    }
+   },
+   "reasons": [
+    "Volume 2.3x its 6-month average",
+    "RSI 28: oversold, bounce candidate",
+    "Volume 2.3x its 6-month average (accumulation)"
+   ],
+   "risk": {
+    "volatility_63d": 0.5054,
+    "atr_pct": 0.05
+   },
+   "news": {
+    "n_articles": 30,
+    "headlines": [
+     {
+      "title": "Pi Network\u2019s PI Rockets 8% From ATL as Bitcoin Struggles to Hold $74K: Market Watch",
+      "source": "CryptoRank",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOcmxrbkRPX2dvUHNINENIMXRCekN5U2dtbEV5NDlhanVYTmhSTEpNaVJDZlR2YUtiSURUcTBwbGNSd1VPbUF5TVpYSmo1NURFZmd0bEpzQVRnZFJOWThzWFlaUzZBN1B0NWVXTXpMLWlQX0tXb3dZQ3FpakFxcC1EeHh2N2U5aDBkNnhuWEtHLTJtSVRaWGlMcXdveVpSME11ekF1UXZZN29mRk9waGVUWEFuRl95YTYw?oc=5",
+      "published": "2026-11-10T20:05:20+00:00",
+      "sentiment": -0.361
+     },
+     {
+      "title": "FG commissions three gas facilities in Kano as Pi-CNG seeks more refuelling stations",
+      "source": "Business News Nigeria",
+      "link": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1BM3N6dnBhTzAzTVd5Y0UzVFZxYV8xSTVZaThTcVVTdkZsVDRBSExnNzJNZUtqR2tXQnZNUmw5ZjFpWXJhOEcxQw?oc=5",
+      "published": "2026-11-10T18:17:19+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Michael Diliberti will write and direct the film, which is expected to begin production in Miami in March 2027.",
+      "source": "Enstarz",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPWVJqRkMtc0FWQlNFX0hXT3ZDZWNkVGRFWHRnU2ZzZ3RqZVBlWDZNb2pkTHBhVHVDVXBEQk9CQW1JS1hkYmtoYjZJZWluMlhxUExBTUc2TndZd1M1Wm1XWkxWVjA2b2IwZTVySkZXWnFDanhYc3hMa0lRdE4zVllKdVdVTEZJQnJWZDgzSWVjcHc?oc=5",
+      "published": "2026-11-10T14:30:32+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "IIM Udaipur RTI Data 2026 Out: Check Category-Wise Shortlist and Total Admission Offers",
+      "source": "Jagran Josh",
+      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOZGd4eTNoN0xWQWhpNy03cG5KY0xkQUQzaXdGQ2JTdkdRZUdiVmh4a1RZeG5RQ0IwbU1nR1lDY0t5Vm5GNFpmT2NkXzR5LTktZlFCYW1LMDBuZ1pFZ0J2eU0wbE1PMWlxT3RVcG1HM1Jva2JHNEhXVTV4YXphZEs2N01oakZGTjh3S3YyVXNGejYzZ09zM1dPcFM1ZFhaNVo2aHdCenNXT1VsTENvVjZweVpwU3BGdnExWGhIeE5VQnBORFFMbmRZQUJSc0pTNmfSAdYBQVVfeXFMTWU1U3RTanJTZVFaeFc5bUdBaU9NZFdBYXAxYXhUdlc3M0dQc25MZWgyTmd6c3RIS1FLMlVxQ3lEM2J4bkR0SkFkbHc1U1Ria05GcWFvYnJYQm9iMTVmMGlzdFZicFJCdWdISm00UmFkX3kyYk5IN2k2aFdmN3Z4ZzA1ZzFFNFdxVy1Za0ZNYlI4UG1Wc1pfQVFXcXcyZU9RM3kzSDJWYWxBUXI2d1U4T3Yyc0U0Y1NlX1ZBYTNBRF9OcnVWTl9RVDZBMjRrR1B1MHVzbnBCUQ?oc=5",
+      "published": "2026-11-10T12:03:41+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Impinj (PI) Shares Just Moved, So What Is Behind The Attention?",
+      "source": "Simply Wall St",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQdnRGS1d0T0RZYlgwdWlid0JVZUU5bVdaNDI3R1FrcmQ2YzlDdElyeG15bjFPOEdpd3JjSEdBT3RLTnFmVHItQ0F2TE0wUUV6OFNoNHZURlFXRlBwUGl0R1luSkItaENUc2dubDVoUUo5NlhPLXBQbWRHd1BlYW55dHRoZnFWN0swLUJzZ1YwaW4yUk1TZEd4WVlIeENRZHpOdFJqQnMzVVc3NG1ER2w3MlFSN1EyOUp5QWx4RlVyNnU1TTk2UjBz0gHMAUFVX3lxTE51VjhoOTVFbWdJRExBT1VfbWhkZGdiWVRqQUlaV2N2VTFRYkY2aXpHcE1OaGlnc1VkR2F5TDhVUE41VDllV2tEYktKUld3VUp2WVdwVnJPNkRBNHBHR2ZyVmVpN3U3akU4UHJmbDRlSGNRbGl3VlhJbER5dms4ZEQtUHRHeXJPdE5iYVZSU1ZOTjdoc2V4OUhWczROWnlxNFRlczBWNmZzWUQzbzZCZ29VTVJadDZCOHNfaTVqUkFlSjVlb0ZpemthQzFYQw?oc=5",
+      "published": "2026-11-10T10:20:06+00:00",
+      "sentiment": 0.296
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    2730.0,
+    2483.0,
+    2494.3,
+    2490.1,
+    2472.0,
+    2515.0,
+    2505.0,
+    2482.5,
+    2496.8,
+    2475.0,
+    2508.0,
+    2508.3,
+    2467.0,
+    2420.1,
+    2370.0,
+    2397.1,
+    2393.0,
+    2419.9,
+    2465.0,
+    2430.0,
+    2395.0,
+    2394.0,
+    2365.0,
+    2259.0,
+    2255.0,
+    2256.0,
+    2307.0,
+    2366.8,
+    2321.8,
+    2410.0,
+    2386.0,
+    2393.5,
+    2400.0,
+    2349.0,
+    2288.8,
+    2310.0,
+    2236.0,
+    2220.0,
+    2250.0,
+    2210.0,
+    2100.0,
+    2118.2,
+    2131.5,
+    2130.0,
+    2218.8,
+    2203.8,
+    2190.0,
+    2163.5,
+    2103.0,
+    2074.9,
+    2051.0,
+    2020.0,
+    2086.1,
+    2055.0,
+    2110.0,
+    2100.0,
+    2166.2,
+    2185.0,
+    2187.0,
+    1770.0,
+    1735.0,
+    1712.9,
+    1753.4
    ]
   },
   {
    "symbol": "LUPIN",
    "name": "Lupin Ltd.",
    "sector": "Healthcare",
-   "price": 2009.6,
-   "final_score": 0.8656,
-   "model_score": 0.9474,
-   "news_score": 0.0769,
+   "price": 2008.0,
+   "final_score": 0.8558,
+   "model_score": 0.9375,
+   "news_score": 0.0573,
    "forecast": {
     "2w": {
-     "q10": -0.0487,
-     "q50": 0.0076,
-     "q90": 0.0616,
-     "p_beat_nifty": 0.5413
+     "q10": -0.0515,
+     "q50": 0.01,
+     "q90": 0.0631,
+     "p_beat_nifty": 0.5417
     }
    },
    "reasons": [
@@ -159,19 +291,12 @@
     "Lower volatility than most peers"
    ],
    "risk": {
-    "volatility_63d": 0.1777,
+    "volatility_63d": 0.1778,
     "atr_pct": 0.0213
    },
    "news": {
-    "n_articles": 30,
+    "n_articles": 29,
     "headlines": [
-     {
-      "title": "Lupin Share Price: 18.9% CAGR vs Zydus, Sun Pharma",
-      "source": "Univest",
-      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNZTFqLVNrLXJFQVhubWJqUGVvU3ZIX2V6aUtWNVRkQjhoNUxtdl9FUkdkNEFJTzk1aFVHQUVUc1VqZWFqbXY3WFQwd1ZrSGFzWExOMVdUeUNjZGRqMkVSUGVhakNUUmRvSDdlNUxHUWRUR19YbHJOSXRXR1p6NWFOcXNweUhVTEpZLXJzQkhyaHlZbjZ2a0NMUWp6aVZaNTRWYmc?oc=5",
-      "published": "2026-11-11T05:23:00+00:00",
-      "sentiment": 0.296
-     },
      {
       "title": "Pharma sector stocks today, November 11: Alembic Pharma gains 2.82%; Divi's Laboratories falls 2.08%, Lupin down 1.25%",
       "source": "Business Upturn",
@@ -199,6 +324,13 @@
       "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQaGtKeTI1Z0RDQUNyUUc3T1lmb3luWC1hYnRCU1JFT3g0ZTRjLVAyczFKVjhtWFVaOVlkdXNIX3BMTDAzZDFiRV9kNm5EdlpWS0tGSlFJMkFoOTQ3anVTZW0xb2d5NVhzTUluTDk3N1FxLTNEdS03VFNyclNuQTJWa045VVJaY3R0bWRjWFQzVlE2blpJT3RrM29DTEZCandubGEzajBLRU1WcF9lQXI3YWlnaERkMUtRZXhsenVRRy12SmtwQWxMaWl5NXMwN2xuaFRfLVJxYkpnMVVkRWtr0gHkAUFVX3lxTE9vR1ZuVnhnNVU5MDMwc0dqcDFCb05mLWV4MFdhVnFuc2NfRXN5amJONm9qUEVtYXM0UXNkTUlwNnYzcEVLSFdIbDQ4LTVnbU9vQnlxeG9lR0Q0VDVWVFZKNXQ0MzdfVUN0dFZ5NmMyNHRSUzZqRTN0WUh5VmQ5U0ZXRk9UYmpycVJLeFY5akpHWjdIUG5sdTJTUTloTEdKZ1p3Q00tVlZiSk1HcmxDNk1NcU9RaFZrazVtdzlGM3AxTnlHRFByMGFNendWS000YVB4V3BKUGQxX1g1VElCMi1wZ0RwLQ?oc=5",
       "published": "2026-11-06T00:46:53+00:00",
       "sentiment": -0.226
+     },
+     {
+      "title": "Lupin Q2 Profit Falls 22% to \u20b91,155 Cr Despite Higher Revenue",
+      "source": "HDFC Sky",
+      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQMXVvSUt5ODdHUkhyUV84bVhhTTkwWUJrdEJhOFl2elFSWHRaZ3lPdWlybjZuTXpVV1g5Y1JodGVQZm83dFBvMHVyWWlBenR2VXBHa2NMRnhrWC1RWEE2SGpaOUl0NGN5OWFxRFZWTS03OHI0S3NGbHQwSENNMEh4Xw?oc=5",
+      "published": "2026-11-05T04:38:44+00:00",
+      "sentiment": -0.052
      }
     ],
     "llm": null
@@ -266,141 +398,7 @@
     1988.0,
     1988.1,
     2025.0,
-    2009.6
-   ]
-  },
-  {
-   "symbol": "INDHOTEL",
-   "name": "Indian Hotels Co. Ltd.",
-   "sector": "Consumer Services",
-   "price": 893.85,
-   "final_score": 0.8572,
-   "model_score": 0.9298,
-   "news_score": 0.1336,
-   "forecast": {
-    "2w": {
-     "q10": -0.0562,
-     "q50": 0.0067,
-     "q90": 0.078,
-     "p_beat_nifty": 0.5321
-    }
-   },
-   "reasons": [
-    "Up +6.9% over the last week",
-    "MACD positive: short-term momentum turning up",
-    "Volume 2.1x its 6-month average",
-    "Caution: RSI 83 is overbought",
-    "Strong 6-month momentum (+36%, top 7% of universe)"
-   ],
-   "risk": {
-    "volatility_63d": 0.2416,
-    "atr_pct": 0.0253
-   },
-   "news": {
-    "n_articles": 9,
-    "headlines": [
-     {
-      "title": "Broad-Based Technical Strength Lifts Indian Hotels Co Ltd to 52-Week High of Rs 832.75",
-      "source": "MarketsMojo",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQWXVGdTRBazdsdS0yOXNET3plaFFCRXVBOHNXVVZaNXZWRHk1QU90cWZOZks1bi1rZF9YeFQ5WDZwU2V4OFFheTc4bTNXcno3MXcwaTNxY1MzbXFLYzJpejJ5bi12cDNxNlRQbGJRSWpwWHpaaHIwVXRpZDRTeFRKZ1BMUUlJUHFBVDV6UWoyOGNGcVRITGhtN3FjRzA0aU9RQl93NElsOXFaaVM2d0M3eg?oc=5",
-      "published": "2026-11-03T13:12:44+00:00",
-      "sentiment": 0.494
-     },
-     {
-      "title": "Indian Hotels Co Ltd is Rated Hold by MarketsMOJO",
-      "source": "MarketsMojo",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPRFp6RDZhN2xXQTlUdTNjZVh0alFLeTIwR2xRUFQtVWF0U2txWkp4Q0lMT3NsU0RablExNE1xT00zMWRQcjFFLWcyRjB1Nm9pc3dvMnpJYmExbFRvYUxlMDBrMGZnRWFPWlhVUDQxMUZFR2JpLUpBa0pRNnlTZ0VRSEJMSHdUaHBZNTQ4SEtYa2VkY09VRXNwMi13UlNHaFpYVDNyYU5OTURNdkpMTzRpZQ?oc=5",
-      "published": "2026-10-31T22:42:39+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "Indian Hotels (NSEI:INDHOTEL) Stock Forecast & Analyst Predictions",
-      "source": "Simply Wall St",
-      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNam5ONU5fQU1kU1JIRFhRWERWR0VsTzc2bm1CeHAzdjBSbzJmcDRNVkZBdktGQ3FHYzcxMmpiWWRRaWhRcjNGc21WQjJnX1p3SFh0ZDlrNTRXUDE0dVdTSFUyOFF2NDRsU1NKRk9PNV9PS2p4VDFIc2NWZ3dzN1dkUERZZzQzYm91N3QtVTdickMxcnAz?oc=5",
-      "published": "2026-10-30T07:00:00+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "Indian Hotels 52 Week High Streak: Second Session",
-      "source": "Univest",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNRkt5M2htYnVEMU5KTF9RUEJOcU44VzdueUhLREdGSzJOUHpnU1BtN1dXRlhFTlM0NElWUW9ObzlWai1wajFQTlV6eDV1dkwxQTd6OVFpeV9fZktTVm9wWjdrVDRaUlczcmt3SnVtTzFEeU11aDNlUGg3ZWlYdmJxSk9QRmo3VXZUdXdUZ2cxX2ZScjljaWZMRG1n?oc=5",
-      "published": "2026-10-29T07:07:00+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "Indian Hotels Share Price Hits 52-Week High of Rs 812.80",
-      "source": "Univest",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNcHQ2djMxSGFJZ09Nb215bGRnTWtLbFY0U2NqaHk2YjBuYlJfQ21Oc2FINUo5WlMwZVpGRkdtUnhlb1VfRFNGSW1xWE05bGhUQ0VRRmVlVXk1RUFaUmdkOFFtVkNISlV4a0ZMMnpLbzhIcjMwR2tnYV9xOWZkMTlMdGwyU3gtdlBZeWpGT3hVYnBhVExxaUhRbTln?oc=5",
-      "published": "2026-10-28T07:00:00+00:00",
-      "sentiment": 0.296
-     }
-    ],
-    "llm": null
-   },
-   "chart": [
-    724.0,
-    724.0,
-    721.75,
-    720.0,
-    720.0,
-    719.0,
-    723.35,
-    735.85,
-    730.0,
-    728.9,
-    730.0,
-    721.0,
-    718.5,
-    706.4,
-    737.9,
-    718.0,
-    727.7,
-    732.0,
-    720.0,
-    716.2,
-    720.0,
-    722.75,
-    715.75,
-    718.5,
-    715.0,
-    713.4,
-    726.65,
-    732.75,
-    745.0,
-    736.25,
-    743.7,
-    728.8,
-    726.8,
-    711.0,
-    714.35,
-    728.65,
-    718.0,
-    725.0,
-    736.0,
-    731.3,
-    711.65,
-    715.65,
-    711.5,
-    724.15,
-    725.4,
-    741.45,
-    772.1,
-    760.0,
-    753.0,
-    782.3,
-    781.75,
-    795.5,
-    812.85,
-    805.2,
-    810.0,
-    811.65,
-    822.5,
-    836.05,
-    849.0,
-    875.0,
-    888.0,
-    891.65,
-    893.85
+    2008.0
    ]
   }
  ],
@@ -409,29 +407,29 @@
   "period_start": "2021-10-27",
   "period_end": "2026-10-27",
   "n_weeks": 248,
-  "avg_pick_return": 0.014255990688562908,
-  "avg_pick_excess": 0.01135474945502839,
-  "avg_universe_return": 0.008131381982074798,
-  "avg_benchmark_return": 0.0029012412335345157,
-  "pick_hit_rate": 0.5779569892473118,
-  "pick_beat_benchmark_rate": 0.5403225806451613,
+  "avg_pick_return": 0.016168376855211383,
+  "avg_pick_excess": 0.013264955727441062,
+  "avg_universe_return": 0.008132807110846196,
+  "avg_benchmark_return": 0.0029034211277703267,
+  "pick_hit_rate": 0.5981182795698924,
+  "pick_beat_benchmark_rate": 0.5631720430107527,
   "weeks_top5_beat_benchmark": 0.6048387096774194,
-  "mean_ic": 0.03137247949289435,
-  "ic_t_stat": 2.6081646623309678,
-  "q10_q90_coverage": 0.816871329418046,
-  "chained_cagr_picks": 0.3956552802407607,
+  "mean_ic": 0.033089252760314006,
+  "ic_t_stat": 2.79299730491062,
+  "q10_q90_coverage": 0.8200302544936822,
+  "chained_cagr_picks": 0.42875750398045676,
   "chained_cagr_benchmark": 0.056000398493105674,
   "decile_excess": {
-   "0": 0.003988003845818847,
-   "1": 0.004127280267058775,
-   "2": 0.0030733285641111594,
-   "3": 0.0034838983744106557,
-   "4": 0.004195338383568555,
-   "5": 0.00607312826713151,
-   "6": 0.005543105773454472,
-   "7": 0.007192996783058496,
-   "8": 0.006296715254002484,
-   "9": 0.007759940860252932
+   "0": 0.0037297982992176267,
+   "1": 0.0036607764318807435,
+   "2": 0.003845897997383874,
+   "3": 0.003453511317157059,
+   "4": 0.005341018075515317,
+   "5": 0.004173815824499656,
+   "6": 0.006638784003600217,
+   "7": 0.005654784329532503,
+   "8": 0.006785857353236992,
+   "9": 0.008430720991605313
   },
   "round_trip_cost": 0.004
  }
