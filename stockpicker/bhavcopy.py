@@ -51,7 +51,8 @@ def latest(exchange: str) -> tuple[dt.date | None, pd.DataFrame]:
             continue
         try:
             resp = requests.get(url.format(date=day), timeout=60, headers=headers)
-            if resp.status_code == 200 and len(resp.content) > 1000:
+            # Before a file is published BSE answers 200 with an HTML page, so check it is the data.
+            if resp.status_code == 200 and (resp.content[:2] == b"PK" or b"FinInstrmId" in resp.content[:2000]):
                 df = parse(resp.content)
                 log.info("%s bhavcopy for %s: %d stocks", exchange, day, len(df))
                 return day, df

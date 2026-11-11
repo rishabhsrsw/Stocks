@@ -333,9 +333,14 @@ def run_daily(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: 
     days = prices.close.index
     asof = days[-1]
     prev = out_dir / "daily.json"
-    if not force and prev.exists() and json.loads(prev.read_text()).get("as_of") == str(asof.date()):
-        log.info("No new trading day since %s: daily picks unchanged", asof.date())
-        return None
+    if not force and prev.exists():
+        last = json.loads(prev.read_text())
+        # A run during market hours (09:15-15:30 IST) saw intraday prices: redo it after the close.
+        after_close = pd.Timestamp(last.get("generated_at", "1970-01-01T00:00:00+00:00")) >= \
+            pd.Timestamp(f"{asof.date()}T10:00:00+00:00")
+        if last.get("as_of") == str(asof.date()) and after_close:
+            log.info("No new trading day since %s: daily picks unchanged", asof.date())
+            return None
 
     universe = universe[universe["symbol"].isin(prices.symbols)].reset_index(drop=True)
     coverage = universe if coverage is None else coverage[coverage["symbol"].isin(prices.symbols)]

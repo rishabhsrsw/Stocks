@@ -117,8 +117,15 @@ def test_daily_run(prices, tmp_path):
     saved = json.loads((tmp_path / "daily.json").read_text())
     assert saved["as_of"] == res["as_of"] and "2w" in saved["picks"][0]["forecast"]
     assert (tmp_path / "daily-history" / f"{res['as_of']}.json").exists()
-    # Same trading day again (weekend, holiday): nothing is rewritten.
+    # Same trading day again (weekend, holiday): nothing is rewritten...
+    asof = pd.Timestamp(res["as_of"])
+    saved["generated_at"] = f"{asof.date()}T12:00:00+00:00"
+    (tmp_path / "daily.json").write_text(json.dumps(saved))
     assert run_daily(prices, universe.iloc[:20], cfg, coverage=universe, with_news=False, out_dir=tmp_path) is None
+    # ...unless the earlier run was during market hours and saw intraday prices.
+    saved["generated_at"] = f"{asof.date()}T06:00:00+00:00"
+    (tmp_path / "daily.json").write_text(json.dumps(saved))
+    assert run_daily(prices, universe.iloc[:20], cfg, coverage=universe, with_news=False, out_dir=tmp_path) is not None
 
 
 def test_market_directory_parsing():
