@@ -269,9 +269,28 @@ def _fund_house(raw: str) -> str:
     return house.title() if 2 <= len(house) <= 12 else ""
 
 
-def fund_name(raw: str, asset: str, category: str, symbol: str) -> str:
+# Fund houses, found in NSE's fund name, security name or symbol when the name has no AMC code.
+KNOWN_HOUSES = [
+    (r"\bTATA|^TAT", "Tata"), (r"\bUTI|BETA$", "UTI"), (r"AXIS", "Axis"), (r"NIPPON|NIPIND|^NIP\b", "Nippon India"),
+    (r"ICICI", "ICICI Prudential"), (r"\bSBI", "SBI"), (r"HDFC", "HDFC"), (r"KOTAK", "Kotak"), (r"MIRAE", "Mirae Asset"),
+    (r"\bDSP", "DSP"), (r"ZERODHA", "Zerodha"), (r"GROWW", "Groww"), (r"MOTILAL|^MO[A-Z]", "Motilal Oswal"),
+    (r"EDEL", "Edelweiss"), (r"BANDHAN|IDFC", "Bandhan"), (r"INVESCO|^IVZ", "Invesco"), (r"QUANTUM|^QGOLD|^QNIFTY", "Quantum"), (r"\bQUANT\b|QUANT_", "Quant"),
+    (r"BIRLA|^BSL", "Aditya Birla SL"), (r"\bLIC", "LIC"), (r"UNION", "Union"), (r"360", "360 ONE"), (r"HSBC", "HSBC"),
+    (r"BARODA|BNP", "Baroda BNP Paribas"), (r"ANGEL", "Angel One"), (r"CHOICE", "Choice"),
+    (r"WHITEOAK|WOC", "WhiteOak"), (r"BAJAJ", "Bajaj Finserv"), (r"NAVI", "Navi"), (r"\bAONE|ALPHAONE", "AlphaOne"),
+]
+
+
+def known_house(*texts: str) -> str:
+    for pattern, house in KNOWN_HOUSES:
+        if any(re.search(pattern, (t or "").upper()) for t in texts):
+            return house
+    return ""
+
+
+def fund_name(raw: str, asset: str, category: str, symbol: str, security: str = "") -> str:
     """A readable ETF name from NSE's terse fields, e.g. 'Zerodha Silver ETF'."""
-    house = _fund_house(raw)
+    house = known_house(raw, security, symbol) or _fund_house(raw)
     what = f"{category} ETF" if category in ("Gold", "Silver") else f"{asset or symbol} ETF"
     if house:
         return f"{house} {what}"
@@ -325,7 +344,7 @@ def parse_nse_etf_csv(text: str, names: dict[str, str] | None = None) -> pd.Data
         if not sym:
             continue
         cat = etf_category(d.get("securityname", ""), under, asset)
-        name = fund_name((names or {}).get(isin, ""), asset, cat, sym)
+        name = fund_name((names or {}).get(isin, ""), asset, cat, sym, d.get("securityname", ""))
         rows.append({"symbol": sym, "name": name, "exchange": "NSE", "yahoo": f"{sym}.NS", "isin": isin,
                      "sector": f"ETF · {cat}", "kind": "etf"})
     return pd.DataFrame(rows, columns=DIRECTORY_COLUMNS)

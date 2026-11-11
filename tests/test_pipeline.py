@@ -284,7 +284,10 @@ def test_etfs_and_gold_bonds():
         "LIQUIDBEES,Government Securities,NIPINDETFLIQUIDBEES,16-Jul-03,1,INF732E01037,1000,DEBT,Overnight\n",
         {"INF204KB17I5": "NIP IND ETF GOLD BEES", "INF204KC1402": "NIPPONAMC - NETFSILVER"})
     assert etf["sector"].tolist() == ["ETF · Gold", "ETF · Silver", "ETF · Debt"]
-    assert etf["name"].tolist() == ["NIPPON INDIA ETF GOLD BEES", "Nippon Silver ETF", "Government Securities ETF"]
+    assert etf["name"].tolist() == ["Nippon India Gold ETF", "Nippon India Silver ETF", "Nippon India Government Securities ETF"]
+    from stockpicker.universe import fund_name
+    assert fund_name("TATA SILVER EXCHANGE TRADED FUND", "Silver", "Silver", "TATSILV") == "Tata Silver ETF"
+    assert fund_name("QUANT_ - SILVER", "Silver", "Silver", "SILVER001") == "Quant Silver ETF"
     assert set(etf["kind"]) == {"etf"}
     from stockpicker.universe import sgb_name
     assert sgb_name("2.5%GOLDBONDS2028SR-III") == "Sovereign Gold Bond 2028 Series III (2.5%)"
