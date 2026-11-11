@@ -478,7 +478,7 @@ function holdingCard(h, s, i) {
       <div>${badge(s.verdict)}</div>
     </div>
     <p style="margin:8px 0;font-size:14px">${VERDICT_TEXT[s.red_flag ? "exit_flag" : s.verdict]}</p>
-    ${s.tested === false ? '<p class="muted" style="margin:0 0 8px">Outside the Nifty 500: the model was built and tested on larger companies, so treat this verdict as a rough guide.</p>' : ""}
+    ${s.tested === false ? '<p class="muted" style="margin:0 0 8px">Outside the Nifty 500: the model was built and tested on larger companies, so treat this verdict as a rough guide. It is never rated above Hold.</p>' : ""}
     <div class="kv">
       <div>Price<b>${inr(s.price, 2)}</b></div>
       <div>Your avg<b>${inr(h.price, 2)}</b></div>

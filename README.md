@@ -53,7 +53,7 @@ stock does next. Picks still come from the Nifty 200, but the holdings review co
 * Nifty 500 stocks (`--coverage`) are scored with 12 years of history, as the model was trained and tested on.
 * Every other listed company (the full NSE list including SME, plus BSE-only companies, matched by ISIN) is scored each
   week from about 2 years of prices, measured against the Nifty 500. The app labels these as outside the tested range,
-  and flags thinly traded stocks.
+  caps their verdict at Hold (the backtest never covered stocks this small), and flags thinly traded stocks.
 * Companies with under a year of trading (recent IPOs), or that haven't traded for two weeks, get no verdict, but still
   show price and P&L from the daily closing prices.
 * The whole-market price history is kept in the GitHub Actions cache (`stockpicker/history.py`). Each daily run

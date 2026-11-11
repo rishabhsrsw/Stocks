@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import io
 import logging
+import time
 
 import pandas as pd
 import requests
@@ -177,19 +178,38 @@ def fallback_universe() -> pd.DataFrame:
 
 
 def load_universe(index: str = "nifty200") -> pd.DataFrame:
-    """Return DataFrame[symbol, name, sector] (NSE symbols without the .NS suffix)."""
+    """Return DataFrame[symbol, name, sector] (NSE symbols without the .NS suffix).
+
+    niftyindices.com sometimes answers with a broken page, so it is tried a few times, and the
+    last good list is kept (docs/data/universe/) for when the site is down."""
+    from .config import SITE_DATA_DIR
+    saved = SITE_DATA_DIR / "universe" / f"{index}.csv"
     url = INDEX_URLS.get(index)
     if url:
-        try:
-            resp = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
-            resp.raise_for_status()
-            df = pd.read_csv(io.StringIO(resp.text))
-            df = df.rename(columns={"Symbol": "symbol", "Company Name": "name", "Industry": "sector"})
-            df = df[["symbol", "name", "sector"]].dropna(subset=["symbol"])
-            log.info("Loaded %d constituents of %s", len(df), index)
-            return df.reset_index(drop=True)
-        except Exception as exc:  # network blocked, site changed, etc.
-            log.warning("Could not fetch %s constituents (%s); using built-in list", index, exc)
+        for attempt in range(3):
+            try:
+                resp = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
+                resp.raise_for_status()
+                df = pd.read_csv(io.StringIO(resp.text))
+                df = df.rename(columns={"Symbol": "symbol", "Company Name": "name", "Industry": "sector"})
+                df = df[["symbol", "name", "sector"]].dropna(subset=["symbol"]).reset_index(drop=True)
+                if len(df) < 40:
+                    raise ValueError(f"only {len(df)} rows")
+                log.info("Loaded %d constituents of %s", len(df), index)
+                try:
+                    saved.parent.mkdir(parents=True, exist_ok=True)
+                    df.to_csv(saved, index=False)
+                except OSError:
+                    pass
+                return df
+            except Exception as exc:  # network blocked, site changed, etc.
+                log.warning("Could not fetch %s constituents (%s), attempt %d/3", index, exc, attempt + 1)
+                time.sleep(5 * (attempt + 1))
+    if saved.exists():
+        df = pd.read_csv(saved)
+        log.info("Using the last saved list of %s (%d constituents)", index, len(df))
+        return df
+    log.warning("Using the built-in list for %s", index)
     return fallback_universe()
 
 

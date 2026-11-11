@@ -263,6 +263,8 @@ def stock_scores(prices: Prices, today: pd.DataFrame, preds: dict, meta: pd.Data
     frame = main.join(today[["dist_sma200", "sma200_slope"]])
     frame["red_flag"] = frame.index.isin(red)
     verdict = holdings.verdict_frame(frame)
+    if not tested:  # not backtested on stocks this small, so don't claim the strongest verdict
+        verdict = verdict.replace("strong_hold", "hold")
     out = []
     for s in main.index:
         if s not in meta.index or pd.isna(main.loc[s, "q50"]):
