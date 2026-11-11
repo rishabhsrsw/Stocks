@@ -49,6 +49,7 @@ class Config:
     extended_years: int = 2
     extended_min_rows: int = 252  # about a year of trading, needed for the chart features
     extended_yahoo_minutes: float = 40  # per run; stocks not fetched in time wait for the next run
+    daily_yahoo_minutes: float = 15  # the daily run also fills in missing stocks, a little at a time
     stale_days: int = 10  # skip stocks that haven't traded in this many sessions
 
     # Model / backtest

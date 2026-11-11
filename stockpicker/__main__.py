@@ -15,6 +15,16 @@ from .pipeline import run_daily, run_weekly
 from .universe import load_market_directory, load_universe
 
 
+def other_tickers(directory, symbols) -> dict[str, str]:
+    """Symbol -> Yahoo ticker for every listed company outside `symbols`, limited to stocks that traded
+    on the latest day when the exchange files are available (the others can't get a verdict anyway)."""
+    rest = directory[~directory["symbol"].isin(symbols)]
+    traded = set(bhavcopy.closes_by_isin())
+    if traded:
+        rest = rest[rest["isin"].isin(traded)]
+    return dict(zip(rest["symbol"], rest["yahoo"]))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(prog="stockpicker", description=__doc__)
     ap.add_argument("command", choices=["run", "daily", "backtest", "demo"])
@@ -60,9 +70,11 @@ def main() -> None:
         extra = bhavcopy.closing_prices(directory)  # official closing prices for every listed stock
         try:  # keep the stored whole-market history current, so the weekly run has little to fetch
             store = history.load()
-            if history.append_bhavcopies(store, directory):
-                history.trim(store, cfg.extended_years)
-                history.save(store)
+            history.append_bhavcopies(store, directory)
+            history.fill_from_yahoo(store, other_tickers(directory, symbols), cfg.extended_years,
+                                    cfg.daily_yahoo_minutes)
+            history.trim(store, cfg.extended_years)
+            history.save(store)
         except Exception as exc:
             logging.warning("Market history update failed: %s", exc)
         res = run_daily(prices, universe, cfg, coverage=coverage, extra_prices=extra, with_news=not args.no_news,
@@ -77,13 +89,7 @@ def main() -> None:
                   f"range {f['q10']:+.0%}..{f['q90']:+.0%}  P(beat Nifty) {f['p_beat_nifty']:.0%}")
         return
 
-    # Price history for the rest, limited to stocks that traded on the latest day when the exchange
-    # files are available (the others can't get a verdict anyway, and Yahoo rate-limits big downloads).
-    rest = directory[~directory["symbol"].isin(symbols)]
-    traded = set(bhavcopy.closes_by_isin())
-    if traded:
-        rest = rest[rest["isin"].isin(traded)]
-    other = dict(zip(rest["symbol"], rest["yahoo"]))
+    other = other_tickers(directory, symbols)
     store = history.load()
     try:
         history.append_bhavcopies(store, directory)

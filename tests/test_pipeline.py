@@ -249,3 +249,16 @@ def test_market_history_store(tmp_path, monkeypatch):
     bench = pd.Series(1.0, index=yahoo_days)
     p = history.to_prices(again, ["AAA", "BBB", "CCC"], bench, min_rows=100)
     assert list(p.close.columns) == ["BBB"] and p.benchmark.notna().all()  # AAA has only ~30 days
+
+    # A small stock with no trades on some days: carried over on the market calendar, volume 0.
+    gappy = history.Store()
+    cal = pd.bdate_range("2024-01-01", "2026-11-06")
+    traded = cal.delete([100, 101, 300])
+    for f in history.FIELDS:
+        gappy.frames[f] = pd.DataFrame({"SMALL": np.linspace(10, 20, len(traded))}, index=traded)
+    p = history.to_prices(gappy, ["SMALL"], pd.Series(1.0, index=cal), min_rows=252)
+    assert p.close.index.equals(cal) and p.close["SMALL"].notna().all()
+    assert p.volume["SMALL"].iloc[100] == 0 and p.close["SMALL"].iloc[100] == p.close["SMALL"].iloc[99]
+    feats = stock_features(p)
+    assert feats["dist_sma200"]["SMALL"].iloc[-1] == feats["dist_sma200"]["SMALL"].iloc[-1]  # not NaN
+    assert np.isfinite(feats["log_traded_value"]["SMALL"].iloc[-1])

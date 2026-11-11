@@ -139,17 +139,26 @@ def trim(store: Store, years: int, today: dt.date | None = None) -> None:
         store.frames[f] = store.frames[f][store.frames[f].index >= start]
 
 
-def to_prices(store: Store, symbols, benchmark: pd.Series, min_rows: int) -> Prices | None:
+def to_prices(store: Store, symbols, benchmark: pd.Series, min_rows: int, max_gap: int = 10) -> Prices | None:
+    """Prices on the market's trading calendar. Small stocks skip days with no trades, and a gap
+    anywhere in a 200-day window would blank out the moving averages, liquidity and volatility
+    features, so the last close is carried over no-trade days (up to `max_gap` sessions, so a stock
+    that stopped trading still drops out) with zero volume."""
     cols = [s for s in symbols if s in store.close.columns]
-    close = store.close[cols]
-    close = close.loc[:, close.notna().sum() >= min_rows]
-    if close.empty:
+    raw = store.close[cols]
+    raw = raw.loc[:, raw.notna().sum() >= min_rows]
+    if raw.empty:
         return None
-    idx = close.index
+    lo, hi = raw.index.min(), raw.index.max()
+    bench_days = benchmark.dropna().index
+    idx = bench_days[(bench_days >= lo) & (bench_days <= hi)].union(raw.index[raw.index > bench_days.max()])
+    observed = raw.reindex(idx).notna()
+    close = raw.reindex(idx).ffill(limit=max_gap)
+    filled = close.notna() & ~observed
+    high = store.frames["high"][close.columns].reindex(idx).where(observed).fillna(close)
+    low = store.frames["low"][close.columns].reindex(idx).where(observed).fillna(close)
+    volume = store.frames["volume"][close.columns].reindex(idx).where(~filled, 0.0)
     return Prices(
-        close=close,
-        high=store.frames["high"][close.columns].reindex(idx),
-        low=store.frames["low"][close.columns].reindex(idx),
-        volume=store.frames["volume"][close.columns].reindex(idx),
+        close=close, high=high, low=low, volume=volume,
         benchmark=benchmark.reindex(benchmark.index.union(idx)).ffill().reindex(idx),
     )
