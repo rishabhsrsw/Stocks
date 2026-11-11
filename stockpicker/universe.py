@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import io
 import logging
+import re
 import time
 
 import pandas as pd
@@ -260,6 +261,31 @@ def etf_category(name: str, underlying: str = "", asset: str = "") -> str:
     return "Fund"
 
 
+def _fund_house(raw: str) -> str:
+    """'NIPPONAMC - NETFSILVER' -> 'Nippon', 'TATAAML - TATSILV' -> 'Tata' (the AMC code in NSE's file)."""
+    if " - " not in raw:
+        return ""
+    house = re.sub(r"(AMC|AML|MF|MUTUALFUND|ASSET)$", "", raw.split(" - ")[0].strip().upper().replace(" ", ""))
+    return house.title() if 2 <= len(house) <= 12 else ""
+
+
+def fund_name(raw: str, asset: str, category: str, symbol: str) -> str:
+    """A readable ETF name from NSE's terse fields, e.g. 'Zerodha Silver ETF'."""
+    house = _fund_house(raw)
+    what = f"{category} ETF" if category in ("Gold", "Silver") else f"{asset or symbol} ETF"
+    if house:
+        return f"{house} {what}"
+    if raw and "ETF" in raw.upper():
+        return re.sub(r"^NIP IND\b", "NIPPON INDIA", raw.strip().upper())
+    return what
+
+
+def sgb_name(raw: str) -> str:
+    """'2.5%GOLDBONDS2028SR-III' -> 'Sovereign Gold Bond 2028 Series III (2.5%)'."""
+    m = re.search(r"([\d.]+)%\s*GOLDBONDS?\s*(\d{4})\s*SR-?([IVXL]+)", raw.upper())
+    return f"Sovereign Gold Bond {m[2]} Series {m[3]} ({m[1]}%)" if m else f"Sovereign Gold Bond {raw.strip()}"
+
+
 def instrument_kind(isin: str, name: str = "") -> str | None:
     """'stock', 'etf', 'sgb', or None for instruments the app doesn't list (government bonds, T-bills)."""
     isin = (isin or "").upper()
@@ -299,8 +325,7 @@ def parse_nse_etf_csv(text: str, names: dict[str, str] | None = None) -> pd.Data
         if not sym:
             continue
         cat = etf_category(d.get("securityname", ""), under, asset)
-        fund = (names or {}).get(isin, "").strip()
-        name = f"{fund} ({asset})" if fund else f"{asset or sym} ETF"
+        name = fund_name((names or {}).get(isin, ""), asset, cat, sym)
         rows.append({"symbol": sym, "name": name, "exchange": "NSE", "yahoo": f"{sym}.NS", "isin": isin,
                      "sector": f"ETF · {cat}", "kind": "etf"})
     return pd.DataFrame(rows, columns=DIRECTORY_COLUMNS)
@@ -312,7 +337,7 @@ def nse_sgb_rows(df: pd.DataFrame) -> pd.DataFrame:
         return pd.DataFrame(columns=DIRECTORY_COLUMNS)
     g = df[df["SctySrs"].astype(str).str.strip() == "GB"]
     return pd.DataFrame({
-        "symbol": g["TckrSymb"].str.strip(), "name": "Sovereign Gold Bond " + g["FinInstrmNm"].str.strip(),
+        "symbol": g["TckrSymb"].str.strip(), "name": g["FinInstrmNm"].map(sgb_name),
         "exchange": "NSE", "yahoo": g["TckrSymb"].str.strip() + ".NS", "isin": g["ISIN"].str.strip(),
         "sector": "Sovereign Gold Bond", "kind": "sgb",
     }, columns=DIRECTORY_COLUMNS)

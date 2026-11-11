@@ -57,7 +57,8 @@ def load(path: Path = STORE_FILE) -> Store:
         try:
             with open(path, "rb") as fh:
                 store = pickle.load(fh)
-            if not isinstance(store, Store) or getattr(store, "version", 1) != STORE_VERSION:
+            # Read the version from the pickled data itself: a missing field would fall back to the class default.
+            if not isinstance(store, Store) or store.__dict__.get("version", 1) != STORE_VERSION:
                 raise ValueError("older format")
             log.info("Market history: %d instruments, %d days read (%s to %s)", store.close.shape[1], len(store.done),
                      min(store.done, default="-"), max(store.done, default="-"))

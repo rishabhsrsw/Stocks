@@ -238,6 +238,11 @@ def test_market_history_store(tmp_path):
 
     history.save(store, tmp_path / "h.pkl")
     again = history.load(tmp_path / "h.pkl")
+    assert again.close.shape == store.close.shape
+    old = history.Store()  # a store saved before the ISIN format must be rebuilt, not reused
+    del old.__dict__["version"]
+    history.save(old, tmp_path / "old.pkl")
+    assert history.load(tmp_path / "old.pkl").close.empty and history.load(tmp_path / "old.pkl").done == set()
     bench = pd.Series(1.0, index=pd.bdate_range("2024-01-01", "2026-11-11"))
     p = history.to_prices(again, {"AAA": "IN1", "BSEONLY": "IN2", "GONE": "IN9"}, bench, min_rows=252)
     assert list(p.close.columns) == ["AAA", "BSEONLY"] and p.benchmark.notna().all()
@@ -277,9 +282,12 @@ def test_etfs_and_gold_bonds():
         "GOLDBEES,Gold,NIPINDETFGOLDBEES,19-Mar-07,1,INF204KB17I5,1,COMMODITY,GOL\n"
         "SILVERBEES,Silver,NIPINDETFSILVERBEES,01-Feb-22,1,INF204KC1402,1,COMMODITY,SIL\n"
         "LIQUIDBEES,Government Securities,NIPINDETFLIQUIDBEES,16-Jul-03,1,INF732E01037,1000,DEBT,Overnight\n",
-        {"INF204KB17I5": "Nippon India ETF Gold BeES"})
+        {"INF204KB17I5": "NIP IND ETF GOLD BEES", "INF204KC1402": "NIPPONAMC - NETFSILVER"})
     assert etf["sector"].tolist() == ["ETF · Gold", "ETF · Silver", "ETF · Debt"]
-    assert etf["name"][0] == "Nippon India ETF Gold BeES (Gold)" and set(etf["kind"]) == {"etf"}
+    assert etf["name"].tolist() == ["NIPPON INDIA ETF GOLD BEES", "Nippon Silver ETF", "Government Securities ETF"]
+    assert set(etf["kind"]) == {"etf"}
+    from stockpicker.universe import sgb_name
+    assert sgb_name("2.5%GOLDBONDS2028SR-III") == "Sovereign Gold Bond 2028 Series III (2.5%)"
     # BSE rows are classified by ISIN: fund units are ETFs, not stocks; government bonds other than SGBs are left out.
     rows = [{"scrip_cd": "1", "scrip_name": "Kotak Nifty 50 ETF", "isin_number": "INF174K01Z71", "scrip_id": "NIFTY1"},
             {"scrip_cd": "2", "scrip_name": "2.50%GOLDBONDS2028SR-I", "isin_number": "IN0020200062", "scrip_id": "SGBAPR28I"},
