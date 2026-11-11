@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T04:54:54+00:00",
+ "generated_at": "2026-11-11T06:04:48+00:00",
  "as_of": "2026-11-11",
  "horizon_days": 10,
  "eligible_size": 191,
@@ -8,16 +8,16 @@
    "symbol": "KEI",
    "name": "KEI Industries Ltd.",
    "sector": "Capital Goods",
-   "price": 4049.4,
-   "final_score": 0.898,
-   "model_score": 0.9846,
-   "news_score": 0.1032,
+   "price": 4046.8,
+   "final_score": 0.8968,
+   "model_score": 0.9832,
+   "news_score": 0.1031,
    "forecast": {
     "2w": {
-     "q10": -0.0813,
-     "q50": 0.0081,
-     "q90": 0.1129,
-     "p_beat_nifty": 0.5765
+     "q10": -0.0825,
+     "q50": 0.0103,
+     "q90": 0.1167,
+     "p_beat_nifty": 0.5489
     }
    },
    "reasons": [
@@ -27,7 +27,7 @@
     "Volume 1.3x its 6-month average (accumulation)"
    ],
    "risk": {
-    "volatility_63d": 0.4094,
+    "volatility_63d": 0.4093,
     "atr_pct": 0.039
    },
    "news": {
@@ -134,167 +134,167 @@
     4061.1,
     3988.0,
     4002.7,
-    4049.4
+    4046.8
    ]
   },
   {
-   "symbol": "PIIND",
-   "name": "PI Industries Ltd.",
-   "sector": "Chemicals",
-   "price": 1746.2,
-   "final_score": 0.8764,
-   "model_score": 0.9747,
-   "news_score": -0.0339,
+   "symbol": "LUPIN",
+   "name": "Lupin Ltd.",
+   "sector": "Healthcare",
+   "price": 2009.6,
+   "final_score": 0.8656,
+   "model_score": 0.9474,
+   "news_score": 0.0769,
    "forecast": {
     "2w": {
-     "q10": -0.1265,
-     "q50": 0.0084,
-     "q90": 0.1633,
-     "p_beat_nifty": 0.5828
+     "q10": -0.0487,
+     "q50": 0.0076,
+     "q90": 0.0616,
+     "p_beat_nifty": 0.5413
     }
    },
    "reasons": [
-    "Volume 2.3x its 6-month average",
-    "RSI 28: oversold, bounce candidate",
-    "Volume 2.3x its 6-month average (accumulation)"
+    "MACD positive: short-term momentum turning up",
+    "RSI 51: momentum without being overbought",
+    "Lower volatility than most peers"
    ],
    "risk": {
-    "volatility_63d": 0.5044,
-    "atr_pct": 0.0499
+    "volatility_63d": 0.1777,
+    "atr_pct": 0.0213
    },
    "news": {
-    "n_articles": 29,
+    "n_articles": 30,
     "headlines": [
      {
-      "title": "Cyprus leaders agree to open two crossings, with UN talks to follow",
-      "source": "Parikiaki",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNc3R0WmRUZVNLdTVaU0xPNjBUM1dVb1VvZWN2Wkk4RkdZaUNBZjMtd1l1NmlnTEttbnpqQjFUd05nTWtrV25DV19UWkNVRjg2QVJjUnU1YVhHY0M1dF9LNnIwbnNkV0hEUWRDU0NBRHdjblFMbkpjT1RfLWt5aTZnRDUtT0xCdFQ4VTVtVXdDZm1mNmY0OUgw?oc=5",
-      "published": "2026-11-10T18:46:59+00:00",
+      "title": "Lupin Share Price: 18.9% CAGR vs Zydus, Sun Pharma",
+      "source": "Univest",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNZTFqLVNrLXJFQVhubWJqUGVvU3ZIX2V6aUtWNVRkQjhoNUxtdl9FUkdkNEFJTzk1aFVHQUVUc1VqZWFqbXY3WFQwd1ZrSGFzWExOMVdUeUNjZGRqMkVSUGVhakNUUmRvSDdlNUxHUWRUR19YbHJOSXRXR1p6NWFOcXNweUhVTEpZLXJzQkhyaHlZbjZ2a0NMUWp6aVZaNTRWYmc?oc=5",
+      "published": "2026-11-11T05:23:00+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "Pharma sector stocks today, November 11: Alembic Pharma gains 2.82%; Divi's Laboratories falls 2.08%, Lupin down 1.25%",
+      "source": "Business Upturn",
+      "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQSXY4OEZqZ19RWkRncEFoX3pNbHl0ZWxfVkxUcHlfOURSREpKdDJ0SWIwY21MRnJWZHpJcl94YVhxQVFIYkVCcWxQT2JIUW1NQ3pPRzNCZU5Kb1ZOWVhJN0Rnb1htYldQSzlrajZQZG1GWDBGS1hEUUp1X3JIQml2bS1GcmY3cU5GMEtmaFlRSldFeGI5YklzYnhqbFNxcjlGaGNLVGRWLUJjZnRDTUctWWlmbll3SzQxckZxNXpaSW5raF9LaFFPUnl1enltOWE4NzRLTnVQLTRTcmN3c3EyZnBwOTRZeHBqM0oyOFo2a0w?oc=5",
+      "published": "2026-11-11T04:22:34+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Lupin season 5 is more likely than ever after latest Netflix ratings update",
+      "source": "Netflix Life",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOQjZDeDZGa3pFSFh0TmZmRGVqaTBYdmxGWmxFd3RHOHFhNnRUNUlpNjk1YzFlTlVWaFZKZGUxMG5MMXlDZ2VLOGlQNzRzQ2Q4bFV4djc3eVhTc2JBSnZyV1hjbzBRZmRHclRyTEtBQkxqTXdRUFY0THQ0NzhlcWZTVHQ4UE90TkpRajFKeFd3Tjd0bkJDSURIMzdEeG0?oc=5",
+      "published": "2026-11-08T14:00:04+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Lupin releases Q1FY27 earnings call transcript after record results",
+      "source": "scanx.trade",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNaUU1Tk13S2JKWDBpNWxwWUVtQUVKNndRRnJ1NW5FWDFwSWJSTGlfaDRDamVTNWZSdHVGQXBzV3BUSXljNVFsa2o5V0ZCR3kwZ2VoN2Q3LVJCTVpfcWpYN3o5VW5uUGUyNnRPQnY1NG1pQlh1Y3RFZGJ1TTR4YklxT3M3TDlhalR3NkN6Sld1Sk1YdmtMOFBPNE9zNWtzRkhjRWdRLWVadExSS0I0Qm9N?oc=5",
+      "published": "2026-11-08T05:11:34+00:00",
       "sentiment": 0.361
      },
      {
-      "title": "FG commissions three gas facilities in Kano as Pi-CNG seeks more refuelling stations",
-      "source": "Business News Nigeria",
-      "link": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1BM3N6dnBhTzAzTVd5Y0UzVFZxYV8xSTVZaThTcVVTdkZsVDRBSExnNzJNZUtqR2tXQnZNUmw5ZjFpWXJhOEcxQw?oc=5",
-      "published": "2026-11-10T18:17:19+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "Michael Diliberti will write and direct the film, which is expected to begin production in Miami in March 2027.",
-      "source": "Enstarz",
-      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPWVJqRkMtc0FWQlNFX0hXT3ZDZWNkVGRFWHRnU2ZzZ3RqZVBlWDZNb2pkTHBhVHVDVXBEQk9CQW1JS1hkYmtoYjZJZWluMlhxUExBTUc2TndZd1M1Wm1XWkxWVjA2b2IwZTVySkZXWnFDanhYc3hMa0lRdE4zVllKdVdVTEZJQnJWZDgzSWVjcHc?oc=5",
-      "published": "2026-11-10T14:30:32+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "IIM Udaipur RTI Data 2026 Out: Check Category-Wise Shortlist and Total Admission Offers",
-      "source": "Jagran Josh",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOZGd4eTNoN0xWQWhpNy03cG5KY0xkQUQzaXdGQ2JTdkdRZUdiVmh4a1RZeG5RQ0IwbU1nR1lDY0t5Vm5GNFpmT2NkXzR5LTktZlFCYW1LMDBuZ1pFZ0J2eU0wbE1PMWlxT3RVcG1HM1Jva2JHNEhXVTV4YXphZEs2N01oakZGTjh3S3YyVXNGejYzZ09zM1dPcFM1ZFhaNVo2aHdCenNXT1VsTENvVjZweVpwU3BGdnExWGhIeE5VQnBORFFMbmRZQUJSc0pTNmfSAdYBQVVfeXFMTWU1U3RTanJTZVFaeFc5bUdBaU9NZFdBYXAxYXhUdlc3M0dQc25MZWgyTmd6c3RIS1FLMlVxQ3lEM2J4bkR0SkFkbHc1U1Ria05GcWFvYnJYQm9iMTVmMGlzdFZicFJCdWdISm00UmFkX3kyYk5IN2k2aFdmN3Z4ZzA1ZzFFNFdxVy1Za0ZNYlI4UG1Wc1pfQVFXcXcyZU9RM3kzSDJWYWxBUXI2d1U4T3Yyc0U0Y1NlX1ZBYTNBRF9OcnVWTl9RVDZBMjRrR1B1MHVzbnBCUQ?oc=5",
-      "published": "2026-11-10T12:03:41+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "Impinj (PI) Shares Just Moved, So What Is Behind The Attention?",
+      "title": "Analysts Are Updating Their Lupin Limited (NSE:LUPIN) Estimates After Its Second-Quarter Results",
       "source": "Simply Wall St",
-      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQdnRGS1d0T0RZYlgwdWlid0JVZUU5bVdaNDI3R1FrcmQ2YzlDdElyeG15bjFPOEdpd3JjSEdBT3RLTnFmVHItQ0F2TE0wUUV6OFNoNHZURlFXRlBwUGl0R1luSkItaENUc2dubDVoUUo5NlhPLXBQbWRHd1BlYW55dHRoZnFWN0swLUJzZ1YwaW4yUk1TZEd4WVlIeENRZHpOdFJqQnMzVVc3NG1ER2w3MlFSN1EyOUp5QWx4RlVyNnU1TTk2UjBz0gHMAUFVX3lxTE51VjhoOTVFbWdJRExBT1VfbWhkZGdiWVRqQUlaV2N2VTFRYkY2aXpHcE1OaGlnc1VkR2F5TDhVUE41VDllV2tEYktKUld3VUp2WVdwVnJPNkRBNHBHR2ZyVmVpN3U3akU4UHJmbDRlSGNRbGl3VlhJbER5dms4ZEQtUHRHeXJPdE5iYVZSU1ZOTjdoc2V4OUhWczROWnlxNFRlczBWNmZzWUQzbzZCZ29VTVJadDZCOHNfaTVqUkFlSjVlb0ZpemthQzFYQw?oc=5",
-      "published": "2026-11-10T10:20:06+00:00",
-      "sentiment": 0.296
+      "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQaGtKeTI1Z0RDQUNyUUc3T1lmb3luWC1hYnRCU1JFT3g0ZTRjLVAyczFKVjhtWFVaOVlkdXNIX3BMTDAzZDFiRV9kNm5EdlpWS0tGSlFJMkFoOTQ3anVTZW0xb2d5NVhzTUluTDk3N1FxLTNEdS03VFNyclNuQTJWa045VVJaY3R0bWRjWFQzVlE2blpJT3RrM29DTEZCandubGEzajBLRU1WcF9lQXI3YWlnaERkMUtRZXhsenVRRy12SmtwQWxMaWl5NXMwN2xuaFRfLVJxYkpnMVVkRWtr0gHkAUFVX3lxTE9vR1ZuVnhnNVU5MDMwc0dqcDFCb05mLWV4MFdhVnFuc2NfRXN5amJONm9qUEVtYXM0UXNkTUlwNnYzcEVLSFdIbDQ4LTVnbU9vQnlxeG9lR0Q0VDVWVFZKNXQ0MzdfVUN0dFZ5NmMyNHRSUzZqRTN0WUh5VmQ5U0ZXRk9UYmpycVJLeFY5akpHWjdIUG5sdTJTUTloTEdKZ1p3Q00tVlZiSk1HcmxDNk1NcU9RaFZrazVtdzlGM3AxTnlHRFByMGFNendWS000YVB4V3BKUGQxX1g1VElCMi1wZ0RwLQ?oc=5",
+      "published": "2026-11-06T00:46:53+00:00",
+      "sentiment": -0.226
      }
     ],
     "llm": null
    },
    "chart": [
-    2730.0,
-    2483.0,
-    2494.3,
-    2490.1,
-    2472.0,
-    2515.0,
-    2505.0,
-    2482.5,
-    2496.8,
-    2475.0,
-    2508.0,
-    2508.3,
-    2467.0,
-    2420.1,
-    2370.0,
-    2397.1,
-    2393.0,
-    2419.9,
-    2465.0,
-    2430.0,
-    2395.0,
-    2394.0,
-    2365.0,
+    2278.9,
+    2281.0,
+    2250.3,
+    2235.0,
     2259.0,
-    2255.0,
-    2256.0,
-    2307.0,
-    2366.8,
-    2321.8,
-    2410.0,
-    2386.0,
-    2393.5,
-    2400.0,
-    2349.0,
-    2288.8,
-    2310.0,
-    2236.0,
-    2220.0,
-    2250.0,
-    2210.0,
-    2100.0,
-    2118.2,
-    2131.5,
-    2130.0,
-    2218.8,
-    2203.8,
-    2190.0,
-    2163.5,
-    2103.0,
-    2074.9,
-    2051.0,
-    2020.0,
-    2086.1,
-    2055.0,
-    2110.0,
-    2100.0,
-    2166.2,
+    2232.0,
+    2225.0,
+    2201.5,
+    2201.8,
+    2188.0,
+    2175.5,
     2185.0,
-    2187.0,
-    1770.0,
-    1735.0,
-    1712.9,
-    1746.2
+    2158.1,
+    2171.5,
+    2188.4,
+    2153.0,
+    2155.2,
+    2132.0,
+    2110.0,
+    2105.0,
+    2104.7,
+    2100.0,
+    2077.8,
+    2095.0,
+    2063.2,
+    2045.0,
+    2098.1,
+    2083.0,
+    2124.5,
+    2135.0,
+    2102.8,
+    2100.7,
+    2092.0,
+    2062.0,
+    2052.1,
+    2030.2,
+    2031.2,
+    2011.0,
+    2029.3,
+    2012.9,
+    1936.9,
+    1956.5,
+    1935.0,
+    1953.6,
+    1953.2,
+    1980.9,
+    1961.6,
+    1939.2,
+    1964.0,
+    1922.0,
+    1928.9,
+    1959.9,
+    1952.0,
+    1972.7,
+    1989.9,
+    2011.0,
+    1996.5,
+    2015.9,
+    2008.6,
+    1988.0,
+    1988.1,
+    2025.0,
+    2009.6
    ]
   },
   {
    "symbol": "INDHOTEL",
    "name": "Indian Hotels Co. Ltd.",
    "sector": "Consumer Services",
-   "price": 895.45,
-   "final_score": 0.855,
-   "model_score": 0.927,
-   "news_score": 0.134,
+   "price": 893.85,
+   "final_score": 0.8572,
+   "model_score": 0.9298,
+   "news_score": 0.1336,
    "forecast": {
     "2w": {
-     "q10": -0.0593,
-     "q50": 0.006,
-     "q90": 0.0801,
-     "p_beat_nifty": 0.5289
+     "q10": -0.0562,
+     "q50": 0.0067,
+     "q90": 0.078,
+     "p_beat_nifty": 0.5321
     }
    },
    "reasons": [
-    "Up +7.1% over the last week",
+    "Up +6.9% over the last week",
     "MACD positive: short-term momentum turning up",
-    "Volume 2.0x its 6-month average",
+    "Volume 2.1x its 6-month average",
     "Caution: RSI 83 is overbought",
     "Strong 6-month momentum (+36%, top 7% of universe)"
    ],
    "risk": {
     "volatility_63d": 0.2416,
-    "atr_pct": 0.0252
+    "atr_pct": 0.0253
    },
    "news": {
     "n_articles": 9,
@@ -400,7 +400,7 @@
     875.0,
     888.0,
     891.65,
-    895.45
+    893.85
    ]
   }
  ],
@@ -409,29 +409,29 @@
   "period_start": "2021-10-27",
   "period_end": "2026-10-27",
   "n_weeks": 248,
-  "avg_pick_return": 0.015391193641171157,
-  "avg_pick_excess": 0.01249389608798194,
-  "avg_universe_return": 0.008123317773208483,
-  "avg_benchmark_return": 0.002897297553189216,
-  "pick_hit_rate": 0.5793010752688171,
-  "pick_beat_benchmark_rate": 0.5577956989247311,
-  "weeks_top5_beat_benchmark": 0.6209677419354839,
-  "mean_ic": 0.03302129557078828,
-  "ic_t_stat": 2.7429603012435644,
-  "q10_q90_coverage": 0.8175164620039153,
-  "chained_cagr_picks": 0.36637198735894816,
+  "avg_pick_return": 0.014255990688562908,
+  "avg_pick_excess": 0.01135474945502839,
+  "avg_universe_return": 0.008131381982074798,
+  "avg_benchmark_return": 0.0029012412335345157,
+  "pick_hit_rate": 0.5779569892473118,
+  "pick_beat_benchmark_rate": 0.5403225806451613,
+  "weeks_top5_beat_benchmark": 0.6048387096774194,
+  "mean_ic": 0.03137247949289435,
+  "ic_t_stat": 2.6081646623309678,
+  "q10_q90_coverage": 0.816871329418046,
+  "chained_cagr_picks": 0.3956552802407607,
   "chained_cagr_benchmark": 0.056000398493105674,
   "decile_excess": {
-   "0": 0.003975747941182432,
-   "1": 0.003988209437120278,
-   "2": 0.0026548119720859005,
-   "3": 0.004713899866147426,
-   "4": 0.003179655411806377,
-   "5": 0.0049718841151768795,
-   "6": 0.00708205176993218,
-   "7": 0.006302381708606153,
-   "8": 0.005400255503878291,
-   "9": 0.009390638400582374
+   "0": 0.003988003845818847,
+   "1": 0.004127280267058775,
+   "2": 0.0030733285641111594,
+   "3": 0.0034838983744106557,
+   "4": 0.004195338383568555,
+   "5": 0.00607312826713151,
+   "6": 0.005543105773454472,
+   "7": 0.007192996783058496,
+   "8": 0.006296715254002484,
+   "9": 0.007759940860252932
   },
   "round_trip_cost": 0.004
  }
