@@ -1,0 +1,31 @@
+name: diag
+on: push
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install pandas requests
+      - run: |
+          python - <<'PY'
+          import datetime as dt, io, pandas as pd, requests
+          from stockpicker import bhavcopy as b
+          import zipfile
+          for ex in ("NSE","BSE"):
+              url=(b.NSE_URL if ex=="NSE" else b.BSE_URL).format(date=dt.date(2026,11,11))
+              r=requests.get(url,headers=b.HEADERS|{"Referer":"https://www.nseindia.com/" if ex=="NSE" else "https://www.bseindia.com/"},timeout=60)
+              c=r.content
+              if c[:2]==b"PK":
+                  c=zipfile.ZipFile(io.BytesIO(c)).read(zipfile.ZipFile(io.BytesIO(c)).namelist()[0])
+              df=pd.read_csv(io.BytesIO(c),dtype=str)
+              print(ex, list(df.columns))
+              print(df["FinInstrmTp"].value_counts())
+              print(df.groupby(["FinInstrmTp","SctySrs"]).size().to_string())
+              m=df[df["FinInstrmNm"].str.contains("GOLD|SILVER",case=False,na=False)|df["TckrSymb"].str.contains("GOLD|SILVER|BEES",case=False,na=False)]
+              print(m[["FinInstrmTp","SctySrs","TckrSymb","ISIN","FinInstrmNm","ClsPric"]].head(40).to_string())
+          for u in ["https://nsearchives.nseindia.com/content/equities/eq_etfseclist.csv","https://archives.nseindia.com/content/equities/eq_etfseclist.csv"]:
+              r=requests.get(u,headers=b.HEADERS|{"Referer":"https://www.nseindia.com/"},timeout=60)
+              print(u, r.status_code, r.text[:600])
+          PY
