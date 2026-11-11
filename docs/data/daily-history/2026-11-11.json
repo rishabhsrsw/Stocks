@@ -1,0 +1,438 @@
+{
+ "generated_at": "2026-11-11T04:54:54+00:00",
+ "as_of": "2026-11-11",
+ "horizon_days": 10,
+ "eligible_size": 191,
+ "picks": [
+  {
+   "symbol": "KEI",
+   "name": "KEI Industries Ltd.",
+   "sector": "Capital Goods",
+   "price": 4049.4,
+   "final_score": 0.898,
+   "model_score": 0.9846,
+   "news_score": 0.1032,
+   "forecast": {
+    "2w": {
+     "q10": -0.0813,
+     "q50": 0.0081,
+     "q90": 0.1129,
+     "p_beat_nifty": 0.5765
+    }
+   },
+   "reasons": [
+    "Up +4.3% over the last week",
+    "MACD positive: short-term momentum turning up",
+    "Volume 1.3x its 6-month average",
+    "Volume 1.3x its 6-month average (accumulation)"
+   ],
+   "risk": {
+    "volatility_63d": 0.4094,
+    "atr_pct": 0.039
+   },
+   "news": {
+    "n_articles": 29,
+    "headlines": [
+     {
+      "title": "Kei Industries to host analyst meets in Mumbai on Nov 16 and 17",
+      "source": "scanx.trade",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPT3RtYXV4cnZscndSbzlDcVlvUDRzQmFSZFNVV0lnbDRuZWZjckFKQ0NYYm1ETEJDaE5VLWpTUzUwUWd6c0hLWjFNZ3o3STB5aThfOFBKX0ZRSHNMT1JnTGF5MFFISE1RU3VsdjVnUnRXT3RGSnZhRDQ3WnhlTk80ek1zMVF4ZlpZTnQ3YUJlamJqY0dJY2xoOGpTNHdJeWxCRi1LM2MyNTRtSGc?oc=5",
+      "published": "2026-11-08T05:29:50+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Kolibri Global Energy Inc. (KEI.TO) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5icGoxWi15c0R4aTEwUVFZbmFQSXQ5bEl1VEhKVWRjR3QyY1dkdTRZZUJ3VGlKSFQ3cGl1dG9QSDVRZklYUDRmeWN3elpsRkM4SUd3RA?oc=5",
+      "published": "2026-11-07T18:24:23+00:00",
+      "sentiment": 0.273
+     },
+     {
+      "title": "KEI Industries Consolidated September 2026 Net Sales at Rs 3,776.42 crore, up 38.52% Y-o-Y",
+      "source": "Moneycontrol.com",
+      "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNNXlaNGp0QjdRNEpXN1BCX09uX2s2TWVKQVh3WjFXaDlNY05ndDl3MUhGS3liekU4YVNJMndkbFNfVlY0X1dySktyUlNfdE5FVkVBdTFkZGpUS1JXZmpOT2RtaF9aRV85am1HZ2lSbTUzMUJaMkkwamxsUktFQ2ZkUkF4Tk96bWdLMXVGOEZ5eU5VaFJpbUMxVnFEX1d2UEVpdEF6a054c3ppT2t5YVczY0YxWVljQ0VZOTYybnJGZnRfOUUxSHJGUW00NVIyYnQzVmJoQ2xMdGdxSVBwNHoza01zRmRXUThZ0gHuAUFVX3lxTFBqX19QZjBKSlNrS291bkxWWEkzZE12R2kyQU1neDU4N1B6UHVUQ0JQMWJyR0g1a3RqeVc2c1duLXIycGJDMGU3NU51RWtDMmJzZnpFU0VzcEl5bkplaU5GWFhwWHN0RWg4TXJ0TWNDUTFjQzJ6cGxEMEI2a0lPNzVYQVlJa2hOUXFKRXo4T3c2ZXFMVlVrSGttb1BrQ0dtQkJ5Wk5qa1Y2XzN4RXdYVDd5QkljUk4tQ1lobF9UeV9qaDJ6TS1lMzdZdnBwcmExaTB2Wm1uNHlzd1VEQVhITkMwV0hCVXJ4Zl9jUklBSVE?oc=5",
+      "published": "2026-11-06T06:52:56+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Polycab, KEI or Havells: Which Wires and Cables Stock Is a Better Buy After the Recent Correction?",
+      "source": "Trade Brains",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPZmh5dmpGd25GZnFBcG9XTzhnc3ZwbWFoSzY0REh1VUlPd2hPS1F6ZWtwbFZ0Z24zLVNtYVFzX2hVc0poQ21xN2F2aDVINWNlTXgyejFCSGMtWGJIVzFVd24zZEZLcURNN3QzdGdDZjdsN19ULVVVX1dERUlmei1OY2lFRVJwQjNsN2U0UUkydlhYS0hNeUFPQjA1TE5qeWdJWDdCWklERW5NdndaX1h4UEFkdWhYUTc2ZzRUMjhlNm41SlI5VTdpUDE1X3lnRE9TYUJzUHAyYWdIUQ?oc=5",
+      "published": "2026-11-02T08:00:00+00:00",
+      "sentiment": 0.625
+     },
+     {
+      "title": "KEI Industries Ltd is Rated Hold by MarketsMOJO",
+      "source": "MarketsMojo",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQXy13SUlLTi1hcFZ5QWdQWTZpc1gyVDNfa29PTzFHQ2hYa0pnektPcnFsS3VkWkxyRzUwQmROWlpMbUZZM21nQ2xBNjZ4NHBsZEphWmVadEpaZFYweTVWSXktYXFPWkdfX0tDYlR4Z0xDNjJ6X2NzakN0R1AtODlmcEFXdy1ZTkNicmZMaHI2UHZxb0ZydjU5d3hUOHl5TXZWdnMxQm1kczZIYmZpT3c?oc=5",
+      "published": "2026-10-31T10:10:47+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    5645.0,
+    5754.0,
+    5789.0,
+    5700.0,
+    5873.0,
+    5790.0,
+    5681.1,
+    5675.0,
+    5527.6,
+    5494.0,
+    5588.0,
+    5540.0,
+    5536.0,
+    5570.0,
+    5740.3,
+    5348.0,
+    5170.0,
+    5327.0,
+    4850.0,
+    4704.0,
+    4697.5,
+    4669.5,
+    4640.0,
+    4578.0,
+    4500.0,
+    4506.0,
+    4560.0,
+    4650.0,
+    4596.0,
+    4575.0,
+    4722.5,
+    4636.5,
+    4673.5,
+    4516.0,
+    4461.0,
+    4455.0,
+    4502.0,
+    4638.2,
+    4557.4,
+    4677.7,
+    4580.0,
+    4585.0,
+    4654.2,
+    4640.6,
+    4648.0,
+    4571.2,
+    4482.3,
+    4442.0,
+    4230.4,
+    3873.0,
+    3725.0,
+    3899.5,
+    3870.5,
+    3856.0,
+    3830.8,
+    3770.0,
+    3855.4,
+    3881.4,
+    3996.4,
+    4061.1,
+    3988.0,
+    4002.7,
+    4049.4
+   ]
+  },
+  {
+   "symbol": "PIIND",
+   "name": "PI Industries Ltd.",
+   "sector": "Chemicals",
+   "price": 1746.2,
+   "final_score": 0.8764,
+   "model_score": 0.9747,
+   "news_score": -0.0339,
+   "forecast": {
+    "2w": {
+     "q10": -0.1265,
+     "q50": 0.0084,
+     "q90": 0.1633,
+     "p_beat_nifty": 0.5828
+    }
+   },
+   "reasons": [
+    "Volume 2.3x its 6-month average",
+    "RSI 28: oversold, bounce candidate",
+    "Volume 2.3x its 6-month average (accumulation)"
+   ],
+   "risk": {
+    "volatility_63d": 0.5044,
+    "atr_pct": 0.0499
+   },
+   "news": {
+    "n_articles": 29,
+    "headlines": [
+     {
+      "title": "Cyprus leaders agree to open two crossings, with UN talks to follow",
+      "source": "Parikiaki",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNc3R0WmRUZVNLdTVaU0xPNjBUM1dVb1VvZWN2Wkk4RkdZaUNBZjMtd1l1NmlnTEttbnpqQjFUd05nTWtrV25DV19UWkNVRjg2QVJjUnU1YVhHY0M1dF9LNnIwbnNkV0hEUWRDU0NBRHdjblFMbkpjT1RfLWt5aTZnRDUtT0xCdFQ4VTVtVXdDZm1mNmY0OUgw?oc=5",
+      "published": "2026-11-10T18:46:59+00:00",
+      "sentiment": 0.361
+     },
+     {
+      "title": "FG commissions three gas facilities in Kano as Pi-CNG seeks more refuelling stations",
+      "source": "Business News Nigeria",
+      "link": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1BM3N6dnBhTzAzTVd5Y0UzVFZxYV8xSTVZaThTcVVTdkZsVDRBSExnNzJNZUtqR2tXQnZNUmw5ZjFpWXJhOEcxQw?oc=5",
+      "published": "2026-11-10T18:17:19+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Michael Diliberti will write and direct the film, which is expected to begin production in Miami in March 2027.",
+      "source": "Enstarz",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPWVJqRkMtc0FWQlNFX0hXT3ZDZWNkVGRFWHRnU2ZzZ3RqZVBlWDZNb2pkTHBhVHVDVXBEQk9CQW1JS1hkYmtoYjZJZWluMlhxUExBTUc2TndZd1M1Wm1XWkxWVjA2b2IwZTVySkZXWnFDanhYc3hMa0lRdE4zVllKdVdVTEZJQnJWZDgzSWVjcHc?oc=5",
+      "published": "2026-11-10T14:30:32+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "IIM Udaipur RTI Data 2026 Out: Check Category-Wise Shortlist and Total Admission Offers",
+      "source": "Jagran Josh",
+      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOZGd4eTNoN0xWQWhpNy03cG5KY0xkQUQzaXdGQ2JTdkdRZUdiVmh4a1RZeG5RQ0IwbU1nR1lDY0t5Vm5GNFpmT2NkXzR5LTktZlFCYW1LMDBuZ1pFZ0J2eU0wbE1PMWlxT3RVcG1HM1Jva2JHNEhXVTV4YXphZEs2N01oakZGTjh3S3YyVXNGejYzZ09zM1dPcFM1ZFhaNVo2aHdCenNXT1VsTENvVjZweVpwU3BGdnExWGhIeE5VQnBORFFMbmRZQUJSc0pTNmfSAdYBQVVfeXFMTWU1U3RTanJTZVFaeFc5bUdBaU9NZFdBYXAxYXhUdlc3M0dQc25MZWgyTmd6c3RIS1FLMlVxQ3lEM2J4bkR0SkFkbHc1U1Ria05GcWFvYnJYQm9iMTVmMGlzdFZicFJCdWdISm00UmFkX3kyYk5IN2k2aFdmN3Z4ZzA1ZzFFNFdxVy1Za0ZNYlI4UG1Wc1pfQVFXcXcyZU9RM3kzSDJWYWxBUXI2d1U4T3Yyc0U0Y1NlX1ZBYTNBRF9OcnVWTl9RVDZBMjRrR1B1MHVzbnBCUQ?oc=5",
+      "published": "2026-11-10T12:03:41+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Impinj (PI) Shares Just Moved, So What Is Behind The Attention?",
+      "source": "Simply Wall St",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQdnRGS1d0T0RZYlgwdWlid0JVZUU5bVdaNDI3R1FrcmQ2YzlDdElyeG15bjFPOEdpd3JjSEdBT3RLTnFmVHItQ0F2TE0wUUV6OFNoNHZURlFXRlBwUGl0R1luSkItaENUc2dubDVoUUo5NlhPLXBQbWRHd1BlYW55dHRoZnFWN0swLUJzZ1YwaW4yUk1TZEd4WVlIeENRZHpOdFJqQnMzVVc3NG1ER2w3MlFSN1EyOUp5QWx4RlVyNnU1TTk2UjBz0gHMAUFVX3lxTE51VjhoOTVFbWdJRExBT1VfbWhkZGdiWVRqQUlaV2N2VTFRYkY2aXpHcE1OaGlnc1VkR2F5TDhVUE41VDllV2tEYktKUld3VUp2WVdwVnJPNkRBNHBHR2ZyVmVpN3U3akU4UHJmbDRlSGNRbGl3VlhJbER5dms4ZEQtUHRHeXJPdE5iYVZSU1ZOTjdoc2V4OUhWczROWnlxNFRlczBWNmZzWUQzbzZCZ29VTVJadDZCOHNfaTVqUkFlSjVlb0ZpemthQzFYQw?oc=5",
+      "published": "2026-11-10T10:20:06+00:00",
+      "sentiment": 0.296
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    2730.0,
+    2483.0,
+    2494.3,
+    2490.1,
+    2472.0,
+    2515.0,
+    2505.0,
+    2482.5,
+    2496.8,
+    2475.0,
+    2508.0,
+    2508.3,
+    2467.0,
+    2420.1,
+    2370.0,
+    2397.1,
+    2393.0,
+    2419.9,
+    2465.0,
+    2430.0,
+    2395.0,
+    2394.0,
+    2365.0,
+    2259.0,
+    2255.0,
+    2256.0,
+    2307.0,
+    2366.8,
+    2321.8,
+    2410.0,
+    2386.0,
+    2393.5,
+    2400.0,
+    2349.0,
+    2288.8,
+    2310.0,
+    2236.0,
+    2220.0,
+    2250.0,
+    2210.0,
+    2100.0,
+    2118.2,
+    2131.5,
+    2130.0,
+    2218.8,
+    2203.8,
+    2190.0,
+    2163.5,
+    2103.0,
+    2074.9,
+    2051.0,
+    2020.0,
+    2086.1,
+    2055.0,
+    2110.0,
+    2100.0,
+    2166.2,
+    2185.0,
+    2187.0,
+    1770.0,
+    1735.0,
+    1712.9,
+    1746.2
+   ]
+  },
+  {
+   "symbol": "INDHOTEL",
+   "name": "Indian Hotels Co. Ltd.",
+   "sector": "Consumer Services",
+   "price": 895.45,
+   "final_score": 0.855,
+   "model_score": 0.927,
+   "news_score": 0.134,
+   "forecast": {
+    "2w": {
+     "q10": -0.0593,
+     "q50": 0.006,
+     "q90": 0.0801,
+     "p_beat_nifty": 0.5289
+    }
+   },
+   "reasons": [
+    "Up +7.1% over the last week",
+    "MACD positive: short-term momentum turning up",
+    "Volume 2.0x its 6-month average",
+    "Caution: RSI 83 is overbought",
+    "Strong 6-month momentum (+36%, top 7% of universe)"
+   ],
+   "risk": {
+    "volatility_63d": 0.2416,
+    "atr_pct": 0.0252
+   },
+   "news": {
+    "n_articles": 9,
+    "headlines": [
+     {
+      "title": "Broad-Based Technical Strength Lifts Indian Hotels Co Ltd to 52-Week High of Rs 832.75",
+      "source": "MarketsMojo",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQWXVGdTRBazdsdS0yOXNET3plaFFCRXVBOHNXVVZaNXZWRHk1QU90cWZOZks1bi1rZF9YeFQ5WDZwU2V4OFFheTc4bTNXcno3MXcwaTNxY1MzbXFLYzJpejJ5bi12cDNxNlRQbGJRSWpwWHpaaHIwVXRpZDRTeFRKZ1BMUUlJUHFBVDV6UWoyOGNGcVRITGhtN3FjRzA0aU9RQl93NElsOXFaaVM2d0M3eg?oc=5",
+      "published": "2026-11-03T13:12:44+00:00",
+      "sentiment": 0.494
+     },
+     {
+      "title": "Indian Hotels Co Ltd is Rated Hold by MarketsMOJO",
+      "source": "MarketsMojo",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPRFp6RDZhN2xXQTlUdTNjZVh0alFLeTIwR2xRUFQtVWF0U2txWkp4Q0lMT3NsU0RablExNE1xT00zMWRQcjFFLWcyRjB1Nm9pc3dvMnpJYmExbFRvYUxlMDBrMGZnRWFPWlhVUDQxMUZFR2JpLUpBa0pRNnlTZ0VRSEJMSHdUaHBZNTQ4SEtYa2VkY09VRXNwMi13UlNHaFpYVDNyYU5OTURNdkpMTzRpZQ?oc=5",
+      "published": "2026-10-31T22:42:39+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Indian Hotels (NSEI:INDHOTEL) Stock Forecast & Analyst Predictions",
+      "source": "Simply Wall St",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNam5ONU5fQU1kU1JIRFhRWERWR0VsTzc2bm1CeHAzdjBSbzJmcDRNVkZBdktGQ3FHYzcxMmpiWWRRaWhRcjNGc21WQjJnX1p3SFh0ZDlrNTRXUDE0dVdTSFUyOFF2NDRsU1NKRk9PNV9PS2p4VDFIc2NWZ3dzN1dkUERZZzQzYm91N3QtVTdickMxcnAz?oc=5",
+      "published": "2026-10-30T07:00:00+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Indian Hotels 52 Week High Streak: Second Session",
+      "source": "Univest",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNRkt5M2htYnVEMU5KTF9RUEJOcU44VzdueUhLREdGSzJOUHpnU1BtN1dXRlhFTlM0NElWUW9ObzlWai1wajFQTlV6eDV1dkwxQTd6OVFpeV9fZktTVm9wWjdrVDRaUlczcmt3SnVtTzFEeU11aDNlUGg3ZWlYdmJxSk9QRmo3VXZUdXdUZ2cxX2ZScjljaWZMRG1n?oc=5",
+      "published": "2026-10-29T07:07:00+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Indian Hotels Share Price Hits 52-Week High of Rs 812.80",
+      "source": "Univest",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNcHQ2djMxSGFJZ09Nb215bGRnTWtLbFY0U2NqaHk2YjBuYlJfQ21Oc2FINUo5WlMwZVpGRkdtUnhlb1VfRFNGSW1xWE05bGhUQ0VRRmVlVXk1RUFaUmdkOFFtVkNISlV4a0ZMMnpLbzhIcjMwR2tnYV9xOWZkMTlMdGwyU3gtdlBZeWpGT3hVYnBhVExxaUhRbTln?oc=5",
+      "published": "2026-10-28T07:00:00+00:00",
+      "sentiment": 0.296
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    724.0,
+    724.0,
+    721.75,
+    720.0,
+    720.0,
+    719.0,
+    723.35,
+    735.85,
+    730.0,
+    728.9,
+    730.0,
+    721.0,
+    718.5,
+    706.4,
+    737.9,
+    718.0,
+    727.7,
+    732.0,
+    720.0,
+    716.2,
+    720.0,
+    722.75,
+    715.75,
+    718.5,
+    715.0,
+    713.4,
+    726.65,
+    732.75,
+    745.0,
+    736.25,
+    743.7,
+    728.8,
+    726.8,
+    711.0,
+    714.35,
+    728.65,
+    718.0,
+    725.0,
+    736.0,
+    731.3,
+    711.65,
+    715.65,
+    711.5,
+    724.15,
+    725.4,
+    741.45,
+    772.1,
+    760.0,
+    753.0,
+    782.3,
+    781.75,
+    795.5,
+    812.85,
+    805.2,
+    810.0,
+    811.65,
+    822.5,
+    836.05,
+    849.0,
+    875.0,
+    888.0,
+    891.65,
+    895.45
+   ]
+  }
+ ],
+ "backtest": {
+  "horizon": "2w",
+  "period_start": "2021-10-27",
+  "period_end": "2026-10-27",
+  "n_weeks": 248,
+  "avg_pick_return": 0.015391193641171157,
+  "avg_pick_excess": 0.01249389608798194,
+  "avg_universe_return": 0.008123317773208483,
+  "avg_benchmark_return": 0.002897297553189216,
+  "pick_hit_rate": 0.5793010752688171,
+  "pick_beat_benchmark_rate": 0.5577956989247311,
+  "weeks_top5_beat_benchmark": 0.6209677419354839,
+  "mean_ic": 0.03302129557078828,
+  "ic_t_stat": 2.7429603012435644,
+  "q10_q90_coverage": 0.8175164620039153,
+  "chained_cagr_picks": 0.36637198735894816,
+  "chained_cagr_benchmark": 0.056000398493105674,
+  "decile_excess": {
+   "0": 0.003975747941182432,
+   "1": 0.003988209437120278,
+   "2": 0.0026548119720859005,
+   "3": 0.004713899866147426,
+   "4": 0.003179655411806377,
+   "5": 0.0049718841151768795,
+   "6": 0.00708205176993218,
+   "7": 0.006302381708606153,
+   "8": 0.005400255503878291,
+   "9": 0.009390638400582374
+  },
+  "round_trip_cost": 0.004
+ }
+}
