@@ -143,6 +143,21 @@ def walk_forward_backtest(panel: pd.DataFrame, trading_days: pd.DatetimeIndex, c
     preds["decile"] = preds.groupby(level="date")["model_score"].transform(lambda s: pd.qcut(s.rank(method="first"), 10, labels=False))
     deciles = preds.groupby("decile")[f"y_exc_{h}"].mean()
 
+    # Does a long-term downtrend (below a falling 200-day average) change how highly rated stocks do?
+    down = (preds["dist_sma200"] < -0.05) & (preds["sma200_slope"] < 0)
+    top5 = preds.groupby(level="date")["model_score"].rank(ascending=False, method="first") <= cfg.top_n
+    trend_check = {}
+    for name, mask in {"top5": top5, "high_score": preds["model_score"] >= 0.7}.items():
+        trend_check[name] = {}
+        for label, sub in {"downtrend": preds[mask & down], "no_downtrend": preds[mask & ~down]}.items():
+            trend_check[name][label] = {
+                "n": int(len(sub)),
+                "avg_excess": float(sub[f"y_exc_{h}"].mean()) if len(sub) else None,
+                "avg_return": float(sub[f"y_ret_{h}"].mean()) if len(sub) else None,
+                "share_positive": float((sub[f"y_ret_{h}"] > 0).mean()) if len(sub) else None,
+                "p10_return": float(sub[f"y_ret_{h}"].quantile(0.1)) if len(sub) else None,
+            }
+
     return {
         "horizon": h,
         "period_start": str(test_dates[0].date()),
@@ -162,6 +177,7 @@ def walk_forward_backtest(panel: pd.DataFrame, trading_days: pd.DatetimeIndex, c
         "chained_cagr_benchmark": float(eq_bench ** (1 / years) - 1) if years > 0 else None,
         "decile_excess": {int(k): float(v) for k, v in deciles.items()},
         "verdict_stats": bucket_stats(preds, f"y_ret_{h}", f"y_exc_{h}"),
+        "trend_check": trend_check,
         "weekly": [
             {"date": str(d.date()), "pick_ret": round(float(r.pick_ret), 4), "bench_ret": round(float(r.bench_ret), 4)}
             for d, r in res.iterrows()
