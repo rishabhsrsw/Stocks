@@ -7,7 +7,8 @@ import logging
 from pathlib import Path
 
 from .config import SITE_DATA_DIR, Config
-from .data import download_last_close, download_prices, synthetic_prices
+from . import bhavcopy
+from .data import download_prices, synthetic_prices
 from .features import build_panel
 from .model import walk_forward_backtest
 from .pipeline import run_daily, run_weekly
@@ -55,10 +56,8 @@ def main() -> None:
     prices = download_prices(symbols, cfg.benchmark, cfg.history_years, use_cache=not args.no_cache)
     # Every other listed company (NSE + BSE-only), for the holdings review.
     directory = load_market_directory()
-    rest = directory[~directory["symbol"].isin(symbols)]
-    other = dict(zip(rest["symbol"], rest["yahoo"]))
     if args.command == "daily":
-        extra = download_last_close(other) if other else {}
+        extra = bhavcopy.closing_prices(directory)  # official closing prices for every listed stock
         res = run_daily(prices, universe, cfg, coverage=coverage, extra_prices=extra, with_news=not args.no_news,
                         with_backtest=not args.no_backtest, out_dir=Path(args.out), force=args.force)
         if res is None:
@@ -71,6 +70,13 @@ def main() -> None:
                   f"range {f['q10']:+.0%}..{f['q90']:+.0%}  P(beat Nifty) {f['p_beat_nifty']:.0%}")
         return
 
+    # Price history for the rest, limited to stocks that traded on the latest day when the exchange
+    # files are available (the others can't get a verdict anyway, and Yahoo rate-limits big downloads).
+    rest = directory[~directory["symbol"].isin(symbols)]
+    traded = set(bhavcopy.closes_by_isin())
+    if traded:
+        rest = rest[rest["isin"].isin(traded)]
+    other = dict(zip(rest["symbol"], rest["yahoo"]))
     extended = (download_prices(list(other), cfg.benchmark, cfg.extended_years, use_cache=not args.no_cache,
                                 tickers=other, min_rows=cfg.extended_min_rows) if other else None)
     res = run_weekly(prices, universe, cfg, coverage=coverage, extended=extended, directory=directory,

@@ -46,6 +46,36 @@ def _download_chunk(tickers: list[str], start: str | None = None, period: str | 
     return pd.DataFrame()
 
 
+def _paced_download(tickers: list[str], chunk: int = 20, pause: float = 1.5, retry_after: float = 60,
+                    **kw) -> dict[str, pd.DataFrame]:
+    """Download in small paced batches, then retry once whatever came back empty.
+
+    Yahoo rate-limits bulk downloads and reports it per ticker as empty data, so a ticker
+    that fails twice is treated as unavailable (e.g. a small BSE stock Yahoo doesn't carry)."""
+    got: dict[str, pd.DataFrame] = {}
+    todo = tickers
+    for attempt in range(2):
+        failed = []
+        for i in range(0, len(todo), chunk):
+            part = todo[i:i + chunk]
+            raw = _download_chunk(part, **kw)
+            for t in part:
+                if not raw.empty and t in raw.columns.get_level_values(0) and raw[t]["Close"].notna().any():
+                    got[t] = raw[t]
+                else:
+                    failed.append(t)
+            if (i // chunk) % 25 == 0:
+                log.info("Prices: %d/%d tickers (pass %d)", min(i + chunk, len(todo)), len(todo), attempt + 1)
+            time.sleep(pause)
+        if not failed or attempt == 1:
+            break
+        log.info("Retrying %d tickers that came back empty in %.0fs", len(failed), retry_after)
+        time.sleep(retry_after)
+        todo = failed
+    log.info("Prices for %d/%d tickers", len(got), len(tickers))
+    return got
+
+
 def download_prices(symbols: list[str], benchmark: str, years: int, use_cache: bool = True,
                     tickers: dict[str, str] | None = None, min_rows: int = 300) -> Prices:
     """Daily OHLCV for `symbols`. `tickers` maps symbol -> Yahoo ticker (default SYMBOL.NS);
@@ -59,23 +89,12 @@ def download_prices(symbols: list[str], benchmark: str, years: int, use_cache: b
     start = (dt.date.today() - dt.timedelta(days=int(365.25 * years))).isoformat()
     fields = {"Close": {}, "High": {}, "Low": {}, "Volume": {}}
     to_sym = {(tickers or {}).get(s, yahoo_symbol(s)): s for s in symbols}
-    ticker_list = list(to_sym)
-    for i in range(0, len(ticker_list), 50):
-        chunk = ticker_list[i:i + 50]
-        raw = _download_chunk(chunk, start)
-        if raw.empty:
-            continue
-        for t in chunk:
-            if t not in raw.columns.get_level_values(0):
-                continue
-            frame = raw[t]
-            if frame["Close"].notna().sum() < min_rows:
-                continue
+    for t, frame in _paced_download(list(to_sym), start=start).items():
+        if frame["Close"].notna().sum() >= min_rows:
             for f in fields:
                 fields[f][to_sym[t]] = frame[f]
-        log.info("Downloaded %d/%d tickers", min(i + 50, len(ticker_list)), len(ticker_list))
 
-    bench_raw = _download_chunk([benchmark], start)
+    bench_raw = _download_chunk([benchmark], start=start)
     bench = bench_raw[benchmark]["Close"] if benchmark in bench_raw.columns.get_level_values(0) else bench_raw["Close"]
 
     close = pd.DataFrame(fields["Close"]).sort_index()
@@ -121,21 +140,3 @@ def synthetic_prices(n_symbols: int = 60, n_days: int = 2600, seed: int = 0) -> 
         benchmark=pd.Series(100 * np.exp(np.cumsum(market)), index=dates),
     )
 
-
-def download_last_close(tickers: dict[str, str]) -> dict[str, float]:
-    """Latest closing price per symbol (symbol -> Yahoo ticker), from the last week of trading."""
-    to_sym = {t: s for s, t in tickers.items()}
-    ticker_list = list(to_sym)
-    out: dict[str, float] = {}
-    for i in range(0, len(ticker_list), 100):
-        chunk = ticker_list[i:i + 100]
-        raw = _download_chunk(chunk, period="7d")
-        if raw.empty:
-            continue
-        for t in chunk:
-            if t in raw.columns.get_level_values(0):
-                c = raw[t]["Close"].dropna()
-                if len(c):
-                    out[to_sym[t]] = round(float(c.iloc[-1]), 2)
-    log.info("Latest close for %d/%d tickers", len(out), len(ticker_list))
-    return out

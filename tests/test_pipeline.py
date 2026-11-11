@@ -11,7 +11,8 @@ from stockpicker.data import Prices, synthetic_prices
 from stockpicker.features import build_panel, stock_features
 from stockpicker.model import HorizonModel, train_cutoff
 from stockpicker.pipeline import run_daily, run_weekly
-from stockpicker.universe import parse_bse_bhavcopy, parse_bse_json, parse_nse_csv
+from stockpicker import bhavcopy
+from stockpicker.universe import bse_rows_from_bhavcopy, parse_bse_json, parse_nse_csv
 
 
 @pytest.fixture(scope="module")
@@ -175,9 +176,26 @@ def test_sme_list_and_bhavcopy_parsing():
                         "SMEONE,SME One Limited,SM,01-JAN-2023,INE999A01011\n"
                         "DUMMYSME,Dummy,SM,01-JAN-2023,INE999A01099\n")
     assert sme["symbol"].tolist() == ["SMEONE"] and sme["name"].tolist() == ["SME One Limited"]
-    rows = parse_bse_bhavcopy(
-        "TradDt,BizDt,Sgmt,Src,FinInstrmTp,FinInstrmId,ISIN,TckrSymb,SctySrs,FinInstrmNm,ClsPric\n"
-        "2026-11-10,2026-11-10,CM,BSE,STK,530001,INE111A01011,SMALL,X,Small Co Ltd,12.5\n"
-        "2026-11-10,2026-11-10,CM,BSE,ETF,590001,INF000A01011,GOLDETF,E,Gold ETF,50\n")
-    bse = parse_bse_json(rows, set(), set())
+    csv = (b"TradDt,BizDt,Sgmt,Src,FinInstrmTp,FinInstrmId,ISIN,TckrSymb,SctySrs,FinInstrmNm,ClsPric\n"
+           b"2026-11-10,2026-11-10,CM,BSE,STK,530001,INE111A01011,SMALL,X,Small Co Ltd,12.5\n"
+           b"2026-11-10,2026-11-10,CM,BSE,ETF,590001,INF000A01011,GOLDETF,E,Gold ETF,50\n")
+    bse = parse_bse_json(bse_rows_from_bhavcopy(bhavcopy.parse(csv)), set(), set())
     assert bse["symbol"].tolist() == ["SMALL"] and bse["yahoo"].tolist() == ["530001.BO"]
+
+
+def test_bhavcopy_prices_by_isin(monkeypatch):
+    import io, zipfile
+    nse_csv = (b"TradDt,FinInstrmTp,FinInstrmId,ISIN,TckrSymb,SctySrs,ClsPric\n"
+               b"2026-11-10,STK,2885,INE002A01018,RELIANCE,EQ,1500.5\n")
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:  # NSE ships its bhavcopy zipped
+        z.writestr("BhavCopy_NSE_CM.csv", nse_csv)
+    bse_csv = (b"TradDt,FinInstrmTp,FinInstrmId,ISIN,TckrSymb,SctySrs,ClsPric\n"
+               b"2026-11-10,STK,500325,INE002A01018,RELIANCE,A,1501.0\n"
+               b"2026-11-10,STK,530001,INE111A01011,SMALL,X,12.5\n")
+    files = {"NSE": bhavcopy.parse(buf.getvalue()), "BSE": bhavcopy.parse(bse_csv)}
+    monkeypatch.setattr(bhavcopy, "latest", lambda ex: (None, files[ex]))
+    directory = pd.DataFrame({"symbol": ["RELIANCE", "SMALL", "NOTRADE"],
+                              "isin": ["INE002A01018", "INE111A01011", "INE999Z01011"]})
+    # Dual-listed stocks take the NSE close; untraded ones have no price.
+    assert bhavcopy.closing_prices(directory) == {"RELIANCE": 1500.5, "SMALL": 12.5}
