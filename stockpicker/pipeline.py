@@ -4,6 +4,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import logging
+from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
@@ -46,6 +47,66 @@ def explain(row: pd.Series) -> list[str]:
     return why[:5]
 
 
+def explain_short(row: pd.Series) -> list[str]:
+    """Reasons that matter for a 2-week view: recent move, short-term momentum, volume."""
+    why = []
+    r5, rsi = row.get("ret_5", 0), row.get("rsi_14", 50)
+    if r5 > 0.03:
+        why.append(f"Up {r5:+.1%} over the last week")
+    elif r5 < -0.03 and row.get("dist_sma200", -1) > 0:
+        why.append(f"Short-term dip ({r5:+.1%} this week) inside a long-term uptrend")
+    if row.get("macd_hist", 0) > 0:
+        why.append("MACD positive: short-term momentum turning up")
+    if row.get("vol_ratio", 0) > 1.3:
+        why.append(f"Volume {row['vol_ratio']:.1f}x its 6-month average")
+    if rsi < 35:
+        why.append(f"RSI {rsi:.0f}: oversold, bounce candidate")
+    elif rsi > 75:
+        why.append(f"Caution: RSI {rsi:.0f} is overbought")
+    if -0.02 <= row.get("dist_sma20", 1) <= 0.03 and row.get("sma50_200", -1) > 0:
+        why.append("Holding near its 20-day average in an uptrend")
+    return why
+
+
+def news_overlay(shortlist: list[str], meta: pd.DataFrame, cfg: Config, n_llm: int):
+    """Headlines + sentiment for the shortlist, Claude's read for the top `n_llm`, and red flags."""
+    universe = meta.loc[shortlist, ["name"]].reset_index()
+    news_res = news_mod.collect_news(universe, cfg)
+    for s in shortlist[:n_llm]:
+        nr = news_res.get(s)
+        if nr and nr.headlines:
+            nr.llm = news_mod.llm_analyse(s, meta.loc[s, "name"], nr.headlines, cfg.llm_model)
+    news_score = pd.Series({
+        s: (0.5 * r.score + 0.5 * r.llm["sentiment"]) if r.llm else r.score for s, r in news_res.items()
+    }, dtype=float)
+    red = {s for s, r in news_res.items() if r.red_flags or (r.llm and r.llm.get("red_flag"))}
+    return news_res, news_score, red
+
+
+def news_block(nr) -> dict:
+    return {
+        "n_articles": nr.n_articles if nr else 0,
+        "headlines": nr.headlines[:5] if nr else [],
+        "llm": nr.llm if nr else None,
+    }
+
+
+def select_picks(sl: pd.DataFrame, top_n: int, max_per_sector: int) -> list[str]:
+    """Best `final` scores first, skipping red-flagged stocks (final < 0) and capping each sector."""
+    picks, per_sector = [], {}
+    for s, row in sl.sort_values("final", ascending=False).iterrows():
+        if row["final"] < 0:
+            break
+        sec = row["sector"] or "Unknown"
+        if per_sector.get(sec, 0) >= max_per_sector:
+            continue
+        per_sector[sec] = per_sector.get(sec, 0) + 1
+        picks.append(s)
+        if len(picks) == top_n:
+            break
+    return picks
+
+
 def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: pd.DataFrame | None = None,
                with_news: bool = True, with_fundamentals: bool = True, with_backtest: bool = True,
                out_dir: Path = SITE_DATA_DIR) -> dict:
@@ -80,17 +141,7 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
 
     # Overlays are computed for a shortlist only (keeps the weekly run fast and polite).
     shortlist = scores[scores["eligible"]].nlargest(max(cfg.llm_shortlist, cfg.top_n * 6), "model_score").index.tolist()
-    news_res: dict[str, news_mod.NewsResult] = {}
-    if with_news:
-        news_res = news_mod.collect_news(universe[universe["symbol"].isin(shortlist)], cfg)
-        for s in shortlist[: cfg.llm_shortlist]:
-            nr = news_res.get(s)
-            if nr and nr.headlines:
-                nr.llm = news_mod.llm_analyse(s, meta.loc[s, "name"], nr.headlines, cfg.llm_model)
-    news_score = pd.Series({
-        s: (0.5 * r.score + 0.5 * r.llm["sentiment"]) if r.llm else r.score for s, r in news_res.items()
-    }, dtype=float)
-    red = {s for s, r in news_res.items() if r.red_flags or (r.llm and r.llm.get("red_flag"))}
+    news_res, news_score, red = news_overlay(shortlist, meta, cfg, cfg.llm_shortlist) if with_news else ({}, pd.Series(dtype=float), set())
 
     fund = fetch_fundamentals(shortlist) if with_fundamentals else pd.DataFrame()
     quality = quality_score(fund)
@@ -101,17 +152,7 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
     sl["final"] = (cfg.w_model * sl["model_score"] + cfg.w_news * (sl["news"] + 1) / 2 + cfg.w_fundamentals * sl["quality"])
     sl.loc[sl.index.isin(red), "final"] = -1  # never pick a stock with a governance/fraud red flag
 
-    picks, per_sector = [], {}
-    for s, row in sl.sort_values("final", ascending=False).iterrows():
-        if row["final"] < 0:
-            break
-        sec = row["sector"] or "Unknown"
-        if per_sector.get(sec, 0) >= cfg.max_per_sector:
-            continue
-        per_sector[sec] = per_sector.get(sec, 0) + 1
-        picks.append(s)
-        if len(picks) == cfg.top_n:
-            break
+    picks = select_picks(sl, cfg.top_n, cfg.max_per_sector)
 
     def card(s: str) -> dict:
         px = prices.close[s].dropna()
@@ -135,11 +176,7 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
             "risk": {"volatility_63d": _r(today.loc[s, "vol_63"]), "max_drawdown_6m": _r(today.loc[s, "max_dd_126"]),
                      "beta": _r(today.loc[s, "beta_252"])},
             "fundamentals": {k: (_r(v) if isinstance(v, (int, float)) else v) for k, v in f.items()},
-            "news": {
-                "n_articles": nr.n_articles if nr else 0,
-                "headlines": nr.headlines[:5] if nr else [],
-                "llm": nr.llm if nr else None,
-            },
+            "news": news_block(nr),
             "chart": [_r(x, 2) for x in px.iloc[-126:].tolist()],
         }
 
@@ -195,10 +232,10 @@ def stock_scores(prices: Prices, today: pd.DataFrame, preds: dict, meta: pd.Data
     return out
 
 
-def update_track_record(out_dir: Path, prices: Prices, horizon_days: int) -> list[dict]:
-    """Mark every past week's picks to market so the site shows the live (out-of-sample) record."""
+def update_track_record(history_dir: Path, prices: Prices, horizon_days: int, horizon: str = "5m") -> list[dict]:
+    """Mark every past run's picks to market so the apps show the live (out-of-sample) record."""
     rows = []
-    for f in sorted((out_dir / "history").glob("*.json")):
+    for f in sorted(history_dir.glob("*.json")):
         past = json.loads(f.read_text())
         d = pd.Timestamp(past["as_of"])
         idx = prices.close.index
@@ -216,7 +253,7 @@ def update_track_record(out_dir: Path, prices: Prices, horizon_days: int) -> lis
                 "week": past["as_of"], "symbol": s, "entry": _r(c0, 2), "latest": _r(c1, 2),
                 "return": _r(c1 / c0 - 1), "nifty_return": _r(b1 / b0 - 1),
                 "days_held": int(i1 - i0), "complete": bool(i0 + horizon_days < len(idx)),
-                "predicted_q50": p["forecast"].get("5m", {}).get("q50"),
+                "predicted_q50": p["forecast"].get(horizon, {}).get("q50"),
             })
     return rows
 
@@ -224,7 +261,95 @@ def update_track_record(out_dir: Path, prices: Prices, horizon_days: int) -> lis
 def write_outputs(result: dict, prices: Prices, out_dir: Path) -> None:
     (out_dir / "history").mkdir(parents=True, exist_ok=True)
     (out_dir / "history" / f"{result['as_of']}.json").write_text(json.dumps(result, indent=1, default=str))
-    result["track_record"] = update_track_record(out_dir, prices, 105)
+    result["track_record"] = update_track_record(out_dir / "history", prices, 105)
     (out_dir / "latest.json").write_text(json.dumps(result, indent=1, default=str))
     index = sorted(p.stem for p in (out_dir / "history").glob("*.json"))
     (out_dir / "index.json").write_text(json.dumps(index))
+
+
+def run_daily(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: pd.DataFrame | None = None,
+              with_news: bool = True, with_backtest: bool = True, out_dir: Path = SITE_DATA_DIR,
+              force: bool = False) -> dict | None:
+    """Short-term picks for the next ~2 weeks, plus today's closing prices for the holdings review.
+
+    Returns None (and writes nothing) when there is no new trading day since the last run."""
+    days = prices.close.index
+    asof = days[-1]
+    prev = out_dir / "daily.json"
+    if not force and prev.exists() and json.loads(prev.read_text()).get("as_of") == str(asof.date()):
+        log.info("No new trading day since %s: daily picks unchanged", asof.date())
+        return None
+
+    universe = universe[universe["symbol"].isin(prices.symbols)].reset_index(drop=True)
+    coverage = universe if coverage is None else coverage[coverage["symbol"].isin(prices.symbols)]
+    meta = pd.concat([universe, coverage]).drop_duplicates("symbol").set_index("symbol")
+    pick_syms = set(universe["symbol"])
+
+    h = "2w"
+    dcfg = replace(cfg, horizons={h: cfg.daily_horizon_days}, rank_horizon=h, top_n=cfg.daily_top_n,
+                   retrain_every_n_days=cfg.daily_retrain_every_n_days)
+    sample = days[::-1][:: cfg.sample_every_n_days][::-1]
+    panel = build_panel(prices, dcfg.horizons, sample)
+    feats = feature_columns(panel)
+    train_panel = panel[panel.index.get_level_values("symbol").isin(pick_syms)]
+
+    backtest = None
+    if with_backtest:
+        backtest = walk_forward_backtest(train_panel, days, dcfg)
+        backtest.pop("weekly")
+        backtest.pop("verdict_stats", None)
+        backtest["round_trip_cost"] = cfg.round_trip_cost
+
+    model = HorizonModel(h, feats).fit(train_panel)
+    today = panel.xs(asof, level="date", drop_level=False)
+    pred = model.predict(today).droplevel("date")
+    today = today.droplevel("date")
+
+    scores = pd.DataFrame({"model_score": pred["model_score"]})
+    scores["eligible"] = eligible(today, cfg) & scores.index.isin(pick_syms)
+    scores = scores.join(meta[["name", "sector"]])
+    shortlist = scores[scores["eligible"]].nlargest(cfg.daily_top_n * 5, "model_score").index.tolist()
+    news_res, news_score, red = (news_overlay(shortlist, meta, cfg, cfg.daily_llm_shortlist) if with_news
+                                 else ({}, pd.Series(dtype=float), set()))
+
+    sl = scores.loc[shortlist].copy()
+    sl["news"] = news_score.reindex(sl.index).fillna(0.0)
+    sl["final"] = cfg.w_daily_model * sl["model_score"] + cfg.w_daily_news * (sl["news"] + 1) / 2
+    sl.loc[sl.index.isin(red), "final"] = -1
+    picks = select_picks(sl, cfg.daily_top_n, cfg.daily_max_per_sector)
+
+    def card(s: str) -> dict:
+        px = prices.close[s].dropna()
+        row = today.loc[s]
+        return {
+            "symbol": s,
+            "name": meta.loc[s, "name"],
+            "sector": meta.loc[s, "sector"],
+            "price": _r(px.iloc[-1], 2),
+            "final_score": _r(sl.loc[s, "final"]),
+            "model_score": _r(sl.loc[s, "model_score"]),
+            "news_score": _r(sl.loc[s, "news"]),
+            "forecast": {h: {"q10": _r(pred.loc[s, "q10"]), "q50": _r(pred.loc[s, "q50"]),
+                             "q90": _r(pred.loc[s, "q90"]), "p_beat_nifty": _r(pred.loc[s, "p_beat"])}},
+            "reasons": (explain_short(row) + explain(row))[:5],
+            "risk": {"volatility_63d": _r(row["vol_63"]), "atr_pct": _r(row["atr_pct"])},
+            "news": news_block(news_res.get(s)),
+            "chart": [_r(x, 2) for x in px.iloc[-63:].tolist()],
+        }
+
+    result = {
+        "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "as_of": str(asof.date()),
+        "horizon_days": cfg.daily_horizon_days,
+        "eligible_size": int(scores["eligible"].sum()),
+        "picks": [card(s) for s in picks],
+        "backtest": backtest,
+    }
+    hist = out_dir / "daily-history"
+    hist.mkdir(parents=True, exist_ok=True)
+    (hist / f"{result['as_of']}.json").write_text(json.dumps(result, indent=1, default=str))
+    result["track_record"] = update_track_record(hist, prices, cfg.daily_horizon_days, h)
+    # Latest closing prices so the holdings review stays current between weekly runs.
+    result["prices"] = {s: _r(prices.close[s].dropna().iloc[-1], 2) for s in meta.index}
+    (out_dir / "daily.json").write_text(json.dumps(result, indent=1, default=str))
+    return result

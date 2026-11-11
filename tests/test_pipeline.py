@@ -10,7 +10,7 @@ from stockpicker.config import Config
 from stockpicker.data import synthetic_prices
 from stockpicker.features import build_panel, stock_features
 from stockpicker.model import HorizonModel, train_cutoff
-from stockpicker.pipeline import run_weekly
+from stockpicker.pipeline import run_daily, run_weekly
 
 
 @pytest.fixture(scope="module")
@@ -101,3 +101,19 @@ def test_spark_keeps_latest_close():
     s = pd.Series(np.arange(300, dtype=float))
     pts = holdings.spark(s)
     assert pts[-1] == 299.0 and len(pts) == 42
+
+
+def test_daily_run(prices, tmp_path):
+    cfg = Config(min_median_traded_value_cr=0, backtest_years=2, daily_retrain_every_n_days=252)
+    universe = pd.DataFrame({"symbol": prices.symbols, "name": prices.symbols,
+                             "sector": [f"S{i % 6}" for i in range(len(prices.symbols))]})
+    res = run_daily(prices, universe.iloc[:20], cfg, coverage=universe, with_news=False, out_dir=tmp_path)
+    assert len(res["picks"]) == cfg.daily_top_n
+    assert len({p["sector"] for p in res["picks"]}) == cfg.daily_top_n  # one per sector
+    assert set(res["prices"]) == set(universe["symbol"])
+    assert res["backtest"]["round_trip_cost"] == cfg.round_trip_cost
+    saved = json.loads((tmp_path / "daily.json").read_text())
+    assert saved["as_of"] == res["as_of"] and "2w" in saved["picks"][0]["forecast"]
+    assert (tmp_path / "daily-history" / f"{res['as_of']}.json").exists()
+    # Same trading day again (weekend, holiday): nothing is rewritten.
+    assert run_daily(prices, universe.iloc[:20], cfg, coverage=universe, with_news=False, out_dir=tmp_path) is None

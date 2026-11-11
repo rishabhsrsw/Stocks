@@ -115,6 +115,7 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
   <div class="note" id="err"></div>
   <div class="tabs" role="tablist">
     <button role="tab" id="tab-btn-picks" aria-selected="true" data-tab="picks">Weekly picks</button>
+    <button role="tab" id="tab-btn-daily" aria-selected="false" data-tab="daily">Daily picks</button>
     <button role="tab" id="tab-btn-holdings" aria-selected="false" data-tab="holdings">My holdings</button>
   </div>
 
@@ -153,6 +154,18 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
       <li><b>Final score</b> = 70% model + 15% news + 15% quality, at most 2 picks per sector. Only the model part is backtested; news and fundamentals aren't available point-in-time historically.</li>
     </ol>
   </div>
+  </section>
+
+  <section id="tab-daily" hidden>
+  <h2>Today's picks (next 2 weeks)</h2>
+  <p class="muted" id="d-meta" style="margin-top:-4px">Daily picks appear after the first weekday-evening update.</p>
+  <div class="note">Short-term picks are much noisier than the 5-month view: a 2-week move is mostly luck. Each trade also pays brokerage, STT and slippage (about 0.4% for a buy plus a sell), which the backtest below subtracts. Keep these positions small.</div>
+  <div class="grid" id="d-picks"></div>
+  <h2>How have daily picks done? (walk-forward backtest)</h2>
+  <p class="muted" id="d-bt-meta"></p>
+  <div class="tiles" id="d-bt-tiles"></div>
+  <h2>Live track record (daily picks published here)</h2>
+  <div class="card scroll"><table id="d-track"></table></div>
   </section>
 
   <section id="tab-holdings" hidden>
@@ -209,11 +222,11 @@ function sparkline(values) {
 }
 
 // Forecast range: q10..q90 band with a q50 tick, on a shared −40%..+80% scale with a 0% line.
-function rangeBar(f) {
-  const w = 300, h = 34, lo = -0.4, hi = 0.8;
+function rangeBar(f, lo = -0.4, hi = 0.8) {
+  const w = 300, h = 34;
   const sx = v => 4 + (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo) * (w - 8);
   const svg = el("svg", {viewBox: `0 0 ${w} ${h}`, width: "100%", height: h, role: "img",
-    "aria-label": `5-month forecast range ${pct(f.q10)} to ${pct(f.q90)}, median ${pct(f.q50)}`});
+    "aria-label": `Forecast range ${pct(f.q10)} to ${pct(f.q90)}, median ${pct(f.q50)}`});
   el("line", {x1: sx(0), x2: sx(0), y1: 2, y2: 22, stroke: "var(--axis)", "stroke-width": 1}, svg);
   el("rect", {x: sx(f.q10), y: 8, width: Math.max(2, sx(f.q90) - sx(f.q10)), height: 8, rx: 4, fill: "var(--series-1)", opacity: .35}, svg);
   el("rect", {x: sx(f.q50) - 1.5, y: 4, width: 3, height: 16, rx: 1.5, fill: "var(--series-1)"}, svg);
@@ -335,13 +348,74 @@ function decileChart(host, dec) {
 
 function tile(v, l, c = "") { return `<div class="tile"><div class="v ${c}">${v}</div><div class="l">${l}</div></div>`; }
 
+// ---------------------------------------------------------------- daily picks
+let DAILY = null;
+function dailyCard(p, i) {
+  const f = p.forecast["2w"];
+  const card = document.createElement("div");
+  card.className = "card";
+  const llm = p.news.llm;
+  card.innerHTML = `
+    <div class="card-head">
+      <div><div class="rank">#${i + 1} · NSE: ${esc(p.symbol)}</div><h3>${esc(p.name)}</h3><span class="tag">${esc(p.sector || "")}</span></div>
+      <div style="text-align:right"><div class="muted">Price</div><b>₹${p.price?.toLocaleString("en-IN")}</b></div>
+    </div>
+    <div style="margin-top:12px" class="muted">Median 2-week forecast</div>
+    <div class="hero ${cls(f.q50)}">${pct(f.q50)}</div>
+    <div class="range"></div>
+    <div class="kv">
+      <div>P(beat Nifty)<b>${(f.p_beat_nifty * 100).toFixed(0)}%</b></div>
+      <div>Model<b>${(p.model_score * 100).toFixed(0)}</b></div>
+      <div>Daily swing<b>${pct(p.risk.atr_pct, 1).replace("+", "±")}</b></div>
+    </div>
+    <div class="muted">Last 3 months</div>
+    <div class="spark"></div>
+    <ul class="reasons">${p.reasons.map(r => `<li>${esc(r)}</li>`).join("")}</ul>
+    ${llm ? `<p style="font-size:14px;margin:8px 0"><b>News read:</b> ${esc(llm.summary)}</p>` : ""}
+    <details><summary>Headlines (${p.news.n_articles})</summary>
+      ${p.news.headlines.map(h => `<div class="hl"><a href="${esc(h.link)}" target="_blank" rel="noopener">${esc(h.title)}</a> <span class="muted">${esc(h.source)} · ${esc((h.published || "").slice(0, 10))}</span></div>`).join("") || '<div class="hl">No recent headlines.</div>'}
+    </details>`;
+  card.querySelector(".range").appendChild(rangeBar(f, -0.15, 0.2));
+  card.querySelector(".spark").appendChild(sparkline(p.chart));
+  return card;
+}
+
+function renderDaily(d) {
+  DAILY = d;
+  document.getElementById("d-meta").textContent =
+    `Closing prices of ${d.as_of} · next ${d.horizon_days} trading days · ${d.eligible_size} stocks considered · updated ${d.generated_at.replace("T", " ").slice(0, 16)} UTC`;
+  const box = document.getElementById("d-picks");
+  box.innerHTML = "";
+  d.picks.forEach((p, i) => box.appendChild(dailyCard(p, i)));
+  const bt = d.backtest;
+  if (bt) {
+    const c = bt.round_trip_cost || 0;
+    document.getElementById("d-bt-meta").textContent =
+      `Out-of-sample, ${bt.period_start} to ${bt.period_end}: the top ${d.picks.length} each week, held ${d.horizon_days} trading days. After ${(c * 100).toFixed(1)}% trading costs per trade, before tax.`;
+    document.getElementById("d-bt-tiles").innerHTML =
+      tile(pct(bt.avg_pick_return - c, 2), "Avg 2-week return of picks, after costs", cls(bt.avg_pick_return - c)) +
+      tile(pct(bt.avg_benchmark_return, 2), "Avg 2-week Nifty return", cls(bt.avg_benchmark_return)) +
+      tile(pct(bt.avg_pick_excess - c, 2), "Excess vs Nifty, after costs", cls(bt.avg_pick_excess - c)) +
+      tile((bt.pick_hit_rate * 100).toFixed(0) + "%", "Picks with a positive return (before costs)") +
+      tile(bt.mean_ic.toFixed(3), `Rank IC (t ≈ ${bt.ic_t_stat.toFixed(1)})`) +
+      tile((bt.q10_q90_coverage * 100).toFixed(0) + "%", "Outcomes inside the forecast range (target 80%)");
+  }
+  const tr = (d.track_record || []).slice().reverse().slice(0, 60);
+  document.getElementById("d-track").innerHTML = tr.length
+    ? `<tr><th>Picked</th><th>Symbol</th><th class="num">Entry ₹</th><th class="num">Latest ₹</th><th class="num">Return</th><th class="num">Nifty</th><th class="num">Predicted</th><th class="num">Days</th></tr>` +
+      tr.map(t => `<tr><td>${t.week}</td><td>${esc(t.symbol)}</td><td class="num">${t.entry}</td><td class="num">${t.latest}</td><td class="num ${cls(t.return)}">${pct(t.return)}</td><td class="num">${pct(t.nifty_return)}</td><td class="num">${pct(t.predicted_q50)}</td><td class="num">${t.days_held}${t.complete ? " ✓" : ""}</td></tr>`).join("")
+    : `<tr><td class="muted">The track record fills in as daily picks age.</td></tr>`;
+  if (DATA && DATA.stocks) renderHoldings();  // holdings switch to the newer daily prices
+}
+
 // ---------------------------------------------------------------- tabs
 let DATA = null;
-const pending = {picks: [], holdings: []};
-function currentTab() { return document.getElementById("tab-holdings").hidden ? "picks" : "holdings"; }
+const TABS = ["picks", "daily", "holdings"];
+const pending = {picks: [], daily: [], holdings: []};
+function currentTab() { return TABS.find(t => !document.getElementById("tab-" + t).hidden); }
 function whenVisible(tab, fn) { currentTab() === tab ? fn() : pending[tab].push(fn); }
 function showTab(tab) {
-  for (const t of ["picks", "holdings"]) {
+  for (const t of TABS) {
     document.getElementById("tab-" + t).hidden = t !== tab;
     document.getElementById("tab-btn-" + t).setAttribute("aria-selected", String(t === tab));
   }
@@ -349,7 +423,10 @@ function showTab(tab) {
   pending[tab].splice(0).forEach(fn => fn());
 }
 document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => showTab(b.dataset.tab));
-try { if (localStorage.getItem("nse-tab") === "holdings" || location.hash === "#holdings") showTab("holdings"); } catch (_) {}
+try {
+  const t = location.hash.slice(1) || localStorage.getItem("nse-tab");
+  if (TABS.includes(t) && t !== "picks") showTab(t);
+} catch (_) {}
 
 // ---------------------------------------------------------------- holdings
 const H_KEY = "nse-holdings-v1";
@@ -431,7 +508,9 @@ function holdingCard(h, s, i) {
 
 function renderHoldings() {
   const d = DATA, holdings = loadHoldings();
-  const bySym = new Map((d.stocks || []).map(s => [s.symbol, s]));
+  const fresh = DAILY && DAILY.prices && DAILY.as_of > d.as_of;  // newer closing prices from the daily run
+  const priceDate = fresh ? DAILY.as_of : d.as_of;
+  const bySym = new Map((d.stocks || []).map(s => [s.symbol, fresh && DAILY.prices[s.symbol] ? {...s, price: DAILY.prices[s.symbol]} : s]));
   const cards = document.getElementById("h-cards");
   cards.innerHTML = "";
   let cost = 0, value = 0;
@@ -459,7 +538,7 @@ function renderHoldings() {
   });
 
   const sum = document.getElementById("h-summary");
-  sum.innerHTML = holdings.length ? tile(inr(cost), "Invested") + tile(inr(value), `Value at ${d.as_of} close`) +
+  sum.innerHTML = holdings.length ? tile(inr(cost), "Invested") + tile(inr(value), `Value at ${priceDate} close`) +
     tile((value - cost >= 0 ? "+" : "−") + inr(Math.abs(value - cost)), "Profit / loss", cls(value - cost)) +
     tile(pct(cost ? (value - cost) / cost : 0), "Return", cls(value - cost)) +
     Object.keys(VERDICT).filter(k => counts[k]).map(k => tile(String(counts[k]), badge(k))).join("") : "";
@@ -552,17 +631,18 @@ function setupHoldings(d) {
 // Data source: the Windows app injects window.picksApi (reads the private GitHub repo);
 // the website / iPhone home-screen app fetches data/latest.json and keeps a copy for offline use.
 const DATA_CACHE = "picks-data";
-async function loadData() {
-  if (window.picksApi) return window.picksApi.load();
+async function loadData(name = "latest") {
+  if (window.picksApi) return window.picksApi.load(name);
+  const url = `data/${name}.json`;
   try {
-    const r = await fetch("data/latest.json", {cache: "no-store", redirect: "error"});
+    const r = await fetch(url, {cache: "no-store", redirect: "error"});
     if (!r.ok) throw new Error("HTTP " + r.status);
     const d = await r.clone().json();
-    try { (await caches.open(DATA_CACHE)).put("data/latest.json", r); } catch (_) {}
+    try { (await caches.open(DATA_CACHE)).put(url, r); } catch (_) {}
     return {data: d, stale: false};
   } catch (e) {
     let cached = null;
-    try { cached = await (await caches.open(DATA_CACHE)).match("data/latest.json"); } catch (_) {}
+    try { cached = await (await caches.open(DATA_CACHE)).match(url); } catch (_) {}
     if (!cached) throw e;
     return {data: await cached.json(), stale: true};
   }
@@ -619,6 +699,7 @@ loadData().then(({data: d, stale}) => {
       tr.map(t => `<tr><td>${t.week}</td><td>${esc(t.symbol)}</td><td class="num">${t.entry}</td><td class="num">${t.latest}</td><td class="num ${cls(t.return)}">${pct(t.return)}</td><td class="num">${pct(t.nifty_return)}</td><td class="num">${pct(t.predicted_q50)}</td><td class="num">${t.days_held}${t.complete ? " ✓" : ""}</td></tr>`).join("")
     : `<tr><td class="muted">The track record fills in as weekly picks age.</td></tr>`;
   setupHoldings(d);
+  loadData("daily").then(({data}) => renderDaily(data)).catch(() => {});
 }).catch(e => {
   const b = document.getElementById("err");
   b.style.display = "block";

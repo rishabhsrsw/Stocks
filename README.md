@@ -22,6 +22,20 @@ Final score = 70% model + 15% news + 15% quality, with at most 2 picks per secto
 * A **backtest** section: average 5-month return of past weekly top-5s vs Nifty, hit rate, rank IC, decile chart
 * A **live track record**: every published pick marked to market each week
 
+## Daily picks (short-term)
+
+Every weekday evening (18:13 IST, after NSE closing prices are out) a separate model, trained to predict the
+**next 2 weeks**, picks the **top 3** stocks (one per sector, no news red flags). It uses the same chart features with
+more weight on recent moves, and is walk-forward backtested **after trading costs** (0.4% per round trip, set in
+`config.py`). The same run refreshes closing prices, so the holdings review shows up-to-date profit/loss between weekly runs.
+
+Short-term moves are mostly noise, so expect a much weaker edge than the 5-month model and keep these positions small.
+
+```bash
+python -m stockpicker daily          # writes docs/data/daily.json (skips if no new trading day)
+python -m stockpicker daily --force  # rerun anyway
+```
+
 ## My holdings: hold or sell?
 
 The **My holdings** tab (website, iPhone and Windows apps) lets you enter the stocks you own, with quantity,
@@ -90,7 +104,7 @@ Cloudflare redeploys automatically after each weekly commit. The same URL also w
 
 ```bash
 cd desktop && npm install
-NSE_PICKS_FILE=../docs/data/latest.json npm start   # preview the Windows app with local data
+NSE_PICKS_DIR=../docs/data npm start   # preview the Windows app with local data
 ```
 
 All three (website, iPhone app, Windows app) render the same `docs/index.html`.
@@ -123,5 +137,6 @@ stockpicker/
 docs/index.html    the dashboard (static, no build step), also an installable app (manifest, sw.js, icons/)
 desktop/           Windows app (Electron) that shows the same dashboard
 .github/workflows/weekly-picks.yml   weekly model run
+.github/workflows/daily-picks.yml    weekday short-term picks + fresh prices
 .github/workflows/windows-app.yml    builds the Windows installer into Releases
 ```

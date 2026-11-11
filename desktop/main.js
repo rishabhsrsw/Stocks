@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const DEFAULT_REPO = "rishabhsrsw/Stocks";
-const DATA_PATH = "docs/data/latest.json";
+const DATA_FILES = ["latest", "daily"];  // docs/data/<name>.json
 const userFile = (name) => path.join(app.getPath("userData"), name);
 
 let mainWin = null;
@@ -30,8 +30,8 @@ function writeSettings({ repo, token }) {
   fs.writeFileSync(userFile("token.bin"), data);
 }
 
-async function fetchPicks(repo, token) {
-  const res = await fetch(`https://api.github.com/repos/${repo}/contents/${DATA_PATH}`, {
+async function fetchPicks(repo, token, name = "latest") {
+  const res = await fetch(`https://api.github.com/repos/${repo}/contents/docs/data/${name}.json`, {
     headers: {
       Authorization: `Bearer ${token}`,
       Accept: "application/vnd.github.raw+json",
@@ -45,20 +45,22 @@ async function fetchPicks(repo, token) {
   return res.json();
 }
 
-ipcMain.handle("picks:load", async () => {
-  if (process.env.NSE_PICKS_FILE) {  // development: preview the app with a local latest.json
-    return { data: JSON.parse(fs.readFileSync(process.env.NSE_PICKS_FILE, "utf8")), stale: false };
+ipcMain.handle("picks:load", async (_e, name = "latest") => {
+  if (!DATA_FILES.includes(name)) throw new Error("Unknown data file");
+  if (process.env.NSE_PICKS_DIR) {  // development: preview the app with local docs/data files
+    return { data: JSON.parse(fs.readFileSync(path.join(process.env.NSE_PICKS_DIR, `${name}.json`), "utf8")), stale: false };
   }
   const { repo, token } = readSettings();
   if (!token) throw new Error("NO_TOKEN");
+  const cache = userFile(`${name}.json`);
   try {
-    const data = await fetchPicks(repo, token);
-    fs.writeFileSync(userFile("latest.json"), JSON.stringify(data));
+    const data = await fetchPicks(repo, token, name);
+    fs.writeFileSync(cache, JSON.stringify(data));
     return { data, stale: false };
   } catch (err) {
-    // Offline: fall back to the last picks saved on this PC.
-    if (err instanceof TypeError && fs.existsSync(userFile("latest.json"))) {
-      return { data: JSON.parse(fs.readFileSync(userFile("latest.json"), "utf8")), stale: true };
+    // Offline: fall back to the last copy saved on this PC.
+    if (err instanceof TypeError && fs.existsSync(cache)) {
+      return { data: JSON.parse(fs.readFileSync(cache, "utf8")), stale: true };
     }
     throw err;
   }

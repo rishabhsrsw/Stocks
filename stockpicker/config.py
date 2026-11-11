@@ -35,6 +35,16 @@ class Config:
     llm_shortlist: int = 20  # how many top candidates get the Claude news read (if key present)
     llm_model: str = "claude-opus-5-5"
 
+    # Daily picks: a separate short-term model (next ~2 weeks), refreshed every trading day.
+    daily_horizon_days: int = 10
+    daily_top_n: int = 3
+    daily_max_per_sector: int = 1
+    daily_retrain_every_n_days: int = 126  # backtest retrains less often to keep the daily job quick
+    daily_llm_shortlist: int = 8
+    w_daily_model: float = 0.80
+    w_daily_news: float = 0.20
+    round_trip_cost: float = 0.004  # brokerage + STT + slippage for one buy and one sell, as a fraction
+
     # Model / backtest
     sample_every_n_days: int = 5  # weekly snapshots for the training panel
     retrain_every_n_days: int = 63
