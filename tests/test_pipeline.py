@@ -81,6 +81,9 @@ def test_weekly_run_end_to_end(prices, tmp_path):
     assert set(stocks) == set(universe["symbol"])
     assert all(s["verdict"] in holdings.VERDICTS for s in stocks.values())
     assert set(res["backtest"]["verdict_stats"]) <= set(holdings.VERDICTS)
+    # A weekly pick never contradicts the holdings review (e.g. a pick shown as Review).
+    assert all(stocks[p["symbol"]]["verdict"] in ("hold", "strong_hold") for p in res["picks"])
+    assert set(res["backtest"]["trend_check"]["top5"]) == {"downtrend", "no_downtrend"}
     sectors = [p["sector"] for p in res["picks"]]
     assert max(sectors.count(s) for s in sectors) <= cfg.max_per_sector
     saved = json.loads((tmp_path / "latest.json").read_text())

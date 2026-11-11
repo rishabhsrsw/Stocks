@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
 
 from .config import Config
-from .holdings import bucket_stats
+from .holdings import bucket_stats, verdict_frame
 
 log = logging.getLogger(__name__)
 QUANTILES = (0.1, 0.5, 0.9)
@@ -117,7 +117,9 @@ def walk_forward_backtest(panel: pd.DataFrame, trading_days: pd.DatetimeIndex, c
         pred = model.predict(day).join(day[[f"y_ret_{h}", f"y_exc_{h}", "dist_sma200", "sma200_slope"]])
         preds_all.append(pred)
         ic_rows.append({"date": d, "ic": pred["model_score"].corr(pred[f"y_exc_{h}"], method="spearman")})
-        top = pred.nlargest(cfg.top_n, "model_score")
+        # Same rule as the live picks: only stocks the holdings review would also say to hold.
+        ok = verdict_frame(pred).isin(["hold", "strong_hold"])
+        top = pred[ok].nlargest(cfg.top_n, "model_score")
         picks_rows.append({
             "date": d,
             "pick_ret": top[f"y_ret_{h}"].mean(),

@@ -12,6 +12,9 @@ It combines three sources:
 | **Fundamentals** | ROE, earnings and revenue growth, margins, debt/equity and P/E from Yahoo Finance, as a quality tilt. | ❌ |
 
 Final score = 70% model + 15% news + 15% quality, with at most 2 picks per sector and liquidity and volatility filters.
+A pick must also get Hold or Strong hold in the holdings review, so it is never in a long-term downtrend (below a
+falling 200-day average): in the 2021–26 backtest such top-ranked stocks beat the Nifty by ~2% over 5 months,
+against ~18% for the rest. The backtest applies the same rule.
 
 ## What you get for each pick
 

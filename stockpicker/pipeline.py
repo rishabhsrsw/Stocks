@@ -154,6 +154,12 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
     sl["quality"] = quality.reindex(sl.index).fillna(0.5)
     sl["final"] = (cfg.w_model * sl["model_score"] + cfg.w_news * (sl["news"] + 1) / 2 + cfg.w_fundamentals * sl["quality"])
     sl.loc[sl.index.isin(red), "final"] = -1  # never pick a stock with a governance/fraud red flag
+    # Only pick what the holdings review would also say to hold: in the backtest, top-ranked stocks
+    # below a falling 200-day average beat the Nifty by ~2% over 5 months, against ~18% for the rest.
+    verdict = holdings.verdict_frame(
+        main.loc[sl.index, ["model_score", "p_beat"]].join(today[["dist_sma200", "sma200_slope"]])
+        .assign(red_flag=sl.index.isin(red)))
+    sl.loc[~verdict.isin(["hold", "strong_hold"]), "final"] = -1
 
     picks = select_picks(sl, cfg.top_n, cfg.max_per_sector)
 
