@@ -71,22 +71,27 @@ def latest(exchange: str) -> tuple[dt.date | None, pd.DataFrame]:
 OHLCV = {"ClsPric": "close", "HghPric": "high", "LwPric": "low", "TtlTradgVol": "volume"}
 
 
+def ohlcv_from_frames(frames: list[pd.DataFrame]) -> pd.DataFrame:
+    """Parsed bhavcopies (preferred exchange first) -> ISIN -> close/high/low/volume."""
+    out_frames = []
+    for df in frames:
+        if df is None or "ISIN" not in df:
+            continue
+        out = pd.DataFrame({"isin": df["ISIN"].astype(str).str.strip()})
+        for src, dst in OHLCV.items():
+            out[dst] = pd.to_numeric(df[src], errors="coerce").values if src in df else float("nan")
+        out["high"] = out["high"].fillna(out["close"])
+        out["low"] = out["low"].fillna(out["close"])
+        out_frames.append(out.dropna(subset=["close"]))
+    if not out_frames:
+        return pd.DataFrame(columns=["close", "high", "low", "volume"])
+    return pd.concat(out_frames).drop_duplicates("isin").set_index("isin")
+
+
 def ohlcv_by_isin(day: dt.date) -> pd.DataFrame:
     """ISIN -> close/high/low/volume for `day` (NSE row preferred for dual-listed stocks);
     empty if neither exchange traded that day."""
-    frames = []
-    for ex in ("NSE", "BSE"):
-        df = fetch(ex, day)
-        if df is not None and "ISIN" in df:
-            out = pd.DataFrame({"isin": df["ISIN"].str.strip()})
-            for src, dst in OHLCV.items():
-                out[dst] = pd.to_numeric(df[src], errors="coerce").values if src in df else float("nan")
-            out["high"] = out["high"].fillna(out["close"])
-            out["low"] = out["low"].fillna(out["close"])
-            frames.append(out.dropna(subset=["isin", "close"]))
-    if not frames:
-        return pd.DataFrame(columns=["close", "high", "low", "volume"])
-    return pd.concat(frames).drop_duplicates("isin").set_index("isin")
+    return ohlcv_from_frames([fetch("NSE", day), fetch("BSE", day)])
 
 
 def closes_by_isin() -> dict[str, float]:

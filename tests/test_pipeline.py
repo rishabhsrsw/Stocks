@@ -208,48 +208,54 @@ def test_bhavcopy_prices_by_isin(monkeypatch):
     assert bhavcopy.closing_prices(directory) == {"RELIANCE": 1500.5, "SMALL": 12.5}
 
 
-def test_market_history_store(tmp_path, monkeypatch):
+def test_market_history_store(tmp_path):
     from stockpicker import history
-    days = pd.bdate_range("2026-10-01", "2026-11-06")
-    store = history.Store()
-    for f in history.FIELDS:
-        store.frames[f] = pd.DataFrame({"AAA": 100.0, "BBB": 50.0}, index=days)
-    directory = pd.DataFrame({"symbol": ["AAA", "BBB", "CCC"], "isin": ["IN1", "IN2", "IN3"]})
-
-    def fetch(day):  # Monday 9th: normal day; Tuesday 10th: holiday; BBB has a 1:2 split on the 11th
-        if day == dt.date(2026, 11, 10):
-            return pd.DataFrame(columns=["close", "high", "low", "volume"])
-        bbb = 51.0 if day == dt.date(2026, 11, 9) else 25.5
-        return pd.DataFrame({"close": [101.0, bbb], "high": [102.0, bbb], "low": [99.0, bbb], "volume": [1e5, 2e5]},
-                            index=pd.Index(["IN1", "IN2"]))
-
-    assert history.append_bhavcopies(store, directory, today=dt.date(2026, 11, 11), fetch=fetch) == 2
-    assert store.close.index.max() == pd.Timestamp("2026-11-11")
-    assert store.close["AAA"].iloc[-1] == 101.0
-    assert "BBB" not in store.close  # split-like jump: dropped so Yahoo refetches adjusted history
-
-    yahoo_days = pd.bdate_range("2025-01-01", "2026-11-12")  # Yahoo is ahead (12th) and has an intraday bar
-    frame = pd.DataFrame({k: 25.0 for k in ("Close", "High", "Low", "Volume")}, index=yahoo_days)
-
-    def download(tickers, start, deadline):
-        return {t: frame for t in tickers if t == "BBB.NS"}, [t for t in tickers if t != "BBB.NS"]
-
-    added = history.fill_from_yahoo(store, {"BBB": "BBB.NS", "CCC": "CCC.BO", "AAA": "AAA.NS"}, 2, 1,
-                                    today=dt.date(2026, 11, 12), download=download)
-    assert added == 1 and store.close.index.max() == pd.Timestamp("2026-11-11")  # never ahead of the rest
-    assert store.unavailable == {"CCC": "2026-11-12"}
-    # CCC isn't asked for again until four weeks have passed.
+    directory = pd.DataFrame({"symbol": ["AAA", "BSEONLY"], "isin": ["IN1", "IN2"]})
+    today = dt.date(2026, 11, 11)
     calls = []
-    history.fill_from_yahoo(store, {"CCC": "CCC.BO"}, 2, 1, today=dt.date(2026, 11, 20),
-                            download=lambda t, **k: calls.append(t) or ({}, t))
+
+    def read_day(day):  # a holiday on 10 Nov; BSE's file for today isn't out yet
+        calls.append(day)
+        if day == dt.date(2026, 11, 10):
+            return pd.DataFrame(columns=["close", "high", "low", "volume"]), False
+        n = (day - dt.date(2024, 1, 1)).days
+        rows = pd.DataFrame({"close": [100 + n * 0.01, 5.0], "high": [101 + n * 0.01, 5.1],
+                             "low": [99 + n * 0.01, 4.9], "volume": [1e5, 1e3]}, index=pd.Index(["IN1", "IN2"]))
+        return rows, day != today
+
+    store = history.Store()
+    history.sync_bhavcopies(store, directory, 2, budget_minutes=1, today=today, read_day=read_day, pause=0)
+    assert calls[0] == today  # newest first
+    assert set(store.close.columns) == {"AAA", "BSEONLY"} and len(store.close) > 450
+    assert today not in store.done and dt.date(2026, 11, 10) not in store.done  # retried next run
+    calls.clear()
+    history.sync_bhavcopies(store, directory, 2, budget_minutes=1, today=today, read_day=read_day, pause=0)
+    assert sorted(calls) == [dt.date(2026, 11, 10), today]
+    # Out of time: nothing read, and the store is untouched.
+    calls.clear()
+    history.sync_bhavcopies(store, directory, 2, budget_minutes=-1, today=dt.date(2026, 11, 12),
+                            read_day=read_day, pause=0)
     assert calls == []
 
     history.save(store, tmp_path / "h.pkl")
     again = history.load(tmp_path / "h.pkl")
-    bench = pd.Series(1.0, index=yahoo_days)
-    p = history.to_prices(again, ["AAA", "BBB", "CCC"], bench, min_rows=100)
-    assert list(p.close.columns) == ["BBB"] and p.benchmark.notna().all()  # AAA has only ~30 days
+    bench = pd.Series(1.0, index=pd.bdate_range("2024-01-01", "2026-11-11"))
+    p = history.to_prices(again, ["AAA", "BSEONLY"], bench, min_rows=252)
+    assert list(p.close.columns) == ["AAA", "BSEONLY"] and p.benchmark.notna().all()
 
+    # A 1:1 bonus halves the price: earlier history is scaled so it isn't a 50% crash.
+    days = pd.bdate_range("2025-01-01", periods=300)
+    px = pd.Series(100.0, index=days)
+    px.iloc[200:] = 50.0
+    split = history.Store()
+    for f in history.FIELDS:
+        split.frames[f] = pd.DataFrame({"S": px if f != "volume" else 1000.0}, index=days)
+    p = history.to_prices(split, ["S"], pd.Series(1.0, index=days), min_rows=252)
+    assert p.close["S"].nunique() == 1 and p.close["S"].iloc[0] == 50.0
+    assert p.volume["S"].iloc[0] == 2000.0 and p.volume["S"].iloc[-1] == 1000.0
+
+def test_market_history_gaps():
+    from stockpicker import history
     # A small stock with no trades on some days: carried over on the market calendar, volume 0.
     gappy = history.Store()
     cal = pd.bdate_range("2024-01-01", "2026-11-06")

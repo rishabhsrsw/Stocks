@@ -1,13 +1,15 @@
-"""Price history for the whole market, kept between runs and extended from the exchange files.
+"""Price history for the whole market, built from the official NSE/BSE daily files and kept between runs.
 
-Downloading two years of history for ~4,500 stocks from Yahoo every week trips its rate limit
-(a run took over 90 minutes and was cancelled). Instead the history is stored (CI keeps it in
-the Actions cache) and each run only:
-  * appends the days since the last run from the official NSE/BSE bhavcopies (2 files a day),
-  * fetches from Yahoo the stocks it doesn't have yet, within a time budget; the rest wait
-    for the next run, so the first full seed may take a couple of runs.
-Bhavcopy prices aren't adjusted for splits and bonuses, so a stock whose price jumps like a
-split is dropped and refetched (adjusted) from Yahoo.
+Yahoo can't serve this: it rate-limits downloads of thousands of stocks, and doesn't carry most
+BSE-only companies at all. The exchanges publish one "bhavcopy" per day with the open/high/low/
+close and volume of every traded stock, in the current (UDiFF) format since July 2024. So the
+store (kept in the Actions cache by CI) is filled one trading day at a time:
+  * newest days first, so recent history is usable while the 2-year backfill is still running,
+  * within a time budget per run; days not reached yet are fetched by the next run,
+  * a day is only marked done once both exchanges' files were read (or it is clearly a holiday).
+Exchange prices aren't adjusted for splits and bonuses. Stocks outside the F&O segment can't move
+more than 20% in a day (price bands), so a bigger one-day jump is a corporate action, and the
+earlier history is scaled to remove it (`adjust_corporate_actions`).
 """
 from __future__ import annotations
 
@@ -18,33 +20,30 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from . import bhavcopy
 from .config import CACHE_DIR
-from .data import Prices, _paced_download
+from .data import Prices
 
 log = logging.getLogger(__name__)
 
 STORE_FILE = CACHE_DIR / "market_history.pkl"
 FIELDS = ("close", "high", "low", "volume")
-YAHOO_FIELDS = {"close": "Close", "high": "High", "low": "Low", "volume": "Volume"}
-SPLIT_JUMP = (0.55, 1.8)  # one-day close ratio outside this range looks like a split/bonus, not a move
-RETRY_UNAVAILABLE_DAYS = 28  # a stock Yahoo didn't have is asked for again after this long
+ACTION_JUMP = (0.7, 1.43)  # one-day close ratio outside this range is a split/bonus, not a trade
+HOLIDAY_AFTER_DAYS = 5  # a weekday with no file this long ago was a holiday, not a late upload
+UDIFF_START = dt.date(2024, 7, 8)  # first day both exchanges published in the current format
 
 
 @dataclass
 class Store:
     frames: dict[str, pd.DataFrame] = field(default_factory=lambda: {f: pd.DataFrame() for f in FIELDS})
-    unavailable: dict[str, str] = field(default_factory=dict)  # symbol -> ISO date Yahoo last had nothing
+    done: set = field(default_factory=set)  # trading days already read from both exchanges
 
     @property
     def close(self) -> pd.DataFrame:
         return self.frames["close"]
-
-    def drop(self, symbols) -> None:
-        for f in FIELDS:
-            self.frames[f] = self.frames[f].drop(columns=list(symbols), errors="ignore")
 
 
 def load(path: Path = STORE_FILE) -> Store:
@@ -52,11 +51,13 @@ def load(path: Path = STORE_FILE) -> Store:
         try:
             with open(path, "rb") as fh:
                 store = pickle.load(fh)
-            log.info("Market history: %d stocks up to %s", store.close.shape[1],
-                     store.close.index.max().date() if len(store.close) else "-")
+            if not isinstance(store, Store) or not hasattr(store, "done"):
+                raise ValueError("older format")
+            log.info("Market history: %d stocks, %d days read (%s to %s)", store.close.shape[1], len(store.done),
+                     min(store.done, default="-"), max(store.done, default="-"))
             return store
         except Exception as exc:  # a corrupt or outdated cache just means starting over
-            log.warning("Ignoring unreadable market history (%s)", exc)
+            log.warning("Starting a new market history (%s)", exc)
     return Store()
 
 
@@ -68,80 +69,79 @@ def save(store: Store, path: Path = STORE_FILE) -> None:
     tmp.replace(path)
 
 
-def append_bhavcopies(store: Store, directory: pd.DataFrame, today: dt.date | None = None,
-                      max_days: int = 30, fetch=bhavcopy.ohlcv_by_isin) -> int:
-    """Add each trading day since the last stored date from the exchange files. Returns days added."""
-    if store.close.empty:
-        return 0
-    today = today or dt.date.today()
-    last = store.close.index.max().date()
-    days = [d for d in pd.bdate_range(last + dt.timedelta(days=1), today).date][-max_days:]
-    isin_of = {s: i for s, i in zip(directory["symbol"], directory["isin"]) if isinstance(i, str)}
-    added = 0
-    for day in days:
-        rows = fetch(day)
-        if rows.empty:
-            continue  # holiday, or not published yet: picked up by the next run
-        syms = [s for s in store.close.columns if isin_of.get(s) in rows.index]
-        sub = rows.loc[[isin_of[s] for s in syms]]
-        ts = pd.Timestamp(day)
-        for f in FIELDS:
-            new = pd.DataFrame([sub[f].to_numpy()], index=[ts], columns=syms)
-            store.frames[f] = pd.concat([store.frames[f], new]).sort_index()
-        added += 1
-    if added:
-        recent = store.close.iloc[-(added + 1):].ffill()
-        ratio = (recent / recent.shift(1)).iloc[1:]
-        jumped = ratio.columns[((ratio < SPLIT_JUMP[0]) | (ratio > SPLIT_JUMP[1])).any()]
-        if len(jumped):
-            log.info("Refetching %d stocks with split-like jumps: %s", len(jumped), ", ".join(jumped[:10]))
-            store.drop(jumped)
-        log.info("Market history: added %d day(s) from the exchange files, now up to %s",
-                 added, store.close.index.max().date())
-    return added
+def _read_day(day: dt.date) -> tuple[pd.DataFrame, bool]:
+    """(rows by ISIN, whether both exchanges answered) without keeping the files in memory."""
+    frames, complete = [], True
+    for ex in ("NSE", "BSE"):
+        df = bhavcopy.fetch.__wrapped__(ex, day)
+        if df is None:
+            complete = False
+        else:
+            frames.append(df)
+    return bhavcopy.ohlcv_from_frames(frames), complete
 
 
-def fill_from_yahoo(store: Store, tickers: dict[str, str], years: int, budget_minutes: float,
-                    today: dt.date | None = None, download=_paced_download) -> int:
-    """Fetch the stocks in `tickers` (symbol -> Yahoo ticker) that the store lacks. Returns stocks added."""
+def sync_bhavcopies(store: Store, directory: pd.DataFrame, years: int, budget_minutes: float,
+                    today: dt.date | None = None, read_day=_read_day, pause: float = 0.3) -> int:
+    """Read every trading day of the last `years` not read yet, newest first, within the budget.
+    Returns the number of days read."""
     today = today or dt.date.today()
-    cutoff = (today - dt.timedelta(days=RETRY_UNAVAILABLE_DAYS)).isoformat()
-    have = set(store.close.columns)
-    todo = {s: t for s, t in tickers.items() if s not in have and store.unavailable.get(s, "") < cutoff}
+    start = max(today - dt.timedelta(days=int(365.25 * years) + 7), UDIFF_START)
+    todo = [d for d in pd.bdate_range(start, today).date[::-1] if d not in store.done]
     if not todo:
         return 0
-    log.info("Fetching history for %d new stocks from Yahoo (budget %.0f min)", len(todo), budget_minutes)
-    start = (today - dt.timedelta(days=int(365.25 * years))).isoformat()
-    to_sym = {t: s for s, t in todo.items()}
-    got, failed = download(list(to_sym), start=start, deadline=time.monotonic() + 60 * budget_minutes)
-    for t in failed:
-        store.unavailable[to_sym[t]] = today.isoformat()
-    if not got:
-        return 0
-    last = store.close.index.max() if not store.close.empty else None
-    for f, yf in YAHOO_FIELDS.items():
-        new = pd.DataFrame({to_sym[t]: fr[yf] for t, fr in got.items()})
-        if new.index.tz is not None:
-            new.index = new.index.tz_localize(None)
-        new.index = new.index.normalize()
-        new = new[new.index.date < today]  # today's bar may be intraday; the exchange file adds it later
-        if last is not None:  # never run ahead of the other stocks, or they'd get a gap on that day
-            new = new[new.index <= last]
-        store.frames[f] = store.frames[f].join(new, how="outer") if not store.frames[f].empty else new
-    for t in got:
-        store.unavailable.pop(to_sym[t], None)
-    return len(got)
+    log.info("Market history: %d trading days to read from the exchange files (budget %.0f min)",
+             len(todo), budget_minutes)
+    sym_of = {i: s for s, i in zip(directory["symbol"], directory["isin"]) if isinstance(i, str)}
+    deadline = time.monotonic() + 60 * budget_minutes
+    batch: dict[str, dict[pd.Timestamp, pd.Series]] = {f: {} for f in FIELDS}
+    read = 0
+    for day in todo:
+        if time.monotonic() > deadline:
+            log.info("Time budget used up: %d days left for the next run", len(todo) - read)
+            break
+        rows, complete = read_day(day)
+        read += 1
+        if not rows.empty:
+            rows = rows[rows.index.isin(sym_of.keys())]
+            rows.index = rows.index.map(sym_of)
+            rows = rows[~rows.index.duplicated()]
+            for f in FIELDS:
+                batch[f][pd.Timestamp(day)] = rows[f]
+        if complete or (today - day).days > HOLIDAY_AFTER_DAYS:
+            store.done.add(day)
+        time.sleep(pause)
+    if any(batch["close"]):
+        for f in FIELDS:
+            new = pd.DataFrame(batch[f]).T.sort_index()
+            old = store.frames[f]
+            store.frames[f] = new if old.empty else old.combine_first(new)
+        log.info("Market history: now %d stocks from %s to %s", store.close.shape[1],
+                 store.close.index.min().date(), store.close.index.max().date())
+    return read
 
 
 def trim(store: Store, years: int, today: dt.date | None = None) -> None:
     start = pd.Timestamp((today or dt.date.today()) - dt.timedelta(days=int(365.25 * years) + 7))
     for f in FIELDS:
         store.frames[f] = store.frames[f][store.frames[f].index >= start]
+    store.done = {d for d in store.done if pd.Timestamp(d) >= start}
+
+
+def adjust_corporate_actions(close: pd.DataFrame, observed: pd.DataFrame) -> pd.DataFrame:
+    """Factor to multiply each price by so that splits/bonuses don't show up as crashes.
+    `observed` marks real (not carried-over) prices; jumps are measured between real prices."""
+    prev = close.where(observed).ffill().shift(1)
+    ratio = (close / prev).where(observed)
+    jumps = ratio.where((ratio < ACTION_JUMP[0]) | (ratio > ACTION_JUMP[1])).fillna(1.0)
+    # Each price is scaled by every jump that comes after it.
+    after = jumps.iloc[::-1].cumprod().iloc[::-1].shift(-1).fillna(1.0)
+    return after
 
 
 def to_prices(store: Store, symbols, benchmark: pd.Series, min_rows: int, max_gap: int = 10) -> Prices | None:
-    """Prices on the market's trading calendar. Small stocks skip days with no trades, and a gap
-    anywhere in a 200-day window would blank out the moving averages, liquidity and volatility
+    """Adjusted prices on the market's trading calendar. Small stocks skip days with no trades, and a
+    gap anywhere in a 200-day window would blank out the moving averages, liquidity and volatility
     features, so the last close is carried over no-trade days (up to `max_gap` sessions, so a stock
     that stopped trading still drops out) with zero volume."""
     cols = [s for s in symbols if s in store.close.columns]
@@ -153,12 +153,13 @@ def to_prices(store: Store, symbols, benchmark: pd.Series, min_rows: int, max_ga
     bench_days = benchmark.dropna().index
     idx = bench_days[(bench_days >= lo) & (bench_days <= hi)].union(raw.index[raw.index > bench_days.max()])
     observed = raw.reindex(idx).notna()
-    close = raw.reindex(idx).ffill(limit=max_gap)
+    factor = adjust_corporate_actions(raw.reindex(idx), observed)
+    close = (raw.reindex(idx) * factor).ffill(limit=max_gap)
     filled = close.notna() & ~observed
-    high = store.frames["high"][close.columns].reindex(idx).where(observed).fillna(close)
-    low = store.frames["low"][close.columns].reindex(idx).where(observed).fillna(close)
-    volume = store.frames["volume"][close.columns].reindex(idx).where(~filled, 0.0)
+    high = (store.frames["high"][close.columns].reindex(idx) * factor).where(observed).fillna(close)
+    low = (store.frames["low"][close.columns].reindex(idx) * factor).where(observed).fillna(close)
+    volume = (store.frames["volume"][close.columns].reindex(idx) / factor).where(~filled, 0.0)
     return Prices(
-        close=close, high=high, low=low, volume=volume,
+        close=close, high=high, low=low, volume=volume.replace([np.inf, -np.inf], np.nan),
         benchmark=benchmark.reindex(benchmark.index.union(idx)).ffill().reindex(idx),
     )

@@ -70,9 +70,7 @@ def main() -> None:
         extra = bhavcopy.closing_prices(directory)  # official closing prices for every listed stock
         try:  # keep the stored whole-market history current, so the weekly run has little to fetch
             store = history.load()
-            history.append_bhavcopies(store, directory)
-            history.fill_from_yahoo(store, other_tickers(directory, symbols), cfg.extended_years,
-                                    cfg.daily_yahoo_minutes)
+            history.sync_bhavcopies(store, directory, cfg.extended_years, cfg.daily_history_minutes)
             history.trim(store, cfg.extended_years)
             history.save(store)
         except Exception as exc:
@@ -92,8 +90,7 @@ def main() -> None:
     other = other_tickers(directory, symbols)
     store = history.load()
     try:
-        history.append_bhavcopies(store, directory)
-        history.fill_from_yahoo(store, other, cfg.extended_years, cfg.extended_yahoo_minutes)
+        history.sync_bhavcopies(store, directory, cfg.extended_years, cfg.extended_history_minutes)
     finally:  # keep whatever was fetched, even if this run fails later
         history.trim(store, cfg.extended_years)
         history.save(store)

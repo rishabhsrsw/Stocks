@@ -56,10 +56,11 @@ stock does next. Picks still come from the Nifty 200, but the holdings review co
   caps their verdict at Hold (the backtest never covered stocks this small), and flags thinly traded stocks.
 * Companies with under a year of trading (recent IPOs), or that haven't traded for two weeks, get no verdict, but still
   show price and P&L from the daily closing prices.
-* The whole-market price history is kept in the GitHub Actions cache (`stockpicker/history.py`). Each daily run
-  appends that day's official NSE/BSE closing files, so the weekly run only asks Yahoo for stocks it hasn't seen
-  (at most 40 minutes a run; anything left over is fetched the next week). Stocks whose price jumps like a split are
-  refetched with adjusted history.
+* The whole-market price history is built from the official NSE/BSE daily files ("bhavcopies"), not Yahoo
+  (which rate-limits big downloads and doesn't carry most BSE-only companies). It is kept in the GitHub Actions
+  cache (`stockpicker/history.py`): the first runs backfill 2 years, newest days first, within a time budget,
+  and each daily run adds that day. Splits and bonuses are adjusted automatically: outside F&O, stocks can't
+  move more than 20% in a day, so a bigger jump is a corporate action.
 
 Holdings are stored only on the device (with a copy/restore backup), never uploaded.
 
