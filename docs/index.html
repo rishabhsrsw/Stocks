@@ -654,14 +654,28 @@ function setupHoldings(payload) {
     document.getElementById("h-form").querySelector("button").disabled = true;
     return;
   }
-  const keyed = all.map(s => ({s, sym: s.symbol.toLowerCase(), name: s.name.toLowerCase()}));
+  // Search text: symbol, name, and for funds the category ("ETF · Silver") and kind, so "tata silver",
+  // "silver etf" or "gold bond" all find the right funds.
+  const keyed = all.map(s => {
+    const kind = s.kind === "etf" ? "etf fund" : s.kind === "sgb" ? "sovereign gold bond sgb" : "";
+    const text = `${s.symbol} ${s.name} ${s.sector || ""} ${kind}`.toLowerCase().replace(/[^a-z0-9&]+/g, " ");
+    return {s, sym: s.symbol.toLowerCase(), name: s.name.toLowerCase(), text, words: text.split(" ")};
+  });
   const list = document.getElementById("h-list"), input = document.getElementById("h-sym");
   const matches = q => {
     q = q.trim().toLowerCase();
     if (!q) return [];
-    const starts = keyed.filter(k => k.sym.startsWith(q) || k.name.startsWith(q));
-    const contains = q.length >= 3 ? keyed.filter(k => !starts.includes(k) && k.name.includes(q)) : [];
-    return starts.concat(contains).slice(0, 25).map(k => k.s);
+    const terms = q.replace(/[^a-z0-9&]+/g, " ").trim().split(" ").filter(Boolean);
+    const score = k => {
+      if (k.sym === q) return 0;
+      if (k.sym.startsWith(q)) return 1;
+      if (k.name.startsWith(q)) return 2;
+      // every word typed starts a word of the listing (or, from 3 letters, appears anywhere in it)
+      const ok = terms.every(t => k.words.some(w => w.startsWith(t)) || (t.length >= 3 && k.text.includes(t)));
+      return ok ? 3 : -1;
+    };
+    return keyed.map(k => [score(k), k]).filter(([v]) => v >= 0)
+      .sort((a, b) => a[0] - b[0]).slice(0, 25).map(([, k]) => k.s);
   };
   input.oninput = () => {  // only a short suggestion list: thousands of options would be slow on phones
     list.innerHTML = matches(input.value).map(s => `<option value="${esc(s.symbol)}">${esc(s.name)} · ${esc(s.kind && s.kind !== "stock" ? (s.kind === "sgb" ? "Gold bond" : "ETF") + " · " : "")}${esc(s.exchange || "NSE")}</option>`).join("");
