@@ -83,6 +83,25 @@ svg text { fill: var(--muted); font-size: 11px; }
 .legend span::before { content: ""; display: inline-block; width: 14px; height: 3px; border-radius: 2px; background: var(--c); vertical-align: middle; margin-right: 6px; }
 .flag { color: var(--bad); font-weight: 600; }
 #err { display: none; }
+.tabs { display: inline-flex; gap: 4px; padding: 4px; margin: 8px 0 0; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; }
+.tabs button { font: inherit; font-size: 14px; border: 0; background: transparent; color: var(--ink-2); padding: 6px 16px; border-radius: 999px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--page); }
+.hform { display: grid; gap: 10px; grid-template-columns: 2fr 1fr 1fr 1fr auto; align-items: end; }
+@media (max-width: 720px) { .hform { grid-template-columns: 1fr 1fr; } .hform label:first-child { grid-column: 1 / -1; } }
+.hform label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); min-width: 0; }
+.hform input { font: inherit; font-size: 15px; color: var(--ink); background: var(--page); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; min-width: 0; width: 100%; }
+.btn.primary { background: var(--series-1); border-color: var(--series-1); color: #fff; padding: 9px 18px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; border: 1.5px solid var(--vc); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.badge i { font-style: normal; color: var(--vc); font-weight: 700; }
+.v-strong_hold { --vc: var(--good); } .v-hold { --vc: var(--muted); } .v-review { --vc: var(--warn); } .v-exit { --vc: var(--bad); }
+.card.v-review, .card.v-exit, .card.v-strong_hold { border-left: 3px solid var(--vc); }
+ul.why { margin: 6px 0; padding-left: 0; list-style: none; font-size: 14px; color: var(--ink-2); }
+ul.why li { padding-left: 20px; position: relative; margin: 3px 0; }
+ul.why li::before { position: absolute; left: 0; font-weight: 700; }
+ul.why.pos li::before { content: "✓"; color: var(--good); }
+ul.why.neg li::before { content: "!"; color: var(--warn); left: 4px; }
+.link { font: inherit; font-size: 13px; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospace; color: var(--ink); background: var(--page); border: 1px solid var(--border); border-radius: 8px; padding: 8px; }
 </style>
 </head>
 <body>
@@ -94,7 +113,12 @@ svg text { fill: var(--muted); font-size: 11px; }
   <p class="sub" id="meta">Loading…</p>
   <div class="note"><b>Not investment advice.</b> These picks come from a statistical model trained on past prices, plus automated reading of news headlines and basic fundamentals. Markets are noisy, and a 5-month forecast has wide error bars (see each range and the backtest below). Size positions as if any single pick can fall 20–30%, and do your own research before buying.</div>
   <div class="note" id="err"></div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-btn-picks" aria-selected="true" data-tab="picks">Weekly picks</button>
+    <button role="tab" id="tab-btn-holdings" aria-selected="false" data-tab="holdings">My holdings</button>
+  </div>
 
+  <section id="tab-picks">
   <h2>This week's top 5 (5-month view)</h2>
   <div class="grid" id="picks"></div>
 
@@ -129,6 +153,33 @@ svg text { fill: var(--muted); font-size: 11px; }
       <li><b>Final score</b> = 70% model + 15% news + 15% quality, at most 2 picks per sector. Only the model part is backtested; news and fundamentals aren't available point-in-time historically.</li>
     </ol>
   </div>
+  </section>
+
+  <section id="tab-holdings" hidden>
+  <h2>Should I hold or sell?</h2>
+  <p class="muted" style="margin-top:-4px">Add what you own. Each stock gets a verdict from the same model, based on its outlook from today. Your buy price is used for profit/loss and tax timing only: what you paid doesn't change what the stock does next. Covers the Nifty 500. Holdings are saved on this device only.</p>
+  <div class="card">
+    <form id="h-form" class="hform" autocomplete="off">
+      <label>Stock (NSE symbol or name)<input id="h-sym" list="h-list" placeholder="e.g. TCS or Infosys" required></label>
+      <label>Quantity<input id="h-qty" type="number" min="0" step="any" inputmode="decimal" required></label>
+      <label>Avg buy price ₹<input id="h-price" type="number" min="0" step="any" inputmode="decimal" required></label>
+      <label>Buy date (optional)<input id="h-date" type="date"></label>
+      <button class="btn primary" type="submit">Add</button>
+    </form>
+    <datalist id="h-list"></datalist>
+    <p class="muted" id="h-msg" style="margin:8px 0 0" role="status"></p>
+  </div>
+  <div class="tiles" id="h-summary" style="margin-top:16px"></div>
+  <div class="grid" id="h-cards"></div>
+  <div id="h-alt"></div>
+  <div class="card" id="h-evidence" style="margin-top:16px" hidden></div>
+  <details class="card" style="margin-top:16px">
+    <summary>Back up or move your holdings</summary>
+    <p class="muted">Copy this text somewhere safe, or paste it into the app on another device and press Restore.</p>
+    <textarea id="h-backup" rows="4" spellcheck="false"></textarea>
+    <div style="margin-top:8px"><button class="btn" id="h-copy">Copy</button> <button class="btn" id="h-restore">Restore</button></div>
+  </details>
+  </section>
 </main>
 <script>
 const pct = (x, d = 1) => x == null ? "–" : (x > 0 ? "+" : "") + (x * 100).toFixed(d) + "%";
@@ -284,6 +335,220 @@ function decileChart(host, dec) {
 
 function tile(v, l, c = "") { return `<div class="tile"><div class="v ${c}">${v}</div><div class="l">${l}</div></div>`; }
 
+// ---------------------------------------------------------------- tabs
+let DATA = null;
+const pending = {picks: [], holdings: []};
+function currentTab() { return document.getElementById("tab-holdings").hidden ? "picks" : "holdings"; }
+function whenVisible(tab, fn) { currentTab() === tab ? fn() : pending[tab].push(fn); }
+function showTab(tab) {
+  for (const t of ["picks", "holdings"]) {
+    document.getElementById("tab-" + t).hidden = t !== tab;
+    document.getElementById("tab-btn-" + t).setAttribute("aria-selected", String(t === tab));
+  }
+  try { localStorage.setItem("nse-tab", tab); } catch (_) {}
+  pending[tab].splice(0).forEach(fn => fn());
+}
+document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => showTab(b.dataset.tab));
+try { if (localStorage.getItem("nse-tab") === "holdings" || location.hash === "#holdings") showTab("holdings"); } catch (_) {}
+
+// ---------------------------------------------------------------- holdings
+const H_KEY = "nse-holdings-v1";
+const VERDICT = {
+  strong_hold: {label: "Strong hold", icon: "▲"},
+  hold: {label: "Hold", icon: "●"},
+  review: {label: "Review", icon: "!"},
+  exit: {label: "Consider selling", icon: "✕"},
+};
+// Verdicts are relative: in a falling market even a "Strong hold" can have a negative forecast.
+const VERDICT_TEXT = {
+  strong_hold: "Rated among the better stocks for the next 5 months, compared with the rest of the market.",
+  hold: "Middle of the pack compared with the market: no strong reason to sell or to add more.",
+  review: "Weaker outlook than most stocks, or in a downtrend. Watch it closely and consider trimming.",
+  exit: "Likely to lag the market over the next 5 months. Consider switching to a stronger stock.",
+  exit_flag: "Recent news includes a red flag (fraud, raid, default or regulator action). Consider selling.",
+};
+const inr = (x, d = 0) => "₹" + Number(x).toLocaleString("en-IN", {maximumFractionDigits: d, minimumFractionDigits: d});
+const badge = v => `<span class="badge v-${v}"><i aria-hidden="true">${VERDICT[v].icon}</i>${VERDICT[v].label}</span>`;
+
+function loadHoldings() {
+  try { const h = JSON.parse(localStorage.getItem(H_KEY) || "[]"); return Array.isArray(h) ? h : []; } catch (_) { return []; }
+}
+function saveHoldings(h) {
+  try { localStorage.setItem(H_KEY, JSON.stringify(h)); return true; } catch (_) { return false; }
+}
+
+function taxNote(h, s) {
+  if (!h.date) return "";
+  const days = Math.floor((Date.now() - new Date(h.date)) / 864e5);
+  if (!(days >= 0)) return "";
+  const gain = (s.price - h.price) * h.qty;
+  if (days >= 365) return `Held ${days} days, so a sale counts as long-term (gains above ₹1.25 lakh a year taxed at 12.5%).`;
+  const lt = new Date(new Date(h.date).getTime() + 366 * 864e5).toLocaleDateString("en-IN", {day: "numeric", month: "short", year: "numeric"});
+  return gain > 0
+    ? `Held ${days} days. Selling now makes this ${inr(gain)} gain short-term (taxed at 20%); it turns long-term (12.5%) after ${lt}. Weigh that against the outlook.`
+    : `Held ${days} days. A short-term loss can be set off against other capital gains.`;
+}
+
+function holdingCard(h, s, i) {
+  const value = s.price * h.qty, cost = h.price * h.qty, pnl = value - cost, pnlPct = cost ? pnl / cost : 0;
+  const f5 = s.forecast["5m"], f3 = s.forecast["3m"];
+  const card = document.createElement("div");
+  card.className = "card v-" + s.verdict;
+  const tax = taxNote(h, s);
+  card.innerHTML = `
+    <div class="card-head">
+      <div><div class="rank">NSE: ${esc(s.symbol)}</div><h3>${esc(s.name)}</h3></div>
+      <div>${badge(s.verdict)}</div>
+    </div>
+    <p style="margin:8px 0;font-size:14px">${VERDICT_TEXT[s.red_flag ? "exit_flag" : s.verdict]}</p>
+    <div class="kv">
+      <div>Price<b>${inr(s.price, 2)}</b></div>
+      <div>Your avg<b>${inr(h.price, 2)}</b></div>
+      <div>Qty<b>${Number(h.qty).toLocaleString("en-IN")}</b></div>
+      <div>Value<b>${inr(value)}</b></div>
+      <div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${inr(Math.abs(pnl))}</b></div>
+      <div>Return<b class="${cls(pnlPct)}">${pct(pnlPct)}</b></div>
+    </div>
+    <div class="muted">Outlook from today</div>
+    <div class="kv" style="margin-top:4px">
+      <div>3 months<b class="${cls(f3.q50)}">${pct(f3.q50)}</b></div>
+      <div>5 months<b class="${cls(f5.q50)}">${pct(f5.q50)}</b></div>
+      <div>P(beat Nifty)<b>${(f5.p_beat_nifty * 100).toFixed(0)}%</b></div>
+    </div>
+    <div class="range"></div>
+    <div class="muted">Last 6 months</div>
+    <div class="spark"></div>
+    ${s.news_summary ? `<p style="font-size:14px;margin:8px 0"><b>News read:</b> ${esc(s.news_summary)}</p>` : ""}
+    ${s.positives.length ? `<ul class="why pos">${s.positives.map(r => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}
+    ${s.concerns.length ? `<ul class="why neg">${s.concerns.map(r => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}
+    ${tax ? `<p class="muted" style="margin:8px 0">${esc(tax)}</p>` : ""}
+    <p class="muted" style="margin:8px 0">If the 5-month median plays out: ${inr(value * (1 + f5.q50))} (${pct((value * (1 + f5.q50) - cost) / cost)} on what you paid).</p>
+    <button class="link" data-remove="${i}">Remove</button>`;
+  card.querySelector(".range").appendChild(rangeBar(f5));
+  card.querySelector(".spark").appendChild(sparkline(s.spark));
+  return card;
+}
+
+function renderHoldings() {
+  const d = DATA, holdings = loadHoldings();
+  const bySym = new Map((d.stocks || []).map(s => [s.symbol, s]));
+  const cards = document.getElementById("h-cards");
+  cards.innerHTML = "";
+  let cost = 0, value = 0;
+  const counts = {};
+  const rows = holdings.map((h, i) => ({h, i, s: bySym.get(h.symbol)}));
+  const order = {exit: 0, review: 1, hold: 2, strong_hold: 3};
+  rows.sort((a, b) => (a.s ? order[a.s.verdict] : -1) - (b.s ? order[b.s.verdict] : -1));
+  for (const {h, i, s} of rows) {
+    if (!s) {
+      const c = document.createElement("div");
+      c.className = "card";
+      c.innerHTML = `<h3>${esc(h.symbol)}</h3><p class="muted">Not in this week's data (it may have left the Nifty 500). No verdict available.</p><button class="link" data-remove="${i}">Remove</button>`;
+      cards.appendChild(c);
+      continue;
+    }
+    cost += h.price * h.qty; value += s.price * h.qty;
+    counts[s.verdict] = (counts[s.verdict] || 0) + 1;
+    cards.appendChild(holdingCard(h, s, i));
+  }
+  cards.querySelectorAll("[data-remove]").forEach(b => b.onclick = () => {
+    const h = loadHoldings();
+    h.splice(Number(b.dataset.remove), 1);
+    saveHoldings(h);
+    renderHoldings();
+  });
+
+  const sum = document.getElementById("h-summary");
+  sum.innerHTML = holdings.length ? tile(inr(cost), "Invested") + tile(inr(value), `Value at ${d.as_of} close`) +
+    tile((value - cost >= 0 ? "+" : "−") + inr(Math.abs(value - cost)), "Profit / loss", cls(value - cost)) +
+    tile(pct(cost ? (value - cost) / cost : 0), "Return", cls(value - cost)) +
+    Object.keys(VERDICT).filter(k => counts[k]).map(k => tile(String(counts[k]), badge(k))).join("") : "";
+
+  // Suggest this week's picks when something looks weak.
+  const weak = rows.filter(r => r.s && (r.s.verdict === "exit" || r.s.verdict === "review")).length;
+  const held = new Set(holdings.map(h => h.symbol));
+  const alts = d.picks.filter(p => !held.has(p.symbol));
+  document.getElementById("h-alt").innerHTML = weak && alts.length ? `
+    <h2>Stronger candidates this week</h2>
+    <div class="card scroll"><table>
+      <tr><th>Symbol</th><th>Company</th><th class="num">Median 5m</th><th class="num">P(beat Nifty)</th></tr>
+      ${alts.map(p => `<tr><td>${esc(p.symbol)}</td><td>${esc(p.name)}</td><td class="num ${cls(p.forecast["5m"].q50)}">${pct(p.forecast["5m"].q50)}</td><td class="num">${(p.forecast["5m"].p_beat_nifty * 100).toFixed(0)}%</td></tr>`).join("")}
+    </table><p class="muted">From the Weekly picks tab. Switching only makes sense if the gap outweighs taxes and brokerage.</p></div>` : "";
+
+  document.getElementById("h-backup").value = JSON.stringify(holdings);
+  if (!holdings.length) cards.innerHTML = '<p class="muted">No holdings yet. Add your first stock above.</p>';
+}
+
+function renderEvidence(d) {
+  const vs = d.backtest && d.backtest.verdict_stats;
+  const box = document.getElementById("h-evidence");
+  if (!vs) return;
+  box.hidden = false;
+  box.innerHTML = `<h3>Can you trust the verdicts?</h3>
+    <p class="muted">How stocks with each verdict actually did over the next 5 months in the ${d.backtest.period_start.slice(0, 4)}–${d.backtest.period_end.slice(0, 4)} backtest (Nifty 200, before costs). Compare the rows with each other: the backtest only includes stocks still in the index today, which flatters every row.</p>
+    <div class="scroll"><table>
+      <tr><th>Verdict</th><th class="num">Avg 5-month return</th><th class="num">vs Nifty</th><th class="num">Went up</th><th class="num">Share of stocks</th></tr>
+      ${Object.keys(VERDICT).filter(k => vs[k]).map(k => `<tr><td>${badge(k)}</td><td class="num ${cls(vs[k].avg_return)}">${pct(vs[k].avg_return)}</td><td class="num ${cls(vs[k].avg_excess)}">${pct(vs[k].avg_excess)}</td><td class="num">${(vs[k].share_positive * 100).toFixed(0)}%</td><td class="num">${(vs[k].share * 100).toFixed(0)}%</td></tr>`).join("")}
+    </table></div>`;
+}
+
+function setupHoldings(d) {
+  const stocks = d.stocks || [];
+  if (!stocks.length) {
+    document.getElementById("h-cards").innerHTML = '<p class="muted">Holdings review will be available after the next weekly update.</p>';
+    document.getElementById("h-form").querySelector("button").disabled = true;
+    return;
+  }
+  document.getElementById("h-list").innerHTML = stocks.map(s => `<option value="${esc(s.symbol)}">${esc(s.name)}</option>`).join("");
+  const find = q => {
+    q = q.trim().toLowerCase();
+    return stocks.find(s => s.symbol.toLowerCase() === q) || stocks.find(s => s.name.toLowerCase() === q) ||
+      (q.length >= 3 ? stocks.find(s => s.name.toLowerCase().startsWith(q)) : undefined);
+  };
+  const msg = document.getElementById("h-msg");
+  document.getElementById("h-form").onsubmit = e => {
+    e.preventDefault();
+    const s = find(document.getElementById("h-sym").value);
+    const qty = parseFloat(document.getElementById("h-qty").value);
+    const price = parseFloat(document.getElementById("h-price").value);
+    const date = document.getElementById("h-date").value || null;
+    if (!s) { msg.textContent = "Couldn't find that stock in the Nifty 500. Type the NSE symbol (e.g. HDFCBANK) or pick from the list."; return; }
+    if (!(qty > 0) || !(price > 0)) { msg.textContent = "Enter a quantity and a buy price above zero."; return; }
+    const h = loadHoldings();
+    const existing = h.find(x => x.symbol === s.symbol);
+    if (existing) {  // add to the position like a broker does: weighted-average price, earliest date
+      const q = existing.qty + qty;
+      existing.price = (existing.price * existing.qty + price * qty) / q;
+      existing.qty = q;
+      if (date && (!existing.date || date < existing.date)) existing.date = date;
+      msg.textContent = `Added to your existing ${s.symbol} holding (new average ${inr(existing.price, 2)}).`;
+    } else {
+      h.push({symbol: s.symbol, qty, price, date});
+      msg.textContent = `Added ${s.name}.`;
+    }
+    if (!saveHoldings(h)) msg.textContent = "This device blocked saving. Your holdings will be lost when the app closes.";
+    e.target.reset();
+    renderHoldings();
+  };
+  document.getElementById("h-copy").onclick = () => {
+    const t = document.getElementById("h-backup");
+    t.select();
+    (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject()).then(
+      () => { msg.textContent = "Backup copied."; }, () => { document.execCommand("copy"); });
+  };
+  document.getElementById("h-restore").onclick = () => {
+    try {
+      const h = JSON.parse(document.getElementById("h-backup").value);
+      if (!Array.isArray(h) || !h.every(x => x.symbol && x.qty > 0 && x.price > 0)) throw new Error();
+      saveHoldings(h.map(x => ({symbol: String(x.symbol).toUpperCase(), qty: +x.qty, price: +x.price, date: x.date || null})));
+      msg.textContent = `Restored ${h.length} holdings.`;
+      renderHoldings();
+    } catch (_) { msg.textContent = "That backup text isn't valid."; }
+  };
+  renderEvidence(d);
+  renderHoldings();
+}
+
 // Data source: the Windows app injects window.picksApi (reads the private GitHub repo);
 // the website / iPhone home-screen app fetches data/latest.json and keeps a copy for offline use.
 const DATA_CACHE = "picks-data";
@@ -322,6 +587,7 @@ loadData().then(({data: d, stale}) => {
   document.getElementById("meta").textContent =
     `Week of ${d.as_of} · ${d.eligible_size} of ${d.universe_size} stocks passed liquidity/risk filters · generated ${d.generated_at.replace("T", " ").slice(0, 16)} UTC` +
     (d.llm_news ? " · news read by Claude" : "");
+  DATA = d;
   const picks = document.getElementById("picks");
   d.picks.forEach((p, i) => picks.appendChild(pickCard(p, i)));
 
@@ -340,8 +606,11 @@ loadData().then(({data: d, stale}) => {
       tile(bt.chained_cagr_picks == null ? "–" : pct(bt.chained_cagr_picks), `CAGR, non-overlapping (Nifty ${pct(bt.chained_cagr_benchmark)})`, cls(bt.chained_cagr_picks)) +
       tile(bt.mean_ic.toFixed(3), `Rank IC (t ≈ ${bt.ic_t_stat.toFixed(1)})`) +
       tile((bt.q10_q90_coverage * 100).toFixed(0) + "%", "Outcomes inside the forecast range (target 80%)");
-    lineChart(document.getElementById("bt-line"), bt.weekly);
-    decileChart(document.getElementById("bt-dec"), bt.decile_excess);
+    // Charts size themselves to their container, so draw them once the picks tab is visible.
+    whenVisible("picks", () => {
+      lineChart(document.getElementById("bt-line"), bt.weekly);
+      decileChart(document.getElementById("bt-dec"), bt.decile_excess);
+    });
   }
 
   const tr = (d.track_record || []).slice().reverse();
@@ -349,6 +618,7 @@ loadData().then(({data: d, stale}) => {
     ? `<tr><th>Week</th><th>Symbol</th><th class="num">Entry ₹</th><th class="num">Latest ₹</th><th class="num">Return</th><th class="num">Nifty</th><th class="num">Predicted</th><th class="num">Days</th></tr>` +
       tr.map(t => `<tr><td>${t.week}</td><td>${esc(t.symbol)}</td><td class="num">${t.entry}</td><td class="num">${t.latest}</td><td class="num ${cls(t.return)}">${pct(t.return)}</td><td class="num">${pct(t.nifty_return)}</td><td class="num">${pct(t.predicted_q50)}</td><td class="num">${t.days_held}${t.complete ? " ✓" : ""}</td></tr>`).join("")
     : `<tr><td class="muted">The track record fills in as weekly picks age.</td></tr>`;
+  setupHoldings(d);
 }).catch(e => {
   const b = document.getElementById("err");
   b.style.display = "block";

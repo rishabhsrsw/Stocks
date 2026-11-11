@@ -22,6 +22,21 @@ Final score = 70% model + 15% news + 15% quality, with at most 2 picks per secto
 * A **backtest** section: average 5-month return of past weekly top-5s vs Nifty, hit rate, rank IC, decile chart
 * A **live track record**: every published pick marked to market each week
 
+## My holdings: hold or sell?
+
+The **My holdings** tab (website, iPhone and Windows apps) lets you enter the stocks you own, with quantity,
+average buy price and optionally the buy date. For each one it shows:
+
+* a verdict: **Strong hold**, **Hold**, **Review** or **Consider selling**, with the reasons (chart strengths and concerns)
+* its 3- and 5-month outlook, likely range and chance of beating Nifty
+* your profit/loss, and short- vs long-term tax timing if you gave a buy date
+* this week's picks as alternatives when something looks weak
+* how each verdict actually performed in the backtest, so you can judge how much to trust it
+
+Verdicts are forward-looking: the buy price is only used for P&L and tax, because what you paid doesn't change what the
+stock does next. Every Nifty 500 stock is scored each week (`--coverage`), while picks still come from the Nifty 200.
+Holdings are stored only on the device (with a copy/restore backup), never uploaded.
+
 ## Quick start (local)
 
 ```bash

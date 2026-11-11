@@ -18,6 +18,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(prog="stockpicker", description=__doc__)
     ap.add_argument("command", choices=["run", "backtest", "demo"])
     ap.add_argument("--index", default="nifty200", help="nifty50|nifty100|nifty200|nifty500")
+    ap.add_argument("--coverage", default="nifty500", help="wider list scored for the holdings review")
     ap.add_argument("--no-news", action="store_true")
     ap.add_argument("--no-fundamentals", action="store_true")
     ap.add_argument("--no-backtest", action="store_true")
@@ -38,8 +39,8 @@ def main() -> None:
         return
 
     universe = load_universe(args.index)
-    prices = download_prices(universe["symbol"].tolist(), cfg.benchmark, cfg.history_years, use_cache=not args.no_cache)
     if args.command == "backtest":
+        prices = download_prices(universe["symbol"].tolist(), cfg.benchmark, cfg.history_years, use_cache=not args.no_cache)
         days = prices.close.index
         panel = build_panel(prices, cfg.horizons, days[::-1][:: cfg.sample_every_n_days][::-1])
         bt = walk_forward_backtest(panel, days, cfg)
@@ -47,8 +48,11 @@ def main() -> None:
         print(json.dumps(bt, indent=1))
         return
 
-    res = run_weekly(prices, universe, cfg, with_news=not args.no_news, with_fundamentals=not args.no_fundamentals,
-                     with_backtest=not args.no_backtest, out_dir=Path(args.out))
+    coverage = load_universe(args.coverage) if args.coverage != args.index else universe
+    symbols = sorted(set(universe["symbol"]) | set(coverage["symbol"]))
+    prices = download_prices(symbols, cfg.benchmark, cfg.history_years, use_cache=not args.no_cache)
+    res = run_weekly(prices, universe, cfg, coverage=coverage, with_news=not args.no_news,
+                     with_fundamentals=not args.no_fundamentals, with_backtest=not args.no_backtest, out_dir=Path(args.out))
     print(f"\nTop {len(res['picks'])} picks for the week of {res['as_of']}:")
     for p in res["picks"]:
         f = p["forecast"][cfg.rank_horizon]

@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from stockpicker import news
+from stockpicker import holdings, news
 from stockpicker.config import Config
 from stockpicker.data import synthetic_prices
 from stockpicker.features import build_panel, stock_features
@@ -70,10 +70,34 @@ def test_weekly_run_end_to_end(prices, tmp_path):
     cfg = Config(min_median_traded_value_cr=0, backtest_years=2, retrain_every_n_days=126)
     universe = pd.DataFrame({"symbol": prices.symbols, "name": prices.symbols,
                              "sector": [f"S{i % 6}" for i in range(len(prices.symbols))]})
-    res = run_weekly(prices, universe, cfg, with_news=False, with_fundamentals=False, out_dir=tmp_path)
+    picks_universe = universe.iloc[:20]  # the other 10 are only scored for the holdings review
+    res = run_weekly(prices, picks_universe, cfg, coverage=universe, with_news=False, with_fundamentals=False,
+                     out_dir=tmp_path)
     assert len(res["picks"]) == 5
+    assert {p["symbol"] for p in res["picks"]} <= set(picks_universe["symbol"])
+    stocks = {s["symbol"]: s for s in res["stocks"]}
+    assert set(stocks) == set(universe["symbol"])
+    assert all(s["verdict"] in holdings.VERDICTS for s in stocks.values())
+    assert set(res["backtest"]["verdict_stats"]) <= set(holdings.VERDICTS)
     sectors = [p["sector"] for p in res["picks"]]
     assert max(sectors.count(s) for s in sectors) <= cfg.max_per_sector
     saved = json.loads((tmp_path / "latest.json").read_text())
     assert saved["backtest"]["n_weeks"] > 50
     assert set(saved["picks"][0]["forecast"]) == {"3m", "4m", "5m"}
+
+
+def test_verdicts():
+    df = pd.DataFrame({
+        "model_score": [0.9, 0.5, 0.3, 0.1, 0.9, 0.9],
+        "p_beat":      [0.7, 0.5, 0.5, 0.4, 0.7, 0.7],
+        "dist_sma200": [0.1, 0.0, 0.0, -0.2, -0.2, 0.1],
+        "sma200_slope": [0.02, 0.0, 0.0, -0.03, -0.03, 0.02],
+        "red_flag":    [False, False, False, False, False, True],
+    })
+    assert holdings.verdict_frame(df).tolist() == ["strong_hold", "hold", "review", "exit", "review", "exit"]
+
+
+def test_spark_keeps_latest_close():
+    s = pd.Series(np.arange(300, dtype=float))
+    pts = holdings.spark(s)
+    assert pts[-1] == 299.0 and len(pts) == 42

@@ -9,6 +9,7 @@ import pandas as pd
 from sklearn.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
 
 from .config import Config
+from .holdings import bucket_stats
 
 log = logging.getLogger(__name__)
 QUANTILES = (0.1, 0.5, 0.9)
@@ -113,7 +114,7 @@ def walk_forward_backtest(panel: pd.DataFrame, trading_days: pd.DatetimeIndex, c
         day = day[day[f"y_exc_{h}"].notna() & eligible(day, cfg)]
         if len(day) < cfg.top_n * 3:
             continue
-        pred = model.predict(day).join(day[[f"y_ret_{h}", f"y_exc_{h}"]])
+        pred = model.predict(day).join(day[[f"y_ret_{h}", f"y_exc_{h}", "dist_sma200", "sma200_slope"]])
         preds_all.append(pred)
         ic_rows.append({"date": d, "ic": pred["model_score"].corr(pred[f"y_exc_{h}"], method="spearman")})
         top = pred.nlargest(cfg.top_n, "model_score")
@@ -160,6 +161,7 @@ def walk_forward_backtest(panel: pd.DataFrame, trading_days: pd.DatetimeIndex, c
         "chained_cagr_picks": float(eq_picks ** (1 / years) - 1) if years > 0 else None,
         "chained_cagr_benchmark": float(eq_bench ** (1 / years) - 1) if years > 0 else None,
         "decile_excess": {int(k): float(v) for k, v in deciles.items()},
+        "verdict_stats": bucket_stats(preds, f"y_ret_{h}", f"y_exc_{h}"),
         "weekly": [
             {"date": str(d.date()), "pick_ret": round(float(r.pick_ret), 4), "bench_ret": round(float(r.bench_ret), 4)}
             for d, r in res.iterrows()

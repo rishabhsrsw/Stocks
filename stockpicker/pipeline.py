@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from . import holdings
 from . import news as news_mod
 from .config import SITE_DATA_DIR, Config
 from .data import Prices
@@ -45,30 +46,36 @@ def explain(row: pd.Series) -> list[str]:
     return why[:5]
 
 
-def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, with_news: bool = True,
-               with_fundamentals: bool = True, with_backtest: bool = True, out_dir: Path = SITE_DATA_DIR) -> dict:
+def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: pd.DataFrame | None = None,
+               with_news: bool = True, with_fundamentals: bool = True, with_backtest: bool = True,
+               out_dir: Path = SITE_DATA_DIR) -> dict:
+    """`universe` is where picks come from (and what the model trains and is backtested on);
+    `coverage` is the wider list scored for the holdings review."""
     universe = universe[universe["symbol"].isin(prices.symbols)].reset_index(drop=True)
+    coverage = universe if coverage is None else coverage[coverage["symbol"].isin(prices.symbols)]
+    meta = pd.concat([universe, coverage]).drop_duplicates("symbol").set_index("symbol")
+    pick_syms = set(universe["symbol"])
     days = prices.close.index
     asof = days[-1]
     sample = days[::-1][:: cfg.sample_every_n_days][::-1]  # weekly snapshots ending today
     log.info("Building feature panel on %d dates x %d symbols", len(sample), len(prices.symbols))
     panel = build_panel(prices, cfg.horizons, sample)
     feats = feature_columns(panel)
+    train_panel = panel[panel.index.get_level_values("symbol").isin(pick_syms)]
 
-    backtest = walk_forward_backtest(panel, days, cfg) if with_backtest else None
+    backtest = walk_forward_backtest(train_panel, days, cfg) if with_backtest else None
 
     today = panel.xs(asof, level="date", drop_level=False)
     preds = {}
     for h in cfg.horizons:
-        model = HorizonModel(h, feats).fit(panel)
+        model = HorizonModel(h, feats).fit(train_panel)
         log.info("Trained %s model on %d rows", h, model.n_train)
         preds[h] = model.predict(today).droplevel("date")
     today = today.droplevel("date")
     main = preds[cfg.rank_horizon]
 
     scores = pd.DataFrame({"model_score": main["model_score"]})
-    scores["eligible"] = eligible(today, cfg)
-    meta = universe.set_index("symbol")
+    scores["eligible"] = eligible(today, cfg) & scores.index.isin(pick_syms)
     scores = scores.join(meta[["name", "sector"]])
 
     # Overlays are computed for a shortlist only (keeps the weekly run fast and polite).
@@ -151,9 +158,41 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, with_news
             for s in sl.sort_values("final", ascending=False).index[:20] if s not in picks
         ],
         "backtest": backtest,
+        "stocks": stock_scores(prices, today, preds, meta, news_res, red, cfg),
     }
     write_outputs(result, prices, out_dir)
     return result
+
+
+def stock_scores(prices: Prices, today: pd.DataFrame, preds: dict, meta: pd.DataFrame,
+                 news_res: dict, red: set, cfg: Config) -> list[dict]:
+    """Outlook and hold/sell verdict for every covered stock (used by the holdings review)."""
+    main = preds[cfg.rank_horizon]
+    frame = main.join(today[["dist_sma200", "sma200_slope"]])
+    frame["red_flag"] = frame.index.isin(red)
+    verdict = holdings.verdict_frame(frame)
+    out = []
+    for s in main.index:
+        if s not in meta.index or pd.isna(main.loc[s, "q50"]):
+            continue
+        row = today.loc[s]
+        nr = news_res.get(s)
+        out.append({
+            "symbol": s,
+            "name": meta.loc[s, "name"],
+            "sector": meta.loc[s, "sector"],
+            "price": _r(prices.close[s].dropna().iloc[-1], 2),
+            "model_score": _r(main.loc[s, "model_score"]),
+            "verdict": verdict[s],
+            "forecast": {h: {"q10": _r(p.loc[s, "q10"]), "q50": _r(p.loc[s, "q50"]), "q90": _r(p.loc[s, "q90"]),
+                             "p_beat_nifty": _r(p.loc[s, "p_beat"])} for h, p in preds.items()},
+            "positives": explain(row),
+            "concerns": holdings.warnings(row, main.loc[s]),
+            "red_flag": s in red,
+            "news_summary": (nr.llm or {}).get("summary") if nr else None,
+            "spark": holdings.spark(prices.close[s]),
+        })
+    return out
 
 
 def update_track_record(out_dir: Path, prices: Prices, horizon_days: int) -> list[dict]:
