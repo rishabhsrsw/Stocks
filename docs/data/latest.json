@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T10:41:31+00:00",
+ "generated_at": "2026-11-11T11:01:40+00:00",
  "as_of": "2026-11-11",
  "horizon_months": {
   "3m": 3.0,
@@ -16,28 +16,28 @@
    "name": "Bank of Maharashtra",
    "sector": "Financial Services",
    "price": 90.2,
-   "final_score": 0.6908,
-   "model_score": 0.6786,
+   "final_score": 0.6865,
+   "model_score": 0.6709,
    "news_score": 0.2426,
-   "quality_score": 0.8172,
+   "quality_score": 0.8244,
    "forecast": {
     "3m": {
-     "q10": -0.1715,
-     "q50": 0.042,
-     "q90": 0.303,
-     "p_beat_nifty": 0.5579
+     "q10": -0.1769,
+     "q50": 0.0233,
+     "q90": 0.267,
+     "p_beat_nifty": 0.5495
     },
     "4m": {
-     "q10": -0.2069,
-     "q50": 0.0866,
-     "q90": 0.3423,
-     "p_beat_nifty": 0.5488
+     "q10": -0.2081,
+     "q50": 0.0743,
+     "q90": 0.3524,
+     "p_beat_nifty": 0.5722
     },
     "5m": {
-     "q10": -0.286,
-     "q50": 0.0544,
-     "q90": 0.3603,
-     "p_beat_nifty": 0.5615
+     "q10": -0.2733,
+     "q50": 0.0465,
+     "q90": 0.3443,
+     "p_beat_nifty": 0.5807
     }
    },
    "reasons": [
@@ -233,32 +233,468 @@
    ]
   },
   {
+   "symbol": "IREDA",
+   "name": "Indian Renewable Energy Development Agency Ltd.",
+   "sector": "Financial Services",
+   "price": 120.2,
+   "final_score": 0.6683,
+   "model_score": 0.7354,
+   "news_score": 0.1367,
+   "quality_score": 0.4547,
+   "forecast": {
+    "3m": {
+     "q10": -0.1872,
+     "q50": 0.0263,
+     "q90": 0.2509,
+     "p_beat_nifty": 0.514
+    },
+    "4m": {
+     "q10": -0.1857,
+     "q50": 0.0797,
+     "q90": 0.3364,
+     "p_beat_nifty": 0.5161
+    },
+    "5m": {
+     "q10": -0.2605,
+     "q50": 0.0485,
+     "q90": 0.3536,
+     "p_beat_nifty": 0.5683
+    }
+   },
+   "reasons": [
+    "Volume 1.4x its 6-month average (accumulation)"
+   ],
+   "risk": {
+    "volatility_63d": 0.3212,
+    "max_drawdown_6m": -0.0919,
+    "beta": 1.3281
+   },
+   "fundamentals": {
+    "pe": 17.1225,
+    "pb": 2.3492,
+    "roe": 0.1444,
+    "debt_to_equity": 565.121,
+    "earnings_growth": -0.007,
+    "revenue_growth": -0.014,
+    "profit_margin": 0.692,
+    "market_cap": 337669586944.0,
+    "yf_sector": "Financial Services"
+   },
+   "news": {
+    "n_articles": 20,
+    "headlines": [
+     {
+      "title": "HDFC Bank, IREDA, Mankind Pharma: Top stocks to trade \u2014 Check key levels, targets & stop loss",
+      "source": "Business Today",
+      "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQakxSYkdTWVJpaFc1bDRteENmV1lMQVplTzRZV01ucEFuZXVTYkl5Zy1vb2dHaGtlSV9XbWZZbVVsWVpSV3F0X3UtbEtwa01ZZzhHWHMyLV9oNFF4YXUyay1UV0NXYXNJRTFSUTRCaG83Y2h6LVllTmR1UjkwSTUzWFlraEZ4SnNUQlZ1Wm5JTlBGdVRBZ3FQcmJ2eWkyaUJ5WHRKWnVHT0ZvTkdjcVhKeFAtTjY4Zm1NWHZRUVVydUxKdURvSEY3cUtxSnk3RHBCUzVhSEpWdzJIellHNTFSOHRqX1ZORVdf0gHuAUFVX3lxTE9jajZ6Q3lnTi1RREFiMmdGU3BGcEZ2VDF4THRLTHJiWjRLTm5xYUpkcElUY185eS12amdmZlV1Rm1tb2NULVpmTEZpeU8tQU9LVlRXcWgzWk5GMUtiSnBheUYxc3VPUVI0ZnEwWFp2QUZJZEUxVUhLeGZ0TzE4WUlVQkhMM29sQnRQZ0NpVWdqZnN5Y29tWDZHM3c1ZjZzWkJ4ZW5FYS1Cb1JyWXR2TDZ0WEZReHBjRktUM1FXZlhNVmRieFBwdXQwZlRUaGpibkdxVzRUc2R5eDhxNnZjc1hxNzdtTTFKR2xwdVU4OGc?oc=5",
+      "published": "2026-11-11T03:05:19+00:00",
+      "sentiment": -0.44
+     },
+     {
+      "title": "Pre-market action: Here's the trade setup for today's session",
+      "source": "The Economic Times",
+      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQQ04xVThYNXFTaVoyMVdINmFsUXlwUGhaaXRCZlA5Q2F5Ry1JNTk2SXpYV3NMZVNaQnpKSmlfc2JmWlZrMW9XbEs1QTJ5SFdpel9uVlU4ZDJ6NDNQQUlEMDh0WGo3bFZTYVNMRllkQ3o3Q0dLTlVaMnowYlRMd044ZTVFSXJDcXVmLVZ4ejA3enY5QU9zMnFjSzEzZUFqNFl2SVppdjZYOHlzUVFGajZTYW5pR01IMHJTZmt6Q20wVG80dWRIVWsyRTE3NUc0M2pKaWfSAdIBQVVfeXFMUENOMVU4WDVxU2laMjFXSDZhbFF5cFBoWml0QmZQOUNheUctSTU5Nkl6WFdzTGVTWkJ6SkppX3NiZlpWazFvV2xLNUEyeUhXaXpfblZVOGQyejQzUEFJRDA4dFhqN2xWU2FTTEZZZEN6N0NHS05VWjJ6MGJUTHdOOGU1RUlyQ3F1Zi1WeHowN3p2OUFPczJxY0sxM2VBajRZdklaaXY2WDh5c1FRRmo2U2FuaUdNSDByU2ZrekNtMFRvNHVkSFVrMkUxNzVHNDNqSmln?oc=5",
+      "published": "2026-11-11T00:30:00+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Manyavar maker Vedant Fashions struggles to revive growth as same-store sales drop 5.8% in Q2",
+      "source": "The Economic Times",
+      "link": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNLUtfWncwekhBNUJNWXJaczFrVWJkMGxyTTBHRTliRWt4TG1uZjc4SUZaTlhKY2lrSFpYN29wYUtXOGZ5LXptaWdOMEprRmxsVzVaQ05aaWZ6aGswdDFNZFFycXZSVEZFb01tS2xIeHhlSUZPa0NrZkV3Tm5jSmxOYVRYQWFNZ195eTlDbUxwcFpVNEJTeERnWTNMQXBTYlU0aWh6eXJJU1l1TmQ3ZjRDeEM5eVpUdk9mM0VxX0p4M3UxakpWTHZUOG9BSUFEYkxVRjRHdXVyRWtZa0ZBTTlKMWdNNmdta3hOTkhpQlk3Y2lMTVNxUEROaGVn0gGuAkFVX3lxTFBxd2dzV052eWhodkNMSmNfUmZSN0YtemRfR3NzU01pZHVxQnRFTllDOVF2UlZpZk1JZkE4ajVTRHVRQWFvTTZlYmJUNmh6b0V2bWUyS0M5UE5IWk5jc2VFNWNuak5CLWpPMTVabUduU0FCZ0ZpNzBOOEctRzlVR1g4SXhwZnMzc2dudWV4RVFiUXNYc0tqbm10eWxyXzVObkNJWFVVcUZqamZGRXhnbnpoamEzQl9fVklIVzdqeE9sd0h1MUpVUy1tLU12QmVRYTktSXF6cEY5MDNoQmltOUpmMWdKaklPcDVBcWxkRTAwSENqeDRHaHBMMXJZNlc3OTNoR0JEZnhHejVOczFJdFZFQzFWeXdNdzItTE4wbEVxSnFzblZkV0E3V3NjR2RR?oc=5",
+      "published": "2026-11-10T19:31:00+00:00",
+      "sentiment": -0.0
+     },
+     {
+      "title": "NCLT flags undervalued, fraudulent HDIL property sale in 2019",
+      "source": "The Economic Times",
+      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQMTZkWXdDVzNvRDB6eV9fMkN2QzRXTERUbUxvLTRTQWJLUHRuX3VLeERUa0FVZVNQWDhzM1NkOXJ3c0FRRUtwNVQ5cmtObGVJOEwzS1JGd2g2anFPRVRVYjBzLUxidlBNSE5hZGwyOXVLVHk3YmtJZmIzNnZycTJkbm8wVzgwYzVUYmJpekdwTUZFeFh4cEFCdDhhRVQ2MEVLOV9kdmVOajhLLXJuZzdTdHBoNDNSSnM0cU9wbVA5MlJVelE4UEFST3Q3SnlEZUnSAe8BQVVfeXFMUDZOVzNXbDEtMHdNVkd1VHRMOXpvMWlocTc5NEZTeW14emVvdUZza09aemNtZWh0VXhJUmN3dmdWTTBqNWl5SnhlRDBhc3ZzUFBRdy14Z3RybWJXMk1QM2ptTUZ2c3ZaMnV5eEsxcDQ1UlNWc2phbHVsaUNOWXNKMjJXaV8zZlMwVldhMmRkUjN5bHFMazRFQ2d6RHRyQ0NGb0psYWk4X0RDa1lDZWZ3R1dpVVVNaHIwaXQtc3VHSWY2UlZuZTdUMEU0WUc0RTRDUm1EN1QwS0NyeUZfVUlXcElwSFFESGJwZmtISXFLeWc?oc=5",
+      "published": "2026-11-10T18:59:00+00:00",
+      "sentiment": -0.494
+     },
+     {
+      "title": "Ahead of Market: 10 things that will decide stock market action on Wednesday",
+      "source": "The Economic Times",
+      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOeEQ4OVQ1MTM5Vy16eGhvUF9YZlh5NHMzSWN1MXVkWnZwbGJUQVBmQklGR3VpdnVTeTBWa3Jhay1jbGJldF9Xd1lxNHU0RF9fSGV2RUpETnQ5TDdkcXp4SGlkZW52YlBnUEJPUEpKdmw1UThRWG5PeENWTDB4UVY0Ty1tRUNIaWVRRVJfaGIta2FGc0liZnBFU0ZHam1RT0dVMk5MNlN3a2dfRU9KNlIxWjlDcVdLaEFCUTQ3Nm01YkNIVmlHMEphYW5VTE04T0QzZEtSUkwxM3o2c2U5R2l4WTh2Y9IB6AFBVV95cUxNNklaVHZicXk5ekJ5TU1lTHpBNTRaY2hEUzFyU3N4MVN0OF9SN25WM0xEckNjZ0pSYlZQcXNRWTdUajU5Q3dKMlZVQmhqSkp1M3ltVENhN28wVEF5bE1IbTRxajllaXBlUlJXQUtfcU1ZVWtia0NrSTQtMmU5Q0FvRElnYmFQamc1bWQ1YXdwejVpZGNUbUZ4TEpnRk0yV29qNmNxcF9aYWxRRTBUa1NyTWJ4WkJyaGJESjBHakc2Z0FHaWNET1RXblYycFZKUHh2SkFMNWt2TUVQYW0yZkRQZFQ0R3h2dDVn?oc=5",
+      "published": "2026-11-10T16:01:59+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    123.86,
+    127.4,
+    127.77,
+    126.26,
+    126.08,
+    126.92,
+    125.93,
+    127.02,
+    128.16,
+    128.91,
+    128.68,
+    129.34,
+    132.37,
+    125.43,
+    124.1,
+    122.02,
+    122.42,
+    122.61,
+    119.36,
+    121.66,
+    119.78,
+    117.52,
+    121.32,
+    123.99,
+    125.32,
+    125.62,
+    127.11,
+    126.31,
+    129.98,
+    126.47,
+    126.68,
+    126.63,
+    126.65,
+    127.84,
+    127.08,
+    127.73,
+    127.64,
+    125.9,
+    124.33,
+    120.37,
+    121.0,
+    125.56,
+    123.98,
+    121.27,
+    120.56,
+    120.03,
+    120.83,
+    121.02,
+    120.35,
+    118.89,
+    118.79,
+    119.68,
+    119.49,
+    119.69,
+    120.02,
+    119.09,
+    118.8,
+    122.19,
+    119.55,
+    119.9,
+    120.22,
+    119.01,
+    119.21,
+    117.91,
+    117.02,
+    116.62,
+    115.48,
+    116.08,
+    114.51,
+    113.17,
+    114.14,
+    114.24,
+    114.64,
+    119.81,
+    118.01,
+    116.62,
+    116.25,
+    115.73,
+    113.44,
+    111.81,
+    112.25,
+    112.89,
+    112.2,
+    111.46,
+    111.25,
+    112.57,
+    111.71,
+    109.0,
+    108.4,
+    108.99,
+    114.32,
+    111.0,
+    110.25,
+    111.0,
+    110.11,
+    113.22,
+    114.82,
+    111.0,
+    111.68,
+    111.0,
+    109.0,
+    109.0,
+    107.33,
+    103.8,
+    104.4,
+    104.6,
+    108.39,
+    108.47,
+    108.26,
+    108.8,
+    106.54,
+    103.6,
+    102.61,
+    100.27,
+    101.87,
+    99.7,
+    100.59,
+    101.2,
+    99.5,
+    102.24,
+    102.3,
+    106.0,
+    110.15,
+    111.46,
+    119.65,
+    120.2
+   ]
+  },
+  {
+   "symbol": "SUZLON",
+   "name": "Suzlon Energy Ltd.",
+   "sector": "Capital Goods",
+   "price": 38.88,
+   "final_score": 0.6669,
+   "model_score": 0.6961,
+   "news_score": 0.2229,
+   "quality_score": 0.5857,
+   "forecast": {
+    "3m": {
+     "q10": -0.1795,
+     "q50": 0.0487,
+     "q90": 0.3305,
+     "p_beat_nifty": 0.5693
+    },
+    "4m": {
+     "q10": -0.1915,
+     "q50": 0.0878,
+     "q90": 0.3627,
+     "p_beat_nifty": 0.5765
+    },
+    "5m": {
+     "q10": -0.2714,
+     "q50": 0.0362,
+     "q90": 0.4046,
+     "p_beat_nifty": 0.5841
+    }
+   },
+   "reasons": [
+    "RSI 51: momentum without being overbought"
+   ],
+   "risk": {
+    "volatility_63d": 0.36,
+    "max_drawdown_6m": -0.3445,
+    "beta": 1.3142
+   },
+   "fundamentals": {
+    "pe": 23.7073,
+    "pb": 5.1422,
+    "roe": 0.2491,
+    "debt_to_equity": 6.548,
+    "earnings_growth": -0.688,
+    "revenue_growth": 0.26,
+    "profit_margin": 0.1229,
+    "market_cap": 534468722688.0,
+    "yf_sector": "Industrials"
+   },
+   "news": {
+    "n_articles": 34,
+    "headlines": [
+     {
+      "title": "Suzlon, Waaree Energies, NTPC Green, ACME Solar shares: Targets post Q2 results",
+      "source": "Business Today",
+      "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNSjhKZVhKVDVhOWpJTDUwdDhFUUg1ZUFKLXpMY0VaOVpUbzB0RngxMGo3NlNNNllEWnFGM3RVelVkZ1RzWWNJcWIzeHVlaHlhOTJrMjdybklVZ3JtYTM5bzY0cmFhMEFCUVp5b3FrUUZUa0l0UUtSSmp2OTg3RnNGVVZ3RldRdGsyVkxBTi1wSE9qX3lBTU12SC1jdGFkTG1SV0tVXzdTak1Qa055ZF9WNXRGcmRVZ3VfUGo5aTJuOEVQWncxRWtpQWNfZWV5MmlyaTAtQXlYdFN3elXSAeABQVVfeXFMTnBXazZadXpvbzRWQzduNVdYeVhtS2Q2cElQU19LSFJBVmNOZFFBRHpFQUpQNmkxTk03dExibVBHSjdwNjBKVG5kZDdrZmVUSk9UNUc3SUM3bTdrSFNkZG52X2RHTF82Mi1CeXp6eWg0QllCNnpFako2YmdsRW1namotOWFVeFhiUEUwWDEydks1bnNPMllVZWFoRGF2UXFYcGVzaWxza1FQeGh6YUVabFhrTEkydWNVWUFBME8zckRBdFdaVDZ2a0g2TlJCNi1lYW1MRGgzSE9EN2hsVmhGbkQ?oc=5",
+      "published": "2026-11-11T05:01:06+00:00",
+      "sentiment": 0.477
+     },
+     {
+      "title": "Suzlon Energy (NSEI:SUZLON) - Stock Analysis",
+      "source": "Simply Wall St",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNRmxsdTlVRmdWeDJ1ZDM4VzkyS1VjU1NkaUY2VnljMDJpWVotZGYzLTdFbmNuWmlJaVFsM2dXX2FGMmpBTnE3bXRBQlJWQTU0eUJ0dUFWaFRwZmVTMW5NVTFoTGdvMjhSVmVzTW5naGdPNlRVNVRMR2wzOU0wTHN2TU51OA?oc=5",
+      "published": "2026-11-08T08:00:00+00:00",
+      "sentiment": 0.273
+     },
+     {
+      "title": "Diwali Muhurat trading 2026: Top 3 Samvat 2083 stock picks under \u20b9100 \u2014 Suzlon, NHPC, South Bank by Sumeet Bagadia",
+      "source": "Livemint",
+      "link": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOQnFhWFVUSmRBY1VidDlWREtmdHh3SlVDenZxZnFrVkVrcjJMclMydWx6Sm9kNVVVbDVmbHpqR3pxTDRfSTZ1RjFzLTExUHEzRlB0NjF2dGZtaDhlMjhncWhoODBYM3JmeG1hQ2E3YmZVejYyUng0a3FNUm1HSzZFdjE1X01qUGFOMWk2RUdfb2F6Q3Q1VkhhYjhaa21uNmREaUFGYTA3WHZocHFuRDA4NXIwdEVNUWZjLU9sdklIXzZWc2l2c0tLaXJ6SXY3YXJvaDJrVnVsbDlwX1Z3bUFiYjdyWWFPdGxxeVJoZmlYSThPTVowa2JtRS1uc0tyT1premNFbUxuOVowSDAzUFHSAZMCQVVfeXFMT2doZ2dzbUtocjBZV29uQlJ1bDlpMlpwNXBnQllpY2Z0SndlYS1WUVhCRzNOYTZiTmM0NVAzUmVUV2ZEcXJyamxwZUxkZGVReU1WdmRNOTI5S1Y5clR1THRubUZ2R2JqemgzVU1IcFdGUll6OXMtczB5NVVYMndGT1gxVkswTTBBN1hNdktxTEJWRjQxdlJrV1QyNUYwZ0ZidmlWakhCSm52Y01WYTBZdWlFSzBXTkNBZzlEQ3JxTm5xR3NhMUprMjRkQWlrU3pHWTU4MEZEeWNieUI4bFE5WmxzcTN2SzNpY2wyd2ZhQ2w4VTRCY0VUNy1la1gyYWxWcm45QXBDdFBNc0dtRzdyOEZOeFE?oc=5",
+      "published": "2026-11-08T04:06:45+00:00",
+      "sentiment": 0.202
+     },
+     {
+      "title": "Suzlon Energy Shares Slip After 12% Weekly Rally; Why Investors Are Still Not Convinced",
+      "source": "NDTV Profit",
+      "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOSVRnekR2cGNSTVNBbFVBQVZCY0trazNNWllmZFNjTUl5eTl0WFVWS1E4N0hVVUkxRDVlX0JjU1VMY0hnZW5jREVEalA3eVRoSDdScENEdU5QYWJseUpBSC05c0VpWU9IQy1JXzgwWEswck5CMlk3LTZCZUdSUllveXlNU0NMN29jSEpGNlhWdllyRmd0cFBwdWhnRWUzaVNtVkx4WWxYcG51bGVYbDUxd1IzTDVGQ3E1ZDNaakIyd2JMNmdwYzJKY2MzdlhKTU5Rekpkd2dZbFVHWXlvZnVCZHJwSFZVWjFoZ2JTX0pTcDIxaUo2a18xSVNuZ1U4Q0Exem0ydUcwT2xjbUnSAZMCQVVfeXFMTVR0Wm5CdlVVMWFWR2ZTTjJFSDFtWk96ZmtUVXc2N0hJS0JiNUhHbUhiRk8xZHluSU9TQTM0a0hFV1VYTndWdFZfR1Z6SkhmdHhWVGpicFVTYjNzdGRiMlBMZEtzWUxOLW94TTNPMWtMdkNaNEp1R3MzSWpqZWo2UnJGbV9BTWhKVXVScVFsVUo4NVV0ZkhrS2RDUHc5dTBNNGFld2UtTUd2QWt2eGYxemY4T0JiME5xMHI3U2hwaWk4ZVB1TEt4SkpsZGRRcVM2RmNYWENlQjQ4RDY4c3JzT2FTcWk1c0lKSm5SMEhwN29kYXJTT1RMWE5iQ1JIc2pmSDdWZDVWSFp0Z0RhdWtmOERsajQ?oc=5",
+      "published": "2026-11-06T04:42:27+00:00",
+      "sentiment": 0.592
+     },
+     {
+      "title": "Suzlon Energy shares gain up to 5% after tie-up with Grasim for recyclable blades wind turbines; Details here",
+      "source": "CNBC TV18",
+      "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPNDhjSnloaHQ3dmxpTWZ5SEtiMHRQLTBQS3pkU3BFSDVpa2gxRmo0ZVRMY0ZZT2VPaF85eEEwNV8tSU9OcTN3THNHZ2t1VHpjTkZQLUxidUhFQV85YTk5LWZDZ29TV19IRVZLOGlzbjBza0lOUVJBQlpBM3NoYnRlZFlhZERySENwbUN2MVRRVUlydDY1XzliRXhhVEc4THFQMlZ5UG9RM0tTbTlkWUZkY1ZTRkhEZkpvQTg5RE1qbmxpbFF6OHlQN0hOYnhER1BXM3JlT0d5TmtJanU4alpDddIB5gFBVV95cUxQTjFHb3pLdU43NnpyakljMXNxNmszY3UteHFTZGhOejVOalI3djVIbzhaaGlPQ2lMTF96RU1tSkNwYlVYcUtWOUtrTHY5dVBZWUtaS0tseG9qTDVGcmlhRmx0VnZ2TjVjVldvejF3R2FQUEFTN0wtakxtYWlaNjVFVGtoZ0hPYTdfUkktNFE5emM2OUEtcjVNeG4yaDNHdGtpd2hXeWdOaW5iN0lCc2YtMDlZZ1VQaFRxT3FnRFNfVDQtejMxazJqbUtjblJ2UTdCS01NNU52Vk1WRW1LZDRpYy1BVzlfdw?oc=5",
+      "published": "2026-11-04T09:36:47+00:00",
+      "sentiment": 0.772
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    51.52,
+    53.1,
+    53.47,
+    53.84,
+    53.25,
+    52.91,
+    52.57,
+    52.87,
+    53.75,
+    53.99,
+    54.58,
+    57.53,
+    56.99,
+    53.93,
+    54.52,
+    54.4,
+    55.62,
+    55.31,
+    54.43,
+    55.23,
+    54.08,
+    53.29,
+    55.08,
+    55.57,
+    57.92,
+    59.27,
+    58.44,
+    59.2,
+    59.31,
+    58.29,
+    57.91,
+    57.14,
+    57.21,
+    58.9,
+    58.35,
+    57.67,
+    56.87,
+    55.47,
+    54.38,
+    53.13,
+    53.7,
+    53.92,
+    53.17,
+    52.47,
+    52.42,
+    51.97,
+    51.99,
+    53.09,
+    53.17,
+    53.01,
+    52.39,
+    52.28,
+    53.15,
+    48.02,
+    47.45,
+    47.4,
+    48.01,
+    48.1,
+    48.01,
+    48.15,
+    48.1,
+    48.15,
+    47.5,
+    47.5,
+    47.35,
+    47.61,
+    47.1,
+    49.0,
+    47.78,
+    46.77,
+    47.0,
+    46.71,
+    47.05,
+    46.75,
+    46.94,
+    46.81,
+    46.79,
+    47.52,
+    46.5,
+    45.46,
+    46.03,
+    45.35,
+    45.55,
+    45.5,
+    45.45,
+    44.22,
+    44.12,
+    42.9,
+    42.15,
+    42.54,
+    43.14,
+    43.34,
+    43.0,
+    42.39,
+    40.74,
+    40.8,
+    39.66,
+    39.5,
+    39.49,
+    38.91,
+    38.92,
+    39.16,
+    38.34,
+    36.43,
+    37.6,
+    39.57,
+    40.19,
+    40.8,
+    40.95,
+    42.0,
+    40.38,
+    39.4,
+    38.57,
+    37.4,
+    37.12,
+    36.92,
+    37.3,
+    36.79,
+    33.9,
+    35.25,
+    35.75,
+    37.45,
+    38.59,
+    38.8,
+    38.91,
+    38.88
+   ]
+  },
+  {
    "symbol": "MAZDOCK",
    "name": "Mazagoan Dock Shipbuilders Ltd.",
    "sector": "Capital Goods",
    "price": 1890.0,
-   "final_score": 0.6729,
-   "model_score": 0.7523,
+   "final_score": 0.6547,
+   "model_score": 0.7249,
    "news_score": 0.0249,
-   "quality_score": 0.4632,
+   "quality_score": 0.4693,
    "forecast": {
     "3m": {
-     "q10": -0.1577,
-     "q50": 0.0762,
-     "q90": 0.3485,
-     "p_beat_nifty": 0.5562
+     "q10": -0.1703,
+     "q50": 0.0632,
+     "q90": 0.3373,
+     "p_beat_nifty": 0.5662
     },
     "4m": {
-     "q10": -0.1683,
-     "q50": 0.0813,
-     "q90": 0.3558,
-     "p_beat_nifty": 0.6242
+     "q10": -0.155,
+     "q50": 0.0866,
+     "q90": 0.3711,
+     "p_beat_nifty": 0.6129
     },
     "5m": {
-     "q10": -0.2412,
-     "q50": 0.0501,
-     "q90": 0.4066,
-     "p_beat_nifty": 0.557
+     "q10": -0.2366,
+     "q50": 0.0416,
+     "q90": 0.382,
+     "p_beat_nifty": 0.5698
     }
    },
    "reasons": [
@@ -452,769 +888,330 @@
    ]
   },
   {
-   "symbol": "YESBANK",
-   "name": "Yes Bank Ltd.",
-   "sector": "Financial Services",
-   "price": 17.24,
-   "final_score": 0.672,
-   "model_score": 0.6547,
-   "news_score": 0.5291,
-   "quality_score": 0.66,
+   "symbol": "RADICO",
+   "name": "Radico Khaitan Ltd",
+   "sector": "Fast Moving Consumer Goods",
+   "price": 4440.3,
+   "final_score": 0.6366,
+   "model_score": 0.6786,
+   "news_score": 0.0017,
+   "quality_score": 0.5761,
    "forecast": {
     "3m": {
-     "q10": -0.1945,
-     "q50": 0.0715,
-     "q90": 0.295,
-     "p_beat_nifty": 0.5627
+     "q10": -0.1464,
+     "q50": 0.0425,
+     "q90": 0.2687,
+     "p_beat_nifty": 0.5512
     },
     "4m": {
-     "q10": -0.2379,
-     "q50": 0.0754,
-     "q90": 0.316,
-     "p_beat_nifty": 0.5996
+     "q10": -0.1504,
+     "q50": 0.0946,
+     "q90": 0.312,
+     "p_beat_nifty": 0.6
     },
     "5m": {
-     "q10": -0.2897,
-     "q50": 0.0152,
-     "q90": 0.3808,
-     "p_beat_nifty": 0.5549
+     "q10": -0.19,
+     "q50": 0.0741,
+     "q90": 0.3271,
+     "p_beat_nifty": 0.534
     }
    },
    "reasons": [
-    "Volume 1.9x its 6-month average (accumulation)",
-    "RSI 46: momentum without being overbought"
-   ],
-   "risk": {
-    "volatility_63d": 0.4303,
-    "max_drawdown_6m": -0.3234,
-    "beta": 1.0296
-   },
-   "fundamentals": {
-    "pe": 13.0606,
-    "pb": 1.0005,
-    "roe": 0.0817,
-    "debt_to_equity": null,
-    "earnings_growth": 0.619,
-    "revenue_growth": 0.237,
-    "profit_margin": 0.2448,
-    "market_cap": 541176528896.0,
-    "yf_sector": "Financial Services"
-   },
-   "news": {
-    "n_articles": 31,
-    "headlines": [
-     {
-      "title": "NSE Most Active Stocks: Jyoti Structures, Vi, YES Bank",
-      "source": "HDFC Sky",
-      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOc1NpMm9nNzEwU3hpVHctZFFkWTRxbEZKM3FKZGpyRnBzYko0dHVFMHk5WVpjODBJck5NNmk4THpfT1RMa0RMZk5uTzVPSzV5V0VUNWhBdnJWemx6SjRwNW9lVVN2SnZTeUVNNmVWU2pkLXBoUDd0RlJBS0M1ZUszRE01TC1nT3FCeHRBNV9IeEd6cEZWR1lYS051RExaUjNNemtmN1p4SzAwNzhqR1VCajJOaG1BbW5VZFlpUElGNm1LUQ?oc=5",
-      "published": "2026-11-11T07:41:39+00:00",
-      "sentiment": 0.753
-     },
-     {
-      "title": "Yes Bank AT-1 bondholders still await clarity on their money nearly a month after SC verdict",
-      "source": "Livemint",
-      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNS0o2NVBycjRZMUZ6d2JrWkI4V3NoU3FJR0FJeHlOX2RBMW03Y3hSRHUwLWNDc2RGd0s5MTJTNEhhTlNTZ0hoUDFsVkpfdXcwMXEteXNFanJPanhxcGJhMW16bl93ajA1MWtCNjREakdsTDJTY2c5SDM1MmNEVFhlQm9YVTJ2ZFkwZlBKblQtM1VfVFBCS3FGSWNiLU92SE9vUGV3aUU3d2ZiTDBQOUVqVTN6bWZGOFJ6TUIyRzhJcVM4bXhQMmxsN0I4QmxqYjUxNExQSG9GUE1ZRUpYaVZOYWl2UG1RTWvSAewBQVVfeXFMTk5yTjFaaFkzS2hOVkpGY3RyUHFtcmQyS2Jwakc2bXRFWTlpUGdiM0R1OURuX2ZUQ0ViaTdwZmJ4bFFpNW9qYW9hb3F4M0dzUHl6a0pFeGlxUTNsendkdXA0RzdyNWl4OUt4eFBoZEY3bWhJMjN3RHRBU0NzcEdBZUxoNlNqUGtQWktxNDJibTNMQy1jMWxxZWR1bGk3NEI2UHd3TTFVSkIwNTFmRURkbkpGVm1FOGxfVzdJclJPMkIwNFpSVFRLWm1VRTVMWElFRzF6Tl9mVXN1eEVLbzc3OTNuSWxYZTM1b2ozMTI?oc=5",
-      "published": "2026-11-10T00:30:54+00:00",
-      "sentiment": 0.751
-     },
-     {
-      "title": "PC Jeweller, Vodafone Idea, YES Bank Shares Fall",
-      "source": "HDFC Sky",
-      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQWkpxbkxXV0pESDlQV2VBUVNMeWVHVzdRSFJHM2V5T0p1cTAxZ3pmU0c2Nk1BSjNBNkVueWRtN0J6bjJqcjJfcFhNbVZqTUppemlRRDlOci1sU0Jtbzd2bFRxV3lNcWpWdXZaczJiLTlHaEt2c0R5b3UxT2JsbkFXMjFramR2S1BaRnpMcWcxaUozNFB1bUtTcjV2UEFiTlhHOUcyYXhaQkRsS015bTVIZVhIUzJvY19BQWVOYUs4ejF1U3owQ0xuWHF3QW1NZHd1MHFBVnd3?oc=5",
-      "published": "2026-11-09T07:22:43+00:00",
-      "sentiment": 0.684
-     },
-     {
-      "title": "ARFSL pledges 4.85 lakh shares with Yes Bank",
-      "source": "scanx.trade",
-      "link": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQclY2NnJnZU1UckFtNXBibWZDNEVxSms1amxYdVlKOW1zLWROQ0V5MHI4YWtSTUlPSXlTTjhCSmtJOWV4d3JqTThfZFBjQlM3ZU04bGFkYWp5dHlBaG9yeUxaRzJUS3IwTGlfaEl2MURUUllBeEwxbGdna1RSZmUtSE5qb2NadVY4OC1wYmI1WWotY2xRQWZrY2lxWlFLUDRVb3VKeGhEU2l4ZXdGcUVwaUhBNUQ5dEJOdUtYLUNVai1LTVJKbTVabnAwMXNFLTRndlA0dnZDMmIzUjZNbHhyd2JfWUJTRi1HY2FVMHhmdFFSZHI3MkttTXZ6Mi1kUHp3Zldj?oc=5",
-      "published": "2026-11-07T00:42:25+00:00",
-      "sentiment": 0.599
-     },
-     {
-      "title": "Yes Bank Share Price Target 2027: 22.5% Upside, Bull Rs 23.4",
-      "source": "Univest",
-      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBjT25lU0NlMkw2WFU1R1JnY1lmcWRwbkxlUm5CdTY0ZDBsVmJ5Y3c3Szc1M1hEN25EYXBFM1oxS1VQb00zRFlmNDg3bUJwSzVxLWplTWdsSThndmNMRGRmQlBGd0lXNGJS?oc=5",
-      "published": "2026-11-06T13:50:46+00:00",
-      "sentiment": 0.599
-     }
-    ],
-    "llm": null
-   },
-   "chart": [
-    22.06,
-    22.11,
-    22.19,
-    22.07,
-    21.81,
-    21.97,
-    22.0,
-    21.57,
-    21.87,
-    22.29,
-    22.83,
-    22.76,
-    23.15,
-    23.01,
-    22.83,
-    22.93,
-    22.77,
-    23.3,
-    23.0,
-    23.37,
-    22.6,
-    22.22,
-    23.02,
-    23.78,
-    23.89,
-    25.11,
-    25.48,
-    25.41,
-    24.96,
-    24.55,
-    24.94,
-    24.87,
-    25.09,
-    24.18,
-    24.58,
-    24.25,
-    24.39,
-    24.26,
-    24.01,
-    23.42,
-    23.64,
-    23.94,
-    23.78,
-    23.61,
-    23.6,
-    23.75,
-    23.61,
-    22.93,
-    23.14,
-    23.24,
-    22.93,
-    22.95,
-    22.94,
-    22.81,
-    22.84,
-    22.54,
-    22.77,
-    23.0,
-    23.0,
-    22.97,
-    22.68,
-    22.69,
-    22.75,
-    22.75,
-    22.98,
-    22.98,
-    22.67,
-    22.92,
-    22.46,
-    22.74,
-    22.74,
-    22.8,
-    22.6,
-    22.5,
-    22.38,
-    22.26,
-    22.1,
-    22.83,
-    22.1,
-    22.15,
-    22.54,
-    22.5,
-    22.42,
-    22.52,
-    22.42,
-    22.3,
-    23.48,
-    23.07,
-    23.4,
-    23.13,
-    22.72,
-    23.17,
-    23.2,
-    23.24,
-    22.44,
-    22.5,
-    21.18,
-    20.71,
-    20.95,
-    20.75,
-    21.06,
-    20.86,
-    20.79,
-    20.45,
-    20.5,
-    20.44,
-    20.85,
-    21.2,
-    18.12,
-    17.5,
-    16.88,
-    16.41,
-    16.05,
-    15.8,
-    15.86,
-    15.9,
-    15.61,
-    15.43,
-    15.15,
-    15.57,
-    15.38,
-    15.73,
-    16.24,
-    17.2,
-    17.03,
-    17.24
-   ]
-  },
-  {
-   "symbol": "BOSCHLTD",
-   "name": "Bosch Ltd.",
-   "sector": "Automobile and Auto Components",
-   "price": 50490.0,
-   "final_score": 0.6384,
-   "model_score": 0.6168,
-   "news_score": 0.4436,
-   "quality_score": 0.6553,
-   "forecast": {
-    "3m": {
-     "q10": -0.1458,
-     "q50": 0.0344,
-     "q90": 0.2326,
-     "p_beat_nifty": 0.5154
-    },
-    "4m": {
-     "q10": -0.1629,
-     "q50": 0.0578,
-     "q90": 0.2769,
-     "p_beat_nifty": 0.5553
-    },
-    "5m": {
-     "q10": -0.2152,
-     "q50": 0.0535,
-     "q90": 0.3042,
-     "p_beat_nifty": 0.5364
-    }
-   },
-   "reasons": [
-    "Strong 6-month momentum (+36%, top 7% of universe)",
-    "Outperforming Nifty by +13% over 3 months",
+    "Strong 6-month momentum (+28%, top 11% of universe)",
     "Price above rising 200-day average (uptrend, golden-cross alignment)",
-    "Trading within 5% of its 52-week high",
-    "RSI 62: momentum without being overbought"
+    "RSI 53: momentum without being overbought"
    ],
    "risk": {
-    "volatility_63d": 0.3017,
-    "max_drawdown_6m": -0.0378,
-    "beta": 1.0666
+    "volatility_63d": 0.3085,
+    "max_drawdown_6m": -0.0618,
+    "beta": 0.7578
    },
    "fundamentals": {
-    "pe": 54.0196,
-    "pb": 19.4228,
-    "roe": 0.2329,
-    "debt_to_equity": 2.68,
-    "earnings_growth": 0.516,
-    "revenue_growth": 0.597,
-    "profit_margin": 0.1109,
-    "market_cap": null,
-    "yf_sector": "Consumer Cyclical"
+    "pe": 74.6897,
+    "pb": 16.2123,
+    "roe": 0.2396,
+    "debt_to_equity": 10.744,
+    "earnings_growth": 0.663,
+    "revenue_growth": 0.168,
+    "profit_margin": 0.1229,
+    "market_cap": 594951602176.0,
+    "yf_sector": "Consumer Defensive"
    },
    "news": {
-    "n_articles": 29,
+    "n_articles": 14,
     "headlines": [
      {
-      "title": "Bosch share price falls below Rs 50K mark after stock split, bonus issue and Q2 results",
-      "source": "Business Today",
-      "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNemFDUUhOYmNhZC1NZmtQM21rMkM0TlotVUhVRkstQ1NuVlViRXJCaWFmWGpyclZlcDdNem9ZZzBrTmtfalZ6eWVIclZlTXJPTnVIZHh3WlpJeXhlelJxTWdUUnc1SmJWMnlTcUtpMTI4MF9jRjdhNmxYODN1NlpoUEUxRXJYaUE4VjFHSmhZMVExeFF2cV9yeTUzWTdIVmFPazVVc20zUFhZTkZEcUFsVHNQbTlId2RseERha0lTRGpmTlg1cmpabUlCOWlJTHNQclphaU8teENvMU9zT09LNlJySExvLXd3NHhSQll30gHzAUFVX3lxTE0yNWpJYlNFRGNLV2tLZXVkdUFMNkVIUHZZWnE1SjBGWDVuNXhfWXJIRWhNeXJiMGVtYzdEZzBjN2ZpNjVyT0FhU2JVOElDTXlYSzVqU29RLVFPWk40OVFRYm9qNDA5VnA3WTFwOVQ5ZFFrOVFlUjNpY0NBY18yYUVsVEwzZm9jYkM4YVZOQXV6YlBXcGNic2w5QkljdXZaSzdjV1RIa04zQWhDZ0RZc0V2ZkZUZDhYbHNvV0JRMWdsOWJ3VVVlMGd3THZCYWxnMWdpUl9SU0U0cnFWR0NfUFhaZXFFNkZpTXNjZVBmaWl3cjRldw?oc=5",
-      "published": "2026-11-09T07:47:05+00:00",
-      "sentiment": 0.25
-     },
-     {
-      "title": "Bosch Share Price: Why Bosch Shares Fall After Split",
-      "source": "Univest",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPUGFIclBvWENhNlFfMkdWbElNamZoa1l1dUVDV1BYeVNDRmJrLWJlU0lnTXpIRnBSZE4tX25idEFUMUxLVm9WOUwtQWM0RHhPVEowZjhFUF9RQW5qOFF1MGdkOFoyNVJoOHdnbVVEUmpQQVpTSXhyWVN4Q1dmbFJWTHJ1d2h1bGhQQlJ0MHZkbjdyWTE4cWVYWHQ0bVhHbXFvT2VERnFfZ0NqLTByV1pfNXlpUkUwUEY5aVJyajdDcGNoMi1TNm4tSTRvNA?oc=5",
-      "published": "2026-11-09T07:32:49+00:00",
-      "sentiment": 0.527
-     },
-     {
-      "title": "Bosch shares falls 3% after stock split, bonus issue, Q2 results announcement | What should investors do?",
-      "source": "Livemint",
-      "link": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxPenFIQjZEUTg1S3hVY3FlVjJBUVg2NnVJR1gwcEZxRWRnOHBVS2FRYkkxRFpxRWxRZk5GVkJpR2x1cURXWDJFZHVSZzRIXzVjSi15bmpzZ2l0QjFPdlRhaDBjb0RZb0N5cWlRbUVPWVlTaFhvcDJCcFUzX3Zwc2R1VGVGYlpSbWxIdTRORy04M25VSkU2bmFPaUJITGU4cjhEZEpvSmExaUtFc205d1dILXkzUUtnN0hrT2FLdTh0Z3dtVmYzUV9WSmJnZ2dyZTV2N1dfOFBfZFZpdlhlM0lQR1lvNXdFd2xaR1NVVFBsSi02OVZMeG1wTVoyTzlNd9IBgwJBVV95cUxPWWh0VEFPVFhESlBGYXNoYmxBLXAwNGhtY1RUa3hKZ2JXbTl4aTdJNVdhMlBoUnF0bWpCSzllSERDVTgwSjVfVzRPekw0XzlqUWtHY19KYXNIaFRvU3BsX3ZLaHV5R21LcUhOendJY1QtRE1EMTF5OHRJdl9HTWhnakZkaFljMHdRbk9QOTVVRHpHVmhER0V3a2dwLVY3U2djS0xVTzU5RnAtMXltWjlrQ19wX0F4cDdQc1ZXd1c2Yk5EM1BQa1ZzRktOYk8zeDdjU21QbTVaRGpyTDVvNXhfeFhtZFVOWmV2WURPaWJoU0Q5R1hxMDlxU19YSjFLVmdTNVFr?oc=5",
-      "published": "2026-11-09T05:52:10+00:00",
-      "sentiment": 0.25
-     },
-     {
-      "title": "Bosch shares in focus after management cites a 'modest' outlook for second half of the year",
-      "source": "CNBC TV18",
-      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNQUpScUx3dTlkRTJZOHRSZ0xubG5TcWNBMFliNGJQSFZ2bFZrUFhjWHozYlpnMW9tcE5OMzFqY19JRlFjcUgyODVhN2pvQ0xaM2pydDFYVkswWlBLUEVaS2hFcl9lbjBwOWZoVXJuY2NITXNGa1VsUGJ0UVBvMnA1SXZxSktWMEIyVF9WbzE4TlBvcGtibDIzS284SFpacWpIZmg3WW4tUGFBNHdleTRyUXVzQTk1UjNFSklaTDRwZUw5VUNMZUhpetIBzgFBVV95cUxPMEJiZU1YV1p6Ym1RaHNFUW9USDV1NFN3b1V0TUd3Tk5RZll4ckVkX1hXd2FTWUtCN3l2VWNkc3ZhZS02LUhKdWI4bnZVRWpmS1hLMko1TXFkSkpJeEVjeG9IWC1jc09yMGtNaVc0OHdwZ3dHb3g4c29RLUZhbGMwc182TWpVN0RHb05QVElEc1FydWZLbldKTWJiSmYzWEQ1VHR4eVRQeXdfdlUyV3FWc2lOanh4cmlLa0FTZ2c4WDlaWDgxcWY1aWdQWEdvZw?oc=5",
-      "published": "2026-11-09T03:28:19+00:00",
-      "sentiment": 0.296
-     },
-     {
-      "title": "Bosch bonus issue, stock split: 1 share to become 20 after 38% rally in one year! Check ratio, record date, returns",
-      "source": "IndiaIPO",
-      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQR0I2blFNc0t5b0wyMWNDWVpGZ1A0QlRhUno5cVZZdlRDVzRpNGJGaDk1WU5sN1ljS3FBWHRnR2JKSFFKWmRaVU4ybG13aG5PRUF6eGhyeHl4WlcxbTdpcnRTaTBENjl5djU1akp0WmZVUzlYeGRMcFJvUlFJU3ZBM1dhT0lFeTcwdWRlVFU4enliT3V5V3ZNNkx6NW5hNERHUmlUZkd0ZkFtRHBlbjlqTjFPdFVHNm4tbFNXeVJEdy1mUDZTRk5COURoMXROUVRXSThJUG1OSWJYS3FRaVE?oc=5",
-      "published": "2026-11-08T22:49:20+00:00",
-      "sentiment": 0.831
-     }
-    ],
-    "llm": null
-   },
-   "chart": [
-    36271.31,
-    36077.59,
-    36703.47,
-    37493.27,
-    36912.1,
-    36887.26,
-    36589.22,
-    34979.81,
-    35829.22,
-    36072.62,
-    35600.73,
-    35799.42,
-    36385.56,
-    36465.04,
-    36976.67,
-    37513.14,
-    36758.11,
-    36996.54,
-    36370.66,
-    37572.75,
-    37542.95,
-    37319.42,
-    38804.64,
-    38814.58,
-    38789.74,
-    38973.53,
-    39773.27,
-    39932.22,
-    40036.54,
-    39927.25,
-    40101.11,
-    40175.62,
-    39624.25,
-    39639.15,
-    40518.37,
-    41243.59,
-    41621.11,
-    41849.61,
-    41660.85,
-    41337.97,
-    41948.95,
-    41541.63,
-    41422.42,
-    41188.95,
-    41174.05,
-    40841.24,
-    40587.91,
-    40692.22,
-    40602.81,
-    41288.3,
-    41963.86,
-    41482.02,
-    40980.32,
-    41039.93,
-    40796.54,
-    41278.36,
-    40816.41,
-    41030.0,
-    41200.0,
-    42920.0,
-    42000.0,
-    42950.0,
-    43505.0,
-    45185.0,
-    46480.0,
-    46750.0,
-    47100.0,
-    46970.0,
-    48730.0,
-    48460.0,
-    48750.0,
-    48200.0,
-    48100.0,
-    48680.0,
-    48895.0,
-    48780.0,
-    48640.0,
-    50000.0,
-    48550.0,
-    47250.0,
-    47000.0,
-    46820.0,
-    48025.0,
-    48785.0,
-    49100.0,
-    48775.0,
-    48385.0,
-    47070.0,
-    47555.0,
-    47735.0,
-    47000.0,
-    47565.0,
-    48290.0,
-    47955.0,
-    47750.0,
-    48250.0,
-    47020.0,
-    45700.0,
-    47100.0,
-    45480.0,
-    44960.0,
-    45000.0,
-    44410.0,
-    43155.0,
-    43545.0,
-    44585.0,
-    44900.0,
-    45000.0,
-    45035.0,
-    45560.0,
-    45195.0,
-    44500.0,
-    44070.0,
-    44085.0,
-    44900.0,
-    45600.0,
-    47625.0,
-    47565.0,
-    47200.0,
-    48100.0,
-    49645.0,
-    50925.0,
-    52475.0,
-    50700.0,
-    49550.0,
-    50490.0
-   ]
-  },
-  {
-   "symbol": "RVNL",
-   "name": "Rail Vikas Nigam Ltd.",
-   "sector": "Construction",
-   "price": 209.4,
-   "final_score": 0.6341,
-   "model_score": 0.6905,
-   "news_score": 0.3609,
-   "quality_score": 0.3247,
-   "forecast": {
-    "3m": {
-     "q10": -0.1748,
-     "q50": 0.0434,
-     "q90": 0.3279,
-     "p_beat_nifty": 0.5223
-    },
-    "4m": {
-     "q10": -0.186,
-     "q50": 0.0744,
-     "q90": 0.3798,
-     "p_beat_nifty": 0.5168
-    },
-    "5m": {
-     "q10": -0.2526,
-     "q50": 0.0622,
-     "q90": 0.4184,
-     "p_beat_nifty": 0.5114
-    }
-   },
-   "reasons": [
-    "RSI 65: momentum without being overbought"
-   ],
-   "risk": {
-    "volatility_63d": 0.3251,
-    "max_drawdown_6m": -0.2686,
-    "beta": 1.4379
-   },
-   "fundamentals": {
-    "pe": 48.5847,
-    "pb": 4.4452,
-    "roe": null,
-    "debt_to_equity": 49.078,
-    "earnings_growth": 0.169,
-    "revenue_growth": 0.106,
-    "profit_margin": 0.0432,
-    "market_cap": 436603224064.0,
-    "yf_sector": "Industrials"
-   },
-   "news": {
-    "n_articles": 24,
-    "headlines": [
-     {
-      "title": "Railway stocks under pressure: RailTel, RVNL, IRFC, Titagarh fall up to 47%; check price targets",
-      "source": "Business Today",
-      "link": "https://news.google.com/rss/articles/CBMigAJBVV95cUxQUkh1RF95QjBKUi1Sa1JoN2xldk9FVnJtRUJfX0w3d3ZuamVBQ2Q0Uk1TQW9oU3lXUFVrT3VkU3NqamhVYml3eHYtVE9NeWNEckxsZml5bS03Xzcza1VSV2xSMFMydHBFZjdRcTVWUkMzRmlPZE9mcjZES0V4NG9UWW9PdGVIREY4MU5pWTJEOXh1WUdRZmFYTVNuS2x2aXUxLS1DX0s5QjdMbm43TnM4MVR3ODFsN2tKVHVjZmgtOWxWMUU2UGpwMlI4enVKTDVuUXBqTExzNzVkSy1pWWJ6eHFSNVFVay1WV3J1NXBxZnZqelYta2M0Y056eW44VjJF0gGGAkFVX3lxTE92SlY2SG5lMWNxemFDWFlIdTJRU25zX0hkNUlqVFRGNnZ0Um0tYmF3RDI5QmhRX1BnY3V6R25hYzdJMmYyVkNBVUp0TmVndEl3dnNaRER3VjJhVzhwMHR2Q1B4dmZBRkU1TkZ0SXZmWEw4TmJnZzZ2a3ozcVFzb3lZTnRZV2cyNVVZLUdBcVB2bXlBSkx5V0dSdlcxM1BmeXVTZzdTS1habUxwamxrSkpRQjVrZER0UWstTGk3VHRYamVPNFdNc3k5cFRRZ3dyYk54dEJVOUJicXY5TWtkRUhFZVpFWjFhZ2Z1ZmhoQl84X0JMS3U2N0hrR2lvZy12RXFVNEdlZ3c?oc=5",
-      "published": "2026-11-11T08:57:26+00:00",
-      "sentiment": -0.296
-     },
-     {
-      "title": "News by CNBC TV18 on TradingView, 2026-11-11 \u2014 cnbctv:e3a8ac742094b:0",
-      "source": "TradingView",
-      "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBMUFVTTlJETF85eXNwR3d3UWxjRFhaSWZrR0V0S3psQnZ0SnNzeHpVbHlQMk5TNVdLd2k4Si1ZZC1IQ1dUbDRKT1JwNUxPekp6YzJpQ2tKM3p2OUxtclV2TXlESTRrY3c?oc=5",
-      "published": "2026-11-11T08:37:09+00:00",
+      "title": "Radico Khaitan to hold investor meetings at 360 One and CLSA events",
+      "source": "scanx.trade",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQcXJ6WmthRy1FcnFSR2RkSm0wcngxaUVaWFdmWEJGdXQ4WUNuX24wZmpLRktyb0FTcTgxbENCQXFXNXlhTy10V1I3MGFybVR0ekQyb2hycnFJNVhxRzdkTFZiQjJETVI5OENNWWhqUHpvZnZlZXd5NzN0bnVwU0FRT0lNeXhacFpMNG9tdUtfTXBGdTZfTXBxZzdVR0EwVU9RSTkwSXZucEZQaGZRSW05VWNZU0g?oc=5",
+      "published": "2026-11-10T15:50:09+00:00",
       "sentiment": 0.0
      },
      {
-      "title": "Sensex rallies 1,000 pts: Kalyan Jewellers, IndiGo surge; PSU Bank Index hits record high",
-      "source": "The Financial Express",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOckdDel9XTjVieF9jLTRxaUpDMmVITVBDek1Jb2UxdXh5aFFuM0xTY0FQOFRnZXlMNFdJbFpvOURpV3hvNUNpeExEN09IZ3JvenNnejNBVXZ4WnNPUWZMSW1fX0ZWaDJrQ2h1Wnh5Q1d3VEc3OGp1Nnd4NmNQLU9FcG95bnR0eWRRNWlsSXdHT0xkWG5aRkxCM0R0cEhWOGtoTEFHeDZYWjFzM1NfcEdxTnlaR0RNbHkzd0d2aTdzMFhmbW9jTGh0RnJFNkJ1dDjSAdYBQVVfeXFMT1NvS2N6MlI4MDc4OFJpbDIwVXMzZnJCYWJObFhxektjSVFtMDlWdG9Eb2NBdU9vSHlYeFFuTFRKbDhZRUZkMmpUa0FDZlVQZHV6U284anl1ZWZUc24xNU5qbHhEUndNVFpaMnJRUkYtNmNwTldncWhCVEVxSUw0NmZJNktyVGR5akNEUHFjVUJpYXhINTRoVkVENVpwSnBJVjQ3aE5Zbm9hWWFUMkVKYmk3RTZrM2pLZC12UXRpeXpCUnRnUERCTzVZaV9GSXNZcHZPT3ZSUQ?oc=5",
-      "published": "2026-11-11T08:11:13+00:00",
-      "sentiment": 0.807
+      "title": "DRI seizes \u20b92.64 crore goods from Radico Khaitan in tariff dispute",
+      "source": "scanx.trade",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPbmtxUFp3LVdsQW1MYS1YejlieFV2WjE3NTdxNUhFRHV0U0FXeW9uOVdDNHdOM2V0SEkzQWpELWctcXBFMlpKemxBeXJpTThpanRoSXNZTF9vZnZnMXcySklmZjU0RVRJMjhRSnpoaVQycHpIRHloVC0xZ2tySVlmVmpHRlF0RHF5NWFib1VNWkJyZVZ6cDU1NmR4eFVtVW0tQzFTa3Q1S1gwcEF6dXA1TEE3cTQ?oc=5",
+      "published": "2026-11-10T07:32:52+00:00",
+      "sentiment": -0.402
      },
      {
-      "title": "BEML, RVNL, IRCTC, IRFC and other railway PSU stocks jump up to 8%; what's driving the rally?",
-      "source": "Upstox",
-      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQU3lDWUQ4Nk1BM080QktFek11TmxUczJucnB6N1M3MHlDZzZGMnZ5Qjg5aGlpLVBlX3U3Y0o0dmlvNVB1WHZQWGJ1aUJTQjNyOG9yazVHT2h6M2xoYXBkZmJVQWpVY3JQYWhzWFFKSWRZQU5WcVlVX3d2OFhRaF9pMFRodzdUSW5CMnJQWnBHbG5nRkdieUVNSmVPbG5uZGFPakRDVlp3SlBaM2s5cXc4MGJ4TEExYTktN2NhWDhpX3NWcm5ONjBNcF8xMkdqX0VGSUdtY1NaWEpFelVVaVE?oc=5",
-      "published": "2026-11-11T07:56:08+00:00",
-      "sentiment": 0.421
-     },
-     {
-      "title": "Railway Stocks Rally: RVNL and IRFC Up to 10%",
+      "title": "Radico Khaitan Share Price Target 2027: 17.6% Upside and Risks",
       "source": "Univest",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOQ2xGaEctZEpnaW9sY0hBMTRGdkhKRDBCVVpaVks2T1NLVnBoMHhnSlJWWjZGZTMtX21CWTI5NERjT1Y0SGVwOFRPNHNKRXNlVm92MWJWWDZ4YmtFTXY1UXlTVVFIeUR1YVRsanJ4bnN4dTdobjdhVDEyZzZJRnc1bmVoS1d0bXh4bU1IeklTZ3FDQ1pfWDVvRVNTVnRjSUdPR1NCcnhTLXR3bGxQNUZETFJIcU1SMm8?oc=5",
-      "published": "2026-11-11T07:42:22+00:00",
-      "sentiment": 0.421
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5VdkV6cFUtc0JSZFZCQlVMclRNVTdyeVc0czhtRXA5d09PNUl3TmlQUlRkZWEzN1J0bzVRdHd2bDZYVE9sTklxM3I0SHRqby12VndNLTV4OUJmN2FKbThNZEdpc0xXYmZNR3dHRktkQ0Q?oc=5",
+      "published": "2026-11-05T08:04:00+00:00",
+      "sentiment": 0.026
+     },
+     {
+      "title": "Diwali 2026 Muhurat Trading stock picks: Eternal, ICICI, Titan, Radico, 7 more Samvat 2083 stocks by Shriram Research",
+      "source": "Livemint",
+      "link": "https://news.google.com/rss/articles/CBMiigJBVV95cUxOR2pzbVBkbXhTcjk5WDhfdzRKa1U5WUJNR19xMmE2VGd1NFJFdDdpUnhULXRjN3pnbDBCelNxdGlKVFZmR29MdUNyM3h1V3BfZWYzZUlPbGFlX0pPanE2MDh5S0s3RTNvYjByNmtxR0FBNnpWRzBGTVlDWVRGeUlDaDVaWm9MSEZDUS1Kb2JxQkx1NlFTTGZDeHFsZHhkeGRqYVR5TWdnZVhPYVRYOTVmLWUzejRlOWw5NjhqcUpURC00UlExUkdxSlcxd290bVBkdWU1WVoyREJnd3NBamdxNnR2R0h4Ri1wZk1SQnF2NUhWV3I3Y2s3TlhiV3lKbjVnSFlHVV9LSkphQdIBjwJBVV95cUxNLVNJZ09GVnczOVI4Q0ZjTmsxQWRvVGVPTl8xaWtoYlM3bWxjeEFRUHp4dDh0QmJFSTc1RUNDajUtcFpYQlRvX3RCUUNBTXVGcUpNbGFmdG9RLW9NeUJxbUY3N0JhS2FKQ0hqeUhudUNDc2pmbWI5Q3Nad1cwX1Y4Ul9teU5tT0pGZURQWDI3WHFwRVpoLWhpOUdPZE9lRk9YS1VwTjhUSHh0bldzd1pRLTc1WmthNXVYRExaM1EwNnd0cWRrYUpFUExUZjZSM19oUnhMLVUwTThIaDFzdFp3UzBUWWYzd29qMXBVSmwtd2hLMm1md1N5ZXdpeGtMY21fY3dwY0tNZWdIS1k3X2tZ?oc=5",
+      "published": "2026-11-04T13:27:17+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "RADICO KHAITAN LTD Option Chain - Live RADICO KHAITAN LTD Option Chain Data, OI & Price",
+      "source": "Upstox",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5aZHdUSGhXa055TWk5M1pXTFQ1WGFXYmpxX2ZPZzhKUmZUUXBKOTdUSTFNTVoyQm9IUGpRMlNVZFZMcVlPN0JZTkd2bVNhZnotcmFlNUl4aXowZk5BLVJLYw?oc=5",
+      "published": "2026-11-02T08:00:00+00:00",
+      "sentiment": 0.0
      }
     ],
     "llm": null
    },
    "chart": [
-    282.42,
-    284.11,
-    286.31,
-    282.12,
-    275.94,
-    270.71,
-    268.76,
-    269.91,
-    270.26,
-    271.6,
-    258.94,
-    251.52,
-    244.69,
-    240.81,
-    240.0,
-    238.28,
-    235.73,
-    234.88,
-    227.52,
-    233.16,
-    227.46,
-    221.5,
-    232.54,
-    238.96,
-    240.39,
-    244.38,
-    246.81,
-    243.23,
-    245.43,
-    239.38,
-    239.19,
-    240.1,
-    236.77,
-    235.1,
-    236.87,
-    236.11,
-    235.04,
-    233.11,
-    231.94,
-    224.03,
-    225.53,
-    231.95,
-    230.82,
-    226.6,
-    226.26,
-    225.7,
-    224.74,
-    226.17,
-    224.56,
-    222.42,
-    223.43,
-    223.83,
-    223.25,
-    220.65,
-    224.13,
-    222.19,
-    224.78,
-    232.18,
-    230.68,
-    228.29,
-    234.27,
-    232.65,
-    229.96,
-    229.29,
-    229.29,
-    227.44,
-    226.64,
-    227.79,
-    225.0,
-    223.5,
-    227.9,
-    225.3,
-    221.7,
-    218.4,
-    221.39,
-    216.0,
-    214.22,
-    210.0,
-    208.38,
-    206.0,
-    209.3,
-    212.49,
-    210.05,
-    207.5,
-    207.0,
-    205.6,
-    204.9,
-    199.0,
-    197.5,
-    201.7,
-    214.29,
-    209.71,
-    211.15,
-    211.77,
-    206.0,
-    207.0,
-    202.75,
-    197.9,
-    201.76,
-    197.0,
-    196.95,
-    198.78,
-    195.87,
-    187.2,
-    190.65,
-    192.74,
-    197.3,
-    196.88,
-    196.74,
-    199.45,
-    194.5,
-    188.41,
-    187.18,
-    181.31,
-    182.65,
-    181.0,
-    184.1,
-    186.0,
-    179.67,
-    186.11,
-    184.24,
-    191.23,
-    193.69,
-    193.34,
-    201.7,
-    209.4
+    3421.01,
+    3442.86,
+    3453.34,
+    3491.45,
+    3463.71,
+    3591.93,
+    3558.01,
+    3563.99,
+    3553.22,
+    3531.56,
+    3570.48,
+    3431.69,
+    3510.81,
+    3498.34,
+    3479.78,
+    3456.43,
+    3494.65,
+    3482.97,
+    3477.18,
+    3492.95,
+    3469.4,
+    3442.26,
+    3533.86,
+    3584.05,
+    3570.78,
+    3564.29,
+    3681.83,
+    3760.86,
+    3770.23,
+    3710.67,
+    3749.38,
+    3821.32,
+    3868.32,
+    3936.77,
+    3943.85,
+    3963.61,
+    3883.68,
+    4097.61,
+    4089.53,
+    4068.57,
+    4079.95,
+    4064.68,
+    4036.44,
+    4042.23,
+    4080.95,
+    4096.91,
+    4088.83,
+    4123.25,
+    4079.35,
+    4138.32,
+    4056.3,
+    4091.3,
+    4149.5,
+    4289.7,
+    4373.8,
+    4366.6,
+    4340.8,
+    4459.1,
+    4450.0,
+    4550.0,
+    4470.0,
+    4499.0,
+    4550.0,
+    4545.0,
+    4533.0,
+    4675.2,
+    4650.0,
+    4693.4,
+    4732.9,
+    4696.0,
+    4696.0,
+    4639.8,
+    4600.0,
+    4630.0,
+    4614.0,
+    4606.0,
+    4605.0,
+    4485.0,
+    4474.3,
+    4476.2,
+    4559.0,
+    4494.0,
+    4444.0,
+    4485.0,
+    4414.0,
+    4460.0,
+    4368.1,
+    4360.0,
+    4466.0,
+    4380.0,
+    4535.4,
+    4480.0,
+    4448.8,
+    4601.9,
+    4481.3,
+    4557.1,
+    4478.3,
+    4364.0,
+    4366.0,
+    4237.0,
+    4289.1,
+    4460.1,
+    4495.0,
+    4415.0,
+    4550.0,
+    4555.0,
+    4540.0,
+    4554.1,
+    4449.0,
+    4473.4,
+    4435.5,
+    4356.1,
+    4201.3,
+    4157.3,
+    4200.0,
+    4290.0,
+    4135.1,
+    4235.0,
+    4086.7,
+    4100.0,
+    4250.0,
+    4396.5,
+    4525.0,
+    4515.2,
+    4560.8,
+    4440.3
    ]
   }
  ],
  "watchlist": [
   {
-   "symbol": "IREDA",
-   "name": "Indian Renewable Energy Development Agency Ltd.",
-   "final_score": 0.6369,
-   "q50_5m": 0.043,
-   "red_flag": false
-  },
-  {
-   "symbol": "SUZLON",
-   "name": "Suzlon Energy Ltd.",
-   "final_score": 0.6165,
-   "q50_5m": 0.0262,
-   "red_flag": false
-  },
-  {
-   "symbol": "OBEROIRLTY",
-   "name": "Oberoi Realty Ltd.",
-   "final_score": 0.6152,
-   "q50_5m": 0.0341,
-   "red_flag": false
-  },
-  {
    "symbol": "BAJAJHLDNG",
    "name": "Bajaj Holdings & Investment Ltd.",
-   "final_score": 0.6148,
-   "q50_5m": 0.0372,
+   "final_score": 0.6484,
+   "q50_5m": 0.0462,
+   "red_flag": false
+  },
+  {
+   "symbol": "BOSCHLTD",
+   "name": "Bosch Ltd.",
+   "final_score": 0.6322,
+   "q50_5m": 0.0377,
    "red_flag": false
   },
   {
    "symbol": "MRF",
    "name": "MRF Ltd.",
-   "final_score": 0.6024,
-   "q50_5m": 0.0384,
+   "final_score": 0.6311,
+   "q50_5m": 0.0347,
    "red_flag": false
   },
   {
-   "symbol": "COCHINSHIP",
-   "name": "Cochin Shipyard Ltd.",
-   "final_score": 0.6013,
-   "q50_5m": 0.0253,
+   "symbol": "YESBANK",
+   "name": "Yes Bank Ltd.",
+   "final_score": 0.6287,
+   "q50_5m": 0.0126,
    "red_flag": false
   },
   {
-   "symbol": "RADICO",
-   "name": "Radico Khaitan Ltd",
-   "final_score": 0.5979,
-   "q50_5m": 0.0711,
+   "symbol": "OBEROIRLTY",
+   "name": "Oberoi Realty Ltd.",
+   "final_score": 0.616,
+   "q50_5m": 0.025,
    "red_flag": false
   },
   {
    "symbol": "MOTHERSON",
    "name": "Samvardhana Motherson International Ltd.",
-   "final_score": 0.5873,
-   "q50_5m": 0.0513,
+   "final_score": 0.5968,
+   "q50_5m": 0.0358,
    "red_flag": false
   },
   {
-   "symbol": "INDHOTEL",
-   "name": "Indian Hotels Co. Ltd.",
-   "final_score": 0.5738,
-   "q50_5m": 0.0344,
-   "red_flag": false
-  },
-  {
-   "symbol": "EICHERMOT",
-   "name": "Eicher Motors Ltd.",
-   "final_score": 0.5494,
-   "q50_5m": 0.0112,
-   "red_flag": false
-  },
-  {
-   "symbol": "PRESTIGE",
-   "name": "Prestige Estates Projects Ltd.",
-   "final_score": 0.544,
-   "q50_5m": 0.0305,
-   "red_flag": false
-  },
-  {
-   "symbol": "ADANIGREEN",
-   "name": "Adani Green Energy Ltd.",
-   "final_score": 0.5417,
-   "q50_5m": 0.0375,
+   "symbol": "COCHINSHIP",
+   "name": "Cochin Shipyard Ltd.",
+   "final_score": 0.5909,
+   "q50_5m": 0.03,
    "red_flag": false
   },
   {
    "symbol": "EXIDEIND",
    "name": "Exide Industries Ltd.",
-   "final_score": 0.5416,
-   "q50_5m": 0.0217,
+   "final_score": 0.5909,
+   "q50_5m": 0.0382,
    "red_flag": false
   },
   {
-   "symbol": "ABCAPITAL",
-   "name": "Aditya Birla Capital Ltd.",
-   "final_score": 0.5343,
-   "q50_5m": 0.0271,
+   "symbol": "RVNL",
+   "name": "Rail Vikas Nigam Ltd.",
+   "final_score": 0.5885,
+   "q50_5m": 0.051,
+   "red_flag": false
+  },
+  {
+   "symbol": "IRCTC",
+   "name": "Indian Railway Catering And Tourism Corporation Ltd.",
+   "final_score": 0.5638,
+   "q50_5m": 0.0316,
+   "red_flag": false
+  },
+  {
+   "symbol": "EICHERMOT",
+   "name": "Eicher Motors Ltd.",
+   "final_score": 0.5628,
+   "q50_5m": 0.0036,
+   "red_flag": false
+  },
+  {
+   "symbol": "INDHOTEL",
+   "name": "Indian Hotels Co. Ltd.",
+   "final_score": 0.5589,
+   "q50_5m": 0.0276,
+   "red_flag": false
+  },
+  {
+   "symbol": "GRASIM",
+   "name": "Grasim Industries Ltd.",
+   "final_score": 0.5477,
+   "q50_5m": 0.0087,
    "red_flag": false
   },
   {
    "symbol": "TATACOMM",
    "name": "Tata Communications Ltd.",
-   "final_score": 0.5303,
-   "q50_5m": 0.0527,
+   "final_score": 0.5438,
+   "q50_5m": 0.0528,
+   "red_flag": false
+  },
+  {
+   "symbol": "ABCAPITAL",
+   "name": "Aditya Birla Capital Ltd.",
+   "final_score": 0.5352,
+   "q50_5m": 0.014,
    "red_flag": false
   }
  ],
@@ -1223,65 +1220,65 @@
   "period_start": "2021-06-10",
   "period_end": "2026-06-10",
   "n_weeks": 248,
-  "avg_pick_return": 0.1922452287248376,
-  "avg_pick_excess": 0.15950404440213828,
-  "avg_universe_return": 0.09957820487985458,
+  "avg_pick_return": 0.19641807742601028,
+  "avg_pick_excess": 0.16367689310331096,
+  "avg_universe_return": 0.09957840676295558,
   "avg_benchmark_return": 0.0327411843226993,
-  "pick_hit_rate": 0.7056451612903226,
-  "pick_beat_benchmark_rate": 0.6790322580645162,
-  "weeks_top5_beat_benchmark": 0.8387096774193549,
-  "mean_ic": 0.056773409717812064,
-  "ic_t_stat": 1.532891687148298,
-  "q10_q90_coverage": 0.8428442844284428,
-  "chained_cagr_picks": 0.6321135885688518,
+  "pick_hit_rate": 0.710483870967742,
+  "pick_beat_benchmark_rate": 0.6870967741935484,
+  "weeks_top5_beat_benchmark": 0.8346774193548387,
+  "mean_ic": 0.058925650846690436,
+  "ic_t_stat": 1.572902156409046,
+  "q10_q90_coverage": 0.8415616561656165,
+  "chained_cagr_picks": 0.6394188040606119,
   "chained_cagr_benchmark": 0.0887210319231364,
   "decile_excess": {
-   "0": 0.043153042008410775,
-   "1": 0.05148755738965811,
-   "2": 0.05843093537452,
-   "3": 0.05509650558403751,
-   "4": 0.05836109673321385,
-   "5": 0.06472835037513572,
-   "6": 0.06318121847679484,
-   "7": 0.07659887695838284,
-   "8": 0.08341953511296944,
-   "9": 0.11350014695976851
+   "0": 0.04117568834478277,
+   "1": 0.053805010362031225,
+   "2": 0.057060750052396594,
+   "3": 0.05715433657124129,
+   "4": 0.05465361847835319,
+   "5": 0.0630066735897729,
+   "6": 0.06439560101401857,
+   "7": 0.07338048546848869,
+   "8": 0.08477766499336878,
+   "9": 0.1185294100974137
   },
   "verdict_stats": {
    "strong_hold": {
-    "avg_return": 0.13499302134590044,
-    "avg_excess": 0.10671796440445003,
-    "share_positive": 0.6432475669910679,
-    "share": 0.16878937893789378
+    "avg_return": 0.13828292834866496,
+    "avg_excess": 0.1100159657511171,
+    "share_positive": 0.6462876254180602,
+    "share": 0.1682043204320432
    },
    "hold": {
-    "avg_return": 0.09938612739586138,
-    "avg_excess": 0.06708242319782533,
-    "share_positive": 0.616822429906542,
-    "share": 0.3876462646264626
+    "avg_return": 0.09844109777867285,
+    "avg_excess": 0.06572736087334641,
+    "share_positive": 0.6157641186371815,
+    "share": 0.3876912691269127
    },
    "review": {
-    "avg_return": 0.0863808277039672,
-    "avg_excess": 0.05379527378962579,
-    "share_positive": 0.6272806255430061,
-    "share": 0.3108010801080108
+    "avg_return": 0.0866399355293801,
+    "avg_excess": 0.05466914430327111,
+    "share_positive": 0.6271405957691755,
+    "share": 0.3127362736273627
    },
    "exit": {
-    "avg_return": 0.08299327332707142,
-    "avg_excess": 0.04564966156490527,
-    "share_positive": 0.607457627118644,
-    "share": 0.13276327632763277
+    "avg_return": 0.08113068730630157,
+    "avg_excess": 0.04349185219495391,
+    "share_positive": 0.6068859198355602,
+    "share": 0.13136813681368137
    }
   },
   "weekly": [
    {
     "date": "2021-06-10",
-    "pick_ret": 0.4168,
+    "pick_ret": 0.304,
     "bench_ret": 0.1357
    },
    {
     "date": "2021-06-17",
-    "pick_ret": 0.309,
+    "pick_ret": 0.4805,
     "bench_ret": 0.1321
    },
    {
@@ -1301,7 +1298,7 @@
    },
    {
     "date": "2021-07-15",
-    "pick_ret": 0.4121,
+    "pick_ret": 0.3948,
     "bench_ret": 0.0666
    },
    {
@@ -1316,37 +1313,37 @@
    },
    {
     "date": "2021-08-06",
-    "pick_ret": 0.2971,
+    "pick_ret": 0.247,
     "bench_ret": 0.097
    },
    {
     "date": "2021-08-13",
-    "pick_ret": 0.2272,
+    "pick_ret": 0.205,
     "bench_ret": 0.1045
    },
    {
     "date": "2021-08-23",
-    "pick_ret": 0.1626,
+    "pick_ret": 0.3603,
     "bench_ret": 0.0679
    },
    {
     "date": "2021-08-30",
-    "pick_ret": 0.2606,
+    "pick_ret": 0.2597,
     "bench_ret": 0.0241
    },
    {
     "date": "2021-09-06",
-    "pick_ret": 0.2313,
+    "pick_ret": 0.2556,
     "bench_ret": -0.0094
    },
    {
     "date": "2021-09-14",
-    "pick_ret": -0.0324,
+    "pick_ret": -0.0781,
     "bench_ret": -0.0309
    },
    {
     "date": "2021-09-21",
-    "pick_ret": -0.0384,
+    "pick_ret": -0.0523,
     "bench_ret": -0.0202
    },
    {
@@ -1361,122 +1358,122 @@
    },
    {
     "date": "2021-10-12",
-    "pick_ret": -0.1296,
+    "pick_ret": -0.0767,
     "bench_ret": -0.0739
    },
    {
     "date": "2021-10-20",
-    "pick_ret": 0.2338,
+    "pick_ret": 0.0447,
     "bench_ret": -0.0559
    },
    {
     "date": "2021-10-27",
-    "pick_ret": 0.2774,
+    "pick_ret": 0.3608,
     "bench_ret": -0.0391
    },
    {
     "date": "2021-11-03",
-    "pick_ret": 0.2991,
+    "pick_ret": 0.4709,
     "bench_ret": -0.0012
    },
    {
     "date": "2021-11-11",
-    "pick_ret": 0.3725,
+    "pick_ret": 0.3022,
     "bench_ret": -0.0223
    },
    {
     "date": "2021-11-18",
-    "pick_ret": 0.115,
+    "pick_ret": 0.1339,
     "bench_ret": -0.0334
    },
    {
     "date": "2021-11-26",
-    "pick_ret": 0.0522,
+    "pick_ret": 0.0418,
     "bench_ret": 0.0045
    },
    {
     "date": "2021-12-03",
-    "pick_ret": -0.073,
+    "pick_ret": -0.0877,
     "bench_ret": -0.052
    },
    {
     "date": "2021-12-10",
-    "pick_ret": -0.0964,
+    "pick_ret": -0.097,
     "bench_ret": -0.0953
    },
    {
     "date": "2021-12-17",
-    "pick_ret": 0.0281,
+    "pick_ret": 0.0101,
     "bench_ret": -0.0454
    },
    {
     "date": "2021-12-24",
-    "pick_ret": 0.0339,
+    "pick_ret": -0.0189,
     "bench_ret": -0.0201
    },
    {
     "date": "2021-12-31",
-    "pick_ret": -0.1068,
+    "pick_ret": -0.0879,
     "bench_ret": -0.0452
    },
    {
     "date": "2022-01-07",
-    "pick_ret": 0.0027,
+    "pick_ret": 0.0085,
     "bench_ret": -0.1144
    },
    {
     "date": "2022-01-14",
-    "pick_ret": 0.0118,
+    "pick_ret": -0.0191,
     "bench_ret": -0.1592
    },
    {
     "date": "2022-01-21",
-    "pick_ret": 0.0166,
+    "pick_ret": 0.0003,
     "bench_ret": -0.1013
    },
    {
     "date": "2022-01-31",
-    "pick_ret": 0.0581,
+    "pick_ret": 0.0791,
     "bench_ret": -0.0868
    },
    {
     "date": "2022-02-07",
-    "pick_ret": 0.0027,
+    "pick_ret": 0.0463,
     "bench_ret": -0.058
    },
    {
     "date": "2022-02-14",
-    "pick_ret": 0.0944,
+    "pick_ret": 0.1076,
     "bench_ret": -0.0335
    },
    {
     "date": "2022-02-21",
-    "pick_ret": 0.1233,
+    "pick_ret": 0.0848,
     "bench_ret": -0.0335
    },
    {
     "date": "2022-02-28",
-    "pick_ret": 0.2007,
+    "pick_ret": 0.1872,
     "bench_ret": 0.0325
    },
    {
     "date": "2022-03-08",
-    "pick_ret": 0.177,
+    "pick_ret": 0.2191,
     "bench_ret": 0.0944
    },
    {
     "date": "2022-03-15",
-    "pick_ret": 0.3357,
+    "pick_ret": 0.2098,
     "bench_ret": 0.0769
    },
    {
     "date": "2022-03-23",
-    "pick_ret": 0.0684,
+    "pick_ret": 0.1471,
     "bench_ret": 0.0208
    },
    {
     "date": "2022-03-30",
-    "pick_ret": -0.0365,
+    "pick_ret": 0.0456,
     "bench_ret": 0.0025
    },
    {
@@ -1486,22 +1483,22 @@
    },
    {
     "date": "2022-04-13",
-    "pick_ret": 0.0049,
+    "pick_ret": 0.0266,
     "bench_ret": 0.023
    },
    {
     "date": "2022-04-22",
-    "pick_ret": 0.0886,
+    "pick_ret": 0.0651,
     "bench_ret": 0.0267
    },
    {
     "date": "2022-04-29",
-    "pick_ret": 0.0135,
+    "pick_ret": 0.1434,
     "bench_ret": -0.0166
    },
    {
     "date": "2022-05-09",
-    "pick_ret": 0.0279,
+    "pick_ret": -0.0219,
     "bench_ret": 0.0621
    },
    {
@@ -1511,12 +1508,12 @@
    },
    {
     "date": "2022-05-23",
-    "pick_ret": 0.0194,
+    "pick_ret": 0.0462,
     "bench_ret": 0.084
    },
    {
     "date": "2022-05-30",
-    "pick_ret": 0.1172,
+    "pick_ret": 0.0569,
     "bench_ret": 0.0811
    },
    {
@@ -1526,102 +1523,102 @@
    },
    {
     "date": "2022-06-13",
-    "pick_ret": 0.3427,
+    "pick_ret": 0.3202,
     "bench_ret": 0.1667
    },
    {
     "date": "2022-06-20",
-    "pick_ret": 0.3162,
+    "pick_ret": 0.3755,
     "bench_ret": 0.1885
    },
    {
     "date": "2022-06-27",
-    "pick_ret": 0.4965,
+    "pick_ret": 0.2653,
     "bench_ret": 0.176
    },
    {
     "date": "2022-07-04",
-    "pick_ret": 0.3278,
+    "pick_ret": 0.3117,
     "bench_ret": 0.1773
    },
    {
     "date": "2022-07-11",
-    "pick_ret": 0.1252,
+    "pick_ret": 0.1273,
     "bench_ret": 0.1475
    },
    {
     "date": "2022-07-18",
-    "pick_ret": 0.3116,
+    "pick_ret": 0.2565,
     "bench_ret": 0.1294
    },
    {
     "date": "2022-07-25",
-    "pick_ret": 0.2683,
+    "pick_ret": 0.2667,
     "bench_ret": 0.0903
    },
    {
     "date": "2022-08-01",
-    "pick_ret": 0.1492,
+    "pick_ret": 0.1077,
     "bench_ret": 0.0515
    },
    {
     "date": "2022-08-08",
-    "pick_ret": 0.1474,
+    "pick_ret": 0.1384,
     "bench_ret": 0.0222
    },
    {
     "date": "2022-08-17",
-    "pick_ret": 0.0599,
+    "pick_ret": 0.0081,
     "bench_ret": 0.0061
    },
    {
     "date": "2022-08-24",
-    "pick_ret": -0.0152,
+    "pick_ret": -0.055,
     "bench_ret": 0.0292
    },
    {
     "date": "2022-09-01",
-    "pick_ret": -0.0153,
+    "pick_ret": -0.0846,
     "bench_ret": 0.0042
    },
    {
     "date": "2022-09-08",
-    "pick_ret": 0.0154,
+    "pick_ret": 0.0082,
     "bench_ret": 0.0041
    },
    {
     "date": "2022-09-15",
-    "pick_ret": 0.0352,
+    "pick_ret": -0.0345,
     "bench_ret": 0.0077
    },
    {
     "date": "2022-09-22",
-    "pick_ret": -0.0115,
+    "pick_ret": -0.0121,
     "bench_ret": -0.0043
    },
    {
     "date": "2022-09-29",
-    "pick_ret": 0.247,
+    "pick_ret": 0.0322,
     "bench_ret": 0.0376
    },
    {
     "date": "2022-10-07",
-    "pick_ret": -0.0562,
+    "pick_ret": 0.0259,
     "bench_ret": 0.0159
    },
    {
     "date": "2022-10-14",
-    "pick_ret": -0.1242,
+    "pick_ret": -0.0246,
     "bench_ret": -0.0116
    },
    {
     "date": "2022-10-21",
-    "pick_ret": 0.0911,
+    "pick_ret": 0.0799,
     "bench_ret": -0.0284
    },
    {
     "date": "2022-10-31",
-    "pick_ret": 0.0845,
+    "pick_ret": 0.1192,
     "bench_ret": -0.0362
    },
    {
@@ -1631,12 +1628,12 @@
    },
    {
     "date": "2022-11-15",
-    "pick_ret": 0.0019,
+    "pick_ret": 0.1028,
     "bench_ret": -0.0426
    },
    {
     "date": "2022-11-22",
-    "pick_ret": 0.132,
+    "pick_ret": 0.1248,
     "bench_ret": -0.0236
    },
    {
@@ -1646,22 +1643,22 @@
    },
    {
     "date": "2022-12-06",
-    "pick_ret": 0.0065,
+    "pick_ret": 0.0325,
     "bench_ret": -0.0185
    },
    {
     "date": "2022-12-13",
-    "pick_ret": -0.041,
+    "pick_ret": -0.0376,
     "bench_ret": -0.0257
    },
    {
     "date": "2022-12-20",
-    "pick_ret": -0.1754,
+    "pick_ret": 0.0112,
     "bench_ret": -0.0035
    },
    {
     "date": "2022-12-27",
-    "pick_ret": 0.0437,
+    "pick_ret": 0.036,
     "bench_ret": 0.0196
    },
    {
@@ -1671,7 +1668,7 @@
    },
    {
     "date": "2023-01-10",
-    "pick_ret": 0.1685,
+    "pick_ret": 0.1797,
     "bench_ret": 0.0432
    },
    {
@@ -1686,72 +1683,72 @@
    },
    {
     "date": "2023-02-01",
-    "pick_ret": 0.2979,
+    "pick_ret": 0.3491,
     "bench_ret": 0.0974
    },
    {
     "date": "2023-02-08",
-    "pick_ret": 0.2967,
+    "pick_ret": 0.4671,
     "bench_ret": 0.0947
    },
    {
     "date": "2023-02-15",
-    "pick_ret": 0.5629,
+    "pick_ret": 0.6653,
     "bench_ret": 0.096
    },
    {
     "date": "2023-02-22",
-    "pick_ret": 0.4096,
+    "pick_ret": 0.4392,
     "bench_ret": 0.1192
    },
    {
     "date": "2023-03-01",
-    "pick_ret": 0.3696,
+    "pick_ret": 0.3986,
     "bench_ret": 0.1184
    },
    {
     "date": "2023-03-09",
-    "pick_ret": 0.3415,
+    "pick_ret": 0.2129,
     "bench_ret": 0.1045
    },
    {
     "date": "2023-03-16",
-    "pick_ret": 0.3597,
+    "pick_ret": 0.1495,
     "bench_ret": 0.1418
    },
    {
     "date": "2023-03-23",
-    "pick_ret": 0.3397,
+    "pick_ret": 0.3443,
     "bench_ret": 0.1305
    },
    {
     "date": "2023-03-31",
-    "pick_ret": 0.3831,
+    "pick_ret": 0.363,
     "bench_ret": 0.1249
    },
    {
     "date": "2023-04-11",
-    "pick_ret": 0.4864,
+    "pick_ret": 0.5132,
     "bench_ret": 0.1283
    },
    {
     "date": "2023-04-19",
-    "pick_ret": 0.4242,
+    "pick_ret": 0.4302,
     "bench_ret": 0.1427
    },
    {
     "date": "2023-04-26",
-    "pick_ret": 0.2694,
+    "pick_ret": 0.2662,
     "bench_ret": 0.1039
    },
    {
     "date": "2023-05-04",
-    "pick_ret": 0.1132,
+    "pick_ret": 0.1111,
     "bench_ret": 0.0647
    },
    {
     "date": "2023-05-11",
-    "pick_ret": 0.3194,
+    "pick_ret": 0.3494,
     "bench_ret": 0.0828
    },
    {
@@ -1761,12 +1758,12 @@
    },
    {
     "date": "2023-05-25",
-    "pick_ret": 0.2565,
+    "pick_ret": 0.2641,
     "bench_ret": 0.0293
    },
    {
     "date": "2023-06-01",
-    "pick_ret": 0.2523,
+    "pick_ret": 0.0959,
     "bench_ret": 0.0349
    },
    {
@@ -1776,7 +1773,7 @@
    },
    {
     "date": "2023-06-15",
-    "pick_ret": 0.2173,
+    "pick_ret": 0.206,
     "bench_ret": 0.0558
    },
    {
@@ -1786,37 +1783,37 @@
    },
    {
     "date": "2023-06-30",
-    "pick_ret": 0.1458,
+    "pick_ret": 0.1857,
     "bench_ret": 0.0781
    },
    {
     "date": "2023-07-07",
-    "pick_ret": 0.628,
+    "pick_ret": 0.4679,
     "bench_ret": 0.0861
    },
    {
     "date": "2023-07-14",
-    "pick_ret": 0.2106,
+    "pick_ret": 0.7968,
     "bench_ret": 0.0948
    },
    {
     "date": "2023-07-21",
-    "pick_ret": 0.6544,
+    "pick_ret": 0.7895,
     "bench_ret": 0.0859
    },
    {
     "date": "2023-07-28",
-    "pick_ret": 0.3719,
+    "pick_ret": 0.374,
     "bench_ret": 0.1028
    },
    {
     "date": "2023-08-04",
-    "pick_ret": 0.5827,
+    "pick_ret": 0.2893,
     "bench_ret": 0.1039
    },
    {
     "date": "2023-08-11",
-    "pick_ret": 0.2315,
+    "pick_ret": 0.335,
     "bench_ret": 0.134
    },
    {
@@ -1826,27 +1823,27 @@
    },
    {
     "date": "2023-08-28",
-    "pick_ret": 0.295,
+    "pick_ret": 0.3423,
     "bench_ret": 0.1239
    },
    {
     "date": "2023-09-04",
-    "pick_ret": 0.6081,
+    "pick_ret": 0.6646,
     "bench_ret": 0.1121
    },
    {
     "date": "2023-09-11",
-    "pick_ret": 0.5041,
+    "pick_ret": 0.6697,
     "bench_ret": 0.0957
    },
    {
     "date": "2023-09-18",
-    "pick_ret": 0.2378,
+    "pick_ret": 0.2708,
     "bench_ret": 0.1035
    },
    {
     "date": "2023-09-26",
-    "pick_ret": 0.3262,
+    "pick_ret": 0.3662,
     "bench_ret": 0.1179
    },
    {
@@ -1861,7 +1858,7 @@
    },
    {
     "date": "2023-10-18",
-    "pick_ret": 0.1927,
+    "pick_ret": 0.2175,
     "bench_ret": 0.1233
    },
    {
@@ -1871,22 +1868,22 @@
    },
    {
     "date": "2023-11-02",
-    "pick_ret": 0.4597,
+    "pick_ret": 0.6034,
     "bench_ret": 0.1834
    },
    {
     "date": "2023-11-09",
-    "pick_ret": 0.4148,
+    "pick_ret": 0.5805,
     "bench_ret": 0.1341
    },
    {
     "date": "2023-11-17",
-    "pick_ret": 0.4562,
+    "pick_ret": 0.5222,
     "bench_ret": 0.1439
    },
    {
     "date": "2023-11-24",
-    "pick_ret": 0.2679,
+    "pick_ret": 0.4328,
     "bench_ret": 0.1354
    },
    {
@@ -1896,7 +1893,7 @@
    },
    {
     "date": "2023-12-11",
-    "pick_ret": 0.3995,
+    "pick_ret": 0.4901,
     "bench_ret": 0.07
    },
    {
@@ -1911,17 +1908,17 @@
    },
    {
     "date": "2024-01-02",
-    "pick_ret": 0.457,
+    "pick_ret": 0.3141,
     "bench_ret": 0.0735
    },
    {
     "date": "2024-01-09",
-    "pick_ret": 0.4029,
+    "pick_ret": 0.4837,
     "bench_ret": 0.0934
    },
    {
     "date": "2024-01-16",
-    "pick_ret": 0.4137,
+    "pick_ret": 0.5913,
     "bench_ret": 0.0767
    },
    {
@@ -1931,7 +1928,7 @@
    },
    {
     "date": "2024-02-01",
-    "pick_ret": 0.6428,
+    "pick_ret": 0.5019,
     "bench_ret": 0.1261
    },
    {
@@ -1941,7 +1938,7 @@
    },
    {
     "date": "2024-02-15",
-    "pick_ret": 0.7996,
+    "pick_ret": 0.6098,
     "bench_ret": 0.1142
    },
    {
@@ -1951,17 +1948,17 @@
    },
    {
     "date": "2024-02-29",
-    "pick_ret": 0.6488,
+    "pick_ret": 0.6245,
     "bench_ret": 0.1053
    },
    {
     "date": "2024-03-07",
-    "pick_ret": 0.4409,
+    "pick_ret": 0.6587,
     "bench_ret": 0.0734
    },
    {
     "date": "2024-03-15",
-    "pick_ret": 0.4959,
+    "pick_ret": 0.5129,
     "bench_ret": 0.1266
    },
    {
@@ -1981,7 +1978,7 @@
    },
    {
     "date": "2024-04-18",
-    "pick_ret": 0.4241,
+    "pick_ret": 0.4766,
     "bench_ret": 0.1555
    },
    {
@@ -1991,22 +1988,22 @@
    },
    {
     "date": "2024-05-03",
-    "pick_ret": 0.6691,
+    "pick_ret": 0.3148,
     "bench_ret": 0.113
    },
    {
     "date": "2024-05-10",
-    "pick_ret": 0.5511,
+    "pick_ret": 0.6129,
     "bench_ret": 0.1319
    },
    {
     "date": "2024-05-17",
-    "pick_ret": 0.4526,
+    "pick_ret": 0.4514,
     "bench_ret": 0.1063
    },
    {
     "date": "2024-05-27",
-    "pick_ret": 0.271,
+    "pick_ret": 0.336,
     "bench_ret": 0.0544
    },
    {
@@ -2016,7 +2013,7 @@
    },
    {
     "date": "2024-06-10",
-    "pick_ret": 0.4067,
+    "pick_ret": 0.4231,
     "bench_ret": 0.0382
    },
    {
@@ -2031,12 +2028,12 @@
    },
    {
     "date": "2024-07-02",
-    "pick_ret": 0.2778,
+    "pick_ret": 0.2868,
     "bench_ret": 0.0138
    },
    {
     "date": "2024-07-09",
-    "pick_ret": 0.2975,
+    "pick_ret": 0.297,
     "bench_ret": 0.0072
    },
    {
@@ -2046,7 +2043,7 @@
    },
    {
     "date": "2024-07-24",
-    "pick_ret": 0.2616,
+    "pick_ret": 0.2126,
     "bench_ret": -0.0281
    },
    {
@@ -2061,22 +2058,22 @@
    },
    {
     "date": "2024-08-14",
-    "pick_ret": 0.0837,
+    "pick_ret": 0.0623,
     "bench_ret": -0.0385
    },
    {
     "date": "2024-08-22",
-    "pick_ret": -0.0213,
+    "pick_ret": -0.0736,
     "bench_ret": -0.0667
    },
    {
     "date": "2024-08-29",
-    "pick_ret": -0.1091,
+    "pick_ret": -0.0711,
     "bench_ret": -0.0791
    },
    {
     "date": "2024-09-05",
-    "pick_ret": -0.0905,
+    "pick_ret": -0.099,
     "bench_ret": -0.0559
    },
    {
@@ -2086,7 +2083,7 @@
    },
    {
     "date": "2024-09-19",
-    "pick_ret": -0.1685,
+    "pick_ret": -0.1351,
     "bench_ret": -0.0972
    },
    {
@@ -2096,67 +2093,67 @@
    },
    {
     "date": "2024-10-04",
-    "pick_ret": -0.0225,
+    "pick_ret": -0.0981,
     "bench_ret": -0.107
    },
    {
     "date": "2024-10-11",
-    "pick_ret": -0.0709,
+    "pick_ret": -0.1213,
     "bench_ret": -0.0999
    },
    {
     "date": "2024-10-18",
-    "pick_ret": -0.0341,
+    "pick_ret": -0.0748,
     "bench_ret": -0.0669
    },
    {
     "date": "2024-10-25",
-    "pick_ret": -0.0436,
+    "pick_ret": 0.0383,
     "bench_ret": -0.0244
    },
    {
     "date": "2024-11-01",
-    "pick_ret": -0.0674,
+    "pick_ret": -0.0728,
     "bench_ret": -0.0576
    },
    {
     "date": "2024-11-08",
-    "pick_ret": -0.0353,
+    "pick_ret": -0.0394,
     "bench_ret": -0.0339
    },
    {
     "date": "2024-11-18",
-    "pick_ret": 0.067,
+    "pick_ret": 0.0214,
     "bench_ret": 0.0373
    },
    {
     "date": "2024-11-26",
-    "pick_ret": 0.0477,
+    "pick_ret": 0.0699,
     "bench_ret": 0.0058
    },
    {
     "date": "2024-12-03",
-    "pick_ret": 0.0677,
+    "pick_ret": 0.0598,
     "bench_ret": -0.0075
    },
    {
     "date": "2024-12-10",
-    "pick_ret": 0.1024,
+    "pick_ret": 0.0816,
     "bench_ret": 0.0184
    },
    {
     "date": "2024-12-17",
-    "pick_ret": -0.0153,
+    "pick_ret": -0.0085,
     "bench_ret": 0.0112
    },
    {
     "date": "2024-12-24",
-    "pick_ret": 0.101,
+    "pick_ret": 0.0652,
     "bench_ret": 0.0466
    },
    {
     "date": "2025-01-01",
-    "pick_ret": 0.1902,
+    "pick_ret": 0.18,
     "bench_ret": 0.0425
    },
    {
@@ -2171,17 +2168,17 @@
    },
    {
     "date": "2025-01-22",
-    "pick_ret": 0.1934,
+    "pick_ret": 0.3212,
     "bench_ret": 0.1034
    },
    {
     "date": "2025-01-29",
-    "pick_ret": 0.4174,
+    "pick_ret": 0.4178,
     "bench_ret": 0.0968
    },
    {
     "date": "2025-02-04",
-    "pick_ret": 0.2255,
+    "pick_ret": 0.2653,
     "bench_ret": 0.0681
    },
    {
@@ -2196,22 +2193,22 @@
    },
    {
     "date": "2025-02-25",
-    "pick_ret": 0.4171,
+    "pick_ret": 0.3782,
     "bench_ret": 0.0985
    },
    {
     "date": "2025-03-05",
-    "pick_ret": 0.363,
+    "pick_ret": 0.2024,
     "bench_ret": 0.1011
    },
    {
     "date": "2025-03-12",
-    "pick_ret": 0.3702,
+    "pick_ret": 0.2459,
     "bench_ret": 0.0962
    },
    {
     "date": "2025-03-20",
-    "pick_ret": 0.133,
+    "pick_ret": 0.1686,
     "bench_ret": 0.0724
    },
    {
@@ -2221,32 +2218,32 @@
    },
    {
     "date": "2025-04-04",
-    "pick_ret": 0.3216,
+    "pick_ret": 0.386,
     "bench_ret": 0.0816
    },
    {
     "date": "2025-04-15",
-    "pick_ret": 0.2195,
+    "pick_ret": 0.4077,
     "bench_ret": 0.0746
    },
    {
     "date": "2025-04-23",
-    "pick_ret": 0.2737,
+    "pick_ret": 0.1627,
     "bench_ret": 0.0359
    },
    {
     "date": "2025-04-30",
-    "pick_ret": 0.2169,
+    "pick_ret": 0.2133,
     "bench_ret": 0.0124
    },
    {
     "date": "2025-05-08",
-    "pick_ret": 0.1193,
+    "pick_ret": 0.1266,
     "bench_ret": 0.0344
    },
    {
     "date": "2025-05-15",
-    "pick_ret": 0.0225,
+    "pick_ret": 0.0353,
     "bench_ret": 0.0033
    },
    {
@@ -2261,52 +2258,52 @@
    },
    {
     "date": "2025-06-05",
-    "pick_ret": 0.0479,
+    "pick_ret": 0.0358,
     "bench_ret": 0.0307
    },
    {
     "date": "2025-06-12",
-    "pick_ret": 0.0761,
+    "pick_ret": 0.0773,
     "bench_ret": 0.0398
    },
    {
     "date": "2025-06-19",
-    "pick_ret": 0.03,
+    "pick_ret": 0.023,
     "bench_ret": 0.0564
    },
    {
     "date": "2025-06-26",
-    "pick_ret": 0.0508,
+    "pick_ret": -0.0411,
     "bench_ret": 0.0261
    },
    {
     "date": "2025-07-03",
-    "pick_ret": -0.0472,
+    "pick_ret": 0.0459,
     "bench_ret": 0.0247
    },
    {
     "date": "2025-07-10",
-    "pick_ret": 0.0599,
+    "pick_ret": 0.1359,
     "bench_ret": 0.0214
    },
    {
     "date": "2025-07-17",
-    "pick_ret": -0.0231,
+    "pick_ret": 0.0424,
     "bench_ret": 0.028
    },
    {
     "date": "2025-07-24",
-    "pick_ret": 0.0938,
+    "pick_ret": 0.111,
     "bench_ret": 0.0391
    },
    {
     "date": "2025-07-31",
-    "pick_ret": 0.1423,
+    "pick_ret": 0.0526,
     "bench_ret": 0.063
    },
    {
     "date": "2025-08-07",
-    "pick_ret": -0.0501,
+    "pick_ret": -0.0923,
     "bench_ret": 0.0442
    },
    {
@@ -2316,77 +2313,77 @@
    },
    {
     "date": "2025-08-22",
-    "pick_ret": -0.0712,
+    "pick_ret": -0.1277,
     "bench_ret": 0.0072
    },
    {
     "date": "2025-09-01",
-    "pick_ret": -0.0195,
+    "pick_ret": -0.0518,
     "bench_ret": 0.0188
    },
    {
     "date": "2025-09-08",
-    "pick_ret": 0.2041,
+    "pick_ret": 0.1977,
     "bench_ret": 0.0442
    },
    {
     "date": "2025-09-15",
-    "pick_ret": 0.1003,
+    "pick_ret": 0.0858,
     "bench_ret": 0.0245
    },
    {
     "date": "2025-09-22",
-    "pick_ret": -0.113,
+    "pick_ret": 0.1011,
     "bench_ret": 0.0203
    },
    {
     "date": "2025-09-29",
-    "pick_ret": 0.012,
+    "pick_ret": 0.2564,
     "bench_ret": 0.0094
    },
    {
     "date": "2025-10-07",
-    "pick_ret": 0.1848,
+    "pick_ret": 0.1503,
     "bench_ret": -0.0337
    },
    {
     "date": "2025-10-14",
-    "pick_ret": 0.0407,
+    "pick_ret": 0.1338,
     "bench_ret": -0.0622
    },
    {
     "date": "2025-10-21",
-    "pick_ret": 0.1311,
+    "pick_ret": -0.0248,
     "bench_ret": -0.1143
    },
    {
     "date": "2025-10-29",
-    "pick_ret": -0.0362,
+    "pick_ret": -0.0326,
     "bench_ret": -0.1282
    },
    {
     "date": "2025-11-06",
-    "pick_ret": 0.3923,
+    "pick_ret": 0.197,
     "bench_ret": -0.0572
    },
    {
     "date": "2025-11-13",
-    "pick_ret": 0.1517,
+    "pick_ret": 0.0257,
     "bench_ret": -0.0585
    },
    {
     "date": "2025-11-20",
-    "pick_ret": -0.0381,
+    "pick_ret": 0.2806,
     "bench_ret": -0.0802
    },
    {
     "date": "2025-11-27",
-    "pick_ret": 0.1492,
+    "pick_ret": 0.1649,
     "bench_ret": -0.0833
    },
    {
     "date": "2025-12-04",
-    "pick_ret": 0.1714,
+    "pick_ret": 0.0749,
     "bench_ret": -0.102
    },
    {
@@ -2396,27 +2393,27 @@
    },
    {
     "date": "2025-12-18",
-    "pick_ret": 0.2605,
+    "pick_ret": 0.1585,
     "bench_ret": -0.0737
    },
    {
     "date": "2025-12-26",
-    "pick_ret": -0.1312,
+    "pick_ret": -0.1204,
     "bench_ret": -0.1012
    },
    {
     "date": "2026-01-02",
-    "pick_ret": -0.0849,
+    "pick_ret": 0.0112,
     "bench_ret": -0.1183
    },
    {
     "date": "2026-01-09",
-    "pick_ret": 0.3528,
+    "pick_ret": 0.5298,
     "bench_ret": -0.0622
    },
    {
     "date": "2026-01-16",
-    "pick_ret": 0.1453,
+    "pick_ret": 0.259,
     "bench_ret": -0.0651
    },
    {
@@ -2431,67 +2428,67 @@
    },
    {
     "date": "2026-02-09",
-    "pick_ret": -0.0256,
+    "pick_ret": 0.002,
     "bench_ret": -0.0694
    },
    {
     "date": "2026-02-16",
-    "pick_ret": 0.0544,
+    "pick_ret": -0.008,
     "bench_ret": -0.0706
    },
    {
     "date": "2026-02-23",
-    "pick_ret": -0.0248,
+    "pick_ret": 0.0278,
     "bench_ret": -0.0543
    },
    {
     "date": "2026-03-02",
-    "pick_ret": 0.0858,
+    "pick_ret": 0.2146,
     "bench_ret": -0.0092
    },
    {
     "date": "2026-03-10",
-    "pick_ret": 0.3479,
+    "pick_ret": 0.0772,
     "bench_ret": 0.0055
    },
    {
     "date": "2026-03-17",
-    "pick_ret": 0.2183,
+    "pick_ret": 0.0893,
     "bench_ret": 0.0276
    },
    {
     "date": "2026-03-24",
-    "pick_ret": 0.2596,
+    "pick_ret": 0.1773,
     "bench_ret": 0.0514
    },
    {
     "date": "2026-04-02",
-    "pick_ret": 0.2799,
+    "pick_ret": 0.2445,
     "bench_ret": 0.0511
    },
    {
     "date": "2026-04-10",
-    "pick_ret": 0.101,
+    "pick_ret": 0.0221,
     "bench_ret": -0.0238
    },
    {
     "date": "2026-04-20",
-    "pick_ret": 0.0833,
+    "pick_ret": 0.0222,
     "bench_ret": -0.0418
    },
    {
     "date": "2026-04-27",
-    "pick_ret": 0.0155,
+    "pick_ret": -0.1011,
     "bench_ret": -0.0395
    },
    {
     "date": "2026-05-05",
-    "pick_ret": -0.0603,
+    "pick_ret": -0.0973,
     "bench_ret": -0.0615
    },
    {
     "date": "2026-05-12",
-    "pick_ret": 0.0493,
+    "pick_ret": 0.1073,
     "bench_ret": -0.0435
    },
    {
@@ -2501,7 +2498,7 @@
    },
    {
     "date": "2026-05-26",
-    "pick_ret": -0.0425,
+    "pick_ret": -0.0048,
     "bench_ret": -0.0487
    },
    {
@@ -2511,7 +2508,7 @@
    },
    {
     "date": "2026-06-10",
-    "pick_ret": 0.0824,
+    "pick_ret": 0.2591,
     "bench_ret": 0.0879
    }
   ]
@@ -2521,8 +2518,8 @@
    "week": "2026-10-16",
    "symbol": "BAJAJHLDNG",
    "entry": 11198.0,
-   "latest": 11260.0,
-   "return": 0.0055,
+   "latest": 11340.0,
+   "return": 0.0127,
    "nifty_return": 0.0911,
    "days_held": 16,
    "complete": false,
@@ -2543,8 +2540,8 @@
    "week": "2026-10-16",
    "symbol": "IRCTC",
    "entry": 466.65,
-   "latest": 472.0,
-   "return": 0.0115,
+   "latest": 472.1,
+   "return": 0.0117,
    "nifty_return": 0.0911,
    "days_held": 16,
    "complete": false,
@@ -2642,8 +2639,8 @@
    "week": "2026-10-30",
    "symbol": "IRCTC",
    "entry": 436.2,
-   "latest": 472.0,
-   "return": 0.0821,
+   "latest": 472.1,
+   "return": 0.0823,
    "nifty_return": 0.0955,
    "days_held": 7,
    "complete": false,
@@ -2746,7 +2743,29 @@
    "nifty_return": 0.0,
    "days_held": 0,
    "complete": false,
-   "predicted_q50": 0.0544
+   "predicted_q50": 0.0465
+  },
+  {
+   "week": "2026-11-11",
+   "symbol": "IREDA",
+   "entry": 120.2,
+   "latest": 120.2,
+   "return": 0.0,
+   "nifty_return": 0.0,
+   "days_held": 0,
+   "complete": false,
+   "predicted_q50": 0.0485
+  },
+  {
+   "week": "2026-11-11",
+   "symbol": "SUZLON",
+   "entry": 38.88,
+   "latest": 38.88,
+   "return": 0.0,
+   "nifty_return": 0.0,
+   "days_held": 0,
+   "complete": false,
+   "predicted_q50": 0.0362
   },
   {
    "week": "2026-11-11",
@@ -2757,40 +2776,18 @@
    "nifty_return": 0.0,
    "days_held": 0,
    "complete": false,
-   "predicted_q50": 0.0501
+   "predicted_q50": 0.0416
   },
   {
    "week": "2026-11-11",
-   "symbol": "YESBANK",
-   "entry": 17.24,
-   "latest": 17.24,
+   "symbol": "RADICO",
+   "entry": 4440.3,
+   "latest": 4440.3,
    "return": 0.0,
    "nifty_return": 0.0,
    "days_held": 0,
    "complete": false,
-   "predicted_q50": 0.0152
-  },
-  {
-   "week": "2026-11-11",
-   "symbol": "BOSCHLTD",
-   "entry": 50490.0,
-   "latest": 50490.0,
-   "return": 0.0,
-   "nifty_return": 0.0,
-   "days_held": 0,
-   "complete": false,
-   "predicted_q50": 0.0535
-  },
-  {
-   "week": "2026-11-11",
-   "symbol": "RVNL",
-   "entry": 209.4,
-   "latest": 209.4,
-   "return": 0.0,
-   "nifty_return": 0.0,
-   "days_held": 0,
-   "complete": false,
-   "predicted_q50": 0.0622
+   "predicted_q50": 0.0741
   }
  ]
 }
