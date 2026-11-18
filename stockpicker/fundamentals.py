@@ -17,13 +17,13 @@ FIELDS = {
 }
 
 
-def fetch_fundamentals(symbols: list[str]) -> pd.DataFrame:
+def fetch_fundamentals(symbols: list[str], suffix: str = ".NS") -> pd.DataFrame:
     import yfinance as yf
 
     rows = []
     for s in symbols:
         try:
-            info = yf.Ticker(yahoo_symbol(s)).info or {}
+            info = yf.Ticker(yahoo_symbol(s, suffix)).info or {}
         except Exception as exc:
             log.warning("Fundamentals failed for %s: %s", s, exc)
             info = {}

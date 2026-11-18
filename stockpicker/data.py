@@ -82,18 +82,20 @@ def _paced_download(tickers: list[str], chunk: int = 20, pause: float = 1.5, ret
 
 
 def download_prices(symbols: list[str], benchmark: str, years: int, use_cache: bool = True,
-                    tickers: dict[str, str] | None = None, min_rows: int = 300) -> Prices:
-    """Daily OHLCV for `symbols`. `tickers` maps symbol -> Yahoo ticker (default SYMBOL.NS);
-    symbols with fewer than `min_rows` days of data are dropped."""
+                    tickers: dict[str, str] | None = None, min_rows: int = 300, suffix: str = ".NS") -> Prices:
+    """Daily OHLCV for `symbols`. `tickers` maps symbol -> Yahoo ticker (default SYMBOL + `suffix`,
+    i.e. SYMBOL.NS for India, the bare symbol for the US); symbols with fewer than `min_rows` days of
+    data are dropped."""
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    cache_file = CACHE_DIR / f"prices_{dt.date.today():%Y%m%d}_{len(symbols)}_{years}y.pkl"
+    bench_tag = "".join(ch for ch in benchmark if ch.isalnum())  # keeps one market's cache from serving another's
+    cache_file = CACHE_DIR / f"prices_{bench_tag}_{dt.date.today():%Y%m%d}_{len(symbols)}_{years}y.pkl"
     if use_cache and cache_file.exists():
         with open(cache_file, "rb") as fh:
             return pickle.load(fh)
 
     start = (dt.date.today() - dt.timedelta(days=int(365.25 * years))).isoformat()
     fields = {"Close": {}, "High": {}, "Low": {}, "Volume": {}}
-    to_sym = {(tickers or {}).get(s, yahoo_symbol(s)): s for s in symbols}
+    to_sym = {(tickers or {}).get(s, yahoo_symbol(s, suffix)): s for s in symbols}
     for t, frame in _paced_download(list(to_sym), start=start)[0].items():
         if frame["Close"].notna().sum() >= min_rows:
             for f in fields:

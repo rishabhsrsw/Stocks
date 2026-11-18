@@ -1,0 +1,43 @@
+name: US daily picks
+
+on:
+  schedule:
+    - cron: "43 22 * * 1-5"   # weekdays 22:43 UTC (17:43 or 18:43 New York), after the US close in summer and winter time
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rerun even if there is no new trading day"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: picks-data
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Generate US daily picks
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}  # optional: enables the Claude news analyst
+        run: python -m stockpicker daily --market us ${{ github.event.inputs.force == 'true' && '--force' || '' }}
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          git diff --cached --quiet && exit 0
+          git commit -m "US daily picks $(date -u +%Y-%m-%d)"
+          git pull --rebase
+          git push

@@ -1,4 +1,4 @@
-"""CLI: python -m stockpicker [run|daily|backtest|demo]"""
+"""CLI: python -m stockpicker [run|daily|backtest|demo] [--market in|us]"""
 from __future__ import annotations
 
 import argparse
@@ -6,13 +6,13 @@ import json
 import logging
 from pathlib import Path
 
-from .config import SITE_DATA_DIR, Config
+from .config import SITE_DATA_DIR, Config, us_config
 from . import bhavcopy, history
 from .data import download_prices, synthetic_prices
 from .features import build_panel
 from .model import walk_forward_backtest
 from .pipeline import run_daily, run_weekly
-from .universe import load_market_directory, load_universe
+from .universe import load_market_directory, load_universe, load_us_universe
 
 
 def other_tickers(directory, symbols) -> dict[str, str]:
@@ -25,10 +25,50 @@ def other_tickers(directory, symbols) -> dict[str, str]:
     return dict(zip(rest["symbol"], rest["yahoo"]))
 
 
+def run_us(args, cfg: Config) -> None:
+    """US market: S&P 500 + Nasdaq-100. Prices come from Yahoo for the whole list (there is no whole-market
+    exchange file to extend coverage to every listed company, as there is for India), so the holdings
+    review covers the same stocks the picks come from."""
+    universe = load_us_universe()
+    prices = download_prices(universe["symbol"].tolist(), cfg.benchmark, cfg.history_years,
+                             use_cache=not args.no_cache, suffix=cfg.yahoo_suffix)
+    # Holdings cards show where a stock is listed; the S&P 500 / Nasdaq-100 lists don't say, so label them "US".
+    universe = universe.assign(exchange=cfg.default_exchange)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    if args.command == "backtest":
+        days = prices.close.index
+        panel = build_panel(prices, cfg.horizons, days[::-1][:: cfg.sample_every_n_days][::-1])
+        bt = walk_forward_backtest(panel, days, cfg)
+        bt.pop("weekly")
+        print(json.dumps(bt, indent=1))
+    elif args.command == "daily":
+        res = run_daily(prices, universe, cfg, coverage=universe, with_news=not args.no_news,
+                        with_backtest=not args.no_backtest, out_dir=out, force=args.force)
+        if res is None:
+            print("No new trading day: nothing to update.")
+            return
+        print(f"\nUS daily picks for {res['as_of']} (next {res['horizon_days']} trading days):")
+        for p in res["picks"]:
+            f = p["forecast"]["2w"]
+            print(f"  {p['symbol']:<8} {p['name'][:32]:<32} median {f['q50']:+.1%}  "
+                  f"range {f['q10']:+.0%}..{f['q90']:+.0%}  P(beat {cfg.benchmark_name}) {f['p_beat_nifty']:.0%}")
+    else:
+        res = run_weekly(prices, universe, cfg, coverage=universe, with_news=not args.no_news,
+                         with_fundamentals=not args.no_fundamentals, with_backtest=not args.no_backtest, out_dir=out)
+        print(f"\nTop {len(res['picks'])} US picks for the week of {res['as_of']}:")
+        for p in res["picks"]:
+            f = p["forecast"][cfg.rank_horizon]
+            print(f"  {p['symbol']:<8} {p['name'][:32]:<32} median 5m {f['q50']:+.1%}  "
+                  f"range {f['q10']:+.0%}..{f['q90']:+.0%}  P(beat {cfg.benchmark_name}) {f['p_beat_nifty']:.0%}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(prog="stockpicker", description=__doc__)
     ap.add_argument("command", choices=["run", "daily", "backtest", "demo"])
-    ap.add_argument("--index", default="nifty200", help="nifty50|nifty100|nifty200|nifty500")
+    ap.add_argument("--market", choices=["in", "us"], default="in",
+                    help="in: NSE/BSE (default), us: S&P 500 + Nasdaq-100, written to <out>/us")
+    ap.add_argument("--index", default="nifty200", help="India only: nifty50|nifty100|nifty200|nifty500")
     ap.add_argument("--coverage", default="nifty500", help="wider list scored for the holdings review")
     ap.add_argument("--no-news", action="store_true")
     ap.add_argument("--no-fundamentals", action="store_true")
@@ -38,17 +78,23 @@ def main() -> None:
     ap.add_argument("--out", default=str(SITE_DATA_DIR))
     args = ap.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
-    cfg = Config()
+    cfg = us_config() if args.market == "us" else Config()
+    if args.market == "us" and args.out == str(SITE_DATA_DIR):
+        args.out = str(SITE_DATA_DIR / "us")
 
     if args.command == "demo":  # offline, synthetic market: verifies the whole pipeline end to end
         import pandas as pd
         prices = synthetic_prices()
         universe = pd.DataFrame({"symbol": prices.symbols, "name": prices.symbols,
                                  "sector": [f"Sector{i % 8}" for i in range(len(prices.symbols))]})
-        cfg.min_median_traded_value_cr = 0
+        cfg.min_median_traded_value = 0
         res = run_weekly(prices, universe, cfg, with_news=False, with_fundamentals=False, out_dir=Path(args.out))
         run_daily(prices, universe, cfg, with_news=False, out_dir=Path(args.out), force=True)
         print(json.dumps({k: res[k] for k in ("as_of", "universe_size")} | {"picks": [p["symbol"] for p in res["picks"]]}, indent=1))
+        return
+
+    if args.market == "us":
+        run_us(args, cfg)
         return
 
     universe = load_universe(args.index)
@@ -84,7 +130,7 @@ def main() -> None:
         for p in res["picks"]:
             f = p["forecast"]["2w"]
             print(f"  {p['symbol']:<12} {p['name'][:32]:<32} median {f['q50']:+.1%}  "
-                  f"range {f['q10']:+.0%}..{f['q90']:+.0%}  P(beat Nifty) {f['p_beat_nifty']:.0%}")
+                  f"range {f['q10']:+.0%}..{f['q90']:+.0%}  P(beat {cfg.benchmark_name}) {f['p_beat_nifty']:.0%}")
         return
 
     other = other_tickers(directory, symbols)
@@ -107,7 +153,7 @@ def main() -> None:
     for p in res["picks"]:
         f = p["forecast"][cfg.rank_horizon]
         print(f"  {p['symbol']:<12} {p['name'][:32]:<32} median 5m {f['q50']:+.1%}  "
-              f"range {f['q10']:+.0%}..{f['q90']:+.0%}  P(beat Nifty) {f['p_beat_nifty']:.0%}")
+              f"range {f['q10']:+.0%}..{f['q90']:+.0%}  P(beat {cfg.benchmark_name}) {f['p_beat_nifty']:.0%}")
 
 
 if __name__ == "__main__":

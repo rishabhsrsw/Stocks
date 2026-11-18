@@ -5,6 +5,7 @@ yfinance>=0.2.50
 feedparser>=6.0
 vaderSentiment>=3.3
 requests>=2.31
+lxml>=5.0  # reads the Wikipedia index tables (US universe)
 # Optional: LLM news analyst (used only when ANTHROPIC_API_KEY is set)
 anthropic>=0.70
 pytest>=8.0

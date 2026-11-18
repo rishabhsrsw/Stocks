@@ -40,7 +40,19 @@ RED_FLAG_PATTERNS = [
     r"\bincome tax (raid|search)", r"\bSEBI (bans|ban|order against|barred)", r"\binsolvency\b",
     r"\bNCLT admits\b", r"\bdefault(s|ed)? on\b", r"\bCBI\b", r"\bpromoter.*pledge.*(rise|increase|invoked)",
     r"\bwilful defaulter\b", r"\bdelist", r"\bgovernance (lapse|issue|concern)",
+    # US regulators and courts
+    r"\bSEC (charges|investigation|probe|subpoena|sues)", r"\bDOJ (probe|investigation|charges)\b",
+    r"\bFBI raid", r"\bchapter 11\b", r"\bgoing concern\b", r"\baccounting (fraud|irregularit)",
+    r"\brestate(s|d|ment)?\b.*\b(financial|earnings|results)", r"\bshort[- ]seller report\b",
 ]
+
+# Google News edition and wording per market.
+MARKETS = {
+    "IN": {"hl": "en-IN", "gl": "IN", "ceid": "IN:en", "noun": "share", "analyst": "Indian listed companies",
+           "listing": "NSE-listed", "tag": "NSE"},
+    "US": {"hl": "en-US", "gl": "US", "ceid": "US:en", "noun": "stock", "analyst": "US listed companies",
+           "listing": "US-listed", "tag": "US"},
+}
 
 
 @dataclass
@@ -76,10 +88,11 @@ def _clean_name(name: str) -> str:
     return re.sub(r"\b(Ltd\.?|Limited|India|Industries|Corporation|Company|Co\.)\b", "", name).strip(" .&")
 
 
-def fetch_headlines(symbol: str, name: str, lookback_days: int) -> list[dict]:
-    query = f'"{_clean_name(name) or name}" OR "{symbol}" share when:{lookback_days}d'
+def fetch_headlines(symbol: str, name: str, lookback_days: int, market: str = "IN") -> list[dict]:
+    m = MARKETS[market]
+    query = f'"{_clean_name(name) or name}" OR "{symbol}" {m["noun"]} when:{lookback_days}d'
     url = "https://news.google.com/rss/search?" + urllib.parse.urlencode(
-        {"q": query, "hl": "en-IN", "gl": "IN", "ceid": "IN:en"})
+        {"q": query, "hl": m["hl"], "gl": m["gl"], "ceid": m["ceid"]})
     feed = feedparser.parse(url)
     out, seen = [], set()
     for e in feed.entries[:40]:
@@ -122,7 +135,7 @@ def collect_news(universe, cfg) -> dict[str, NewsResult]:
     out = {}
     for i, row in enumerate(universe.itertuples(index=False)):
         try:
-            hl = fetch_headlines(row.symbol, row.name, cfg.news_lookback_days)
+            hl = fetch_headlines(row.symbol, row.name, cfg.news_lookback_days, cfg.market)
         except Exception as exc:
             log.warning("News fetch failed for %s: %s", row.symbol, exc)
             hl = []
@@ -148,8 +161,8 @@ LLM_SCHEMA = {
 }
 
 LLM_SYSTEM = (
-    "You are an equity analyst covering Indian listed companies. You are given recent news "
-    "headlines about one NSE-listed company. Judge what they imply for the stock over the next "
+    "You are an equity analyst covering {analyst}. You are given recent news "
+    "headlines about one {listing} company. Judge what they imply for the stock over the next "
     "3-5 months: earnings trajectory, orders and guidance, regulatory or governance risk, and "
     "sector tailwinds. Ignore headlines that are only about the stock price moving, generic market "
     "wraps, or that are about a different company with a similar name. If the headlines carry no "
@@ -157,7 +170,7 @@ LLM_SYSTEM = (
 )
 
 
-def llm_analyse(symbol: str, name: str, headlines: list[dict], model: str) -> dict | None:
+def llm_analyse(symbol: str, name: str, headlines: list[dict], model: str, market: str = "IN") -> dict | None:
     if not os.environ.get("ANTHROPIC_API_KEY") or not headlines:
         return None
     import anthropic
@@ -168,12 +181,12 @@ def llm_analyse(symbol: str, name: str, headlines: list[dict], model: str) -> di
         resp = client.beta.messages.create(
             model=model,
             max_tokens=4000,
-            system=LLM_SYSTEM,
+            system=LLM_SYSTEM.format(**MARKETS[market]),
             thinking={"type": "adaptive"},
             output_config={"effort": "low", "format": {"type": "json_schema", "schema": LLM_SCHEMA}},
             betas=["server-side-fallback-2026-07-01"],
             fallbacks="default",
-            messages=[{"role": "user", "content": f"Company: {name} (NSE: {symbol})\nHeadlines:\n{lines}"}],
+            messages=[{"role": "user", "content": f"Company: {name} ({MARKETS[market]['tag']}: {symbol})\nHeadlines:\n{lines}"}],
         )
     except anthropic.APIError as exc:
         log.warning("Claude news analysis failed for %s: %s", symbol, exc)

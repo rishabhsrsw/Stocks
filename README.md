@@ -71,6 +71,30 @@ stock does next. Picks still come from the Nifty 200, but the holdings review co
 
 Holdings are stored only on the device (with a copy/restore backup), never uploaded.
 
+## US stocks
+
+The site has an **India | US** switch (top right; the choice is remembered on the device). The US side is the same model
+and pipeline pointed at a different market (`us_config()` in `config.py`):
+
+* **Universe:** S&P 500 plus the Nasdaq-100 members not in it (about 520 stocks), from public constituent lists
+  (`universe.py`), with the last good list kept in `docs/data/us/universe/`.
+* **Benchmark:** S&P 500 (`^GSPC`) in place of Nifty; prices in dollars; liquidity filter $20M median daily turnover.
+  Daily picks assume 0.2% round-trip trading cost (no commission, but spreads and slippage).
+* **News:** Google News US edition, with US red flags (SEC/DOJ action, Chapter 11, going-concern doubts, restatements).
+* **My holdings:** type a US ticker (AAPL, BRK-B…) and get the same verdict, outlook and profit/loss, in dollars. US and
+  India holdings are stored separately. Unlike India there is no whole-market exchange file, so only the ~520 stocks
+  above are covered (no ETFs or small caps), and the tax note gives holding periods, not rates, since the rules depend on
+  where you are tax resident.
+* **Data:** written to `docs/data/us/` (`latest.json`, `daily.json`, `stocks.json`, `history/`), refreshed by
+  the *US weekly picks* (Saturday) and *US daily picks* (weekdays after the US close) workflows.
+
+```bash
+python -m stockpicker run --market us        # weekly picks -> docs/data/us/
+python -m stockpicker daily --market us
+```
+
+The JSON field `p_beat_nifty` keeps its name for both markets (it means "probability of beating the benchmark").
+
 ## Quick start (local)
 
 ```bash
@@ -147,7 +171,7 @@ sector cap and the news window.
 
 ```
 stockpicker/
-  universe.py      index constituents (niftyindices.com, with built-in fallback)
+  universe.py      index constituents (niftyindices.com; S&P 500 + Nasdaq-100 for the US), built-in fallbacks
   data.py          price download + cache, synthetic market for tests
   features.py      chart features and forward-return targets
   model.py         gradient-boosted ranker / classifier / quantile models, walk-forward backtest
@@ -158,5 +182,6 @@ docs/index.html    the dashboard (static, no build step), also an installable ap
 desktop/           Windows app (Electron) that shows the same dashboard
 .github/workflows/weekly-picks.yml   weekly model run
 .github/workflows/daily-picks.yml    weekday short-term picks + fresh prices
+.github/workflows/us-weekly-picks.yml, us-daily-picks.yml   the same two runs for US stocks (docs/data/us/)
 .github/workflows/windows-app.yml    builds the Windows installer into Releases
 ```

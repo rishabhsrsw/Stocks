@@ -214,8 +214,143 @@ def load_universe(index: str = "nifty200") -> pd.DataFrame:
     return fallback_universe()
 
 
-def yahoo_symbol(symbol: str) -> str:
-    return f"{symbol}.NS"
+def yahoo_symbol(symbol: str, suffix: str = ".NS") -> str:
+    return f"{symbol}{suffix}"
+
+
+# ---------------------------------------------------------------- US universe
+# S&P 500 plus Nasdaq-100 (the Nasdaq-100 adds the few members that are not in the S&P 500).
+SP500_CSV_URL = "https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv"
+SP500_WIKI_URL = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+NDX_WIKI_URL = "https://en.wikipedia.org/wiki/Nasdaq-100"
+US_HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"}
+
+# Fallback if every list above is unreachable and none was saved. Symbols that were renamed or
+# delisted are skipped automatically when no price data comes back.
+US_FALLBACK = [
+    ("AAPL", "Apple", "Information Technology"), ("MSFT", "Microsoft", "Information Technology"),
+    ("NVDA", "NVIDIA", "Information Technology"), ("AVGO", "Broadcom", "Information Technology"),
+    ("ORCL", "Oracle", "Information Technology"), ("CRM", "Salesforce", "Information Technology"),
+    ("AMD", "Advanced Micro Devices", "Information Technology"), ("ADBE", "Adobe", "Information Technology"),
+    ("CSCO", "Cisco Systems", "Information Technology"), ("QCOM", "Qualcomm", "Information Technology"),
+    ("TXN", "Texas Instruments", "Information Technology"), ("INTU", "Intuit", "Information Technology"),
+    ("AMAT", "Applied Materials", "Information Technology"), ("IBM", "IBM", "Information Technology"),
+    ("NOW", "ServiceNow", "Information Technology"), ("MU", "Micron Technology", "Information Technology"),
+    ("GOOGL", "Alphabet (Class A)", "Communication Services"), ("META", "Meta Platforms", "Communication Services"),
+    ("NFLX", "Netflix", "Communication Services"), ("DIS", "Walt Disney", "Communication Services"),
+    ("CMCSA", "Comcast", "Communication Services"), ("T", "AT&T", "Communication Services"),
+    ("VZ", "Verizon Communications", "Communication Services"), ("TMUS", "T-Mobile US", "Communication Services"),
+    ("AMZN", "Amazon", "Consumer Discretionary"), ("TSLA", "Tesla", "Consumer Discretionary"),
+    ("HD", "Home Depot", "Consumer Discretionary"), ("MCD", "McDonald's", "Consumer Discretionary"),
+    ("NKE", "Nike", "Consumer Discretionary"), ("LOW", "Lowe's", "Consumer Discretionary"),
+    ("SBUX", "Starbucks", "Consumer Discretionary"), ("BKNG", "Booking Holdings", "Consumer Discretionary"),
+    ("TJX", "TJX Companies", "Consumer Discretionary"), ("ABNB", "Airbnb", "Consumer Discretionary"),
+    ("WMT", "Walmart", "Consumer Staples"), ("PG", "Procter & Gamble", "Consumer Staples"),
+    ("COST", "Costco", "Consumer Staples"), ("KO", "Coca-Cola", "Consumer Staples"),
+    ("PEP", "PepsiCo", "Consumer Staples"), ("PM", "Philip Morris International", "Consumer Staples"),
+    ("MDLZ", "Mondelez International", "Consumer Staples"), ("CL", "Colgate-Palmolive", "Consumer Staples"),
+    ("BRK-B", "Berkshire Hathaway (Class B)", "Financials"), ("JPM", "JPMorgan Chase", "Financials"),
+    ("V", "Visa", "Financials"), ("MA", "Mastercard", "Financials"), ("BAC", "Bank of America", "Financials"),
+    ("WFC", "Wells Fargo", "Financials"), ("GS", "Goldman Sachs", "Financials"),
+    ("MS", "Morgan Stanley", "Financials"), ("AXP", "American Express", "Financials"),
+    ("BLK", "BlackRock", "Financials"), ("SPGI", "S&P Global", "Financials"), ("C", "Citigroup", "Financials"),
+    ("UNH", "UnitedHealth Group", "Health Care"), ("LLY", "Eli Lilly", "Health Care"),
+    ("JNJ", "Johnson & Johnson", "Health Care"), ("ABBV", "AbbVie", "Health Care"),
+    ("MRK", "Merck", "Health Care"), ("TMO", "Thermo Fisher Scientific", "Health Care"),
+    ("ABT", "Abbott Laboratories", "Health Care"), ("PFE", "Pfizer", "Health Care"),
+    ("DHR", "Danaher", "Health Care"), ("AMGN", "Amgen", "Health Care"), ("ISRG", "Intuitive Surgical", "Health Care"),
+    ("GILD", "Gilead Sciences", "Health Care"), ("VRTX", "Vertex Pharmaceuticals", "Health Care"),
+    ("XOM", "Exxon Mobil", "Energy"), ("CVX", "Chevron", "Energy"), ("COP", "ConocoPhillips", "Energy"),
+    ("SLB", "Schlumberger", "Energy"), ("EOG", "EOG Resources", "Energy"),
+    ("GE", "GE Aerospace", "Industrials"), ("CAT", "Caterpillar", "Industrials"), ("RTX", "RTX", "Industrials"),
+    ("HON", "Honeywell", "Industrials"), ("UNP", "Union Pacific", "Industrials"), ("BA", "Boeing", "Industrials"),
+    ("DE", "Deere & Company", "Industrials"), ("LMT", "Lockheed Martin", "Industrials"),
+    ("UPS", "United Parcel Service", "Industrials"), ("ETN", "Eaton", "Industrials"),
+    ("LIN", "Linde", "Materials"), ("SHW", "Sherwin-Williams", "Materials"), ("APD", "Air Products", "Materials"),
+    ("FCX", "Freeport-McMoRan", "Materials"), ("NEM", "Newmont", "Materials"),
+    ("NEE", "NextEra Energy", "Utilities"), ("SO", "Southern Company", "Utilities"), ("DUK", "Duke Energy", "Utilities"),
+    ("PLD", "Prologis", "Real Estate"), ("AMT", "American Tower", "Real Estate"), ("EQIX", "Equinix", "Real Estate"),
+]
+
+
+def normalize_us_symbol(symbol: str) -> str:
+    """Yahoo writes share classes with a dash (BRK-B), index providers with a dot (BRK.B)."""
+    return str(symbol).strip().upper().replace(".", "-")
+
+
+def parse_us_table(df: pd.DataFrame) -> pd.DataFrame:
+    """symbol / name / sector from an index-constituent table (datahub CSV or a Wikipedia table)."""
+    cols = {str(c).strip().lower(): c for c in df.columns}
+    pick = lambda *names: next((cols[n] for n in names if n in cols), None)
+    sym, name = pick("symbol", "ticker"), pick("security", "company", "name")
+    sector = next((c for k, c in cols.items() if "sector" in k and "sub" not in k), None)
+    if sym is None or name is None:
+        raise ValueError(f"unexpected columns {list(df.columns)}")
+    out = pd.DataFrame({
+        "symbol": df[sym].map(normalize_us_symbol),
+        "name": df[name].astype(str).str.strip(),
+        "sector": df[sector].astype(str).str.strip() if sector is not None else "",
+    })
+    out = out[out["symbol"].str.fullmatch(r"[A-Z][A-Z0-9-]{0,5}")]
+    return out.drop_duplicates("symbol").reset_index(drop=True)
+
+
+def parse_us_html(html: str) -> pd.DataFrame:
+    """The constituents table on a Wikipedia index page: the one with a ticker and a company column."""
+    for table in pd.read_html(io.StringIO(html)):
+        try:
+            return parse_us_table(table)
+        except ValueError:
+            continue
+    raise ValueError("no constituents table found")
+
+
+def merge_us_lists(sp500: pd.DataFrame, ndx: pd.DataFrame) -> pd.DataFrame:
+    """S&P 500 first; Nasdaq-100 members that are not in it are added, with the Nasdaq list's sector."""
+    both = pd.concat([sp500, ndx], ignore_index=True).drop_duplicates("symbol")
+    return both.reset_index(drop=True)[["symbol", "name", "sector"]]
+
+
+def _fetch(url: str, parse, min_rows: int, label: str) -> pd.DataFrame | None:
+    for attempt in range(3):
+        try:
+            resp = requests.get(url, timeout=30, headers=US_HEADERS)
+            resp.raise_for_status()
+            df = parse(resp.text)
+            if len(df) < min_rows:
+                raise ValueError(f"only {len(df)} rows")
+            return df
+        except Exception as exc:
+            log.warning("Could not fetch %s from %s (%s), attempt %d/3", label, url, exc, attempt + 1)
+            time.sleep(3 * (attempt + 1))
+    return None
+
+
+def load_us_universe() -> pd.DataFrame:
+    """DataFrame[symbol, name, sector] for the S&P 500 plus Nasdaq-100, Yahoo-style symbols (BRK-B).
+
+    The last good list is kept (docs/data/us/universe/) for when the sources are down."""
+    from .config import SITE_DATA_DIR
+    saved = SITE_DATA_DIR / "us" / "universe" / "us.csv"
+    sp500 = (_fetch(SP500_CSV_URL, lambda t: parse_us_table(pd.read_csv(io.StringIO(t))), 400, "S&P 500")
+             or _fetch(SP500_WIKI_URL, parse_us_html, 400, "S&P 500"))
+    ndx = _fetch(NDX_WIKI_URL, parse_us_html, 80, "Nasdaq-100")
+    if sp500 is not None:
+        df = merge_us_lists(sp500, ndx if ndx is not None else sp500.iloc[0:0])
+        log.info("Loaded %d US stocks (%d S&P 500 + %s Nasdaq-100 only)", len(df), len(sp500),
+                 "no" if ndx is None else len(df) - len(sp500))
+        try:
+            saved.parent.mkdir(parents=True, exist_ok=True)
+            df.to_csv(saved, index=False)
+        except OSError:
+            pass
+        return df
+    if saved.exists():
+        df = pd.read_csv(saved)
+        log.info("Using the last saved US list (%d stocks)", len(df))
+        return df
+    log.warning("Using the built-in US list")
+    return pd.DataFrame(US_FALLBACK, columns=["symbol", "name", "sector"])
 
 
 # ---------------------------------------------------------------- whole-market directory

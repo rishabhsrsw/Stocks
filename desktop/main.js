@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const DEFAULT_REPO = "rishabhsrsw/Stocks";
-const DATA_FILES = ["latest", "daily", "stocks"];  // docs/data/<name>.json
+const DATA_FILES = ["latest", "daily", "stocks", "us/latest", "us/daily", "us/stocks"];  // docs/data/<name>.json
 const userFile = (name) => path.join(app.getPath("userData"), name);
 
 let mainWin = null;
@@ -52,7 +52,7 @@ ipcMain.handle("picks:load", async (_e, name = "latest") => {
   }
   const { repo, token } = readSettings();
   if (!token) throw new Error("NO_TOKEN");
-  const cache = userFile(`${name}.json`);
+  const cache = userFile(`${name.replace("/", "-")}.json`);  // "us/latest" -> us-latest.json
   try {
     const data = await fetchPicks(repo, token, name);
     fs.writeFileSync(cache, JSON.stringify(data));
@@ -64,6 +64,21 @@ ipcMain.handle("picks:load", async (_e, name = "latest") => {
     }
     throw err;
   }
+});
+
+// Live prices for the held tickers, fetched here because a web page can't call Yahoo directly.
+ipcMain.handle("quotes:fetch", async (_e, tickers) => {
+  const out = {};
+  await Promise.all((Array.isArray(tickers) ? tickers : []).filter((t) => /^[\w.^&-]{1,20}$/.test(t)).slice(0, 100).map(async (t) => {
+    try {
+      const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(t)}?range=1d&interval=1d`,
+        { headers: { "User-Agent": "Mozilla/5.0" }, signal: AbortSignal.timeout(8000) });
+      if (!res.ok) return;
+      const m = (await res.json()).chart.result[0].meta;
+      out[t] = { price: m.regularMarketPrice, time: m.regularMarketTime };
+    } catch (_) {}
+  }));
+  return out;
 });
 
 ipcMain.handle("settings:get", () => {
