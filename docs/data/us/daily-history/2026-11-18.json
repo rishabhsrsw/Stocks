@@ -1,0 +1,473 @@
+{
+ "market": "US",
+ "generated_at": "2026-11-18T16:02:29+00:00",
+ "as_of": "2026-11-18",
+ "horizon_days": 10,
+ "eligible_size": 479,
+ "picks": [
+  {
+   "symbol": "BBY",
+   "name": "Best Buy",
+   "sector": "Consumer Discretionary",
+   "price": 99.43,
+   "final_score": 0.9215,
+   "model_score": 0.9419,
+   "news_score": 0.6799,
+   "forecast": {
+    "2w": {
+     "q10": -0.0903,
+     "q50": -0.0007,
+     "q90": 0.1174,
+     "p_beat_nifty": 0.5704
+    }
+   },
+   "reasons": [
+    "Short-term dip (-5.4% this week) inside a long-term uptrend",
+    "Holding near its 20-day average in an uptrend",
+    "Strong 6-month momentum (+67%, top 1% of universe)",
+    "Outperforming S&P 500 by +21% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.4385,
+    "atr_pct": 0.0435
+   },
+   "news": {
+    "n_articles": 40,
+    "headlines": [
+     {
+      "title": "Best Buy Co. Inc. stock underperforms Tuesday when compared to competitors",
+      "source": "MarketWatch",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNMmVQS2xjdXpTWHJHaGpqdmU3RTFpNW0zQ09sYWduRHBCenM0TUVkR1hwREZPQVJQZ1duRy1ENmkwbUdWNVVPOV9KM1VNc0IxejFZQmdTTXEwRU9PUDJLUGVZdXNsWmdFd1hndExwR0JyOExra3FoVS02LUtPbkhnbHQ0THVrOVM1bGUxenVxenZDdjZBOGZMY3lmWS1uelBLUWZmeXlyN0ZvQThKdC1RMzY5Q2RwdnhZT2Vjd2JhQWFkMG5VUDJ1LTRlMWc?oc=5",
+      "published": "2026-11-17T21:30:00+00:00",
+      "sentiment": 0.751
+     },
+     {
+      "title": "Best Buy (NYSE:BBY) Share Price, Forecast & Analysis",
+      "source": "Stocks Down Under",
+      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1ZdVl5aTRIdG5nd1hOcHByYTVub2ZsNGNoN2xxajk3RTd1S3B5TmlRUjNkVkg4NkY0Q1VzUzZ6Q0NZTGgzejZnZGk0S1l2OXdWUWdXTUh5dU8?oc=5",
+      "published": "2026-11-17T21:00:00+00:00",
+      "sentiment": 0.823
+     },
+     {
+      "title": "What's behind Best Buy's latest 4.0% share pullback?",
+      "source": "Traders Union",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQanJkaERfSDZXSktpejlTT0RYZzZ4Ty1UMGNFSEJMUEgtYU9zZ2RqU2oxZFloMnRJT2tBYmhMRXowbENkcnJrblo4Y0RpWm0zUTRZOXNSUnpReUZ6bjFmOVEwQjR4ak1hS0U2TURvdF95VlVlN0NGaU92MGRabGRtTm8yWFpWTDNfdmRoVA?oc=5",
+      "published": "2026-11-17T19:12:44+00:00",
+      "sentiment": 0.751
+     },
+     {
+      "title": "Best Buy shares may move 8.1% on earnings next week By Investing.com",
+      "source": "Investing.com Australia",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNRXFHamYxMl9NT0dUN0U2VDBmR2Qzek5fQVpTUTFlZno4djR5Yll1OGdnamNpSEVaMTd2VzRQZHZLZkptcGVKRC1CMGszMFJUZnlIX2tMZWVpRDBKN3hGZV9IRS1nWm0zZ0daMnZYbG9pOVUyS3FzMmphRnl0UFhHWW10blhxNHJmcVpFRnBRZ0dWdWhKVHdqczl4bm1seXI5OHExVXoyd255dlpnMWYw?oc=5",
+      "published": "2026-11-17T16:45:45+00:00",
+      "sentiment": 0.823
+     },
+     {
+      "title": "Best Buy shares may move 8.1% on earnings next week",
+      "source": "Investing.com",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPSnIzVW9EVUJtSjk5WXJSX2ZsUjgzNFpva0Q5LTFNOHBldXBzQ0JqMGZ2M0I1UFBoOU05NGFPc29ibTdhQ3Q0dElrQlNfSmpvZ3A1VllNVy1FWEFLc01LY09Ca3ZEZUgxX05aYm1aM2o0R05KRGhZcEM4WTlLb1lxQy1rbVNlZmFyRXhrejZoOGhhZTZxWG5nU25OdG53aHhUV29laXJFblNSdkVDSm9MWg?oc=5",
+      "published": "2026-11-17T16:01:36+00:00",
+      "sentiment": 0.823
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    85.0,
+    86.57,
+    84.4,
+    86.53,
+    82.69,
+    81.58,
+    79.32,
+    81.77,
+    86.1,
+    86.58,
+    89.33,
+    88.4,
+    87.12,
+    87.18,
+    89.86,
+    93.85,
+    92.27,
+    91.49,
+    94.56,
+    92.85,
+    93.22,
+    94.82,
+    90.8,
+    91.0,
+    90.51,
+    89.91,
+    88.75,
+    88.24,
+    87.7,
+    87.97,
+    87.39,
+    84.85,
+    84.59,
+    88.4,
+    87.01,
+    86.99,
+    87.96,
+    89.1,
+    94.17,
+    92.63,
+    91.13,
+    93.89,
+    94.12,
+    99.83,
+    99.87,
+    97.95,
+    98.5,
+    96.96,
+    100.39,
+    95.65,
+    96.14,
+    93.87,
+    101.36,
+    99.4,
+    99.63,
+    106.28,
+    104.1,
+    105.16,
+    103.41,
+    104.07,
+    103.35,
+    98.4,
+    99.43
+   ]
+  },
+  {
+   "symbol": "VEEV",
+   "name": "Veeva Systems",
+   "sector": "Health Care",
+   "price": 285.51,
+   "final_score": 0.8977,
+   "model_score": 0.9619,
+   "news_score": 0.2816,
+   "forecast": {
+    "2w": {
+     "q10": -0.0896,
+     "q50": 0.0062,
+     "q90": 0.1218,
+     "p_beat_nifty": 0.5699
+    }
+   },
+   "reasons": [
+    "Short-term dip (-6.3% this week) inside a long-term uptrend",
+    "Strong 6-month momentum (+73%, top 1% of universe)",
+    "Outperforming S&P 500 by +18% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.4205,
+    "atr_pct": 0.0292
+   },
+   "news": {
+    "n_articles": 39,
+    "headlines": [
+     {
+      "title": "Veeva (VEEV) Is Considered a Good Investment by Brokers: Is That True?",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMjB4UWZzNVM3Nk1WN3VQdVBDNmxPeG9IdjVzWXM3WFhFU0NVZVBRQlgyTElZSm1YMl9fMVByVGNSRlRkSUdZOGF4SnppYjZXOVNfcE5PQi1ReEkxMWFncmY5bEFtWjFmN1Q4Z3c4NmRJWjFZNnJpNF82Tzh0ZGd6cV9NeTcwYS1jU3Roc3Zlaml3OFR3aFdTS20tS2RBWWMxNDFndw?oc=5",
+      "published": "2026-11-18T13:30:04+00:00",
+      "sentiment": 0.691
+     },
+     {
+      "title": "Veeva Systems (NYSE:VEEV) Stock Crosses Below 50-Day Moving Average - Here's What Happened",
+      "source": "MarketBeat",
+      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPS3lLUEhIbDZoZkZaLUJuM3pFU19kNHdqcThNYkp3MFJ3d2xsRGtFYWZoenZpc1dMRVBLZk1kRUhYV2lVdFBtX0U2b2E5cmQ0V21WeXc3eXpWT1BDQWloRHBTZWczY3lDQV9QTTZneVV6cWFTZXgwYUpUdG1ORU9Cb3FTa295WFhacEFjWHRiUk53ODJVU004aWdJNGxoa25pcW9RTXc4c1lKcDhuM2lBTU12TFVScFEzYUI3S2NUcG1qdThmLU5MeTkzdlBPcUp0enJ6Z2tlRkZXUTFNdEE?oc=5",
+      "published": "2026-11-18T11:34:52+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Improving Software Sentiment and Positive News Fuel Veeva Systems\u2019 (VEEV) Share Price Appreciation",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPV2I2bzl2aVpEUzlabUFSUEg3NWZYNzZRd0JjNXhabUZWSmdFM2tjQ1lsb0k5dUpROVNEaFdOSjZ3enNXa0xxUWRfNE9EWHpCbkg5dGV3RHdSNGJsTU05UHhGc01iVjlrTUZvYXptNHo2UmxPOElndFd5XzVHemktLVZJM25iN2xTYkE4VDloZUVuYmdQSXdNMUtDUkp2ellWYWJkWEROekpYc1E?oc=5",
+      "published": "2026-11-17T16:19:12+00:00",
+      "sentiment": 0.898
+     },
+     {
+      "title": "Veeva Systems Inc. (VEEV) stock price, news, quote and history",
+      "source": "Yahoo Finance Australia",
+      "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5mYTMyTWljcVIzUGNxanBqX29ZV08weFBCZUtmNFZDQ01hTnBXUnFGaGNscFdGZEVZeHRkajlpMThQcmRnWjNJbGk1dzVoNnctb3pQdWNqYnFYNWVOMGtraUR3?oc=5",
+      "published": "2026-11-14T13:54:17+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "1,904,153 Veeva Systems Inc. $VEEV Shares Bought by Aberdeen Group plc",
+      "source": "MarketBeat",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNWHptNFBwX01Yd2JDN29zLXpIQVZOYnNRVVdUTElONDAzYkVWdzIwT0lhVFRqYm5sd0lRQk5acGdfRUZFcHZFQzdsMVM2LVZ4V3hMeUxaWFZiQy1VVEg1NFZZbW1LVEl5bUI5ajZSLVBhU3Rtb3FSNDAxQnhLa0kxOG80eU1lWkhoQWpaM2RiX3I4QTI0UXdqUW9Rc0hxeGRULWxxWmgxM2FzakpydWVFc1p6bUhVRmlnVXVZOUItU0FuT1Qwemc?oc=5",
+      "published": "2026-11-14T08:21:33+00:00",
+      "sentiment": 0.296
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    247.9,
+    248.46,
+    246.78,
+    244.91,
+    282.13,
+    276.69,
+    285.69,
+    279.23,
+    280.72,
+    284.38,
+    275.09,
+    264.84,
+    260.8,
+    260.98,
+    262.4,
+    265.67,
+    266.62,
+    264.9,
+    263.75,
+    260.21,
+    261.31,
+    260.91,
+    270.75,
+    274.84,
+    280.68,
+    279.96,
+    278.57,
+    285.45,
+    281.93,
+    273.33,
+    283.45,
+    283.5,
+    282.5,
+    284.84,
+    296.13,
+    295.85,
+    301.63,
+    297.35,
+    313.03,
+    310.36,
+    316.8,
+    318.67,
+    320.55,
+    322.55,
+    323.04,
+    318.18,
+    313.46,
+    317.82,
+    310.34,
+    312.96,
+    307.0,
+    303.21,
+    310.63,
+    310.1,
+    303.73,
+    306.4,
+    305.55,
+    304.77,
+    302.42,
+    301.53,
+    299.28,
+    288.41,
+    285.51
+   ]
+  },
+  {
+   "symbol": "HPE",
+   "name": "Hewlett Packard Enterprise",
+   "sector": "Information Technology",
+   "price": 46.12,
+   "final_score": 0.8864,
+   "model_score": 0.9753,
+   "news_score": 0.0615,
+   "forecast": {
+    "2w": {
+     "q10": -0.1534,
+     "q50": 0.0055,
+     "q90": 0.1788,
+     "p_beat_nifty": 0.5709
+    }
+   },
+   "reasons": [
+    "Short-term dip (-8.2% this week) inside a long-term uptrend",
+    "Strong 6-month momentum (+37%, top 8% of universe)",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.7252,
+    "atr_pct": 0.0814
+   },
+   "news": {
+    "n_articles": 38,
+    "headlines": [
+     {
+      "title": "Gear Up for Hewlett Packard Enterprise (HPE) Q4 Earnings: Wall Street Estimates for Key Metrics",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOT3RmRi01VnJsVjRBbVQtdldEQjJYeEszMHNfSG5NUTBEVnlaM2hkaG9ZSTBTRlJ2N1d6blAtUmZEVGxvTkE0TEh3Y2hPWGZiN0VZS2FpVzMySURVeVlveXQyZm1pY19xY05uOXpxc1d6c3dYOEttbExjQTNrRFphVVpLbmpyU2d5V0tTT2RCUnBSMGM2OWlfU2ZjXzRnVDNlcWc?oc=5",
+      "published": "2026-11-18T13:15:05+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "HPE CEO\u2019s advice to employees: Major in your job, minor in AI",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQRlA1YTVsblpNcjNjUWJvNHBlUFFTNWFJeXJub0lqcEtOTV9BdTFSLXF1VWV6M3R3Q1NvOHNMTDZjdXBrNGpZeGhIc3oyMjBESzkxdUdubjlsdUFZenBoNGhXdmhUcHI3OU9ZcExUWkg5Nl9KZmNiWE1nNVVQQ3QyaWRTNA?oc=5",
+      "published": "2026-11-18T13:00:00+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Why Is Hewlett Packard Enterprise Stock Rising Today?",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNd24yMm56QWhrb3hqdzZEaG54Y1RYNGdZcGlyWGtXNXZ3RmhrWUl6X1BocDhFVVNwLVRBRkxTWVppWWF0TkhiQ29YNENZb2FDdjZkQzRkQVZiNklhOVM0Mkp1aVpNa2lNYVFQOFdYMmN6Y01WNXVIMGFzeE5RNEZMUlIyNWNXc00yRUVFZnVGM2ZqMFk2Z0tvLS1VQkpIT2hkQXYw?oc=5",
+      "published": "2026-11-18T12:20:24+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Inside the HPE cooling lab solving AI's power problem",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOWUxBQTZISUdPVmROQ3RVbW54WUExVFgtVmowY3hHcC00MWdBTlhvdFRWZHNobUY5ekU4enpISFpsSjJuM1VHd25pclhwMWNTWDFRUXZTNmJwaUhVLUs5eDg0RlBRa19vcXYwU1BHWEFwVG1oNG00RmxPYXBUMjFZaERsOA?oc=5",
+      "published": "2026-11-18T12:00:00+00:00",
+      "sentiment": -0.077
+     },
+     {
+      "title": "HPE CEO Antonio Neri is building the machines behind the AI boom",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNUlloSUJjOXUtS29ROXRFcWgxM1k4REJjeTNkQlVkZTdvNmw0elk3QjI2eTlJSVNTVDRxV1BjanR3ajFYa1V2Qk1VN29paEtVWjZDY1NKZzZhSnViVjVEODhRZXplTzgybzRRS04xOE9lRW16Z1Eybl9SM0xyWndDaHpn?oc=5",
+      "published": "2026-11-18T11:00:00+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    53.32,
+    52.3,
+    53.31,
+    55.09,
+    54.27,
+    52.18,
+    52.11,
+    50.74,
+    51.7,
+    54.3,
+    51.87,
+    55.89,
+    58.75,
+    55.08,
+    61.93,
+    55.27,
+    55.74,
+    56.54,
+    61.04,
+    60.76,
+    61.75,
+    61.03,
+    62.33,
+    63.52,
+    62.94,
+    62.63,
+    61.49,
+    63.89,
+    64.58,
+    69.33,
+    68.36,
+    70.48,
+    72.09,
+    71.0,
+    73.46,
+    70.33,
+    68.81,
+    63.11,
+    58.63,
+    55.13,
+    55.87,
+    56.09,
+    58.17,
+    55.47,
+    56.69,
+    58.72,
+    60.84,
+    60.33,
+    58.87,
+    55.09,
+    51.19,
+    53.1,
+    50.09,
+    44.16,
+    44.77,
+    47.54,
+    47.93,
+    50.25,
+    50.16,
+    48.29,
+    46.57,
+    46.09,
+    46.12
+   ]
+  }
+ ],
+ "backtest": {
+  "horizon": "2w",
+  "period_start": "2021-11-10",
+  "period_end": "2026-11-04",
+  "n_weeks": 251,
+  "avg_pick_return": 0.005163209456259328,
+  "avg_pick_excess": 0.0009567014675443829,
+  "avg_universe_return": 0.005076868577312905,
+  "avg_benchmark_return": 0.004206507988714945,
+  "pick_hit_rate": 0.5285524568393094,
+  "pick_beat_benchmark_rate": 0.48472775564409026,
+  "weeks_top5_beat_benchmark": 0.4581673306772908,
+  "mean_ic": 0.003014286848563874,
+  "ic_t_stat": 0.16363207849119413,
+  "q10_q90_coverage": 0.8493246466939769,
+  "chained_cagr_picks": 0.13502565354244256,
+  "chained_cagr_benchmark": 0.09500027545276946,
+  "decile_excess": {
+   "0": 0.0011914815169293846,
+   "1": 0.000690819733650495,
+   "2": 0.0013617612550084434,
+   "3": 0.0004480387932141826,
+   "4": -7.599634614074589e-05,
+   "5": 0.000714230342940293,
+   "6": 0.0011179232823667164,
+   "7": 0.0008484531594611864,
+   "8": 0.0018634952846513645,
+   "9": 0.0005528185524598167
+  },
+  "trend_check": {
+   "top5": {
+    "downtrend": {
+     "n": 256,
+     "avg_excess": -6.362966220247726e-05,
+     "avg_return": 0.006244429535421616,
+     "share_positive": 0.51171875,
+     "p10_return": -0.09916965353326962
+    },
+    "no_downtrend": {
+     "n": 497,
+     "avg_excess": -0.0008680021381999984,
+     "avg_return": 0.002256016696630154,
+     "share_positive": 0.5090543259557344,
+     "p10_return": -0.10749159225399352
+    }
+   },
+   "high_score": {
+    "downtrend": {
+     "n": 8321,
+     "avg_excess": 0.003411876819491772,
+     "avg_return": 0.00999833991604653,
+     "share_positive": 0.5534190602091095,
+     "p10_return": -0.08124822228330064
+    },
+    "no_downtrend": {
+     "n": 18842,
+     "avg_excess": -3.58643846613622e-05,
+     "avg_return": 0.002907996054821296,
+     "share_positive": 0.515497293280968,
+     "p10_return": -0.07569319456149956
+    }
+   }
+  },
+  "round_trip_cost": 0.002
+ }
+}
