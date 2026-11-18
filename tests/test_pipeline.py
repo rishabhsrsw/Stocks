@@ -386,3 +386,33 @@ def test_us_weekly_and_daily_run(prices, tmp_path):
     last["generated_at"] = f"{asof.date()}T15:00:00+00:00"  # 11:00 New York: the market was still open
     (tmp_path / "daily.json").write_text(json.dumps(last))
     assert run_daily(prices, universe, cfg, with_news=False, with_backtest=False, out_dir=tmp_path) is not None
+
+
+def test_load_us_universe_with_mocked_sources(monkeypatch, tmp_path):
+    from stockpicker import universe as u
+    import stockpicker.config as config
+    monkeypatch.setattr(config, "SITE_DATA_DIR", tmp_path)
+    monkeypatch.setattr(u.time, "sleep", lambda s: None)
+    sp_csv = "Symbol,Security,GICS Sector\n" + "\n".join(f"S{chr(65 + i // 26)}{chr(65 + i % 26)},Co {i},Financials" for i in range(450)) + "\nBRK.B,Berkshire,Financials\n"
+    ndx_html = "<table><tr><th>Ticker</th><th>Company</th><th>GICS Sector</th></tr>" + "".join(
+        f"<tr><td>N{chr(65 + i // 26)}{chr(65 + i % 26)}</td><td>Nasdaq Co {i}</td><td>Information Technology</td></tr>" for i in range(90)) + "</table>"
+    pages = {u.SP500_CSV_URL: sp_csv, u.NDX_WIKI_URL: ndx_html}
+
+    class Resp:
+        def __init__(self, text): self.text = text
+        def raise_for_status(self): pass
+
+    def fake_get(url, **kw):
+        if url not in pages:
+            raise OSError("blocked")
+        return Resp(pages[url])
+
+    monkeypatch.setattr(u.requests, "get", fake_get)
+    df = u.load_us_universe()
+    assert len(df) == 451 + 90 and "BRK-B" in set(df["symbol"])
+    assert (tmp_path / "us" / "universe" / "us.csv").exists()
+    # Nasdaq-100 page down: the S&P 500 alone still works. Everything down: the saved list is used.
+    pages.pop(u.NDX_WIKI_URL)
+    assert len(u.load_us_universe()) == 451
+    pages.clear()
+    assert len(u.load_us_universe()) == 451
