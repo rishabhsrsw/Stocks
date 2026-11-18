@@ -332,8 +332,9 @@ def load_us_universe() -> pd.DataFrame:
     The last good list is kept (docs/data/us/universe/) for when the sources are down."""
     from .config import SITE_DATA_DIR
     saved = SITE_DATA_DIR / "us" / "universe" / "us.csv"
-    sp500 = (_fetch(SP500_CSV_URL, lambda t: parse_us_table(pd.read_csv(io.StringIO(t))), 400, "S&P 500")
-             or _fetch(SP500_WIKI_URL, parse_us_html, 400, "S&P 500"))
+    sp500 = _fetch(SP500_CSV_URL, lambda t: parse_us_table(pd.read_csv(io.StringIO(t))), 400, "S&P 500")
+    if sp500 is None:  # (not `a or b`: a DataFrame has no truth value)
+        sp500 = _fetch(SP500_WIKI_URL, parse_us_html, 400, "S&P 500")
     ndx = _fetch(NDX_WIKI_URL, parse_us_html, 80, "Nasdaq-100")
     if sp500 is not None:
         df = merge_us_lists(sp500, ndx if ndx is not None else sp500.iloc[0:0])

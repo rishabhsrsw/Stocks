@@ -1,7 +1,7 @@
 {
   "name": "nse-weekly-picks",
   "productName": "NSE Weekly Picks",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Desktop app for the weekly NSE stock picks",
   "main": "main.js",
   "private": true,
