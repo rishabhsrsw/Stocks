@@ -45,6 +45,9 @@ main { max-width: 1120px; margin: 0 auto;
 .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .btn { font: inherit; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
 .btn:hover { border-color: var(--axis); }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; margin-right: 6px; vertical-align: middle; }
+.seg button { font: inherit; font-size: 14px; color: var(--ink-2); background: var(--surface); border: 0; padding: 6px 14px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
 h1 { font-size: 26px; margin: 0 0 4px; }
 h2 { font-size: 19px; margin: 40px 0 12px; }
 h3 { font-size: 16px; margin: 0; }
@@ -107,8 +110,9 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
 <body>
 <main>
   <div class="top">
-    <h1>NSE Weekly Picks</h1>
-    <div><button class="btn" id="settings" hidden>Settings</button> <button class="btn" id="refresh">Refresh</button></div>
+    <h1 id="title">NSE Weekly Picks</h1>
+    <div><span class="seg" role="group" aria-label="Market"><button id="mk-in" data-market="in">India</button><button id="mk-us" data-market="us">US</button></span>
+    <button class="btn" id="settings" hidden>Settings</button> <button class="btn" id="refresh">Refresh</button></div>
   </div>
   <p class="sub" id="meta">Loading…</p>
   <div class="note"><b>Not investment advice.</b> These picks come from a statistical model trained on past prices, plus automated reading of news headlines and basic fundamentals. Markets are noisy, and a 5-month forecast has wide error bars (see each range and the backtest below). Size positions as if any single pick can fall 20–30%, and do your own research before buying.</div>
@@ -130,13 +134,13 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
   <p class="muted" id="bt-meta"></p>
   <div class="tiles" id="bt-tiles"></div>
   <div class="card">
-    <h3>Forward 5-month return of each week's top 5 vs Nifty 50</h3>
-    <div class="legend"><span style="--c:var(--series-1)">Top-5 picks (avg)</span><span style="--c:var(--series-2)">Nifty 50</span></div>
+    <h3>Forward 5-month return of each week's top 5 vs <span class="bl"></span></h3>
+    <div class="legend"><span style="--c:var(--series-1)">Top-5 picks (avg)</span><span style="--c:var(--series-2)" class="bl"></span></div>
     <div class="chart-wrap" id="bt-line"></div>
   </div>
   <div class="card" style="margin-top:16px">
     <h3>Does a higher score mean a higher return?</h3>
-    <p class="muted">Average 5-month excess return over Nifty, by model-score decile (1 = lowest scored, 10 = highest). A rising staircase means the ranking works.</p>
+    <p class="muted">Average 5-month excess return over <span class="bn"></span>, by model-score decile (1 = lowest scored, 10 = highest). A rising staircase means the ranking works.</p>
     <div class="chart-wrap" id="bt-dec"></div>
   </div>
 
@@ -144,22 +148,13 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
   <div class="card scroll"><table id="track"></table></div>
 
   <h2>How it works</h2>
-  <div class="card" style="color:var(--ink-2);font-size:14px">
-    <ol>
-      <li><b>Universe:</b> Nifty 200 constituents, filtered for liquidity (₹10 cr+ median daily turnover) and extreme volatility.</li>
-      <li><b>Chart reading:</b> about 35 technical features per stock: momentum over 1, 3, 6 and 12 months, relative strength vs Nifty, moving-average trend, 52-week high and low, RSI, MACD, volatility, drawdown, beta and volume accumulation, plus market regime (Nifty trend, breadth, volatility).</li>
-      <li><b>Model:</b> gradient-boosted trees trained on 12 years of weekly snapshots. They predict (a) the stock's rank in 5-month excess return, (b) the probability of beating Nifty, and (c) the 10th, 50th and 90th percentile of its 3-, 4- and 5-month return. Training uses only data whose outcome was already known on the prediction date, so there is no look-ahead.</li>
-      <li><b>News:</b> recent Google News headlines for each shortlisted company, scored with a finance-tuned sentiment lexicon. When an Anthropic API key is configured, Claude also reads the headlines and flags material events. Stocks with fraud, raid, default or regulator red flags are excluded.</li>
-      <li><b>Fundamentals:</b> ROE, growth, margins, leverage and P/E percentile, used as a quality tilt.</li>
-      <li><b>Final score</b> = 70% model + 15% news + 15% quality, at most 2 picks per sector. Only the model part is backtested; news and fundamentals aren't available point-in-time historically.</li>
-    </ol>
-  </div>
+  <div class="card" style="color:var(--ink-2);font-size:14px"><ol id="how"></ol></div>
   </section>
 
   <section id="tab-daily" hidden>
   <h2>Today's picks (next 2 weeks)</h2>
   <p class="muted" id="d-meta" style="margin-top:-4px">Daily picks appear after the first weekday-evening update.</p>
-  <div class="note">Short-term picks are much noisier than the 5-month view: a 2-week move is mostly luck. Each trade also pays brokerage, STT and slippage (about 0.4% for a buy plus a sell), which the backtest below subtracts. Keep these positions small.</div>
+  <div class="note" id="d-note"></div>
   <div class="grid" id="d-picks"></div>
   <h2>How have daily picks done? (walk-forward backtest)</h2>
   <p class="muted" id="d-bt-meta"></p>
@@ -170,12 +165,12 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
 
   <section id="tab-holdings" hidden>
   <h2>Should I hold or sell?</h2>
-  <p class="muted" style="margin-top:-4px">Add what you own. Each stock gets a verdict from the same model, based on its outlook from today. Your buy price is used for profit/loss and tax timing only: what you paid doesn't change what the stock does next. Works for any NSE or BSE-listed stock. Holdings are saved on this device only.</p>
+  <p class="muted" style="margin-top:-4px">Add what you own. Each stock gets a verdict from the same model, based on its outlook from today. Your buy price is used for profit/loss and tax timing only: what you paid doesn't change what the stock does next. <span id="h-scope"></span> Holdings are saved on this device only.</p>
   <div class="card">
     <form id="h-form" class="hform" autocomplete="off">
-      <label>Stock or ETF (symbol or name)<input id="h-sym" list="h-list" placeholder="e.g. TCS, Infosys or GOLDBEES" required></label>
+      <label><span id="h-label">Stock or ETF</span> (symbol or name)<input id="h-sym" list="h-list" required></label>
       <label>Quantity<input id="h-qty" type="number" min="0" step="any" inputmode="decimal" required></label>
-      <label>Avg buy price ₹<input id="h-price" type="number" min="0" step="any" inputmode="decimal" required></label>
+      <label>Avg buy price <span class="cur"></span><input id="h-price" type="number" min="0" step="any" inputmode="decimal" required></label>
       <label>Buy date (optional)<input id="h-date" type="date"></label>
       <button class="btn primary" type="submit">Add</button>
     </form>
@@ -195,6 +190,33 @@ textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospa
   </section>
 </main>
 <script>
+const HOW = {"in": ["<b>Universe:</b> Nifty 200 constituents, filtered for liquidity (₹10 cr+ median daily turnover) and extreme volatility.", "<b>Chart reading:</b> about 35 technical features per stock: momentum over 1, 3, 6 and 12 months, relative strength vs Nifty, moving-average trend, 52-week high and low, RSI, MACD, volatility, drawdown, beta and volume accumulation, plus market regime (Nifty trend, breadth, volatility).", "<b>Model:</b> gradient-boosted trees trained on 12 years of weekly snapshots. They predict (a) the stock's rank in 5-month excess return, (b) the probability of beating Nifty, and (c) the 10th, 50th and 90th percentile of its 3-, 4- and 5-month return. Training uses only data whose outcome was already known on the prediction date, so there is no look-ahead.", "<b>News:</b> recent Google News headlines for each shortlisted company, scored with a finance-tuned sentiment lexicon. When an Anthropic API key is configured, Claude also reads the headlines and flags material events. Stocks with fraud, raid, default or regulator red flags are excluded.", "<b>Fundamentals:</b> ROE, growth, margins, leverage and P/E percentile, used as a quality tilt.", "<b>Final score</b> = 70% model + 15% news + 15% quality, at most 2 picks per sector. Only the model part is backtested; news and fundamentals aren't available point-in-time historically."], "us": ["<b>Universe:</b> S&amp;P 500 plus Nasdaq-100 constituents, filtered for liquidity ($20M+ median daily turnover) and extreme volatility.", "<b>Chart reading:</b> about 35 technical features per stock: momentum over 1, 3, 6 and 12 months, relative strength vs the S&amp;P 500, moving-average trend, 52-week high and low, RSI, MACD, volatility, drawdown, beta and volume accumulation, plus market regime (S&amp;P 500 trend, breadth, volatility).", "<b>Model:</b> gradient-boosted trees trained on 12 years of weekly snapshots. They predict (a) the stock's rank in 5-month excess return, (b) the probability of beating the S&amp;P 500, and (c) the 10th, 50th and 90th percentile of its 3-, 4- and 5-month return. Training uses only data whose outcome was already known on the prediction date, so there is no look-ahead.", "<b>News:</b> recent Google News headlines for each shortlisted company, scored with a finance-tuned sentiment lexicon. When an Anthropic API key is configured, Claude also reads the headlines and flags material events. Stocks with fraud, SEC/DOJ action, bankruptcy or going-concern red flags are excluded.", "<b>Fundamentals:</b> ROE, growth, margins, leverage and P/E percentile, used as a quality tilt.", "<b>Final score</b> = 70% model + 15% news + 15% quality, at most 2 picks per sector. Only the model part is backtested; news and fundamentals aren't available point-in-time historically."]};
+// Everything that differs between the two markets. The data for each lives in its own folder (docs/data/ for
+// India, docs/data/us/ for the US); the choice is remembered on this device and switching reloads the page.
+const MARKETS = {
+  in: {key: "in", dir: "", title: "NSE Weekly Picks", bench: "Nifty", benchLong: "Nifty 50", cur: "₹", locale: "en-IN",
+    exch: "NSE", holdingsKey: "nse-holdings-v1", universe: "Nifty 200",
+    holdLabel: "Stock or ETF", holdPlaceholder: "e.g. TCS, Infosys or GOLDBEES",
+    scope: "Works for any NSE or BSE-listed stock.",
+    findHelp: "Couldn't find that. Type its NSE/BSE symbol (e.g. HDFCBANK, GOLDBEES) or part of the name and pick from the list.",
+    dailyNote: "Short-term picks are much noisier than the 5-month view: a 2-week move is mostly luck. Each trade also pays brokerage, STT and slippage (about 0.4% for a buy plus a sell), which the backtest below subtracts. Keep these positions small.",
+    pickAction: "the \"Weekly picks\" GitHub Action"},
+  us: {key: "us", dir: "us/", title: "US Weekly Picks", bench: "S&P 500", benchLong: "S&P 500", cur: "$", locale: "en-US",
+    exch: "US", holdingsKey: "us-holdings-v1", universe: "S&P 500 + Nasdaq-100",
+    holdLabel: "Stock", holdPlaceholder: "e.g. AAPL, Microsoft or NVDA",
+    scope: "Covers the S&P 500 and Nasdaq-100 (about 520 US stocks); other US tickers, ETFs and OTC shares aren't covered yet.",
+    findHelp: "Couldn't find that. Type its US ticker (e.g. AAPL, BRK-B) or part of the company name and pick from the list.",
+    dailyNote: "Short-term picks are much noisier than the 5-month view: a 2-week move is mostly luck. Each trade also pays spreads and slippage (the backtest below assumes about 0.2% for a buy plus a sell, no commission). Keep these positions small.",
+    pickAction: "the \"US weekly picks\" GitHub Action"},
+};
+let MK = MARKETS.in;
+try {
+  const q = new URLSearchParams(location.search).get("market");
+  const m = q || localStorage.getItem("picks-market");
+  if (MARKETS[m]) MK = MARKETS[m];
+} catch (_) {}
+const money = (x, d = 0) => MK.cur + Number(x).toLocaleString(MK.locale, {maximumFractionDigits: d, minimumFractionDigits: d});
+const num = x => Number(x).toLocaleString(MK.locale);
 const pct = (x, d = 1) => x == null ? "–" : (x > 0 ? "+" : "") + (x * 100).toFixed(d) + "%";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const cls = x => x == null ? "" : x >= 0 ? "up" : "down";
@@ -244,8 +266,8 @@ function pickCard(p, i) {
   const llm = p.news.llm;
   card.innerHTML = `
     <div class="card-head">
-      <div><div class="rank">#${i + 1} · NSE: ${esc(p.symbol)}</div><h3>${esc(p.name)}</h3><span class="tag">${esc(p.sector || "")}</span></div>
-      <div style="text-align:right"><div class="muted">Price</div><b>₹${p.price?.toLocaleString("en-IN")}</b></div>
+      <div><div class="rank">#${i + 1} · ${MK.exch}: ${esc(p.symbol)}</div><h3>${esc(p.name)}</h3><span class="tag">${esc(p.sector || "")}</span></div>
+      <div style="text-align:right"><div class="muted">Price</div><b>${MK.cur}${p.price?.toLocaleString(MK.locale)}</b></div>
     </div>
     <div style="margin-top:12px" class="muted">Median 5-month forecast</div>
     <div class="hero ${cls(f.q50)}">${pct(f.q50)}</div>
@@ -253,7 +275,7 @@ function pickCard(p, i) {
     <div class="kv">
       <div>3 months<b class="${cls(p.forecast["3m"].q50)}">${pct(p.forecast["3m"].q50)}</b></div>
       <div>4 months<b class="${cls(p.forecast["4m"].q50)}">${pct(p.forecast["4m"].q50)}</b></div>
-      <div>P(beat Nifty)<b>${(f.p_beat_nifty * 100).toFixed(0)}%</b></div>
+      <div>P(beat ${MK.bench})<b>${(f.p_beat_nifty * 100).toFixed(0)}%</b></div>
       <div>Model<b>${(p.model_score * 100).toFixed(0)}</b></div>
       <div>News<b class="${cls(p.news_score)}">${p.news_score >= 0 ? "+" : ""}${p.news_score.toFixed(2)}</b></div>
       <div>Quality<b>${(p.quality_score * 100).toFixed(0)}</b></div>
@@ -269,7 +291,7 @@ function pickCard(p, i) {
       <table>
         <tr><td>Volatility (3m, annualised)</td><td class="num">${pct(p.risk.volatility_63d, 0)}</td></tr>
         <tr><td>Drawdown from 6m high</td><td class="num">${pct(p.risk.max_drawdown_6m, 0)}</td></tr>
-        <tr><td>Beta vs Nifty</td><td class="num">${p.risk.beta?.toFixed(2) ?? "–"}</td></tr>
+        <tr><td>Beta vs ${MK.bench}</td><td class="num">${p.risk.beta?.toFixed(2) ?? "–"}</td></tr>
         <tr><td>P/E</td><td class="num">${p.fundamentals.pe?.toFixed(1) ?? "–"}</td></tr>
         <tr><td>ROE</td><td class="num">${pct(p.fundamentals.roe, 0)}</td></tr>
         <tr><td>Earnings growth (yoy)</td><td class="num">${pct(p.fundamentals.earnings_growth, 0)}</td></tr>
@@ -287,7 +309,7 @@ function lineChart(host, rows) {
   const lo = Math.min(0, ...vals), hi = Math.max(...vals);
   const sx = i => m.l + i * (W - m.l - m.r) / (rows.length - 1);
   const sy = v => m.t + (hi - v) / (hi - lo) * (H - m.t - m.b);
-  const svg = el("svg", {viewBox: `0 0 ${W} ${H}`, width: "100%", role: "img", "aria-label": "Forward 5-month return of the weekly top 5 versus Nifty 50"});
+  const svg = el("svg", {viewBox: `0 0 ${W} ${H}`, width: "100%", role: "img", "aria-label": `Forward 5-month return of the weekly top 5 versus ${MK.benchLong}`});
   const step = (hi - lo) > 1 ? 0.25 : 0.1;
   for (let t = Math.ceil(lo / step) * step; t <= hi + 1e-9; t += step) {
     el("line", {x1: m.l, x2: W - m.r, y1: sy(t), y2: sy(t), stroke: Math.abs(t) < 1e-9 ? "var(--axis)" : "var(--grid)", "stroke-width": 1}, svg);
@@ -313,7 +335,7 @@ function lineChart(host, rows) {
     const r = rows[i];
     for (const [c, k] of [[d1, "pick_ret"], [d2, "bench_ret"]]) { c.setAttribute("cx", sx(i)); c.setAttribute("cy", sy(r[k])); c.setAttribute("visibility", "visible"); }
     cross.setAttribute("x1", sx(i)); cross.setAttribute("x2", sx(i)); cross.setAttribute("visibility", "visible");
-    tip.innerHTML = `<b>Picked ${r.date}</b><br><span class="dot" style="background:var(--series-1)"></span>Top 5: ${pct(r.pick_ret)}<br><span class="dot" style="background:var(--series-2)"></span>Nifty: ${pct(r.bench_ret)}`;
+    tip.innerHTML = `<b>Picked ${r.date}</b><br><span class="dot" style="background:var(--series-1)"></span>Top 5: ${pct(r.pick_ret)}<br><span class="dot" style="background:var(--series-2)"></span>${MK.bench}: ${pct(r.bench_ret)}`;
     tip.style.display = "block";
     const px = sx(i) / W * b.width;
     tip.style.left = Math.min(px + 12, b.width - tip.offsetWidth) + "px";
@@ -338,7 +360,7 @@ function decileChart(host, dec) {
     el("rect", {x: m.l + i * bw, y: m.t, width: bw, height: H - m.t - m.b, fill: "transparent"}, g);
     const lab = el("text", {x: m.l + (i + .5) * bw, y: v >= 0 ? y1 - 4 : y1 + 13, "text-anchor": "middle"}, svg); lab.textContent = pct(v, bw < 44 ? 0 : 1);
     const tx = el("text", {x: m.l + (i + .5) * bw, y: H - 4, "text-anchor": "middle"}, svg); tx.textContent = k + 1;
-    g.addEventListener("pointerenter", () => { tip.innerHTML = `Decile ${k + 1}: <b>${pct(v)}</b> vs Nifty`; tip.style.display = "block";
+    g.addEventListener("pointerenter", () => { tip.innerHTML = `Decile ${k + 1}: <b>${pct(v)}</b> vs ${MK.bench}`; tip.style.display = "block";
       const b = svg.getBoundingClientRect(); tip.style.left = Math.min((m.l + i * bw) / W * b.width, b.width - tip.offsetWidth) + "px"; tip.style.top = "0px"; });
     g.addEventListener("pointerleave", () => tip.style.display = "none");
   });
@@ -357,14 +379,14 @@ function dailyCard(p, i) {
   const llm = p.news.llm;
   card.innerHTML = `
     <div class="card-head">
-      <div><div class="rank">#${i + 1} · NSE: ${esc(p.symbol)}</div><h3>${esc(p.name)}</h3><span class="tag">${esc(p.sector || "")}</span></div>
-      <div style="text-align:right"><div class="muted">Price</div><b>₹${p.price?.toLocaleString("en-IN")}</b></div>
+      <div><div class="rank">#${i + 1} · ${MK.exch}: ${esc(p.symbol)}</div><h3>${esc(p.name)}</h3><span class="tag">${esc(p.sector || "")}</span></div>
+      <div style="text-align:right"><div class="muted">Price</div><b>${MK.cur}${p.price?.toLocaleString(MK.locale)}</b></div>
     </div>
     <div style="margin-top:12px" class="muted">Median 2-week forecast</div>
     <div class="hero ${cls(f.q50)}">${pct(f.q50)}</div>
     <div class="range"></div>
     <div class="kv">
-      <div>P(beat Nifty)<b>${(f.p_beat_nifty * 100).toFixed(0)}%</b></div>
+      <div>P(beat ${MK.bench})<b>${(f.p_beat_nifty * 100).toFixed(0)}%</b></div>
       <div>Model<b>${(p.model_score * 100).toFixed(0)}</b></div>
       <div>Daily swing<b>${pct(p.risk.atr_pct, 1).replace("+", "±")}</b></div>
     </div>
@@ -394,15 +416,15 @@ function renderDaily(d) {
       `Out-of-sample, ${bt.period_start} to ${bt.period_end}: the top ${d.picks.length} each week, held ${d.horizon_days} trading days. After ${(c * 100).toFixed(1)}% trading costs per trade, before tax.`;
     document.getElementById("d-bt-tiles").innerHTML =
       tile(pct(bt.avg_pick_return - c, 2), "Avg 2-week return of picks, after costs", cls(bt.avg_pick_return - c)) +
-      tile(pct(bt.avg_benchmark_return, 2), "Avg 2-week Nifty return", cls(bt.avg_benchmark_return)) +
-      tile(pct(bt.avg_pick_excess - c, 2), "Excess vs Nifty, after costs", cls(bt.avg_pick_excess - c)) +
+      tile(pct(bt.avg_benchmark_return, 2), `Avg 2-week ${MK.bench} return`, cls(bt.avg_benchmark_return)) +
+      tile(pct(bt.avg_pick_excess - c, 2), `Excess vs ${MK.bench}, after costs`, cls(bt.avg_pick_excess - c)) +
       tile((bt.pick_hit_rate * 100).toFixed(0) + "%", "Picks with a positive return (before costs)") +
       tile(bt.mean_ic.toFixed(3), `Rank IC (t ≈ ${bt.ic_t_stat.toFixed(1)})`) +
       tile((bt.q10_q90_coverage * 100).toFixed(0) + "%", "Outcomes inside the forecast range (target 80%)");
   }
   const tr = (d.track_record || []).slice().reverse().slice(0, 60);
   document.getElementById("d-track").innerHTML = tr.length
-    ? `<tr><th>Picked</th><th>Symbol</th><th class="num">Entry ₹</th><th class="num">Latest ₹</th><th class="num">Return</th><th class="num">Nifty</th><th class="num">Predicted</th><th class="num">Days</th></tr>` +
+    ? `<tr><th>Picked</th><th>Symbol</th><th class="num">Entry ${MK.cur}</th><th class="num">Latest ${MK.cur}</th><th class="num">Return</th><th class="num">${MK.bench}</th><th class="num">Predicted</th><th class="num">Days</th></tr>` +
       tr.map(t => `<tr><td>${t.week}</td><td>${esc(t.symbol)}</td><td class="num">${t.entry}</td><td class="num">${t.latest}</td><td class="num ${cls(t.return)}">${pct(t.return)}</td><td class="num">${pct(t.nifty_return)}</td><td class="num">${pct(t.predicted_q50)}</td><td class="num">${t.days_held}${t.complete ? " ✓" : ""}</td></tr>`).join("")
     : `<tr><td class="muted">The track record fills in as daily picks age.</td></tr>`;
   renderHoldings();  // holdings switch to the newer daily prices
@@ -429,7 +451,7 @@ try {
 } catch (_) {}
 
 // ---------------------------------------------------------------- holdings
-const H_KEY = "nse-holdings-v1";
+const H_KEY = MK.holdingsKey;  // India keeps its original key, so existing holdings survive
 const VERDICT = {
   strong_hold: {label: "Strong hold", icon: "▲"},
   hold: {label: "Hold", icon: "●"},
@@ -444,7 +466,6 @@ const VERDICT_TEXT = {
   exit: "Likely to lag the market over the next 5 months. Consider switching to a stronger stock.",
   exit_flag: "Recent news includes a red flag (fraud, raid, default or regulator action). Consider selling.",
 };
-const inr = (x, d = 0) => "₹" + Number(x).toLocaleString("en-IN", {maximumFractionDigits: d, minimumFractionDigits: d});
 const badge = v => `<span class="badge v-${v}"><i aria-hidden="true">${VERDICT[v].icon}</i>${VERDICT[v].label}</span>`;
 
 function loadHoldings() {
@@ -472,11 +493,14 @@ function taxNote(h, s) {
   if (!h.date) return "";
   const days = Math.floor((Date.now() - new Date(h.date)) / 864e5);
   if (!(days >= 0)) return "";
+  if (MK.key === "us") {  // rules differ by where you are tax resident, so no rates here
+    return `Held ${days} days. Tax depends on where you are tax resident: in the US a sale after one year of holding is long-term; for Indian residents holding US shares directly, long-term currently means more than 24 months. Check the current rules with a tax adviser.`;
+  }
   const gain = (s.price - h.price) * h.qty;
   if (days >= 365) return `Held ${days} days, so a sale counts as long-term (gains above ₹1.25 lakh a year taxed at 12.5%).`;
   const lt = new Date(new Date(h.date).getTime() + 366 * 864e5).toLocaleDateString("en-IN", {day: "numeric", month: "short", year: "numeric"});
   return gain > 0
-    ? `Held ${days} days. Selling now makes this ${inr(gain)} gain short-term (taxed at 20%); it turns long-term (12.5%) after ${lt}. Weigh that against the outlook.`
+    ? `Held ${days} days. Selling now makes this ${money(gain)} gain short-term (taxed at 20%); it turns long-term (12.5%) after ${lt}. Weigh that against the outlook.`
     : `Held ${days} days. A short-term loss can be set off against other capital gains.`;
 }
 
@@ -488,24 +512,24 @@ function holdingCard(h, s, i) {
   const tax = taxNote(h, s);
   card.innerHTML = `
     <div class="card-head">
-      <div><div class="rank">${esc(s.exchange || "NSE")}: ${esc(s.symbol)}</div><h3>${esc(s.name)}</h3></div>
+      <div><div class="rank">${esc(s.exchange || MK.exch)}: ${esc(s.symbol)}</div><h3>${esc(s.name)}</h3></div>
       <div>${badge(s.verdict)}</div>
     </div>
     <p style="margin:8px 0;font-size:14px">${VERDICT_TEXT[s.red_flag ? "exit_flag" : s.verdict]}</p>
     ${s.tested === false ? '<p class="muted" style="margin:0 0 8px">Outside the Nifty 500: the model was built and tested on larger companies, so treat this verdict as a rough guide. It is never rated above Hold.</p>' : ""}
     <div class="kv">
-      <div>Price<b>${inr(s.price, 2)}</b></div>
-      <div>Your avg<b>${inr(h.price, 2)}</b></div>
-      <div>Qty<b>${Number(h.qty).toLocaleString("en-IN")}</b></div>
-      <div>Value<b>${inr(value)}</b></div>
-      <div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${inr(Math.abs(pnl))}</b></div>
+      <div>Price<b>${money(s.price, 2)}</b></div>
+      <div>Your avg<b>${money(h.price, 2)}</b></div>
+      <div>Qty<b>${num(h.qty)}</b></div>
+      <div>Value<b>${money(value)}</b></div>
+      <div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${money(Math.abs(pnl))}</b></div>
       <div>Return<b class="${cls(pnlPct)}">${pct(pnlPct)}</b></div>
     </div>
     <div class="muted">Outlook from today</div>
     <div class="kv" style="margin-top:4px">
       <div>3 months<b class="${cls(f3.q50)}">${pct(f3.q50)}</b></div>
       <div>5 months<b class="${cls(f5.q50)}">${pct(f5.q50)}</b></div>
-      <div>P(beat Nifty)<b>${(f5.p_beat_nifty * 100).toFixed(0)}%</b></div>
+      <div>P(beat ${MK.bench})<b>${(f5.p_beat_nifty * 100).toFixed(0)}%</b></div>
     </div>
     <div class="range"></div>
     <div class="muted">Last 6 months</div>
@@ -514,7 +538,7 @@ function holdingCard(h, s, i) {
     ${s.positives.length ? `<ul class="why pos">${s.positives.map(r => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}
     ${s.concerns.length ? `<ul class="why neg">${s.concerns.map(r => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}
     ${tax ? `<p class="muted" style="margin:8px 0">${esc(tax)}</p>` : ""}
-    <p class="muted" style="margin:8px 0">If the 5-month median plays out: ${inr(value * (1 + f5.q50))} (${pct((value * (1 + f5.q50) - cost) / cost)} on what you paid).</p>
+    <p class="muted" style="margin:8px 0">If the 5-month median plays out: ${money(value * (1 + f5.q50))} (${pct((value * (1 + f5.q50) - cost) / cost)} on what you paid).</p>
     <button class="link" data-remove="${i}">Remove</button>`;
   card.querySelector(".range").appendChild(rangeBar(f5));
   card.querySelector(".spark").appendChild(sparkline(s.spark));
@@ -530,16 +554,16 @@ function fundCard(h, f, i) {
   const ret = x => x == null ? "–" : `<span class="${cls(x)}">${pct(x)}</span>`;
   card.innerHTML = `
     <div class="card-head">
-      <div><div class="rank">${esc(f.exchange || "NSE")}: ${esc(f.symbol)}</div><h3>${esc(f.name)}</h3></div>
+      <div><div class="rank">${esc(f.exchange || MK.exch)}: ${esc(f.symbol)}</div><h3>${esc(f.name)}</h3></div>
       <div><span class="badge" style="--vc: var(--muted)">${esc(f.kind === "sgb" ? "Gold bond" : f.sector || "ETF")}</span></div>
     </div>
-    <p class="muted" style="margin:8px 0">This is ${what}. The hold/sell model rates company shares against the Nifty, so it doesn't give funds a verdict. Below is how it has been moving.</p>
+    <p class="muted" style="margin:8px 0">This is ${what}. The hold/sell model rates company shares against the ${MK.bench}, so it doesn't give funds a verdict. Below is how it has been moving.</p>
     <div class="kv">
-      <div>Price<b>${inr(f.price, 2)}</b></div>
-      <div>Your avg<b>${inr(h.price, 2)}</b></div>
-      <div>Qty<b>${Number(h.qty).toLocaleString("en-IN")}</b></div>
-      <div>Value<b>${inr(value)}</b></div>
-      <div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${inr(Math.abs(pnl))}</b></div>
+      <div>Price<b>${money(f.price, 2)}</b></div>
+      <div>Your avg<b>${money(h.price, 2)}</b></div>
+      <div>Qty<b>${num(h.qty)}</b></div>
+      <div>Value<b>${money(value)}</b></div>
+      <div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${money(Math.abs(pnl))}</b></div>
       <div>Return<b class="${cls(pnlPct)}">${pct(pnlPct)}</b></div>
     </div>
     <div class="muted">Past performance</div>
@@ -590,8 +614,8 @@ function renderHoldings() {
       if (price) {
         const v = price * h.qty, pnl = v - h.price * h.qty;
         cost += h.price * h.qty; value += v;
-        money = `<div class="kv"><div>Price<b>${inr(price, 2)}</b></div><div>Your avg<b>${inr(h.price, 2)}</b></div><div>Qty<b>${Number(h.qty).toLocaleString("en-IN")}</b></div>
-          <div>Value<b>${inr(v)}</b></div><div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${inr(Math.abs(pnl))}</b></div><div>Return<b class="${cls(pnl)}">${pct(pnl / (h.price * h.qty))}</b></div></div>`;
+        money = `<div class="kv"><div>Price<b>${money(price, 2)}</b></div><div>Your avg<b>${money(h.price, 2)}</b></div><div>Qty<b>${num(h.qty)}</b></div>
+          <div>Value<b>${money(v)}</b></div><div>Profit / loss<b class="${cls(pnl)}">${pnl >= 0 ? "+" : "−"}${money(Math.abs(pnl))}</b></div><div>Return<b class="${cls(pnl)}">${pct(pnl / (h.price * h.qty))}</b></div></div>`;
       }
       c.innerHTML = `<div class="rank">${esc(u.exchange ? u.exchange + ": " : "")}${esc(h.symbol)}</div><h3>${esc(u.name)}</h3>
         <p class="muted">${u.kind && u.kind !== "stock" ? "Fund with not enough trading history yet for a trend summary." : "No verdict: not enough recent trading history (listed less than a year ago, suspended, or rarely traded)."}${price ? "" : " No recent price either."}</p>
@@ -611,8 +635,8 @@ function renderHoldings() {
   });
 
   const sum = document.getElementById("h-summary");
-  sum.innerHTML = holdings.length ? tile(inr(cost), "Invested") + tile(inr(value), `Value at ${priceDate} close`) +
-    tile((value - cost >= 0 ? "+" : "−") + inr(Math.abs(value - cost)), "Profit / loss", cls(value - cost)) +
+  sum.innerHTML = holdings.length ? tile(money(cost), "Invested") + tile(money(value), `Value at ${priceDate} close`) +
+    tile((value - cost >= 0 ? "+" : "−") + money(Math.abs(value - cost)), "Profit / loss", cls(value - cost)) +
     tile(pct(cost ? (value - cost) / cost : 0), "Return", cls(value - cost)) +
     Object.keys(VERDICT).filter(k => counts[k]).map(k => tile(String(counts[k]), badge(k))).join("") : "";
 
@@ -623,7 +647,7 @@ function renderHoldings() {
   document.getElementById("h-alt").innerHTML = weak && alts.length ? `
     <h2>Stronger candidates this week</h2>
     <div class="card scroll"><table>
-      <tr><th>Symbol</th><th>Company</th><th class="num">Median 5m</th><th class="num">P(beat Nifty)</th></tr>
+      <tr><th>Symbol</th><th>Company</th><th class="num">Median 5m</th><th class="num">P(beat ${MK.bench})</th></tr>
       ${alts.map(p => `<tr><td>${esc(p.symbol)}</td><td>${esc(p.name)}</td><td class="num ${cls(p.forecast["5m"].q50)}">${pct(p.forecast["5m"].q50)}</td><td class="num">${(p.forecast["5m"].p_beat_nifty * 100).toFixed(0)}%</td></tr>`).join("")}
     </table><p class="muted">From the Weekly picks tab. Switching only makes sense if the gap outweighs taxes and brokerage.</p></div>` : "";
 
@@ -637,9 +661,9 @@ function renderEvidence(d) {
   if (!vs) return;
   box.hidden = false;
   box.innerHTML = `<h3>Can you trust the verdicts?</h3>
-    <p class="muted">How stocks with each verdict actually did over the next 5 months in the ${d.backtest.period_start.slice(0, 4)}–${d.backtest.period_end.slice(0, 4)} backtest (Nifty 200, before costs). Compare the rows with each other: the backtest only includes stocks still in the index today, which flatters every row.</p>
+    <p class="muted">How stocks with each verdict actually did over the next 5 months in the ${d.backtest.period_start.slice(0, 4)}–${d.backtest.period_end.slice(0, 4)} backtest (${MK.universe}, before costs). Compare the rows with each other: the backtest only includes stocks still in the index today, which flatters every row.</p>
     <div class="scroll"><table>
-      <tr><th>Verdict</th><th class="num">Avg 5-month return</th><th class="num">vs Nifty</th><th class="num">Went up</th><th class="num">Share of stocks</th></tr>
+      <tr><th>Verdict</th><th class="num">Avg 5-month return</th><th class="num">vs ${MK.bench}</th><th class="num">Went up</th><th class="num">Share of stocks</th></tr>
       ${Object.keys(VERDICT).filter(k => vs[k]).map(k => `<tr><td>${badge(k)}</td><td class="num ${cls(vs[k].avg_return)}">${pct(vs[k].avg_return)}</td><td class="num ${cls(vs[k].avg_excess)}">${pct(vs[k].avg_excess)}</td><td class="num">${(vs[k].share_positive * 100).toFixed(0)}%</td><td class="num">${(vs[k].share * 100).toFixed(0)}%</td></tr>`).join("")}
     </table></div>`;
 }
@@ -678,7 +702,7 @@ function setupHoldings(payload) {
       .sort((a, b) => a[0] - b[0]).slice(0, 25).map(([, k]) => k.s);
   };
   input.oninput = () => {  // only a short suggestion list: thousands of options would be slow on phones
-    list.innerHTML = matches(input.value).map(s => `<option value="${esc(s.symbol)}">${esc(s.name)} · ${esc(s.kind && s.kind !== "stock" ? (s.kind === "sgb" ? "Gold bond" : "ETF") + " · " : "")}${esc(s.exchange || "NSE")}</option>`).join("");
+    list.innerHTML = matches(input.value).map(s => `<option value="${esc(s.symbol)}">${esc(s.name)} · ${esc(s.kind && s.kind !== "stock" ? (s.kind === "sgb" ? "Gold bond" : "ETF") + " · " : "")}${esc(s.exchange || MK.exch)}</option>`).join("");
   };
   const find = q => {
     q = q.trim().toLowerCase();
@@ -692,7 +716,7 @@ function setupHoldings(payload) {
     const qty = parseFloat(document.getElementById("h-qty").value);
     const price = parseFloat(document.getElementById("h-price").value);
     const date = document.getElementById("h-date").value || null;
-    if (!s) { msg.textContent = "Couldn't find that. Type its NSE/BSE symbol (e.g. HDFCBANK, GOLDBEES) or part of the name and pick from the list."; return; }
+    if (!s) { msg.textContent = MK.findHelp; return; }
     if (!(qty > 0) || !(price > 0)) { msg.textContent = "Enter a quantity and a buy price above zero."; return; }
     const h = loadHoldings();
     const existing = h.find(x => x.symbol === s.symbol);
@@ -701,7 +725,7 @@ function setupHoldings(payload) {
       existing.price = (existing.price * existing.qty + price * qty) / q;
       existing.qty = q;
       if (date && (!existing.date || date < existing.date)) existing.date = date;
-      msg.textContent = `Added to your existing ${s.symbol} holding (new average ${inr(existing.price, 2)}).`;
+      msg.textContent = `Added to your existing ${s.symbol} holding (new average ${money(existing.price, 2)}).`;
     } else {
       h.push({symbol: s.symbol, qty, price, date});
       msg.textContent = `Added ${s.name}.`;
@@ -733,8 +757,8 @@ function setupHoldings(payload) {
 // the website / iPhone home-screen app fetches data/latest.json and keeps a copy for offline use.
 const DATA_CACHE = "picks-data";
 async function loadData(name = "latest") {
-  if (window.picksApi) return window.picksApi.load(name);
-  const url = `data/${name}.json`;
+  if (window.picksApi) return window.picksApi.load(MK.dir + name);
+  const url = `data/${MK.dir}${name}.json`;
   try {
     const r = await fetch(url, {cache: "no-store", redirect: "error"});
     if (!r.ok) throw new Error("HTTP " + r.status);
@@ -750,6 +774,24 @@ async function loadData(name = "latest") {
 }
 
 document.getElementById("refresh").onclick = () => location.reload();
+// Market switch and the texts that depend on it.
+document.title = MK.title;
+document.getElementById("title").textContent = MK.title;
+document.querySelectorAll(".seg button").forEach(b => {
+  b.setAttribute("aria-pressed", String(b.dataset.market === MK.key));
+  b.onclick = () => {
+    try { localStorage.setItem("picks-market", b.dataset.market); } catch (_) {}
+    if (b.dataset.market !== MK.key) location.replace(location.pathname + location.hash);  // drop any ?market= override
+  };
+});
+document.querySelectorAll(".bn").forEach(e => e.textContent = MK.bench);
+document.querySelectorAll(".bl").forEach(e => e.textContent = MK.benchLong);
+document.querySelectorAll(".cur").forEach(e => e.textContent = MK.cur);
+document.getElementById("how").innerHTML = HOW[MK.key].map(x => `<li>${x}</li>`).join("");
+document.getElementById("h-scope").textContent = MK.scope;
+document.getElementById("h-label").textContent = MK.holdLabel;
+document.getElementById("h-sym").placeholder = MK.holdPlaceholder;
+document.getElementById("d-note").textContent = MK.dailyNote;
 if (window.picksApi) {
   const s = document.getElementById("settings");
   s.hidden = false;
@@ -780,11 +822,11 @@ loadData().then(({data: d, stale}) => {
     document.getElementById("bt-meta").textContent = `Out-of-sample, ${bt.period_start} to ${bt.period_end}, ${bt.n_weeks} weekly selections. Before costs and taxes.`;
     document.getElementById("bt-tiles").innerHTML =
       tile(pct(bt.avg_pick_return), "Avg 5-month return of top 5", cls(bt.avg_pick_return)) +
-      tile(pct(bt.avg_benchmark_return), "Avg 5-month Nifty return", cls(bt.avg_benchmark_return)) +
-      tile(pct(bt.avg_pick_excess), "Avg excess vs Nifty", cls(bt.avg_pick_excess)) +
+      tile(pct(bt.avg_benchmark_return), `Avg 5-month ${MK.bench} return`, cls(bt.avg_benchmark_return)) +
+      tile(pct(bt.avg_pick_excess), `Avg excess vs ${MK.bench}`, cls(bt.avg_pick_excess)) +
       tile((bt.pick_hit_rate * 100).toFixed(0) + "%", "Picks with a positive return") +
-      tile((bt.pick_beat_benchmark_rate * 100).toFixed(0) + "%", "Picks that beat Nifty") +
-      tile(bt.chained_cagr_picks == null ? "–" : pct(bt.chained_cagr_picks), `CAGR, non-overlapping (Nifty ${pct(bt.chained_cagr_benchmark)})`, cls(bt.chained_cagr_picks)) +
+      tile((bt.pick_beat_benchmark_rate * 100).toFixed(0) + "%", `Picks that beat ${MK.bench}`) +
+      tile(bt.chained_cagr_picks == null ? "–" : pct(bt.chained_cagr_picks), `CAGR, non-overlapping (${MK.bench} ${pct(bt.chained_cagr_benchmark)})`, cls(bt.chained_cagr_picks)) +
       tile(bt.mean_ic.toFixed(3), `Rank IC (t ≈ ${bt.ic_t_stat.toFixed(1)})`) +
       tile((bt.q10_q90_coverage * 100).toFixed(0) + "%", "Outcomes inside the forecast range (target 80%)");
     // Charts size themselves to their container, so draw them once the picks tab is visible.
@@ -796,7 +838,7 @@ loadData().then(({data: d, stale}) => {
 
   const tr = (d.track_record || []).slice().reverse();
   document.getElementById("track").innerHTML = tr.length
-    ? `<tr><th>Week</th><th>Symbol</th><th class="num">Entry ₹</th><th class="num">Latest ₹</th><th class="num">Return</th><th class="num">Nifty</th><th class="num">Predicted</th><th class="num">Days</th></tr>` +
+    ? `<tr><th>Week</th><th>Symbol</th><th class="num">Entry ${MK.cur}</th><th class="num">Latest ${MK.cur}</th><th class="num">Return</th><th class="num">${MK.bench}</th><th class="num">Predicted</th><th class="num">Days</th></tr>` +
       tr.map(t => `<tr><td>${t.week}</td><td>${esc(t.symbol)}</td><td class="num">${t.entry}</td><td class="num">${t.latest}</td><td class="num ${cls(t.return)}">${pct(t.return)}</td><td class="num">${pct(t.nifty_return)}</td><td class="num">${pct(t.predicted_q50)}</td><td class="num">${t.days_held}${t.complete ? " ✓" : ""}</td></tr>`).join("")
     : `<tr><td class="muted">The track record fills in as weekly picks age.</td></tr>`;
   document.getElementById("h-cards").innerHTML = '<p class="muted">Loading stock data…</p>';
@@ -808,7 +850,7 @@ loadData().then(({data: d, stale}) => {
   b.style.display = "block";
   b.textContent = e.message === "NO_TOKEN"
     ? "Welcome! Click Settings and paste your GitHub access token so the app can read your picks."
-    : "No picks available yet. Run the \"Weekly picks\" GitHub Action once to generate them. (" + e.message + ")";
+    : "No picks available yet. Run " + MK.pickAction + " once to generate them. (" + e.message + ")";
   document.getElementById("meta").textContent = "";
 });
 </script>

@@ -79,7 +79,7 @@ class HorizonModel:
 
 def eligible(X: pd.DataFrame, cfg: Config) -> pd.Series:
     """Liquidity and risk filters (as of the prediction date)."""
-    min_tv = np.log1p(cfg.min_median_traded_value_cr * 1e7)
+    min_tv = np.log1p(cfg.min_traded_value)
     return (X["log_traded_value"] >= min_tv) & (X["vol_63"] <= cfg.max_annual_volatility)
 
 

@@ -6,13 +6,15 @@ import pandas as pd
 import pytest
 
 from stockpicker import holdings, news
-from stockpicker.config import Config
+from stockpicker.config import Config, us_config
 from stockpicker.data import Prices, synthetic_prices
 from stockpicker.features import build_panel, stock_features
 from stockpicker.model import HorizonModel, train_cutoff
 from stockpicker.pipeline import run_daily, run_weekly
 from stockpicker import bhavcopy
-from stockpicker.universe import bse_rows_from_bhavcopy, parse_bse_json, parse_nse_csv
+from stockpicker.model import eligible
+from stockpicker.universe import (bse_rows_from_bhavcopy, merge_us_lists, parse_bse_json, parse_nse_csv,
+                                  parse_us_html, parse_us_table, yahoo_symbol)
 
 
 @pytest.fixture(scope="module")
@@ -314,3 +316,73 @@ def test_etfs_and_gold_bonds():
     assert g["price"] == 120.0 and g["returns"]["1y"] > 0 and "verdict" not in g and g["kind"] == "etf"
     assert any(n.startswith("Above its 200-day") for n in g["notes"])
     assert any(n.startswith("Below its 200-day") for n in s["notes"]) and any("below its 1-year high" in n for n in s["notes"])
+
+
+# ---------------------------------------------------------------- US market
+def test_us_universe_parsing():
+    sp = parse_us_table(pd.DataFrame({
+        "Symbol": ["AAPL", "BRK.B", "BF.B"], "Security": ["Apple", "Berkshire Hathaway", "Brown-Forman"],
+        "GICS Sector": ["Information Technology", "Financials", "Consumer Staples"],
+        "GICS Sub-Industry": ["Hardware", "Insurance", "Spirits"]}))
+    assert sp["symbol"].tolist() == ["AAPL", "BRK-B", "BF-B"]  # Yahoo writes share classes with a dash
+    assert sp["sector"].tolist() == ["Information Technology", "Financials", "Consumer Staples"]
+    html = """<table><tr><th>Ticker</th><th>Company</th><th>GICS Sector</th></tr>
+              <tr><td>AAPL</td><td>Apple Inc.</td><td>Information Technology</td></tr>
+              <tr><td>ASML</td><td>ASML Holding</td><td>Information Technology</td></tr></table>"""
+    ndx = parse_us_html("<table><tr><th>Year</th></tr><tr><td>2020</td></tr></table>" + html)  # skips tables that aren't it
+    both = merge_us_lists(sp, ndx)
+    assert both["symbol"].tolist() == ["AAPL", "BRK-B", "BF-B", "ASML"]  # S&P 500 first, no duplicates
+    assert both.loc[both["symbol"] == "AAPL", "name"].item() == "Apple"
+    assert yahoo_symbol("AAPL", "") == "AAPL" and yahoo_symbol("TCS") == "TCS.NS"
+
+
+def test_us_config_uses_dollars_and_sp500():
+    cfg = us_config()
+    assert (cfg.benchmark, cfg.currency, cfg.yahoo_suffix, cfg.market) == ("^GSPC", "$", "", "US")
+    assert Config().benchmark == "^NSEI" and Config().min_traded_value == 10 * 1e7  # India unchanged
+    X = pd.DataFrame({"log_traded_value": np.log1p([5e6, 50e6]), "vol_63": [0.3, 0.3]})
+    assert eligible(X, cfg).tolist() == [False, True]  # $20M a day cut-off
+    row = pd.Series({"log_traded_value": np.log1p(1.5e6), "rs_63": -0.2})
+    p5 = pd.Series({"p_beat": 0.3, "q10": -0.1})
+    text = " | ".join(holdings.warnings(row, p5, cfg))
+    assert "Thinly traded (about $1.5M a day)" in text
+    assert "Lagging S&P 500 by 20%" in text and "beating the S&P 500" in text
+    assert "₹" not in text and "Nifty" not in text
+
+
+def test_us_news_edition_and_red_flags(monkeypatch):
+    seen = {}
+    monkeypatch.setattr(news.feedparser, "parse", lambda url: seen.setdefault("url", url) and type("F", (), {"entries": []})())
+    news.fetch_headlines("AAPL", "Apple Inc.", 21, "US")
+    assert "gl=US" in seen["url"] and "hl=en-US" in seen["url"] and "stock" in seen["url"]
+    assert news.find_red_flags("SEC charges company with accounting fraud")
+    assert news.find_red_flags("Retailer files for Chapter 11 bankruptcy protection")
+    assert not news.find_red_flags("Apple unveils new iPhone, shares rise")
+    assert "US-listed" in news.LLM_SYSTEM.format(**news.MARKETS["US"])
+
+
+def test_us_weekly_and_daily_run(prices, tmp_path):
+    cfg = us_config()
+    cfg.min_median_traded_value = 0
+    cfg.backtest_years, cfg.retrain_every_n_days, cfg.daily_retrain_every_n_days = 2, 126, 252
+    universe = pd.DataFrame({"symbol": prices.symbols, "name": prices.symbols, "exchange": "US",
+                             "sector": [f"S{i % 6}" for i in range(len(prices.symbols))]})
+    res = run_weekly(prices, universe, cfg, with_news=False, with_fundamentals=False, with_backtest=False,
+                     out_dir=tmp_path)
+    assert len(res["picks"]) == 5 and res["market"] == "US"
+    saved = json.loads((tmp_path / "latest.json").read_text())
+    stocks = json.loads((tmp_path / "stocks.json").read_text())
+    assert stocks["market"] == "US" and stocks["unscored"] == [] and stocks["funds"] == []
+    assert {s["exchange"] for s in stocks["stocks"]} == {"US"}
+    assert all("Nifty" not in r for p in saved["picks"] for r in p["reasons"])
+    # The daily run treats a run before the US close (16:00 New York = 20:00-21:00 UTC) as intraday.
+    d = run_daily(prices, universe, cfg, with_news=False, with_backtest=False, out_dir=tmp_path)
+    assert d["market"] == "US" and len(d["picks"]) == cfg.daily_top_n
+    asof = pd.Timestamp(d["as_of"])
+    last = json.loads((tmp_path / "daily.json").read_text())
+    last["generated_at"] = f"{asof.date()}T22:30:00+00:00"
+    (tmp_path / "daily.json").write_text(json.dumps(last))
+    assert run_daily(prices, universe, cfg, with_news=False, with_backtest=False, out_dir=tmp_path) is None
+    last["generated_at"] = f"{asof.date()}T15:00:00+00:00"  # 11:00 New York: the market was still open
+    (tmp_path / "daily.json").write_text(json.dumps(last))
+    assert run_daily(prices, universe, cfg, with_news=False, with_backtest=False, out_dir=tmp_path) is not None

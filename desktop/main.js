@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const DEFAULT_REPO = "rishabhsrsw/Stocks";
-const DATA_FILES = ["latest", "daily", "stocks"];  // docs/data/<name>.json
+const DATA_FILES = ["latest", "daily", "stocks", "us/latest", "us/daily", "us/stocks"];  // docs/data/<name>.json
 const userFile = (name) => path.join(app.getPath("userData"), name);
 
 let mainWin = null;
@@ -52,7 +52,7 @@ ipcMain.handle("picks:load", async (_e, name = "latest") => {
   }
   const { repo, token } = readSettings();
   if (!token) throw new Error("NO_TOKEN");
-  const cache = userFile(`${name}.json`);
+  const cache = userFile(`${name.replace("/", "-")}.json`);  // "us/latest" -> us-latest.json
   try {
     const data = await fetchPicks(repo, token, name);
     fs.writeFileSync(cache, JSON.stringify(data));

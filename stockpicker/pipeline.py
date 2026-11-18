@@ -25,13 +25,13 @@ def _r(x, n=4):
     return None if x is None or (isinstance(x, float) and not np.isfinite(x)) else round(float(x), n)
 
 
-def explain(row: pd.Series) -> list[str]:
+def explain(row: pd.Series, bench: str = "Nifty") -> list[str]:
     """Plain-language reasons from the chart features (what the model is looking at)."""
     why = []
     if row.get("ret_126_rank", 0) >= 0.8:
         why.append(f"Strong 6-month momentum ({row['ret_126']:+.0%}, top {100 - row['ret_126_rank'] * 100:.0f}% of universe)")
     if row.get("rs_63", 0) > 0.05:
-        why.append(f"Outperforming Nifty by {row['rs_63']:+.0%} over 3 months")
+        why.append(f"Outperforming {bench} by {row['rs_63']:+.0%} over 3 months")
     if row.get("dist_sma200", -1) > 0 and row.get("sma50_200", -1) > 0:
         why.append("Price above rising 200-day average (uptrend, golden-cross alignment)")
     if row.get("dist_52w_high", -1) > -0.05:
@@ -75,7 +75,7 @@ def news_overlay(shortlist: list[str], meta: pd.DataFrame, cfg: Config, n_llm: i
     for s in shortlist[:n_llm]:
         nr = news_res.get(s)
         if nr and nr.headlines:
-            nr.llm = news_mod.llm_analyse(s, meta.loc[s, "name"], nr.headlines, cfg.llm_model)
+            nr.llm = news_mod.llm_analyse(s, meta.loc[s, "name"], nr.headlines, cfg.llm_model, cfg.market)
     news_score = pd.Series({
         s: (0.5 * r.score + 0.5 * r.llm["sentiment"]) if r.llm else r.score for s, r in news_res.items()
     }, dtype=float)
@@ -146,7 +146,7 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
     shortlist = scores[scores["eligible"]].nlargest(max(cfg.llm_shortlist, cfg.top_n * 6), "model_score").index.tolist()
     news_res, news_score, red = news_overlay(shortlist, meta, cfg, cfg.llm_shortlist) if with_news else ({}, pd.Series(dtype=float), set())
 
-    fund = fetch_fundamentals(shortlist) if with_fundamentals else pd.DataFrame()
+    fund = fetch_fundamentals(shortlist, cfg.yahoo_suffix) if with_fundamentals else pd.DataFrame()
     quality = quality_score(fund)
 
     sl = scores.loc[shortlist].copy()
@@ -181,7 +181,7 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
                     "p_beat_nifty": _r(p.loc[s, "p_beat"])}
                 for h, p in preds.items()
             },
-            "reasons": explain(today.loc[s]),
+            "reasons": explain(today.loc[s], cfg.benchmark_name),
             "risk": {"volatility_63d": _r(today.loc[s, "vol_63"]), "max_drawdown_6m": _r(today.loc[s, "max_dd_126"]),
                      "beta": _r(today.loc[s, "beta_252"])},
             "fundamentals": {k: (_r(v) if isinstance(v, (int, float)) else v) for k, v in f.items()},
@@ -190,6 +190,7 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
         }
 
     result = {
+        "market": cfg.market,
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "as_of": str(asof.date()),
         "horizon_months": {h: d / 21 for h, d in cfg.horizons.items()},
@@ -220,7 +221,7 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
         for r in directory.itertuples(index=False) if r.symbol not in listed
     ]
     (out_dir / "stocks.json").write_text(json.dumps(
-        {"as_of": result["as_of"], "generated_at": result["generated_at"], "stocks": stocks, "funds": fund_list,
+        {"market": cfg.market, "as_of": result["as_of"], "generated_at": result["generated_at"], "stocks": stocks, "funds": fund_list,
          "unscored": unscored}, separators=(",", ":"), default=str))
     log.info("Holdings review: %d stocks scored, %d funds/gold bonds, %d listed without a verdict",
              len(stocks), len(fund_list), len(unscored))
@@ -316,15 +317,15 @@ def stock_scores(prices: Prices, today: pd.DataFrame, preds: dict, meta: pd.Data
             "symbol": s,
             "name": meta.loc[s, "name"],
             "sector": meta.loc[s, "sector"],
-            "exchange": meta.loc[s, "exchange"] if "exchange" in meta else "NSE",
+            "exchange": meta.loc[s, "exchange"] if "exchange" in meta else cfg.default_exchange,
             "tested": tested,
             "price": _r(prices.close[s].dropna().iloc[-1], 2),
             "model_score": _r(main.loc[s, "model_score"]),
             "verdict": verdict[s],
             "forecast": {h: {"q10": _r(p.loc[s, "q10"]), "q50": _r(p.loc[s, "q50"]), "q90": _r(p.loc[s, "q90"]),
                              "p_beat_nifty": _r(p.loc[s, "p_beat"])} for h, p in preds.items()},
-            "positives": explain(row),
-            "concerns": holdings.warnings(row, main.loc[s]),
+            "positives": explain(row, cfg.benchmark_name),
+            "concerns": holdings.warnings(row, main.loc[s], cfg),
             "red_flag": s in red,
             "news_summary": (nr.llm or {}).get("summary") if nr else None,
             "spark": holdings.spark(prices.close[s]),
@@ -378,9 +379,10 @@ def run_daily(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: 
     prev = out_dir / "daily.json"
     if not force and prev.exists():
         last = json.loads(prev.read_text())
-        # A run during market hours (09:15-15:30 IST) saw intraday prices: redo it after the close.
+        # A run during market hours (India 09:15-15:30 IST, US 09:30-16:00 New York) saw intraday
+        # prices: redo it after the close.
         after_close = pd.Timestamp(last.get("generated_at", "1970-01-01T00:00:00+00:00")) >= \
-            pd.Timestamp(f"{asof.date()}T10:00:00+00:00")
+            pd.Timestamp(f"{asof.date()}T{cfg.market_close_utc}:00+00:00")
         if last.get("as_of") == str(asof.date()) and after_close:
             log.info("No new trading day since %s: daily picks unchanged", asof.date())
             return None
@@ -436,13 +438,14 @@ def run_daily(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage: 
             "news_score": _r(sl.loc[s, "news"]),
             "forecast": {h: {"q10": _r(pred.loc[s, "q10"]), "q50": _r(pred.loc[s, "q50"]),
                              "q90": _r(pred.loc[s, "q90"]), "p_beat_nifty": _r(pred.loc[s, "p_beat"])}},
-            "reasons": (explain_short(row) + explain(row))[:5],
+            "reasons": (explain_short(row) + explain(row, cfg.benchmark_name))[:5],
             "risk": {"volatility_63d": _r(row["vol_63"]), "atr_pct": _r(row["atr_pct"])},
             "news": news_block(news_res.get(s)),
             "chart": [_r(x, 2) for x in px.iloc[-63:].tolist()],
         }
 
     result = {
+        "market": cfg.market,
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "as_of": str(asof.date()),
         "horizon_days": cfg.daily_horizon_days,

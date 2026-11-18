@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -18,8 +18,19 @@ class Config:
     history_years: int = 12
     benchmark: str = "^NSEI"  # Nifty 50
 
+    # Market this run covers. Everything below that differs between India and the US lives here, so
+    # the same pipeline serves both (see us_config()).
+    market: str = "IN"
+    benchmark_name: str = "Nifty"  # how the benchmark is named in the text shown to users
+    currency: str = "₹"
+    yahoo_suffix: str = ".NS"  # appended to a symbol to get its Yahoo Finance ticker
+    default_exchange: str = "NSE"
+    market_close_utc: str = "10:00"  # a run before this (UTC) on a trading day saw intraday prices
+    thin_traded_value: float = 1e7  # below this median daily turnover, warn that a stock is thinly traded
+
     # Liquidity / risk filters applied before ranking.
     min_median_traded_value_cr: float = 10.0  # ₹ crore per day, 60-day median
+    min_median_traded_value: float | None = None  # in the market's currency; overrides the crore setting
     max_annual_volatility: float = 0.75
     max_per_sector: int = 2
 
@@ -57,3 +68,23 @@ class Config:
     retrain_every_n_days: int = 63
     backtest_years: int = 5
     random_state: int = 42
+
+    @property
+    def min_traded_value(self) -> float:
+        """Minimum 60-day median daily turnover, in the market's currency."""
+        if self.min_median_traded_value is not None:
+            return self.min_median_traded_value
+        return self.min_median_traded_value_cr * 1e7
+
+
+def us_config(base: Config | None = None) -> Config:
+    """US market: S&P 500 benchmark, dollars, no ".NS" suffix, US close is 16:00 New York (20:00-21:00 UTC)."""
+    return replace(
+        base or Config(),
+        market="US", benchmark="^GSPC", benchmark_name="S&P 500", currency="$", yahoo_suffix="",
+        default_exchange="US", market_close_utc="21:00",
+        min_median_traded_value=20e6,  # $20M a day, 60-day median
+        thin_traded_value=2e6,
+        # Commission-free brokers, but spreads and slippage still cost something on every trade.
+        round_trip_cost=0.002,
+    )

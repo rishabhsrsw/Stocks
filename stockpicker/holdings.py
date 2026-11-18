@@ -9,6 +9,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
+from .config import Config
+
 VERDICTS = ["strong_hold", "hold", "review", "exit"]
 
 
@@ -29,18 +31,27 @@ def verdict_frame(df: pd.DataFrame) -> pd.Series:
     return pd.Series(v, index=df.index)
 
 
-def warnings(row: pd.Series, p5: pd.Series) -> list[str]:
-    """Plain-language concerns from the chart and the forecast."""
+def money_per_day(x: float, cfg: Config) -> str:
+    """Daily turnover in the unit people use in that market: lakh of rupees, or millions of dollars."""
+    if cfg.currency == "₹":
+        return f"₹{x / 1e5:.1f} lakh"
+    return f"{cfg.currency}{x / 1e6:.1f}M"
+
+
+def warnings(row: pd.Series, p5: pd.Series, cfg: Config | None = None) -> list[str]:
+    """Plain-language concerns from the chart and the forecast. `cfg` names the market (India by default)."""
+    cfg = cfg or Config()
+    bench = cfg.benchmark_name
     out = []
-    traded = np.expm1(row.get("log_traded_value", np.nan))  # median daily turnover, ₹
-    if traded < 1e7:
-        out.append(f"Thinly traded (about ₹{traded / 1e5:.1f} lakh a day): may be hard to sell quickly")
+    traded = np.expm1(row.get("log_traded_value", np.nan))  # median daily turnover, in the market's currency
+    if traded < cfg.thin_traded_value:
+        out.append(f"Thinly traded (about {money_per_day(traded, cfg)} a day): may be hard to sell quickly")
     if row.get("dist_sma200", 0) < 0 and row.get("sma200_slope", 0) < 0:
         out.append(f"Below a falling 200-day average ({row['dist_sma200']:+.0%}): long-term downtrend")
     if row.get("ret_126_rank", 1) <= 0.2:
         out.append(f"Weak 6-month momentum ({row['ret_126']:+.0%}, bottom {row['ret_126_rank'] * 100:.0f}% of stocks)")
     if row.get("rs_63", 0) < -0.08:
-        out.append(f"Lagging Nifty by {-row['rs_63']:.0%} over 3 months")
+        out.append(f"Lagging {bench} by {-row['rs_63']:.0%} over 3 months")
     if row.get("max_dd_126", 0) < -0.25:
         out.append(f"{-row['max_dd_126']:.0%} below its 6-month high")
     if row.get("rsi_14", 50) > 75:
@@ -48,7 +59,7 @@ def warnings(row: pd.Series, p5: pd.Series) -> list[str]:
     if row.get("vol_63_rank", 0) >= 0.85:
         out.append("More volatile than most stocks: expect big swings")
     if p5["p_beat"] < 0.45:
-        out.append(f"Only {p5['p_beat']:.0%} chance of beating Nifty over 5 months")
+        out.append(f"Only {p5['p_beat']:.0%} chance of beating the {bench} over 5 months")
     if p5["q10"] < -0.25:
         out.append(f"Bad-case 5-month outcome is {p5['q10']:.0%}")
     return out[:5]
