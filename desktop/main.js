@@ -66,6 +66,21 @@ ipcMain.handle("picks:load", async (_e, name = "latest") => {
   }
 });
 
+// Live prices for the held tickers, fetched here because a web page can't call Yahoo directly.
+ipcMain.handle("quotes:fetch", async (_e, tickers) => {
+  const out = {};
+  await Promise.all((Array.isArray(tickers) ? tickers : []).filter((t) => /^[\w.^&-]{1,20}$/.test(t)).slice(0, 100).map(async (t) => {
+    try {
+      const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(t)}?range=1d&interval=1d`,
+        { headers: { "User-Agent": "Mozilla/5.0" }, signal: AbortSignal.timeout(8000) });
+      if (!res.ok) return;
+      const m = (await res.json()).chart.result[0].meta;
+      out[t] = { price: m.regularMarketPrice, time: m.regularMarketTime };
+    } catch (_) {}
+  }));
+  return out;
+});
+
 ipcMain.handle("settings:get", () => {
   const { repo, token } = readSettings();
   return { repo, hasToken: Boolean(token) };

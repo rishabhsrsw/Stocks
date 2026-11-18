@@ -582,15 +582,60 @@ function fundCard(h, f, i) {
   return card;
 }
 
+// ---------------------------------------------------------------- live prices
+// On every load (Refresh reloads the page) the prices of the stocks you hold are fetched from Yahoo Finance, straight
+// from this device: only your held tickers are sent, nothing else. Browsers may block this (Yahoo sets no CORS
+// headers for some networks); the Windows app does it from its own process. If it fails, the latest close is shown.
+let LIVE = {};
+let LIVE_STATE = "";  // "", "loading", "failed"
+function yahooTicker(sym) {
+  const item = STOCKS && STOCKS.stocks.concat(STOCKS.funds, STOCKS.unscored).find(s => s.symbol === sym);
+  return (item && item.yahoo) || (MK.key === "us" ? sym : sym + ".NS");
+}
+async function fetchQuote(ticker) {
+  const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=1d&interval=1d`,
+    {signal: AbortSignal.timeout(8000)});
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  const m = (await r.json()).chart.result[0].meta;
+  return {price: m.regularMarketPrice, time: m.regularMarketTime};
+}
+async function refreshLive() {
+  const syms = [...new Set(loadHoldings().map(h => h.symbol))];
+  if (!syms.length || !STOCKS) return;
+  LIVE_STATE = "loading"; renderHoldings();
+  const tickers = Object.fromEntries(syms.map(s => [s, yahooTicker(s)]));
+  let got = {};
+  try {
+    if (window.picksApi && window.picksApi.quotes) got = await window.picksApi.quotes(Object.values(tickers));
+    else await Promise.all(Object.values(tickers).map(async t => { try { got[t] = await fetchQuote(t); } catch (_) {} }));
+  } catch (_) {}
+  LIVE = {};
+  for (const s of syms) { const q = got[tickers[s]]; if (q && q.price > 0) LIVE[s] = q; }
+  LIVE_STATE = Object.keys(LIVE).length ? "" : "failed";
+  renderHoldings();
+}
+function liveLabel(holdings, closeDate) {
+  const n = Object.keys(LIVE).length;
+  if (n) {
+    const t = Math.max(...Object.values(LIVE).map(q => q.time || 0));
+    const when = t ? new Date(t * 1000).toLocaleString(MK.locale, {day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"}) : "now";
+    return `Value, live (${when})${n < new Set(holdings.map(h => h.symbol)).size ? ", some at last close" : ""}`;
+  }
+  if (LIVE_STATE === "loading") return `Value at ${closeDate} close (fetching live prices…)`;
+  if (LIVE_STATE === "failed") return `Value at ${closeDate} close (live prices unavailable)`;
+  return `Value at ${closeDate} close`;
+}
+
 function renderHoldings() {
   if (!STOCKS) return;
   const d = DATA, holdings = loadHoldings();
   const base = STOCKS.as_of || d.as_of;
   const fresh = DAILY && DAILY.prices && DAILY.as_of > base;  // newer closing prices from the daily run
   const priceDate = fresh ? DAILY.as_of : base;
-  const bySym = new Map(STOCKS.stocks.map(s => [s.symbol, fresh && DAILY.prices[s.symbol] ? {...s, price: DAILY.prices[s.symbol]} : s]));
+  const latest = (sym, own) => (LIVE[sym] && LIVE[sym].price) || (fresh && DAILY.prices[sym]) || own;  // live quote, else newest close
+  const bySym = new Map(STOCKS.stocks.map(s => [s.symbol, {...s, price: latest(s.symbol, s.price)}]));
   const noVerdict = new Map((STOCKS.unscored || []).map(u => [u.symbol, u]));
-  const byFund = new Map((STOCKS.funds || []).map(f => [f.symbol, fresh && DAILY.prices[f.symbol] ? {...f, price: DAILY.prices[f.symbol]} : f]));
+  const byFund = new Map((STOCKS.funds || []).map(f => [f.symbol, {...f, price: latest(f.symbol, f.price)}]));
   const cards = document.getElementById("h-cards");
   cards.innerHTML = "";
   let cost = 0, value = 0;
@@ -607,7 +652,7 @@ function renderHoldings() {
     }
     if (!s) {
       const u = noVerdict.get(h.symbol) || {symbol: h.symbol, name: h.symbol, exchange: ""};
-      const price = DAILY && DAILY.prices && DAILY.prices[h.symbol];
+      const price = latest(h.symbol, DAILY && DAILY.prices && DAILY.prices[h.symbol]);
       const c = document.createElement("div");
       c.className = "card";
       let money = "";
@@ -635,7 +680,7 @@ function renderHoldings() {
   });
 
   const sum = document.getElementById("h-summary");
-  sum.innerHTML = holdings.length ? tile(money(cost), "Invested") + tile(money(value), `Value at ${priceDate} close`) +
+  sum.innerHTML = holdings.length ? tile(money(cost), "Invested") + tile(money(value), liveLabel(holdings, priceDate)) +
     tile((value - cost >= 0 ? "+" : "−") + money(Math.abs(value - cost)), "Profit / loss", cls(value - cost)) +
     tile(pct(cost ? (value - cost) / cost : 0), "Return", cls(value - cost)) +
     Object.keys(VERDICT).filter(k => counts[k]).map(k => tile(String(counts[k]), badge(k))).join("") : "";
@@ -844,7 +889,7 @@ loadData().then(({data: d, stale}) => {
   document.getElementById("h-cards").innerHTML = '<p class="muted">Loading stock data…</p>';
   // Older data files carried the stock list inside latest.json.
   loadData("stocks").then(({data}) => setupHoldings(data)).catch(() => setupHoldings({as_of: d.as_of, stocks: d.stocks || []}));
-  loadData("daily").then(({data}) => renderDaily(data)).catch(() => {});
+  loadData("daily").then(({data}) => renderDaily(data)).catch(() => {}).finally(() => whenVisible("holdings", refreshLive));
 }).catch(e => {
   const b = document.getElementById("err");
   b.style.display = "block";

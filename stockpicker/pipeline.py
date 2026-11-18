@@ -217,7 +217,8 @@ def run_weekly(prices: Prices, universe: pd.DataFrame, cfg: Config, *, coverage:
     fund_list = fund_rows(funds, directory) if funds is not None and directory is not None else []
     listed = {s["symbol"] for s in stocks} | {f["symbol"] for f in fund_list}
     unscored = [] if directory is None else [
-        {"symbol": r.symbol, "name": r.name, "exchange": r.exchange, "kind": getattr(r, "kind", "stock")}
+        {"symbol": r.symbol, "name": r.name, "exchange": r.exchange, "kind": getattr(r, "kind", "stock"),
+         "yahoo": r.yahoo}
         for r in directory.itertuples(index=False) if r.symbol not in listed
     ]
     (out_dir / "stocks.json").write_text(json.dumps(
@@ -252,7 +253,7 @@ def fund_rows(funds: Prices, directory: pd.DataFrame) -> list[dict]:
             notes.append(f"Thinly traded (about ₹{traded / 1e5:.1f} lakh a day): may be hard to sell at a fair price")
         out.append({
             "symbol": sym, "name": meta.loc[sym, "name"], "sector": meta.loc[sym, "sector"],
-            "exchange": meta.loc[sym, "exchange"], "kind": meta.loc[sym, "kind"], "price": _r(last, 2),
+            "exchange": meta.loc[sym, "exchange"], "kind": meta.loc[sym, "kind"], "yahoo": meta.loc[sym, "yahoo"], "price": _r(last, 2),
             "returns": {"1m": ret(21), "6m": ret(126), "1y": ret(252)},
             "vol": _r(r.iloc[-63:].std() * np.sqrt(252)) if len(r) >= 63 else None,
             "notes": notes, "spark": holdings.spark(c),
@@ -319,6 +320,7 @@ def stock_scores(prices: Prices, today: pd.DataFrame, preds: dict, meta: pd.Data
             "sector": meta.loc[s, "sector"],
             "exchange": meta.loc[s, "exchange"] if "exchange" in meta else cfg.default_exchange,
             "tested": tested,
+            "yahoo": meta.loc[s, "yahoo"] if "yahoo" in meta else None,  # ticker for live quotes (BSE: 543320.BO)
             "price": _r(prices.close[s].dropna().iloc[-1], 2),
             "model_score": _r(main.loc[s, "model_score"]),
             "verdict": verdict[s],
