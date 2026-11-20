@@ -1,0 +1,470 @@
+{
+ "market": "US",
+ "generated_at": "2026-11-20T03:52:55+00:00",
+ "as_of": "2026-11-19",
+ "horizon_days": 10,
+ "eligible_size": 423,
+ "picks": [
+  {
+   "symbol": "MU",
+   "name": "Micron Technology",
+   "sector": "Information Technology",
+   "price": 690.44,
+   "final_score": 0.8752,
+   "model_score": 0.9546,
+   "news_score": 0.1159,
+   "forecast": {
+    "2w": {
+     "q10": -0.1665,
+     "q50": 0.029,
+     "q90": 0.2115,
+     "p_beat_nifty": 0.5882
+    }
+   },
+   "reasons": [],
+   "risk": {
+    "volatility_63d": 0.7028,
+    "atr_pct": 0.0946
+   },
+   "news": {
+    "n_articles": 39,
+    "headlines": [
+     {
+      "title": "Why Micron, Broadcom and other AI stocks gave up their gains Thursday",
+      "source": "MarketWatch",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOWEhhTnU4WlVySDlWdzRGTHlaZlg1U1ZMd19LRk1tcUd3b25qTmVuekxNbDBXQ044dEpzRGZwcG85dlUtZGJNSTk2bHI1UDNXS1BnQWE1bmw0WEE3ZUh0UEdQV1JnU0wya2J3OFlxVmh2Xzc4M2V3X05femQzcGJ6VS1pd01OS0ZIbV9BdzlJc09Za0xBZFY5aDE3VlNLRXp2V1YzdUgxR2ZxLUYzLWl3?oc=5",
+      "published": "2026-11-19T21:27:00+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "Micron Technology (MU) Stock Price Quote & News",
+      "source": "Moomoo",
+      "link": "https://news.google.com/rss/articles/CBMimgJBVV95cUxOR3BMUTFmTExZTEVoWmxrcHU5TGRBMks3bngzMmJiNXgxY0FoVnV4S1Ayb0xiTnpzMVNfYjhZQ1hTME9LX3ZMQU81NTVkRUJEUTNjcl80RE02TmZUNmUtU3VvNmxPNkFoTnB3TEZuNDlIV2NOd2p4NEM3LTZDS1psV09jX1RTamdxZHhocnNwN2x3aUdqX2lyd2V6MnhudDNnN1NJSkd1eFlzdUtDTFA5cFlEUzZQdkxMNUVfekZuQm9ZdElILVZPZEdMSmxDT213aWZVZExxX0NMaE56RXBYV3ZwZ2FRdlVHZ3V4dlVtU3RpRkktS3FmTF85cGkxMDAxUzRLRFliNl9MYlpLcTR3V3pOZVhka3RWN0E?oc=5",
+      "published": "2026-11-19T20:21:16+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Why Micron Stock Is Up Today",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNdG1tcTlMVHBQYzdBMEV3OUtMWTV5ZlhRVzMwTlgyczN4VjFaOF8zYkV3eEdGeGt3TVBHS3pPaHpFUHFUenNwb09JMVV5U3M2V3paQUlFYWJoOWc5MTdEU3dXZFg1Z0MzeUpaMVR0MWoxdTJFd3FicXZRX0dOVl9KZU51SVZpUTd3Q1IwelRQb04?oc=5",
+      "published": "2026-11-19T16:56:02+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Why Micron Stock Finally Popped Today",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNUWE2bnZnX0JWQ1BBejlfX1JlMnFBZl9UQUx5M0hPdnhwMFA5eGxOdzdPcll6RVJmSFEtdC1xM3FvcGpPVGN3YzRQdS02MFY4cU9nNTAzZ2NORXVqMG5rNlJrZUt0X2hZNkxwblV6aDZPRkcxTFRGX3plZ2ZtN29yWFJMQ01KamtSQ1ltdUlURzl6REZnOHZTR3ZabU0?oc=5",
+      "published": "2026-11-19T15:23:16+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Should You Buy Micron Technology Stock While It's Under $1,000? The Answer Might Surprise You.",
+      "source": "The Motley Fool",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNTGhCX05jN2xuWmRONEJMTmFVczhybFI0Z3oyMWdMU3MyejVJVDF3WUFKMXZaQUVlWlB0a2d6ZHY3ZGUwZ3AwNERoUk9NV1FtOHM4ZUxtZDdHUTlaLW1RcjdPVG02MFM2T3ZId01hYkVuckFfdmtURU1XNWUtSmxJeExjRVNiTU9MWkhBNWFHWlVKSUdqYnlGTnJ6SEh2NHd0NVdqRExHdy1Xd0Uz?oc=5",
+      "published": "2026-11-19T11:03:02+00:00",
+      "sentiment": 0.511
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    910.29,
+    932.82,
+    938.25,
+    935.24,
+    932.71,
+    958.58,
+    933.29,
+    955.93,
+    958.01,
+    1016.43,
+    1000.1,
+    1027.61,
+    977.26,
+    975.11,
+    923.88,
+    927.45,
+    926.4,
+    977.35,
+    1015.64,
+    1043.8,
+    1095.99,
+    1071.71,
+    1080.36,
+    1082.11,
+    1053.81,
+    1064.91,
+    1064.94,
+    1097.22,
+    1074.72,
+    1063.79,
+    1045.4,
+    1087.83,
+    1035.68,
+    1028.84,
+    988.88,
+    953.04,
+    914.13,
+    931.24,
+    878.84,
+    904.9,
+    896.07,
+    913.67,
+    856.49,
+    877.55,
+    903.7,
+    928.76,
+    983.23,
+    934.27,
+    884.74,
+    833.59,
+    855.1,
+    795.23,
+    656.39,
+    690.0,
+    733.15,
+    725.11,
+    811.3,
+    798.44,
+    778.31,
+    719.02,
+    712.42,
+    705.27,
+    690.44
+   ]
+  },
+  {
+   "symbol": "CRL",
+   "name": "Charles River Laboratories",
+   "sector": "Health Care",
+   "price": 327.93,
+   "final_score": 0.8446,
+   "model_score": 0.9158,
+   "news_score": 0.1192,
+   "forecast": {
+    "2w": {
+     "q10": -0.1041,
+     "q50": 0.021,
+     "q90": 0.1561,
+     "p_beat_nifty": 0.5646
+    }
+   },
+   "reasons": [
+    "Short-term dip (-3.8% this week) inside a long-term uptrend",
+    "Strong 6-month momentum (+106%, top 0% of universe)",
+    "Outperforming S&P 500 by +18% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)",
+    "RSI 48: momentum without being overbought"
+   ],
+   "risk": {
+    "volatility_63d": 0.4766,
+    "atr_pct": 0.0528
+   },
+   "news": {
+    "n_articles": 28,
+    "headlines": [
+     {
+      "title": "(CRL) Movement as an Input in Quant Signal Sets",
+      "source": "Stock Traders Daily",
+      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQUDFqa2FpelViQzBQNkFuakpFbkVkaTBwR1ZtT2JIdU0tRFZtdVJYVFVKRFczUXNDNlkxT3VjYTlUMlIzNVNIN0lXOTU1Mk5tWXlSRDZoMEFGVHN4cGVLUjhLZkYzRFA2VWhqTDBCVmxBVjk3VUs4NTJIRUZpLXAtYno1UjdZZjVFR1VqNVBfendHajM4RzdjLXV6UHhDeDZQMUF1RVVSNXZTeENnV0tIWWRVNjhTNXlRdmlYVnFCLTZQQnc?oc=5",
+      "published": "2026-11-18T23:54:02+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Charles River Laboratories International (CRL) Recovers Following Cyclical Contraction",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNcF9iXzF5VGFHQnVnRUFmRnhsN2M5U0UyTlhxM0prb0FhMUNyWklNVF9PaEd5Z0NCVE55X3poX3lUV3V0NWduVzNOdEtIcU1EcFhLa1BmbnZYcmV2ZnBmYTJad2Y3bjBTcE9QZG1ueEVEeUFBbnRiQVdDd1h0RXJfV3diMmk1LTQ0S3pyNzRUSkJxSU83RTZGVXZPNXZLUkFwWFVycGlrRTI?oc=5",
+      "published": "2026-11-18T14:01:16+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "CRL Nov 2026 160.000 call (CRL261120C00160000) stock price, news, quote and history",
+      "source": "Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE55VUVRTFB6S0RDYThxTVU3aWx3N1lMWVctVXR0aUlINW50aHdKclB6WHJYdWhaTEpNVVVBN3BwV2tOSEU4RUU5VWVDeGgyODFHc1hOckhGOUlqOE1oaENVNjJMOEc?oc=5",
+      "published": "2026-11-17T22:17:33+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Charles River Laboratories International (CRL) Opens Dublin Site and South Korea Depot",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPN1hMYXI4Um5SZkJkS3FYRFJ0d2R4WThuWVdORGVPTVozc09Ld3ZEOXJKZENaMUdBM2ZFbW9qWEVYcTVJY3dOa2ltcHZLdVgtZE9HSVBGU0F0VFJZQjEyb2QtMzZBYkU1SDBIRDlGSm5Pdm40T3FoTXJjRlhOU2NQZDJWTGp5VmNfelM4aXYxS2l1ZU00ZUFDZFZfQkxBVDdwOWo2ODQtOVQ?oc=5",
+      "published": "2026-11-17T17:16:39+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Charles River Laboratories (CRL) Stock Looks Fairly Valued Despite Its 106% Run",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQbloxVlVjcnM3NEJPTDVMZjFtd3FMNDB4WG5HTjZqNldEa3NyTFBlU3JGdUhYd3ZfMUg0OXR3YjZYNmNZUnp0OHV4aXBpYm5Oa0lhSlotOV9hMVNiY0Fac0pnUUJhTFFiS3ZFeHZkR2NnTmZKb1J0VE5idVRSTXM0QUlkcUgxSHNIWlBmVndKQ1owb0xyMjdxTzdMOHRya1Q1RElF?oc=5",
+      "published": "2026-11-17T16:11:59+00:00",
+      "sentiment": 0.44
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    298.58,
+    297.64,
+    295.1,
+    296.41,
+    291.5,
+    288.24,
+    282.34,
+    291.76,
+    293.35,
+    288.5,
+    280.76,
+    278.35,
+    273.0,
+    278.26,
+    273.11,
+    272.88,
+    273.41,
+    281.67,
+    278.06,
+    279.01,
+    285.11,
+    277.33,
+    294.44,
+    292.84,
+    294.59,
+    295.96,
+    295.01,
+    286.83,
+    290.19,
+    310.77,
+    304.96,
+    300.3,
+    298.0,
+    301.79,
+    301.86,
+    299.02,
+    302.0,
+    306.24,
+    300.15,
+    300.02,
+    315.45,
+    344.87,
+    339.66,
+    345.37,
+    357.27,
+    358.84,
+    373.98,
+    376.1,
+    359.41,
+    338.54,
+    351.87,
+    326.29,
+    313.02,
+    337.52,
+    353.34,
+    345.8,
+    342.69,
+    340.81,
+    337.97,
+    335.52,
+    332.16,
+    333.25,
+    327.93
+   ]
+  },
+  {
+   "symbol": "MPC",
+   "name": "Marathon Petroleum",
+   "sector": "Energy",
+   "price": 367.93,
+   "final_score": 0.8427,
+   "model_score": 0.9178,
+   "news_score": 0.0847,
+   "forecast": {
+    "2w": {
+     "q10": -0.1082,
+     "q50": 0.0216,
+     "q90": 0.1629,
+     "p_beat_nifty": 0.5598
+    }
+   },
+   "reasons": [
+    "Short-term dip (-10.6% this week) inside a long-term uptrend",
+    "RSI 34: oversold, bounce candidate",
+    "Strong 6-month momentum (+49%, top 2% of universe)",
+    "Outperforming S&P 500 by +9% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.4253,
+    "atr_pct": 0.0543
+   },
+   "news": {
+    "n_articles": 39,
+    "headlines": [
+     {
+      "title": "Marathon Petroleum Corp. stock underperforms Thursday when compared to competitors",
+      "source": "MarketWatch",
+      "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOaTc1bWNCNlJlenRmQjc1SHBxbXVXMVZqb3FMWWM5TG5KYm5teVRRMk1reUVmMkFGVHlDbmZLMGl5SW1PMkJtQ2gteGM0SXZ1UFFZbU5BY0hwRlRuM3h2TWJHczcwYkRGbEVUY3N5VHRuLU1zdkpQWnZHVmZNMTRNMFVxbndBYXhaSmpTb0t6Zk1WYzNOLWZ2blZGWjI0aUJxelVMQ3hMRmgzS0tyYnJBVnhnMmRKdjd6bTlOWkdOS3RpUmVIcnYtZS0zZ0JMN19ubTlmXzJZcjNMTmtiV19ob2l2ZnN0OS1KaURvODNHODY?oc=5",
+      "published": "2026-11-19T21:38:00+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Marathon Petroleum declares force majeure on North Dakota oil deliveries (MPC:NYSE)",
+      "source": "Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPcnVzSlNXdEtnVjRDVUFWVXRDTDNjQVZod004NWtFMkpwNU5SdlZHY2JtbmYyUk1HdWNjVUtXNy00cU80bE1KOWlGMFZNR1ZMdFNLNjZiUU90RjVOLVVLSGhhbFdXYkRiczNienF3ODZnRTBxSU9UVWlxNy1RS2gtd2JKUVBiUmVUV0pZS0ZicTN0RTZOTW5JRU1uOXR4LW9panl1akJ4UlEzMHFfVXVr?oc=5",
+      "published": "2026-11-19T14:54:19+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Marathon Petroleum Corporation (MPC) stock price, news, quote and history",
+      "source": "Yahoo Finance Singapore",
+      "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5hRmhSZlNSQ0txcmFTZ2JCUkxjekt6c2dpTlV1QlBtcnM3dW9ZcHcwdFNJX2FVclUzYTlKR2RuX0JKV3c5bWVPVDA5UWw3Nkdn?oc=5",
+      "published": "2026-11-19T14:28:04+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "What Moved Marathon Petroleum Stock?",
+      "source": "Trefis",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNLWVGMldzZkRsekk2b2gyTzNQNGJIVm4xWDFsNlk4cUVBT1dtYWVhTW81aG9Pdy1sX1pQMUYzc0hJU09NX1o5V0ZHVjRqdUp1RVoyOWd3U2l1R2lEZVJDS1YtWHZLT1ZxUm5nVW1ySUtmNlotUTVsZ08tRFBxaUNFbERkcUZvRmFrUmZadFN0dmlxUFhPekU4NEtMWQ?oc=5",
+      "published": "2026-11-19T12:22:07+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Marathon Petroleum (NYSE:MPC) Stock Price Down 5.4% on Insider Selling",
+      "source": "MarketBeat",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPRDRrMHpta3NmaUx6N0dZRlF0OHQwN1ctQ1VpY1Z3Z3lTMHQwZVloOGg0MzhfNWFrS21nTWNFWHZpUzdFcUJxOW44TFlRd1d6dTRSX2FRNEFSbGR5UW11Qi02Q2dNcjZaQ1EwMG00emVMT0J2aHQ0VXZWVDVMNG81Wl9OSW94QVNOcTVGUFJ0SWJxWXI5M2pyY296ZWFoZXFmODF0SVgzTXhHekJDODFNNUhKTURRdmVHYUhyamxoblhlNkNv?oc=5",
+      "published": "2026-11-18T22:07:04+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    361.51,
+    353.89,
+    361.26,
+    362.53,
+    367.8,
+    372.28,
+    381.94,
+    385.92,
+    386.63,
+    387.82,
+    396.66,
+    398.33,
+    391.33,
+    394.83,
+    395.35,
+    409.7,
+    412.77,
+    420.79,
+    423.71,
+    401.26,
+    388.6,
+    387.3,
+    389.86,
+    392.43,
+    388.36,
+    390.94,
+    394.32,
+    418.98,
+    421.16,
+    432.26,
+    431.16,
+    441.03,
+    462.05,
+    453.76,
+    457.53,
+    475.65,
+    483.57,
+    475.59,
+    476.74,
+    472.37,
+    473.72,
+    466.68,
+    458.0,
+    455.95,
+    469.33,
+    434.77,
+    439.54,
+    431.31,
+    443.49,
+    429.19,
+    426.15,
+    391.59,
+    376.27,
+    371.7,
+    388.8,
+    388.47,
+    401.72,
+    411.7,
+    413.5,
+    401.07,
+    394.51,
+    373.86,
+    367.93
+   ]
+  }
+ ],
+ "backtest": {
+  "horizon": "2w",
+  "period_start": "2021-11-11",
+  "period_end": "2026-11-05",
+  "n_weeks": 251,
+  "avg_pick_return": 0.00563728664577471,
+  "avg_pick_excess": 0.0015280654787092492,
+  "avg_universe_return": 0.004980317955018092,
+  "avg_benchmark_return": 0.004109221167065461,
+  "pick_hit_rate": 0.5152722443559097,
+  "pick_beat_benchmark_rate": 0.4674634794156706,
+  "weeks_top5_beat_benchmark": 0.5338645418326693,
+  "mean_ic": -0.011593201271554271,
+  "ic_t_stat": -0.6450292840837596,
+  "q10_q90_coverage": 0.8189233010427898,
+  "chained_cagr_picks": -0.0013621183061578446,
+  "chained_cagr_benchmark": 0.09068031594246806,
+  "decile_excess": {
+   "0": 0.002122387013673421,
+   "1": 0.0014689716656863937,
+   "2": 0.0019014081534641347,
+   "3": 0.0007049561549643492,
+   "4": 0.0011188966889780908,
+   "5": 0.00011457108577637783,
+   "6": 0.0010471550195013668,
+   "7": -0.00021481432353474903,
+   "8": 0.00033859149327665293,
+   "9": 8.259735082528009e-05
+  },
+  "trend_check": {
+   "top5": {
+    "downtrend": {
+     "n": 228,
+     "avg_excess": 0.0030121702554970313,
+     "avg_return": 0.006927288867674346,
+     "share_positive": 0.5175438596491229,
+     "p10_return": -0.10043051766591328
+    },
+    "no_downtrend": {
+     "n": 525,
+     "avg_excess": -0.003573518120671876,
+     "avg_return": 0.0006199990130878664,
+     "share_positive": 0.5085714285714286,
+     "p10_return": -0.11308688906891898
+    }
+   },
+   "high_score": {
+    "downtrend": {
+     "n": 8593,
+     "avg_excess": 0.00350120527601889,
+     "avg_return": 0.0076853091354654925,
+     "share_positive": 0.5418363784475736,
+     "p10_return": -0.08641714714513342
+    },
+    "no_downtrend": {
+     "n": 19243,
+     "avg_excess": -0.0014139987960266596,
+     "avg_return": 0.002902912207890579,
+     "share_positive": 0.5164995063139843,
+     "p10_return": -0.07731455949861328
+    }
+   }
+  },
+  "round_trip_cost": 0.002
+ }
+}
