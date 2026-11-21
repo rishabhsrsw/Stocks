@@ -1,7 +1,7 @@
 {
  "market": "US",
- "generated_at": "2026-11-18T16:19:03+00:00",
- "as_of": "2026-11-18",
+ "generated_at": "2026-11-21T14:56:49+00:00",
+ "as_of": "2026-11-20",
  "horizon_months": {
   "3m": 3.0,
   "4m": 4.0,
@@ -9,99 +9,97 @@
  },
  "rank_horizon": "5m",
  "universe_size": 499,
- "eligible_size": 479,
+ "eligible_size": 476,
  "llm_news": false,
  "picks": [
   {
    "symbol": "MU",
    "name": "Micron Technology",
    "sector": "Information Technology",
-   "price": 701.9,
-   "final_score": 0.9139,
-   "model_score": 0.982,
-   "news_score": 0.133,
-   "quality_score": 0.9437,
+   "price": 594.51,
+   "final_score": 0.9077,
+   "model_score": 0.9866,
+   "news_score": -0.003,
+   "quality_score": 0.9482,
    "forecast": {
     "3m": {
-     "q10": -0.2804,
-     "q50": 0.1358,
-     "q90": 0.7716,
-     "p_beat_nifty": 0.6184
+     "q10": -0.1355,
+     "q50": 0.285,
+     "q90": 0.9981,
+     "p_beat_nifty": 0.6976
     },
     "4m": {
-     "q10": -0.3181,
-     "q50": 0.1984,
-     "q90": 1.0604,
-     "p_beat_nifty": 0.7018
+     "q10": -0.2732,
+     "q50": 0.2115,
+     "q90": 1.1058,
+     "p_beat_nifty": 0.6717
     },
     "5m": {
-     "q10": -0.2539,
-     "q50": 0.307,
-     "q90": 1.2801,
-     "p_beat_nifty": 0.6162
+     "q10": -0.2589,
+     "q50": 0.3341,
+     "q90": 1.3211,
+     "p_beat_nifty": 0.6879
     }
    },
    "reasons": [],
    "risk": {
-    "volatility_63d": 0.7023,
-    "max_drawdown_6m": -0.4214,
-    "beta": 3.4242
+    "volatility_63d": 0.7452,
+    "max_drawdown_6m": -0.51,
+    "beta": 3.402
    },
    "fundamentals": {
-    "pe": 9.342,
-    "pb": 5.6754,
+    "pe": 7.9983,
+    "pb": 4.8591,
     "roe": 0.8826,
     "debt_to_equity": 3.743,
     "earnings_growth": 10.595,
     "revenue_growth": 3.793,
     "profit_margin": 0.638,
-    "market_cap": 785648975872.0,
+    "market_cap": 672642433024.0,
     "yf_sector": "Technology"
    },
    "news": {
-    "n_articles": 40,
+    "n_articles": 39,
     "headlines": [
      {
-      "title": "Is Micron Next to Announce a Stock Split?",
-      "source": "Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxOUVpxd3RmaHk1MzdaTTdLMG9yb3ZzNGFOLUZkM0V1cXp6VlMxa0t6N25NbzRSeENDN0lSTVY3Zl90dWdwZHhmc1VnMm9QWEYzY2wxeGRKSGVySXZrWnNzRXBOaVRzQWlacTFYY1FIUFl4LXh2bWRRVG92a3BiQ2V0Z3BsazZmMVNFejhxcnROejg1VnZfbkRlejJXRW9FZw?oc=5",
-      "published": "2026-11-18T15:35:02+00:00",
+      "title": "MU Nov 2026 735.000 call (MU261123C00735000) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5OSnVHWHg5cnktc2o2OENFWmltNUR2aGo0eU91SWpSZWFiazk4aGR2ZnFEdWZKbVo1VTk2Si1menpmdkp4bmFUWHFMeW9OTVgyNnNmMkt0QzNkeVE3VUxnR1ZzWQ?oc=5",
+      "published": "2026-11-21T00:59:05+00:00",
       "sentiment": 0.0
      },
      {
-      "title": "Why Is Micron Technology Stock Rising Today?",
-      "source": "Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNZG1XWC12Nm54SXpHQXlpcDhPNmJQRGxtNmdXcEo4TjZzYnNCeWhKOEwzQUktd08wNUg3Z2pDMm9FX0FXUVFpaVNreTdxeFM5WlBuX2ZNZTVtdHJJYncwaU0zRTBwalJ1NndRQ2dqZDFnbHA3cjFRSjc2VU9GWVh3OVloRkFlaENDRHRNakl0SG5NN0Q1ZXdLRXVWN3Zfc2It?oc=5",
-      "published": "2026-11-18T12:14:51+00:00",
-      "sentiment": 0.0
+      "title": "Micron Keeps Falling as Memory Stocks Get Agonizingly Cheap",
+      "source": "Barron's",
+      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNakp6anlCQUZVSFA1UndCNy1vOHZya0pKUjNDSmJvQnZfYXlBRHlnbXo1djUxTXJ3VzNrdnRuYUdENElkLVVkTkxucVBBU0l6OVpKYk82VVBSVl9TSXFtckpUX2txOWIyNnByb3pFUjVzTFZYcFk4R25LYkdkWFVaNEtB?oc=5",
+      "published": "2026-11-20T18:14:00+00:00",
+      "sentiment": -0.599
      },
      {
-      "title": "Prediction: This Will Be Micron\u2019s Stock Price in 3 Years",
-      "source": "Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQZVZwMVR4QXVpQVRLNnlNc3laeV9hWjRJOUU5RXVhc1FXSDJyWjBIeVZrVTFaZHFNSks2amlBVGtjWmtmVTNaTlkzblNUSUxvV2w3b3BlcWtjbWltajIyaWFLY0VkdldrZWw3RDhtemhJc0hhR3d4ZENFT25VOC1TajVnX09JMW9KekpSaGJ3YVlMemNSbzFrd2pyLV8?oc=5",
-      "published": "2026-11-18T09:35:02+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "Broadcom vs. Micron Technology: Which Tech Stock Is the Better Buy for 2027?",
+      "title": "Prediction: This Is What Will Happen to Micron\u2019s Stock Price in December",
       "source": "The Motley Fool",
-      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQNU92TnBHVmx3c2pfZnVHd1FUcmxhRVNYbGpEdFNnRS1wZXdzVlNma0lMMlVPR3VxR2kwMGZOZlhTVUE1OG53QkE0NTQydC1BQ1k5SWhQTjlVZE1Pc3RWdWZBM1V6RU5PSU5XOTFKeEJMWXF1VzBiNkhEeGhGUE95dzc4U0JaaDRGTFZGX1NCTzg4eUxRVmptNjdlV0tMSGZibXNJS25xZWVGUTE0OGdjTmRUWWp5NjdSYjUwNWszX2Vpb3Vm?oc=5",
-      "published": "2026-11-18T03:10:00+00:00",
-      "sentiment": 0.625
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPMmxQeEc3NnZSTlMtMjVfc0FVamphOUUwZGVHYXpQZzhKVDZ4TjluaGdpbVh3NmlKd19mY1pXNHBJM1BOLXVBRF9yaDZPZ1NveTFnZVdZYzAtQ1Q1dTNjbEhOb2MwMUZFMnJGOENhNUJaWkZBR2I4cmk0NklGQlpCZXFHREVxQ3RRb2NscEFGNnZkQnZCRVd0MDZtNDhTR3BxalhfcDlpWURkWlNyQno1eURDcG4?oc=5",
+      "published": "2026-11-20T17:18:02+00:00",
+      "sentiment": 0.0
      },
      {
-      "title": "Micron Stock Is Down 41%, but the $35 Billion Buyback Could Change the Game. Here's How.",
-      "source": "Barchart.com",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNS1huaXhkbmEtaUlvU2dCZl9iWTA2WDVJWEZvdS0yMERkWDhrbEpqSUhCbzFEOFZWa211ZkRPYjd0TkV1YktoSzJJeGFjZ0tHNDFIYkk2dEE1UV9hQlI4c2J2THQtU19KZ1pOb2JOSHVLa2d6bl9YVHRDS3llekpiSy1HTndLYjVQdEEtYmZ3SzI0amdGSS05Z1ptN2FtUVFrekc4ZTJjRlY4dkw4QUR0Qno5eWlPbVA1WTV4WXJWTW9NTnJkdXc?oc=5",
-      "published": "2026-11-17T21:20:41+00:00",
-      "sentiment": 0.572
+      "title": "Why Micron Stock Crashed Today",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNOU1hQmNSRmQ0aGJ5bzRfakxHSzlZWVJLYzFBOFFnbVNrSTBVWUJoTHhob3FQbGNwMkp2WXRsWm1yRnRaUHo5SWtaX0FtdkdkNm5Ib3BvM09ja3B3QnNTdlJfRDN3WW00dkZobjgyWndUNm9YR0Z0dGZJbkkwNVE5bG5nQTRFVFFOSE1jTUxhdU9yRGxNOTN6WEVWVQ?oc=5",
+      "published": "2026-11-20T16:54:02+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "What Happens To Micron Stock If Prices Stop Rising?",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxObk5iRnVzODc4ZmoyT3h1TWVXdzVOOUFJNGNwQ2J1Z1pNYkd3bFdzOVdXdWZSODN5a0RaSG1KWGhwWkxIVExRYUtudF95cHp6bzV4VWdOcG5IMjAyOTEyTGVDMHNVTVM5QXhMLUxacVVWLW85OGcwb3k0YUJudnlBZTQxZG9vV1VULVNnTVVKbXdqRm00UVg1SVFqNE9Ydw?oc=5",
+      "published": "2026-11-20T15:01:47+00:00",
+      "sentiment": -0.296
      }
     ],
     "llm": null
    },
    "chart": [
-    761.86,
-    750.77,
     895.6,
     928.12,
     923.23,
@@ -225,101 +223,319 @@
     778.31,
     719.02,
     712.42,
-    701.9
+    705.27,
+    690.44,
+    594.51
+   ]
+  },
+  {
+   "symbol": "NTAP",
+   "name": "NetApp",
+   "sector": "Information Technology",
+   "price": 157.65,
+   "final_score": 0.8601,
+   "model_score": 0.976,
+   "news_score": 0.1757,
+   "quality_score": 0.5915,
+   "forecast": {
+    "3m": {
+     "q10": -0.1147,
+     "q50": 0.1385,
+     "q90": 0.4666,
+     "p_beat_nifty": 0.6492
+    },
+    "4m": {
+     "q10": -0.1547,
+     "q50": 0.2085,
+     "q90": 0.6509,
+     "p_beat_nifty": 0.6178
+    },
+    "5m": {
+     "q10": -0.1793,
+     "q50": 0.2167,
+     "q90": 0.7517,
+     "p_beat_nifty": 0.6462
+    }
+   },
+   "reasons": [
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.5365,
+    "max_drawdown_6m": -0.3409,
+    "beta": 1.5733
+   },
+   "fundamentals": {
+    "pe": 22.2355,
+    "pb": 20.6673,
+    "roe": 1.1482,
+    "debt_to_equity": 169.498,
+    "earnings_growth": 0.635,
+    "revenue_growth": 0.299,
+    "profit_margin": 0.1918,
+    "market_cap": 30965454848.0,
+    "yf_sector": "Technology"
+   },
+   "news": {
+    "n_articles": 40,
+    "headlines": [
+     {
+      "title": "NetApp (NTAP) Dropped, So What Is Behind The Latest Attention?",
+      "source": "Simply Wall St",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNY0xjNEd4ZmpqSWZiNFg3YjdzVVhieU9vZzNrbFFYZEUxLVN3Mi1DZFg0SjR1X181NGttRGtrZUdzaXBQRDJlS2poVzBPeEtEM0lZdTBXM2xpQUdGa2RnMF9LZnVMSHJ6aFd0a01zVTBvTk8yMF83YXV5dkJhOU1lN2c3NjYyeV9aT1lKanZ6VE42Wmw2aG1haDlmZzNUS21kRDcyUUEzeFd3TzVfenBDRUZmVGktTGZEcUYw0gHAAUFVX3lxTFBGTzNocEJJZ3RzckEtSlllY09IenVhbjlMNnRVSEJSVUZsN0tXU1FfRXlEcS1wRWtJLVBvVTV4LWc5MWp6U014M0ExN2oyV1NES1FTd0ZpN2hVSXdkV2syZmhpc3BpWDNEZUtkX2FvWEtvTXRhQUdvdlJjN2xLd1N4WVNtMHcwbmwtVXZyb1l2MDNzRGM1U0M3ZGFfbmY4WUd3bjRvVGxTa2NmbzJEaktaa29VbmdZRUo1N2hJOThTZg?oc=5",
+      "published": "2026-11-21T07:10:41+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Quantum Computing, Rigetti Computing, TeraWulf, Xanadu Quantum Technologies, and NetApp shares are falling, what you need to know",
+      "source": "TradingView",
+      "link": "https://news.google.com/rss/articles/CBMikwJBVV95cUxNaUZIaVIxRzJWYWVOdV83N0EycFh0QjR0eXFDWXI4Ti1Hd0d2dHR3ZHJwdTJ5YVBoVnRBVlJnMWU3Tk95dnQxa2VQQkI5ekh6cTV4TXpHeTZWNmlkSTZYTW5PUThxWFlhWk1uSWNaRlRFckV5Wl9uMGhrenAtaEhPZXY2bmNNcFRGcGZRcFFaMU11dmNyWExucTVUS2lMdWRqNFh1bVBmY2dPS3V6VV92YmZQeE1xM19vS3hXTW93d1NMeEkwN0d6cWV3d1dyVHRhTmg2cTdGSS1jTFBEWUR0MGFYX0pVcVJYLWEtYk9QNV96WlliZGJudC1QdFFxVmVWS1BsQ1ZDRXVZWlVMSjV0d3lkOA?oc=5",
+      "published": "2026-11-20T20:30:51+00:00",
+      "sentiment": 0.153
+     },
+     {
+      "title": "Why NetApp (NTAP) is Poised to Beat Earnings Estimates Again",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQNEp6ZXU4aC1jYjRZVWxRVkZ2STB1S3JsRVZWbzJ6RFVpVFVKQzBLWTFnRTF0WTRXaXgyYldGa3I0RGlDU1pmam5vNHZ2bEdUMEdDZFZqVy1Gd25JLUNqUkpLY1Z4bG4ySjZrNmJVazhWTUlZX0FXMnBMMlNaWFZRZXhBS3Y4VU9WdXNpNHFKQTh4bmdyanA0?oc=5",
+      "published": "2026-11-20T16:10:02+00:00",
+      "sentiment": 0.612
+     },
+     {
+      "title": "What Makes NetApp (NTAP) a New Buy Stock",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQTHBqdlMxTU9fUGFJdEhadkhmeTV3bUxmRE5RSGl1alhLdEJZSFI2elF3dUNvdzhuSDJfYzJVZ2pvS2JNM3FjZFZ3SjdEM0V2b001c0YxYjV6dWs1Q2dZQjdzbGJHSUZUbWtyeFFPMHBwWGFQcm9Jamp6M1ZsNFFxSTU4bGowRGRCVDg0a1d6WnIwNGp1ZWJj?oc=5",
+      "published": "2026-11-20T16:00:02+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "NetApp, Inc. $NTAP Stock Sold by Teachers Retirement System of The State of Kentucky",
+      "source": "MarketBeat",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQNzFUazczeE0yc0dadERZZmpDejdzTjBuNmF3ZWpiaVo4TVlDaU9KNHA2cTNjUGJSZmJhX0dQMjRzV2pyeFlvWmxZcU5TZ2JUWlptVGFvLVlrcW96MjBqZjE1QmRBY3BrUVQwcXRraFpEOFRrel9yWXR0MFFlWXotSFVXbHlwbTdMT1ZoZ3dDTEpJLS0wWmxzcWctNHBaUUpOZUdRQTY2d0VYVm41WU5uNmg2cHVrbnZGdHBEM1pGNTRLSFk3Q3RIcXBJaHdGTjZ2RzJOczVONUt0dw?oc=5",
+      "published": "2026-11-20T10:54:43+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    138.22,
+    141.99,
+    141.65,
+    173.37,
+    178.75,
+    174.71,
+    180.13,
+    177.93,
+    166.16,
+    169.41,
+    164.13,
+    159.81,
+    159.62,
+    160.76,
+    160.97,
+    160.41,
+    153.99,
+    158.87,
+    157.48,
+    156.99,
+    154.74,
+    153.78,
+    151.65,
+    154.24,
+    153.94,
+    155.56,
+    153.36,
+    162.69,
+    164.91,
+    164.53,
+    170.82,
+    168.49,
+    163.56,
+    174.16,
+    161.74,
+    159.33,
+    163.51,
+    160.8,
+    165.39,
+    166.17,
+    164.27,
+    167.36,
+    169.42,
+    174.14,
+    172.84,
+    173.59,
+    178.1,
+    182.51,
+    190.03,
+    186.18,
+    191.05,
+    189.09,
+    198.27,
+    198.02,
+    201.6,
+    204.53,
+    206.61,
+    203.74,
+    204.25,
+    194.04,
+    192.38,
+    191.84,
+    186.44,
+    187.01,
+    193.41,
+    190.21,
+    186.6,
+    184.87,
+    182.75,
+    180.36,
+    184.96,
+    185.17,
+    188.7,
+    184.32,
+    183.19,
+    198.83,
+    187.86,
+    189.5,
+    191.06,
+    196.48,
+    197.34,
+    197.7,
+    192.48,
+    195.89,
+    196.8,
+    200.7,
+    203.95,
+    208.71,
+    209.61,
+    214.57,
+    225.76,
+    223.27,
+    227.94,
+    235.24,
+    230.53,
+    237.15,
+    239.18,
+    239.01,
+    222.2,
+    214.7,
+    203.8,
+    207.37,
+    209.97,
+    217.21,
+    212.51,
+    215.48,
+    222.08,
+    227.58,
+    223.66,
+    218.42,
+    199.18,
+    185.26,
+    190.78,
+    187.67,
+    169.38,
+    169.19,
+    176.07,
+    175.99,
+    183.12,
+    186.08,
+    181.37,
+    177.85,
+    173.04,
+    172.19,
+    170.18,
+    157.65
    ]
   },
   {
    "symbol": "FIX",
    "name": "Comfort Systems USA",
    "sector": "Industrials",
-   "price": 1156.0,
-   "final_score": 0.8716,
-   "model_score": 0.9519,
-   "news_score": 0.3913,
-   "quality_score": 0.6728,
+   "price": 1042.47,
+   "final_score": 0.8299,
+   "model_score": 0.8938,
+   "news_score": 0.2977,
+   "quality_score": 0.7128,
    "forecast": {
     "3m": {
-     "q10": -0.2265,
-     "q50": 0.0517,
-     "q90": 0.4708,
-     "p_beat_nifty": 0.6499
+     "q10": -0.1052,
+     "q50": 0.177,
+     "q90": 0.5146,
+     "p_beat_nifty": 0.6398
     },
     "4m": {
-     "q10": -0.2646,
-     "q50": 0.0934,
-     "q90": 0.5596,
-     "p_beat_nifty": 0.5998
+     "q10": -0.2095,
+     "q50": 0.1397,
+     "q90": 0.553,
+     "p_beat_nifty": 0.612
     },
     "5m": {
-     "q10": -0.2473,
-     "q50": 0.184,
-     "q90": 0.5945,
-     "p_beat_nifty": 0.6156
+     "q10": -0.2209,
+     "q50": 0.1328,
+     "q90": 0.7172,
+     "p_beat_nifty": 0.5533
     }
    },
    "reasons": [
-    "Volume 1.6x its 6-month average (accumulation)"
+    "Volume 1.5x its 6-month average (accumulation)"
    ],
    "risk": {
-    "volatility_63d": 0.7223,
-    "max_drawdown_6m": -0.4398,
-    "beta": 2.4341
+    "volatility_63d": 0.7275,
+    "max_drawdown_6m": -0.4948,
+    "beta": 2.374
    },
    "fundamentals": {
-    "pe": 24.646,
-    "pb": 11.9529,
+    "pe": 22.5156,
+    "pb": 10.9197,
     "roe": 0.5861,
     "debt_to_equity": 11.227,
     "earnings_growth": 0.686,
     "revenue_growth": 0.537,
     "profit_margin": 0.1301,
-    "market_cap": 39922765824.0,
+    "market_cap": 36471754752.0,
     "yf_sector": "Industrials"
    },
    "news": {
-    "n_articles": 38,
+    "n_articles": 40,
     "headlines": [
      {
-      "title": "Comfort Systems USA stock: Board expands buyback capacity - ad-hoc-news.de",
-      "source": "ad-hoc-news.de",
-      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQdTFHaHkwREFaLWFWVWFFQnEzRGRwWlM1MjNfOWdyUm8tRm0waENENWhiS2NpdEJadjY4QWJjWjV5SGwtWjVKZzlUbUM4SzRqSW5JbmxxaWNicUVyeVY2ckdvVFk1eWtLRVJHUUxCOU5xZ1Vudi03MHU1dzg5SUZlcWJMWFBpY2Vlajd4V0xiVkloMm9qT0xrQTlaRVNjMTVxazNlUzV1MnFsVFFRZVRKeHRoMWs0VXNFZDZz?oc=5",
-      "published": "2026-11-18T15:29:08+00:00",
+      "title": "Comfort Systems USA Expands Stock Buyback Authorization",
+      "source": "Construction Owners",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNZ3lrSkdEMnJ4eTNwMjZmcUJOLWtQdl9kcjlUQUhHUzg2MWx2T2RJSkhhQ0Nuc2tibUt2WGRaTDF5VHZ1QlVqUG0yMEtTamIyZ09HZEVEamR3dUNiUExRakpyUl9MX0g4eXI1bXNvZlNqeDJQUzlfbHBhRV9yRjFtR3NITzU1aTVibUFrakRrbzdWcnpVMEx4b09lTHJmZE80ZkhTdzl3Rmc1QkxoWnNSQXZaclFLZw?oc=5",
+      "published": "2026-11-21T13:08:59+00:00",
       "sentiment": 0.691
      },
      {
-      "title": "Comfort Systems USA (FIX) Expands Stock Repurchase Program with 679,520 Additional Shares",
-      "source": "GuruFocus",
-      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQcndRS0w3cndjYXZWQ3N5VjhaTFFlNEZCa0VYbThwRng2T1JNWV85c3ZyWUo0cTkyWnpYLUpjc3ZQaGw0QnRMNWF3LV9pV0I4eUtZYjZlRmgxNktzNngzeTFVR0UtdFBwSWI3WTNmLWdHR1luUTZxVTF5NGw5Y1NpME1TXzBJTDBycXNkN0ZSSXVpbXRYcmd5YjVFVGtTOUxwSm5CbGk5YnhrT2k2OEh1WWEwZUVVVVZxVHhjLVhlT2R4TFU?oc=5",
-      "published": "2026-11-18T00:46:57+00:00",
-      "sentiment": 0.625
+      "title": "Comfort Systems USA stock: Board expands buyback to 1 million shares - ad-hoc-news.de",
+      "source": "ad-hoc-news.de",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOZnYxS2MxQUc1ZmdjUThEbGZxLU10dWhobG1oOXNtUldRSllSV3dKdDNobjdpU292OHdZbEx6SUZOeWFzbXJCdGlYdXlBR2p6LTlOU1RweVFYMVYxMW9wOFFaWXBDZEp3Q2hOVTFjMzdMYlFxZXU3VTlNUjcyLUlhR1dQaUMyTjl4UVJmX2ZfeF82Nmdxd2tQekh0d1BkY2ZvdUZYRG5DRmxsRTN5WmRCdXphd1RURTdyZlpzNE03ejhPRjFPUFdycTVn?oc=5",
+      "published": "2026-11-21T09:58:07+00:00",
+      "sentiment": 0.784
      },
      {
-      "title": "Comfort Systems USA Inc (FIX) Stock Up 3.9% but GF Value Says Ov",
-      "source": "GuruFocus",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPSmJKZENXNHBuVTdybk1yTTl2V01yd1dmbHY4YW5Ic0haenljcGdBa3l2akhDMUlHZEtiV2pYQV9tNEpsUlNmV29iWXNBdERpTjJFa2tIX29rT3ZlYzB6R2FIMTBmdkRvNmxxX0R6OHM1QVhyV1h2bWx2WnhVWWhpQ2p6RmNZTy1MMWtfNFRUR2VQXzQ1NWdTdVVlNmVMQ3JCMHpnMmJvTWs1TENRdF9SWHZnTFFGZXZRa2huUjVkVQ?oc=5",
-      "published": "2026-11-17T23:28:18+00:00",
-      "sentiment": 0.593
+      "title": "Avoiding Lag: Real-Time Signals in (FIX) Movement",
+      "source": "Stock Traders Daily",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNWTgybWVVQTJyWHFhVnljbjc1YkJzRG9KODFadGpDQzRjWTlUSnc1LXQ1UWMzOS1zYVpmbzJ6M1U3aGhjZ1hsZHFvdWRnbWl5TjFieHlKZ05kcVF0ZURFV0JWU1owTWVLOEJvWWRTZ1dxZXEyWHdHMFo0anBtTDlHQnBGM1A1WFA0QXZtdkNKTldDX01jREdza0lCVWVwTktkZElGZWVrLUliOFh3WkZ4T1ZOaGNiYjJRM2hBc3dJejJRZVBTNk93?oc=5",
+      "published": "2026-11-21T05:20:02+00:00",
+      "sentiment": -0.586
      },
      {
-      "title": "Comfort Systems USA stock gains on expanded buyback program",
-      "source": "Yahoo Finance UK",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNLUhJeTR2UU1wT184X3h2UkxSMXBrX1BlRmlhSVhFQjZKSTRqSjJHZzFHZGl5MEU5M3RQSmw4TWgwR2lCcG5NZ2pPUDdPMGhnT01HRFZwd01UV3JZMm53VDJDczdNREZtakJObmQtZ1Z5ZHNpd2tZNW5XNl9uMkNZNWNDZU43UGc?oc=5",
-      "published": "2026-11-17T22:55:32+00:00",
-      "sentiment": 0.758
-     },
-     {
-      "title": "Comfort Systems USA (NYSE:FIX) Stock Price Up 4% - Still a Buy?",
+      "title": "Comfort Systems USA (NYSE:FIX) Stock Falls 6.6% - Should You Sell?",
       "source": "MarketBeat",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPRzdPUkVMaHROdUxKX3o4X19YZHlMYXFVUzdSX2JiNENJSHk0c0dqQTF1U2VpRmljUXBaU3BIZWZUR3ZJRUFmM2xOTmhMZFNVVF9tbHA5Y1cyWlNoUkpfV0JZak5POTMxbHFZNkswUHVZRW5iUE03V21aR2pTUjNKTVpFTVoydS1KZ2lqckRkYThGZjdldk8wY0lOTXMzWWtPSTlYTTFKZjJIRTRaOHN2d2FfaWNZSzlH?oc=5",
-      "published": "2026-11-17T22:30:55+00:00",
-      "sentiment": 0.572
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNS1dGdGMzeHNRcUdjTl9JUC1NQ3BMZnZrMUhTMTh6MEZ4UzB2bDVSVE5ncXBFamMweGdsSExhWkpiQkxTaFJkOXJ3QkRqVnZUMzc0NkJheWYzQnF2Qm5CVDVFWVlFQUdXdHFwT3NrWXBEVlhPNG5hU0pGSmlvN3d0bUVZcTFLbDJTV2JoRDFxREhORkxJUTJ4cTIwYjUtRGdSbDlfUWhrSkhHd0xWaEd3ckwtQnlyOGdOQTVr?oc=5",
+      "published": "2026-11-20T22:46:17+00:00",
+      "sentiment": -0.226
+     },
+     {
+      "title": "HSBC Bank variable rate fix updated for applicable securities on London Stock Exchange",
+      "source": "Traders Union",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPajJsY29sXzV5ODMyaER4ZUpUUXJRbWVZNmEzSTJTSmZYaEdxRV9TbVhZNHg4MFc4b3RPbEt5Mkk3WUd4N1d2Y1kyb0RkdGg5S1JSZVJyWmxMOTZRUDM3TlF5bzRkX0xvOXV0VkJqVUNrUDlHdHhaMjFxSTg0eGoxNEp1SE1IM2l1Y3hQMzJEc1NRUS15TGIyRmRR?oc=5",
+      "published": "2026-11-20T18:25:59+00:00",
+      "sentiment": 0.296
      }
     ],
     "llm": null
    },
    "chart": [
-    1832.8,
-    1825.73,
     1880.96,
     1864.52,
     1852.59,
@@ -443,543 +659,103 @@
     1112.5,
     1057.68,
     1099.02,
-    1156.0
-   ]
-  },
-  {
-   "symbol": "ANET",
-   "name": "Arista Networks",
-   "sector": "Information Technology",
-   "price": 188.07,
-   "final_score": 0.8532,
-   "model_score": 0.9572,
-   "news_score": 0.0921,
-   "quality_score": 0.6747,
-   "forecast": {
-    "3m": {
-     "q10": -0.1975,
-     "q50": 0.0646,
-     "q90": 0.5199,
-     "p_beat_nifty": 0.5985
-    },
-    "4m": {
-     "q10": -0.2444,
-     "q50": 0.1082,
-     "q90": 0.6395,
-     "p_beat_nifty": 0.606
-    },
-    "5m": {
-     "q10": -0.177,
-     "q50": 0.1781,
-     "q90": 0.6993,
-     "p_beat_nifty": 0.6113
-    }
-   },
-   "reasons": [
-    "Strong 6-month momentum (+34%, top 10% of universe)",
-    "Outperforming S&P 500 by +7% over 3 months",
-    "Price above rising 200-day average (uptrend, golden-cross alignment)",
-    "RSI 51: momentum without being overbought"
-   ],
-   "risk": {
-    "volatility_63d": 0.5973,
-    "max_drawdown_6m": -0.1323,
-    "beta": 2.3913
-   },
-   "fundamentals": {
-    "pe": 50.0509,
-    "pb": 14.3409,
-    "roe": 0.3352,
-    "debt_to_equity": null,
-    "earnings_growth": 0.821,
-    "revenue_growth": 0.585,
-    "profit_margin": 0.3997,
-    "market_cap": 235864588288.0,
-    "yf_sector": "Technology"
-   },
-   "news": {
-    "n_articles": 39,
-    "headlines": [
-     {
-      "title": "What Could Derail Arista Networks Stock?",
-      "source": "Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOMXlUek1WZnFvTWFsZGhoVTQ1YTJzRHBtMlNBQ2xWSXVrdDJ4WTZ1Smx1TWcyQS1zVWtsTFhzdEdrRmNJU2FVN2hoaHlidFZtRm50UDFiblllXy1CcTJ0OC05MHZ1WThiNjJIMXd2dm95clRxQ1MzZzhrN2dVdkJyS2RZTEkzeFRGbVgtMzV3TlBjV0JQX05wUEx5aGt1dXdT?oc=5",
-      "published": "2026-11-18T13:55:30+00:00",
-      "sentiment": -0.296
-     },
-     {
-      "title": "Arista Networks (ANET) Is Quietly Breaking One of NVIDIA\u2019s Biggest Advantages",
-      "source": "Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQcnk5R2dKcE1SaVZwdU4xVDg0R2s3c3B2dUwtLXhxUmIwYkFZakoyYzFtYmhyc0Y3NHhXcE5ZTUVqUU5ic2dlS2xMUjZiaVVWd1h5ZXd5TXFPeGl4TW1VdjBia2VXai1odnBnaUxTbkxUZ1BpckRyNXVXMzRDajlrT1J0a1d6Uy1zUGFNZy14VU9rQ200eUZOSTJVV25sYmxtS0NMRg?oc=5",
-      "published": "2026-11-17T22:51:11+00:00",
-      "sentiment": 0.361
-     },
-     {
-      "title": "Arista Networks And 2 Other High Growth Stocks To Watch",
-      "source": "Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQSjlXeWJvd2NkdXZZREFEblB0NUdXa19ZUHl0SEdjZWhEclpmd0dBMlhBMGJkSlRGLVN2dTBRZFZXRGFyd1JDdDc1anNkWnFud2tnY3RmdHlxVDhHNHpIYWpubWxsa0dVNW0zaklRenFsamxuVXg3ZXJwS055RXVZTHVCdHMtRTF3Q1VyTW9ZVXdrbXJIR1hXZQ?oc=5",
-      "published": "2026-11-17T22:09:37+00:00",
-      "sentiment": 0.296
-     },
-     {
-      "title": "Is Arista Networks (ANET) Fully Priced For Its AI Cash Flow?",
-      "source": "Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNRV9EU0NLYno0Ql8wV0dqNEVEU3JlbVZSN2tNMGdSOEVNdmlTYUVIUFFNeE83S09sYTNDaWVWSnUteGVtekFNY1dXbTc0Yjc4MFo2WEJPOFVDS1RLellURzNzdUJjZzhPS0NHa2tXRHdMaGxYN2tHaW9rOF9xeC1ObDNoWF83dFZxWUg0QUJzT2tFXzJIVUwyenN1UDlHM0U?oc=5",
-      "published": "2026-11-17T20:12:21+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "Why Did Arista Networks Stock Lose 5%?",
-      "source": "Trefis",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNQTFsZGw3QVVKQkZodTBRR25uQ1FqdzR2ZjhGbjlzT2U0ek9vMUxfQkF6N1hLeEV4bzgzSmF2Z19LcU9HLVRHV3ZhVjRHQlJkbngwYjBmVFo5aWQyN0xpX1pHSDNmSEUxWEM4UnVRTElLX21zR1hEVzVvb1BoVjQxSnljRmRxdjJ1NTRFUm5XZlF4cTVqbnpaNEgtZmJFQQ?oc=5",
-      "published": "2026-11-17T13:27:33+00:00",
-      "sentiment": -0.402
-     }
-    ],
-    "llm": null
-   },
-   "chart": [
-    148.59,
-    154.03,
-    158.01,
-    154.31,
-    155.27,
-    159.47,
-    170.68,
-    175.33,
-    174.37,
-    166.01,
-    154.27,
-    156.4,
-    152.16,
-    151.76,
-    156.4,
-    163.24,
-    169.09,
-    168.01,
-    164.93,
-    169.67,
-    174.56,
-    162.2,
-    161.74,
-    165.45,
-    157.6,
-    164.1,
-    169.88,
-    166.62,
-    159.99,
-    173.28,
-    166.46,
-    181.05,
-    184.69,
-    186.96,
-    181.15,
-    182.57,
-    171.92,
-    168.56,
-    168.61,
-    169.35,
-    174.58,
-    174.87,
-    176.61,
-    173.99,
-    170.76,
-    169.71,
-    157.97,
-    171.02,
-    180.35,
-    184.89,
-    190.51,
-    197.31,
-    192.32,
-    188.67,
-    191.52,
-    197.85,
-    210.5,
-    203.62,
-    198.82,
-    201.8,
-    193.18,
-    186.45,
-    183.75,
-    188.65,
-    188.15,
-    190.94,
-    202.25,
-    201.09,
-    195.38,
-    195.69,
-    189.26,
-    186.1,
-    191.44,
-    193.78,
-    194.96,
-    192.93,
-    188.99,
-    199.59,
-    187.81,
-    192.84,
-    197.54,
-    199.53,
-    199.39,
-    205.42,
-    205.19,
-    203.47,
-    205.7,
-    206.55,
-    204.92,
-    202.86,
-    203.59,
-    204.49,
-    207.35,
-    206.9,
-    215.36,
-    215.83,
-    210.97,
-    216.74,
-    210.88,
-    204.52,
-    195.42,
-    185.58,
-    176.98,
-    182.95,
-    181.19,
-    184.33,
-    171.07,
-    172.37,
-    177.24,
-    187.0,
-    186.72,
-    184.22,
-    168.86,
-    164.14,
-    169.91,
-    178.48,
-    159.16,
-    170.8,
-    186.17,
-    185.02,
-    196.68,
-    206.63,
-    197.29,
-    187.02,
-    186.42,
-    188.07
-   ]
-  },
-  {
-   "symbol": "GEV",
-   "name": "GE Vernova",
-   "sector": "Industrials",
-   "price": 789.01,
-   "final_score": 0.8246,
-   "model_score": 0.9225,
-   "news_score": 0.0437,
-   "quality_score": 0.6706,
-   "forecast": {
-    "3m": {
-     "q10": -0.1884,
-     "q50": 0.0524,
-     "q90": 0.4474,
-     "p_beat_nifty": 0.5554
-    },
-    "4m": {
-     "q10": -0.2472,
-     "q50": 0.1006,
-     "q90": 0.5558,
-     "p_beat_nifty": 0.5856
-    },
-    "5m": {
-     "q10": -0.1924,
-     "q50": 0.1385,
-     "q90": 0.5416,
-     "p_beat_nifty": 0.5942
-    }
-   },
-   "reasons": [
-    "Volume 1.5x its 6-month average (accumulation)"
-   ],
-   "risk": {
-    "volatility_63d": 0.5542,
-    "max_drawdown_6m": -0.328,
-    "beta": 1.9937
-   },
-   "fundamentals": {
-    "pe": 20.4756,
-    "pb": 18.1363,
-    "roe": 0.9304,
-    "debt_to_equity": 29.893,
-    "earnings_growth": 1.933,
-    "revenue_growth": 0.268,
-    "profit_margin": 0.2354,
-    "market_cap": 206425620480.0,
-    "yf_sector": "Industrials"
-   },
-   "news": {
-    "n_articles": 38,
-    "headlines": [
-     {
-      "title": "Erste Group cuts GE Vernova stock rating on 2027 order outlook",
-      "source": "Investing.com",
-      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNTlpJV3VMNVZNSG13S2ZuenU4V09Ua2hKb0RuTDVvZ1lIUW4wM0drMUZVVHJtY0t6UW92bFMxSDdidW9vOVJIZEtGTnhRMjFSUGQ5RHJNeWdUQjJja1RlV0VOV0ViLWJ4bUZtVktvUG1ZaXhvY19BYjJsUGRVaHpDU3JUckhBYS1rWDVzTHJmUklqNklPTlJ3cjBWVEdjUUoyN1lla19OREYwVUFCZy1qckxGYVAyMFF2SFZkWi1Jaw?oc=5",
-      "published": "2026-11-18T14:08:36+00:00",
-      "sentiment": -0.103
-     },
-     {
-      "title": "GE Vernova downgraded by Erste Group",
-      "source": "Quantisnow",
-      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPQ0Uzd1pMY2U4bHNtVXhza1BKSVlaWGp4emJYNFFEeVVwNWR6RVFWQ19US0hkUHkycTJBaUdDYjlQemYwT19pWUFITHFxR2FGMURYek96T3kzRzJwVmlndDBLZFJpbzUza2gzRXd1eWFrdlZsazRReXB2UmdWcmw5YVNaQUEzUQ?oc=5",
-      "published": "2026-11-18T13:29:45+00:00",
-      "sentiment": -0.542
-     },
-     {
-      "title": "How Investors Are Reacting To GE Vernova (GEV) Data Center Order Surge",
-      "source": "Simply Wall St",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNakxKRXNyY1o5Z3FOS05sYS1Lcl9Pa1Z0blJKR0hmckViSWRzVHVqclA2dWpwOVB1bkg2TGF4M1hMbUdDb2RyWU1FV0lQWmwtdFpPa01aR00wVkd2ZWZDNnpZT19yWnloMUpYSE1mR09XTFVtS005UFgySmVoOVV5d29jUkhPZ0ZMd2czUWVRbVhiQTVwNUtDbXIxWkVLRzFlUFBuSTZxRFg3V3IxV2ZvMmVpbHowLWJObUtKVUJoeUt2a2dROXB0d2ZPQdIB0AFBVV95cUxOWGtiYWJBS1ppdlc5SmFNN25NUjA4TjZtNV9DRTNxd1p3dnV1VTVLeVhvbS1sNEV1b1RGUnkwREVTMXU2b1lyaVZXR0xsSmpfOHFtTzVqMnVabEpNYjMyZnlOMG5xWS05NDdNTHBtRzNjeEI2YjVCZHFhLWVLaG82OFB6MmRiclJyamQ2SHNrbWUxR3pPV25UWDdPZnlqSHZNbkFQQUpOZTYySW1ZRE5rQkxwWlM5TzNUWE5wZXQ0aVlobVVGM2t6VnN3YVR3UDVk?oc=5",
-      "published": "2026-11-18T13:12:00+00:00",
-      "sentiment": 0.586
-     },
-     {
-      "title": "GE Vernova Inc. (GEV) is Attracting Investor Attention: Here is What You Should Know",
-      "source": "Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOUXlWYXJtX211V1d4a2tBcElWUG1lLU5kMURTNVNZTWNkbXgzaEVqQlNLYU1FTTVxVzlJMF9FN0ZiRFczYUNwQWZWbjJlSHpVU0tYNXBBRWs5Z2hnQ0wzRGgza0hNc2NDMzRhYTVjVmRfTWx4WVhQY19JS3ZLRngtV0o1Rko4bW5BakNnS3FSN1VXRC1WUTJmWGZn?oc=5",
-      "published": "2026-11-18T13:00:04+00:00",
-      "sentiment": 0.477
-     },
-     {
-      "title": "One AI Power Stock Burned $181 Million in Free Cash Flow Last Quarter. Another Generated $5.4 Billion. 1 Metric Explains Both.",
-      "source": "The Motley Fool",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxObFp4ZElLQVV1LTRTQlhLZ2NnQjNsRFUycDZRU1VHMnJ5LW9kemdtamFPbkh6eWJLOXFNVUQxbkNUdGc1ckEtZ3ZRYVA5Vy1DT05kaDBmM1RFeFI1WGRXZDgyc2dzb1Vsc193dGZGVkRNREZGbzhoRjFEbWgwNnE4ck1RX1FJY282ZlRMNnQ1R0xHUmZ4aHR6WQ?oc=5",
-      "published": "2026-11-18T12:05:00+00:00",
-      "sentiment": 0.511
-     }
-    ],
-    "llm": null
-   },
-   "chart": [
-    1042.68,
-    1037.6,
-    1069.3,
-    1030.76,
-    994.91,
-    967.26,
-    949.5,
-    968.61,
-    958.31,
-    962.28,
-    932.59,
-    932.83,
-    919.14,
-    866.14,
-    905.8,
-    939.63,
-    978.0,
-    981.78,
-    1048.25,
-    1109.08,
-    1126.93,
-    1034.37,
-    1057.03,
-    1084.84,
-    1044.56,
-    1101.87,
-    1174.17,
-    1133.69,
-    1112.46,
-    1151.37,
-    1076.45,
-    1070.36,
-    1074.63,
-    1090.93,
-    1041.99,
-    1065.39,
-    1054.66,
-    1035.61,
-    1057.22,
-    1078.55,
-    1078.18,
-    984.45,
-    1030.59,
-    1014.16,
-    995.99,
-    942.83,
-    899.75,
-    981.41,
-    989.71,
-    1006.17,
-    1017.93,
-    1017.36,
-    999.72,
-    989.74,
-    990.27,
-    1011.29,
-    1039.29,
-    1048.81,
-    1062.63,
-    1078.37,
-    1003.94,
-    986.88,
-    965.45,
-    956.29,
-    941.55,
-    926.19,
-    952.53,
-    953.27,
-    911.4,
-    898.0,
-    898.0,
-    921.4,
-    941.29,
-    941.4,
-    970.74,
-    950.48,
-    923.37,
-    956.71,
-    874.25,
-    882.29,
-    924.55,
-    924.39,
-    939.78,
-    945.67,
-    949.72,
-    951.26,
-    954.48,
-    957.07,
-    949.21,
-    961.93,
-    949.93,
-    986.87,
-    988.12,
-    989.42,
-    1028.61,
-    996.51,
-    998.77,
-    1004.14,
-    996.22,
-    1003.45,
-    941.23,
-    925.9,
-    920.66,
-    907.91,
-    889.81,
-    925.38,
-    826.94,
-    814.52,
-    854.62,
-    895.08,
-    878.03,
-    887.85,
-    857.87,
-    862.25,
-    918.2,
-    832.83,
-    770.51,
-    774.11,
-    829.34,
-    797.04,
-    808.24,
-    818.49,
-    803.13,
-    763.57,
-    779.91,
-    789.01
+    1140.59,
+    1114.02,
+    1042.47
    ]
   },
   {
    "symbol": "CRL",
    "name": "Charles River Laboratories",
    "sector": "Health Care",
-   "price": 335.26,
-   "final_score": 0.7834,
-   "model_score": 0.9486,
-   "news_score": 0.1237,
-   "quality_score": 0.2339,
+   "price": 314.32,
+   "final_score": 0.805,
+   "model_score": 0.9766,
+   "news_score": 0.1396,
+   "quality_score": 0.2396,
    "forecast": {
     "3m": {
-     "q10": -0.1692,
-     "q50": 0.1203,
-     "q90": 0.5753,
-     "p_beat_nifty": 0.676
+     "q10": -0.0815,
+     "q50": 0.1354,
+     "q90": 0.4345,
+     "p_beat_nifty": 0.6428
     },
     "4m": {
-     "q10": -0.2097,
-     "q50": 0.1277,
-     "q90": 0.7197,
-     "p_beat_nifty": 0.6643
+     "q10": -0.1244,
+     "q50": 0.1828,
+     "q90": 0.5456,
+     "p_beat_nifty": 0.6714
     },
     "5m": {
-     "q10": -0.1731,
-     "q50": 0.1508,
-     "q90": 0.8593,
-     "p_beat_nifty": 0.6708
+     "q10": -0.1444,
+     "q50": 0.1873,
+     "q90": 0.7669,
+     "p_beat_nifty": 0.6966
     }
    },
    "reasons": [
-    "Strong 6-month momentum (+115%, top 0% of universe)",
-    "Outperforming S&P 500 by +19% over 3 months",
-    "Price above rising 200-day average (uptrend, golden-cross alignment)",
-    "RSI 51: momentum without being overbought"
+    "Strong 6-month momentum (+96%, top 0% of universe)",
+    "Outperforming S&P 500 by +15% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
    ],
    "risk": {
-    "volatility_63d": 0.4758,
-    "max_drawdown_6m": -0.1086,
-    "beta": 1.2611
+    "volatility_63d": 0.4841,
+    "max_drawdown_6m": -0.1643,
+    "beta": 1.2559
    },
    "fundamentals": {
-    "pe": 360.2718,
-    "pb": 4.9174,
+    "pe": 341.6522,
+    "pb": 4.6632,
     "roe": 0.0127,
     "debt_to_equity": 87.075,
     "earnings_growth": 5.236,
     "revenue_growth": -0.022,
     "profit_margin": 0.0101,
-    "market_cap": 15882245120.0,
+    "market_cap": 15061419008.0,
     "yf_sector": "Healthcare"
    },
    "news": {
-    "n_articles": 33,
+    "n_articles": 30,
     "headlines": [
+     {
+      "title": "Charles River Laboratories stock drops over 4% after trading below key moving averages and mixed momentum signals",
+      "source": "Traders Union",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQVHBEWFhmbGpyNzg5THNzelZ4VTBiWUt1VHdDcHo3Z1JBWmVEaGJzQ1RpZHJXU2w3STZHQWEtWVhKU0hnV3BUMjZBQi1zVF9hQlEzVmNPYXZrOTVzYnBTSHNDQWZQb1RmVmY1RWRaX3g3ZjRpZ3RGV0FxT3B6UDdnMEJ0OXdXY2N5NDFLdkY3NjJHUkQzUmUtMThFcDE?oc=5",
+      "published": "2026-11-20T17:04:16+00:00",
+      "sentiment": -0.296
+     },
+     {
+      "title": "Charles River Stock Surges 102.3% in a Year: What's Fueling the Drive?",
+      "source": "TradingView",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxONmxQQktKR0JpVVNadTRGUk8zRDJTTUdudHg1TDZWUUdPUUF0T09GLXJ1R25ERjJwSXAzUXR1Ym1wVEtXVXhDSDl5ME4wbzdnTmFwRVBDODVzV3cySjl5aHBhelQ3YkdlNWo5ZUxkdm1OemllWmlPdlRPdGNKVDMyZldWVWxxbjQtZDU2MWxsZjNPTVBPTDhuRy1PQVowTWxITDAwaEcycUEwQ2VlY1ZUbW5vd282dGxOSDlJbmREQXY?oc=5",
+      "published": "2026-11-20T16:57:00+00:00",
+      "sentiment": 0.459
+     },
+     {
+      "title": "Did Nine Month Earnings Strength Just Shift Carel Industries' (BIT:CRL) Investment Narrative?",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNZEVRNnhwemVSNHczQ2lhd283LVFmVFUyMXRGY3paMDdHWEN1bEJWeDFsZW9ZMEpxZzFDUUxzQUcyU0ZaLW4xZEpWaEZSNTJHb2l2OXphVG1kR09HUEc2alpsekxWb2dBRWNtWHRjMVVkOXpiU1hqbmJNRmVBWG5nTHZzSFYyRW5CY01CNGQwTlkybUxwMnpQRGNjeUdvZw?oc=5",
+      "published": "2026-11-20T15:10:08+00:00",
+      "sentiment": 0.494
+     },
+     {
+      "title": "(CRL) Movement as an Input in Quant Signal Sets",
+      "source": "Stock Traders Daily",
+      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQUDFqa2FpelViQzBQNkFuakpFbkVkaTBwR1ZtT2JIdU0tRFZtdVJYVFVKRFczUXNDNlkxT3VjYTlUMlIzNVNIN0lXOTU1Mk5tWXlSRDZoMEFGVHN4cGVLUjhLZkYzRFA2VWhqTDBCVmxBVjk3VUs4NTJIRUZpLXAtYno1UjdZZjVFR1VqNVBfendHajM4RzdjLXV6UHhDeDZQMUF1RVVSNXZTeENnV0tIWWRVNjhTNXlRdmlYVnFCLTZQQnc?oc=5",
+      "published": "2026-11-18T23:54:02+00:00",
+      "sentiment": 0.0
+     },
      {
       "title": "Charles River Laboratories International (CRL) Recovers Following Cyclical Contraction",
       "source": "Yahoo Finance",
       "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNcF9iXzF5VGFHQnVnRUFmRnhsN2M5U0UyTlhxM0prb0FhMUNyWklNVF9PaEd5Z0NCVE55X3poX3lUV3V0NWduVzNOdEtIcU1EcFhLa1BmbnZYcmV2ZnBmYTJad2Y3bjBTcE9QZG1ueEVEeUFBbnRiQVdDd1h0RXJfV3diMmk1LTQ0S3pyNzRUSkJxSU83RTZGVXZPNXZLUkFwWFVycGlrRTI?oc=5",
       "published": "2026-11-18T14:01:16+00:00",
       "sentiment": 0.0
-     },
-     {
-      "title": "Should You Continue to Hold Charles River Stock in Your Portfolio?",
-      "source": "TradingView",
-      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcEl6ZEROZl8tRHI0MW1CTE0zcERXSGRHVjdVUF9BVkE1OThNYURNU2V5NzdabUg0aENsMHR6UmExYjhZb3p6bVBHQmFGX3RlWi14bGc1Mzc0Sl9ZOVh6NU10TURJQWZCU3pFcm5tTnRXTGZ6LWZVQlFpSjlZUVVuN0hKaGxJSklWMTNpVlV2WnpSYUlBMExLRXF0MG1wd1NIMG14TEZjM1VIOE5ycFB2NHZOaDBkb2FELVg2WUVn?oc=5",
-      "published": "2026-11-18T13:47:00+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "CRL Nov 2026 160.000 call (CRL261120C00160000) stock price, news, quote and history",
-      "source": "Yahoo Finance UK",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE55VUVRTFB6S0RDYThxTVU3aWx3N1lMWVctVXR0aUlINW50aHdKclB6WHJYdWhaTEpNVVVBN3BwV2tOSEU4RUU5VWVDeGgyODFHc1hOckhGOUlqOE1oaENVNjJMOEc?oc=5",
-      "published": "2026-11-17T22:17:33+00:00",
-      "sentiment": 0.0
-     },
-     {
-      "title": "Charles River Laboratories (NYSE:CRL) Share Price, Forecast & Analysis",
-      "source": "Stocks Down Under",
-      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBldF9FR2VmQVl0ODI1Q29MUV9RRHd1OEkzWHAwR0FWVFlMeFdWV2ZMOE0zNEZNTkhidldiZnlmSlRqLTlOcHh3ZEFNSXp5cDIwTEgzcHRLanJSVlRvRjR4ejNwYVI2ZzBMajVEd2tfSXg?oc=5",
-      "published": "2026-11-17T21:00:00+00:00",
-      "sentiment": 0.296
-     },
-     {
-      "title": "Charles River Laboratories International (CRL) Opens Dublin Site and South Korea Depot",
-      "source": "Yahoo Finance",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPN1hMYXI4Um5SZkJkS3FYRFJ0d2R4WThuWVdORGVPTVozc09Ld3ZEOXJKZENaMUdBM2ZFbW9qWEVYcTVJY3dOa2ltcHZLdVgtZE9HSVBGU0F0VFJZQjEyb2QtMzZBYkU1SDBIRDlGSm5Pdm40T3FoTXJjRlhOU2NQZDJWTGp5VmNfelM4aXYxS2l1ZU00ZUFDZFZfQkxBVDdwOWo2ODQtOVQ?oc=5",
-      "published": "2026-11-17T17:16:39+00:00",
-      "sentiment": 0.0
      }
     ],
     "llm": null
    },
    "chart": [
-    158.86,
-    160.3,
     156.73,
     164.49,
     181.34,
@@ -1103,1468 +879,1682 @@
     337.97,
     335.52,
     332.16,
-    335.26
+    333.25,
+    327.93,
+    314.32
+   ]
+  },
+  {
+   "symbol": "ILMN",
+   "name": "Illumina, Inc.",
+   "sector": "Health Care",
+   "price": 192.82,
+   "final_score": 0.8043,
+   "model_score": 0.9245,
+   "news_score": 0.1973,
+   "quality_score": 0.449,
+   "forecast": {
+    "3m": {
+     "q10": -0.1262,
+     "q50": 0.1282,
+     "q90": 0.439,
+     "p_beat_nifty": 0.6225
+    },
+    "4m": {
+     "q10": -0.2067,
+     "q50": 0.1695,
+     "q90": 0.599,
+     "p_beat_nifty": 0.592
+    },
+    "5m": {
+     "q10": -0.2322,
+     "q50": 0.1791,
+     "q90": 0.6816,
+     "p_beat_nifty": 0.6016
+    }
+   },
+   "reasons": [
+    "Strong 6-month momentum (+34%, top 6% of universe)",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.672,
+    "max_drawdown_6m": -0.3435,
+    "beta": 1.1211
+   },
+   "fundamentals": {
+    "pe": 33.1876,
+    "pb": 9.319,
+    "roe": 0.3239,
+    "debt_to_equity": 73.545,
+    "earnings_growth": 0.459,
+    "revenue_growth": 0.042,
+    "profit_margin": 0.1972,
+    "market_cap": 29154385920.0,
+    "yf_sector": "Healthcare"
+   },
+   "news": {
+    "n_articles": 29,
+    "headlines": [
+     {
+      "title": "Illumina Inc (ILMN) Shares Fall 3.9% -- What GF Score of 65 Tells Investors",
+      "source": "GuruFocus",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQOS1TV1JLeVB0d3AxclliZmpvLUNES1FvbFlIMDBEd2FBd3g5TC1yYjl5T3phdWZpdlNkRXRXcVliZUJZV0ozbkdxWm9BU2dnbF9taG5RQy03NWhJbWw1bV8wWXhhWmRMRXlnRWpsMTRrUVBhYzFvZFJIQmpBelduMHdLdUhYZEpibkgzR05SM3FyUWdjTTRmVjFSMU4wNVlteU9kem5ja2M4UzQ?oc=5",
+      "published": "2026-11-21T01:20:01+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "Illumina Inc. stock underperforms Friday when compared to competitors",
+      "source": "MarketWatch",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQQmcybmUzeXFlUHN5cDM2QWR1blVOaUNVYzdjQ09JaGVjLWtBdUxDSUxVbGc0RjVWZS0ybkU3RUZodXhLcHZwVFFtVEtZaE5xUWVBYzVzc1JDVjZldkJULWN3RFJYNmsyajR1UUQ4MDUtRGZNXzdGZGZoQWZMb3Z6VkIzQmU3bEdrTmo5cHlHWFJXU19FVjlsdXh0LW5lMTlYVjdKcnZrUFlYWFVjZEowc1B6bS1RT2ZDR2UyTlpqTnNMNWwyd3JF?oc=5",
+      "published": "2026-11-20T21:57:00+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Illumina (ILMN) Stock May Be A Bargain Despite Singapore Genome Win",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOUDZaUUh6TkJmNWRvTWRQU3BKaXR4MzhCVWpjOGVCYmlOU1J1OWE2eUdHcEZFLVFzQ2R0U0FSVTkyam5GeXF3MjdORVZqUG5icjRUbWxXNzk1d0p0b283WXdWbVpaeldrek40X2JMZzJVY0JIb3hudHlvOS1RcWRTODgxeHVWVDJNc0NRTGQwV0ticGJiU09ZM2padTY?oc=5",
+      "published": "2026-11-20T20:10:47+00:00",
+      "sentiment": -0.312
+     },
+     {
+      "title": "Illumina (ILMN) Wins The 2026 Virtual Cell Challenge",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNcW9iS211Tl9uaEt3NjNBQlpYcko1bWJnckcwRTh0bk5nYXFMMW9XX0ctMFZmbmhSd2R6LU50OGlHVm10VjBjTWhheG5MWl9IOHBNdWl3U0xBNnNuYmVOQTZtOGRIY3NxY1NpTVBtakRLVzhjQ0VHdVB3RlhxY3lhWlI1LXN2NFM5ZmMzRzlWTTRCVGo3TjRWdmx4Yw?oc=5",
+      "published": "2026-11-20T19:09:53+00:00",
+      "sentiment": 0.421
+     },
+     {
+      "title": "Is Illumina (ILMN) Undervalued Following Its Cybersecurity Recalls?",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNc01vdDJTeTF2X0Q4S1dVZVJNdUg4WjlOcVlXZFVEUzM3aDZLdFJQbDNzcHFidE91ZmJGeEJpZndkZXZ3VWVKZUtqU19VeDJ1Ulc2S2N2SWtnR0JKc0JZcWdXU2x4MXZlWnFwUWp6cTU2ZkFWSDFsc19ORVZ2aEJEWlpieDhPbnNwMFFWVUNyd21MUktaXzVOQk5vbGZqWnZrd3lISEpzc2ZnRnRScldB?oc=5",
+      "published": "2026-11-20T17:09:58+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    145.23,
+    150.17,
+    158.7,
+    162.96,
+    164.4,
+    162.55,
+    170.93,
+    168.06,
+    162.32,
+    158.04,
+    160.03,
+    162.47,
+    166.21,
+    160.97,
+    166.89,
+    164.28,
+    159.09,
+    161.93,
+    161.38,
+    164.93,
+    175.09,
+    177.65,
+    176.55,
+    181.1,
+    175.83,
+    183.89,
+    188.68,
+    194.33,
+    191.76,
+    187.81,
+    193.76,
+    190.2,
+    190.05,
+    191.2,
+    187.15,
+    190.25,
+    186.65,
+    184.68,
+    192.53,
+    190.87,
+    196.86,
+    194.09,
+    189.47,
+    192.98,
+    194.82,
+    205.09,
+    205.1,
+    198.16,
+    203.01,
+    199.87,
+    193.72,
+    187.96,
+    191.79,
+    192.84,
+    192.91,
+    192.64,
+    190.89,
+    193.14,
+    188.29,
+    205.0,
+    213.24,
+    219.4,
+    223.22,
+    224.99,
+    224.84,
+    227.69,
+    215.59,
+    213.63,
+    207.13,
+    213.25,
+    221.66,
+    218.22,
+    211.06,
+    205.0,
+    201.27,
+    206.45,
+    208.21,
+    222.29,
+    228.93,
+    245.18,
+    239.62,
+    238.82,
+    247.46,
+    255.38,
+    273.9,
+    270.0,
+    271.9,
+    272.0,
+    273.68,
+    265.72,
+    273.04,
+    293.69,
+    273.54,
+    267.76,
+    264.57,
+    278.17,
+    276.67,
+    271.18,
+    271.76,
+    267.93,
+    262.54,
+    262.66,
+    267.93,
+    282.86,
+    269.4,
+    269.42,
+    271.04,
+    279.47,
+    288.79,
+    290.06,
+    235.99,
+    226.58,
+    238.21,
+    226.54,
+    208.0,
+    213.13,
+    220.78,
+    214.91,
+    212.93,
+    209.55,
+    207.01,
+    198.0,
+    202.61,
+    210.01,
+    200.66,
+    192.82
    ]
   }
  ],
  "watchlist": [
   {
-   "symbol": "WDC",
-   "name": "Western Digital",
-   "final_score": 0.8518,
-   "q50_5m": 0.1696,
-   "red_flag": false
-  },
-  {
-   "symbol": "AMAT",
-   "name": "Applied Materials",
-   "final_score": 0.8389,
-   "q50_5m": 0.1722,
-   "red_flag": false
-  },
-  {
-   "symbol": "MPWR",
-   "name": "Monolithic Power Systems",
-   "final_score": 0.837,
-   "q50_5m": 0.1862,
-   "red_flag": false
-  },
-  {
-   "symbol": "HPE",
-   "name": "Hewlett Packard Enterprise",
-   "final_score": 0.836,
-   "q50_5m": 0.2241,
-   "red_flag": false
-  },
-  {
    "symbol": "TWLO",
    "name": "Twilio",
-   "final_score": 0.8343,
-   "q50_5m": 0.2028,
-   "red_flag": false
-  },
-  {
-   "symbol": "DDOG",
-   "name": "Datadog",
-   "final_score": 0.8335,
-   "q50_5m": 0.2362,
-   "red_flag": false
-  },
-  {
-   "symbol": "LRCX",
-   "name": "Lam Research",
-   "final_score": 0.831,
-   "q50_5m": 0.1431,
-   "red_flag": false
-  },
-  {
-   "symbol": "KEYS",
-   "name": "Keysight Technologies",
-   "final_score": 0.8252,
-   "q50_5m": 0.138,
-   "red_flag": false
-  },
-  {
-   "symbol": "AVGO",
-   "name": "Broadcom",
-   "final_score": 0.8239,
-   "q50_5m": 0.1505,
-   "red_flag": false
-  },
-  {
-   "symbol": "ADI",
-   "name": "Analog Devices",
-   "final_score": 0.813,
-   "q50_5m": 0.1476,
-   "red_flag": false
-  },
-  {
-   "symbol": "NTAP",
-   "name": "NetApp",
-   "final_score": 0.8,
-   "q50_5m": 0.1165,
+   "final_score": 0.8553,
+   "q50_5m": 0.1844,
    "red_flag": false
   },
   {
    "symbol": "TXN",
    "name": "Texas Instruments",
-   "final_score": 0.7984,
-   "q50_5m": 0.128,
+   "final_score": 0.8474,
+   "q50_5m": 0.1676,
    "red_flag": false
   },
   {
-   "symbol": "KLAC",
-   "name": "KLA Corporation",
-   "final_score": 0.7982,
-   "q50_5m": 0.1595,
-   "red_flag": false
-  },
-  {
-   "symbol": "ON",
-   "name": "ON Semiconductor",
-   "final_score": 0.7936,
-   "q50_5m": 0.1782,
+   "symbol": "KEYS",
+   "name": "Keysight Technologies",
+   "final_score": 0.834,
+   "q50_5m": 0.1533,
    "red_flag": false
   },
   {
    "symbol": "FTNT",
    "name": "Fortinet",
-   "final_score": 0.7926,
-   "q50_5m": 0.1566,
+   "final_score": 0.8305,
+   "q50_5m": 0.1743,
    "red_flag": false
   },
   {
-   "symbol": "CRWD",
-   "name": "CrowdStrike",
-   "final_score": 0.7849,
-   "q50_5m": 0.2473,
+   "symbol": "ANET",
+   "name": "Arista Networks",
+   "final_score": 0.8286,
+   "q50_5m": 0.1486,
+   "red_flag": false
+  },
+  {
+   "symbol": "PANW",
+   "name": "Palo Alto Networks",
+   "final_score": 0.8234,
+   "q50_5m": 0.2356,
+   "red_flag": false
+  },
+  {
+   "symbol": "DDOG",
+   "name": "Datadog",
+   "final_score": 0.8121,
+   "q50_5m": 0.1756,
+   "red_flag": false
+  },
+  {
+   "symbol": "MPWR",
+   "name": "Monolithic Power Systems",
+   "final_score": 0.8117,
+   "q50_5m": 0.1246,
+   "red_flag": false
+  },
+  {
+   "symbol": "ADI",
+   "name": "Analog Devices",
+   "final_score": 0.8082,
+   "q50_5m": 0.1452,
+   "red_flag": false
+  },
+  {
+   "symbol": "GNRC",
+   "name": "Generac",
+   "final_score": 0.8021,
+   "q50_5m": 0.1395,
+   "red_flag": false
+  },
+  {
+   "symbol": "VEEV",
+   "name": "Veeva Systems",
+   "final_score": 0.7967,
+   "q50_5m": 0.1434,
+   "red_flag": false
+  },
+  {
+   "symbol": "JBL",
+   "name": "Jabil",
+   "final_score": 0.7929,
+   "q50_5m": 0.1285,
+   "red_flag": false
+  },
+  {
+   "symbol": "FCX",
+   "name": "Freeport-McMoRan",
+   "final_score": 0.7855,
+   "q50_5m": 0.1345,
+   "red_flag": false
+  },
+  {
+   "symbol": "ZBRA",
+   "name": "Zebra Technologies",
+   "final_score": 0.7775,
+   "q50_5m": 0.0984,
+   "red_flag": false
+  },
+  {
+   "symbol": "RVTY",
+   "name": "Revvity",
+   "final_score": 0.769,
+   "q50_5m": 0.1044,
    "red_flag": false
   }
  ],
  "backtest": {
   "horizon": "5m",
-  "period_start": "2021-06-28",
-  "period_end": "2026-06-22",
+  "period_start": "2021-06-30",
+  "period_end": "2026-06-24",
   "n_weeks": 251,
-  "avg_pick_return": 0.20123836433173833,
-  "avg_pick_excess": 0.15190061900749813,
-  "avg_universe_return": 0.05679317954600449,
-  "avg_benchmark_return": 0.04933774532424019,
-  "pick_hit_rate": 0.6262948207171314,
-  "pick_beat_benchmark_rate": 0.5553784860557768,
-  "weeks_top5_beat_benchmark": 0.7091633466135459,
-  "mean_ic": 0.021854159728632073,
-  "ic_t_stat": 0.5519161871465867,
-  "q10_q90_coverage": 0.8025463571804313,
-  "chained_cagr_picks": 0.3141250167199423,
-  "chained_cagr_benchmark": 0.11828635186026126,
+  "avg_pick_return": 0.19177420162636444,
+  "avg_pick_excess": 0.14279351540534177,
+  "avg_universe_return": 0.0567317755642295,
+  "avg_benchmark_return": 0.04898068622102264,
+  "pick_hit_rate": 0.6119521912350597,
+  "pick_beat_benchmark_rate": 0.5418326693227091,
+  "weeks_top5_beat_benchmark": 0.7051792828685259,
+  "mean_ic": 0.02816877351263008,
+  "ic_t_stat": 0.6511602255810214,
+  "q10_q90_coverage": 0.8038259811578238,
+  "chained_cagr_picks": 0.36249634320650204,
+  "chained_cagr_benchmark": 0.11911061578588611,
   "decile_excess": {
-   "0": 0.005800388254150195,
-   "1": -0.0053189439093695385,
-   "2": -0.0023802526110546793,
-   "3": -0.0005368808739657627,
-   "4": -0.002019736542556978,
-   "5": -0.0007085969898429297,
-   "6": 0.004808365453610898,
-   "7": 0.009552477140079353,
-   "8": 0.014148890148179239,
-   "9": 0.05067709520286727
+   "0": 0.006166829042759251,
+   "1": -0.0073567007291585615,
+   "2": -0.0013781502212526196,
+   "3": -0.0017854873461475398,
+   "4": -0.004849209197120088,
+   "5": 0.0007821128953602458,
+   "6": 0.0056636160227310425,
+   "7": 0.0063443736811502425,
+   "8": 0.01699179244846269,
+   "9": 0.05633341880285002
   },
   "verdict_stats": {
    "strong_hold": {
-    "avg_return": 0.09402660932139977,
-    "avg_excess": 0.040134558864056626,
-    "share_positive": 0.6185700802265219,
-    "share": 0.13933456075749606
+    "avg_return": 0.09379778923419818,
+    "avg_excess": 0.04164190810836948,
+    "share_positive": 0.6187218721872187,
+    "share": 0.1370003781588596
    },
    "hold": {
-    "avg_return": 0.053596021806063834,
-    "avg_excess": 0.005892448673349041,
-    "share_positive": 0.5913280062748174,
-    "share": 0.3353333771699106
+    "avg_return": 0.05331841797925061,
+    "avg_excess": 0.00589576531494905,
+    "share_positive": 0.5893169452001554,
+    "share": 0.33843573765640156
    },
    "review": {
-    "avg_return": 0.049070187573963905,
-    "avg_excess": -0.002126115332380361,
-    "share_positive": 0.585313628348308,
-    "share": 0.3915373487638085
+    "avg_return": 0.050386139326554585,
+    "avg_excess": -0.0012984162121494637,
+    "share_positive": 0.590116156282999,
+    "share": 0.38925700004932506
    },
    "exit": {
-    "avg_return": 0.050445158663845725,
-    "avg_excess": 0.005276617957849837,
-    "share_positive": 0.5759921366261211,
-    "share": 0.13379471330878484
+    "avg_return": 0.047752027820970155,
+    "avg_excess": 0.003976489904498352,
+    "share_positive": 0.566012515948721,
+    "share": 0.13530688413541375
    }
   },
   "trend_check": {
    "top5": {
     "downtrend": {
-     "n": 407,
-     "avg_excess": -0.02795075885395112,
-     "avg_return": -0.007734594808243573,
-     "share_positive": 0.4742014742014742,
-     "p10_return": -0.3493324971909787
+     "n": 417,
+     "avg_excess": -0.00373961723220154,
+     "avg_return": 0.018390518170415444,
+     "share_positive": 0.4988009592326139,
+     "p10_return": -0.3324342931533569
     },
     "no_downtrend": {
-     "n": 848,
-     "avg_excess": 0.17448163499402222,
-     "avg_return": 0.23779636567246376,
-     "share_positive": 0.6108490566037735,
-     "p10_return": -0.26109901334734426
+     "n": 838,
+     "avg_excess": 0.17886098128582045,
+     "avg_return": 0.24120286045585884,
+     "share_positive": 0.6097852028639618,
+     "p10_return": -0.25665126750022316
     }
    },
    "high_score": {
     "downtrend": {
-     "n": 7995,
-     "avg_excess": -0.0006022394312444663,
-     "avg_return": 0.04288074550769577,
-     "share_positive": 0.5789868667917448,
-     "p10_return": -0.21401665673684953
+     "n": 7814,
+     "avg_excess": 0.0026695555235244127,
+     "avg_return": 0.05055166429709592,
+     "share_positive": 0.5842078320962375,
+     "p10_return": -0.21215015841164347
     },
     "no_downtrend": {
-     "n": 23808,
-     "avg_excess": 0.03709671995924228,
-     "avg_return": 0.08840875294860291,
-     "share_positive": 0.6118531586021505,
-     "p10_return": -0.17315587096981624
+     "n": 23698,
+     "avg_excess": 0.040306555273412654,
+     "avg_return": 0.08902400306610803,
+     "share_positive": 0.6096717022533548,
+     "p10_return": -0.17762620666436205
     }
    }
   },
   "weekly": [
    {
-    "date": "2021-06-28",
-    "pick_ret": 0.0574,
-    "bench_ret": 0.0958
+    "date": "2021-06-30",
+    "pick_ret": 0.01,
+    "bench_ret": 0.0833
    },
    {
-    "date": "2021-07-06",
-    "pick_ret": 0.0329,
-    "bench_ret": 0.0538
-   },
-   {
-    "date": "2021-07-13",
-    "pick_ret": 0.0422,
-    "bench_ret": 0.0683
-   },
-   {
-    "date": "2021-07-20",
-    "pick_ret": 0.0378,
-    "bench_ret": 0.0799
-   },
-   {
-    "date": "2021-07-27",
-    "pick_ret": 0.2958,
-    "bench_ret": 0.0737
-   },
-   {
-    "date": "2021-08-03",
-    "pick_ret": 0.0691,
-    "bench_ret": 0.0776
-   },
-   {
-    "date": "2021-08-10",
-    "pick_ret": -0.1389,
-    "bench_ret": 0.0542
-   },
-   {
-    "date": "2021-08-17",
-    "pick_ret": 0.2919,
-    "bench_ret": 0.0483
-   },
-   {
-    "date": "2021-08-24",
-    "pick_ret": 0.0976,
-    "bench_ret": -0.017
-   },
-   {
-    "date": "2021-08-31",
-    "pick_ret": 0.0156,
-    "bench_ret": -0.0016
-   },
-   {
-    "date": "2021-09-08",
-    "pick_ret": 0.0678,
-    "bench_ret": -0.0067
-   },
-   {
-    "date": "2021-09-15",
-    "pick_ret": 0.0728,
-    "bench_ret": -0.0176
-   },
-   {
-    "date": "2021-09-22",
-    "pick_ret": 0.0642,
-    "bench_ret": -0.0207
-   },
-   {
-    "date": "2021-09-29",
-    "pick_ret": -0.08,
-    "bench_ret": -0.0122
-   },
-   {
-    "date": "2021-10-06",
-    "pick_ret": -0.0708,
-    "bench_ret": -0.0442
-   },
-   {
-    "date": "2021-10-13",
-    "pick_ret": -0.1101,
-    "bench_ret": -0.0232
-   },
-   {
-    "date": "2021-10-20",
-    "pick_ret": 0.0246,
-    "bench_ret": -0.0054
-   },
-   {
-    "date": "2021-10-27",
-    "pick_ret": 0.0542,
-    "bench_ret": 0.0176
-   },
-   {
-    "date": "2021-11-03",
-    "pick_ret": -0.0494,
-    "bench_ret": -0.0291
-   },
-   {
-    "date": "2021-11-10",
-    "pick_ret": 0.073,
-    "bench_ret": -0.0536
-   },
-   {
-    "date": "2021-11-17",
-    "pick_ret": -0.076,
-    "bench_ret": -0.0489
-   },
-   {
-    "date": "2021-11-24",
-    "pick_ret": -0.1047,
-    "bench_ret": -0.1101
-   },
-   {
-    "date": "2021-12-02",
-    "pick_ret": -0.0948,
-    "bench_ret": -0.0605
-   },
-   {
-    "date": "2021-12-09",
-    "pick_ret": -0.32,
-    "bench_ret": -0.1569
-   },
-   {
-    "date": "2021-12-16",
-    "pick_ret": -0.2078,
-    "bench_ret": -0.1596
-   },
-   {
-    "date": "2021-12-23",
-    "pick_ret": -0.1771,
-    "bench_ret": -0.1581
-   },
-   {
-    "date": "2021-12-31",
-    "pick_ret": -0.2309,
-    "bench_ret": -0.1237
-   },
-   {
-    "date": "2022-01-07",
-    "pick_ret": -0.1075,
-    "bench_ret": -0.1409
-   },
-   {
-    "date": "2022-01-14",
-    "pick_ret": -0.2145,
-    "bench_ret": -0.2136
-   },
-   {
-    "date": "2022-01-24",
-    "pick_ret": -0.0573,
-    "bench_ret": -0.113
-   },
-   {
-    "date": "2022-01-31",
-    "pick_ret": -0.0702,
-    "bench_ret": -0.1529
-   },
-   {
-    "date": "2022-02-07",
-    "pick_ret": -0.0281,
-    "bench_ret": -0.1404
-   },
-   {
-    "date": "2022-02-14",
-    "pick_ret": -0.0696,
-    "bench_ret": -0.1297
-   },
-   {
-    "date": "2022-02-22",
-    "pick_ret": -0.1192,
-    "bench_ret": -0.0785
-   },
-   {
-    "date": "2022-03-01",
-    "pick_ret": -0.0791,
-    "bench_ret": -0.0436
-   },
-   {
-    "date": "2022-03-08",
-    "pick_ret": -0.1555,
-    "bench_ret": -0.0073
-   },
-   {
-    "date": "2022-03-15",
-    "pick_ret": 0.0629,
-    "bench_ret": 0.0081
-   },
-   {
-    "date": "2022-03-22",
-    "pick_ret": 0.0832,
-    "bench_ret": -0.0828
-   },
-   {
-    "date": "2022-03-29",
-    "pick_ret": 0.1225,
-    "bench_ret": -0.1298
-   },
-   {
-    "date": "2022-04-05",
-    "pick_ret": -0.0786,
-    "bench_ret": -0.1363
-   },
-   {
-    "date": "2022-04-12",
-    "pick_ret": -0.088,
-    "bench_ret": -0.1057
-   },
-   {
-    "date": "2022-04-20",
-    "pick_ret": -0.1109,
-    "bench_ret": -0.1353
-   },
-   {
-    "date": "2022-04-27",
-    "pick_ret": -0.0717,
-    "bench_ret": -0.1283
-   },
-   {
-    "date": "2022-05-04",
-    "pick_ret": -0.0159,
-    "bench_ret": -0.1184
-   },
-   {
-    "date": "2022-05-11",
-    "pick_ret": 0.1046,
-    "bench_ret": -0.088
-   },
-   {
-    "date": "2022-05-18",
-    "pick_ret": 0.0656,
-    "bench_ret": -0.0519
-   },
-   {
-    "date": "2022-05-25",
-    "pick_ret": 0.0595,
-    "bench_ret": -0.0301
-   },
-   {
-    "date": "2022-06-02",
-    "pick_ret": 0.0806,
-    "bench_ret": -0.0768
-   },
-   {
-    "date": "2022-06-09",
-    "pick_ret": 0.155,
-    "bench_ret": -0.0472
-   },
-   {
-    "date": "2022-06-16",
-    "pick_ret": 0.33,
-    "bench_ret": 0.0886
-   },
-   {
-    "date": "2022-06-24",
-    "pick_ret": 0.3419,
-    "bench_ret": 0.0235
-   },
-   {
-    "date": "2022-07-01",
-    "pick_ret": 0.3727,
-    "bench_ret": 0.0666
-   },
-   {
-    "date": "2022-07-11",
-    "pick_ret": 0.2569,
-    "bench_ret": 0.0206
-   },
-   {
-    "date": "2022-07-18",
-    "pick_ret": 0.3198,
-    "bench_ret": 0.0429
-   },
-   {
-    "date": "2022-07-25",
-    "pick_ret": 0.2149,
-    "bench_ret": -0.0223
-   },
-   {
-    "date": "2022-08-01",
-    "pick_ret": 0.1119,
-    "bench_ret": -0.0654
-   },
-   {
-    "date": "2022-08-08",
-    "pick_ret": 0.2013,
-    "bench_ret": -0.0592
-   },
-   {
-    "date": "2022-08-15",
-    "pick_ret": 0.2218,
-    "bench_ret": -0.0694
-   },
-   {
-    "date": "2022-08-22",
-    "pick_ret": 0.2384,
-    "bench_ret": -0.0286
-   },
-   {
-    "date": "2022-08-29",
-    "pick_ret": 0.1857,
-    "bench_ret": -0.0032
-   },
-   {
-    "date": "2022-09-06",
-    "pick_ret": 0.2415,
-    "bench_ret": 0.0519
-   },
-   {
-    "date": "2022-09-13",
-    "pick_ret": 0.3009,
-    "bench_ret": 0.052
-   },
-   {
-    "date": "2022-09-20",
-    "pick_ret": 0.1911,
-    "bench_ret": 0.0367
-   },
-   {
-    "date": "2022-09-27",
-    "pick_ret": 0.3668,
-    "bench_ret": 0.0885
-   },
-   {
-    "date": "2022-10-04",
-    "pick_ret": 0.3237,
-    "bench_ret": 0.0516
-   },
-   {
-    "date": "2022-10-11",
-    "pick_ret": 0.3048,
-    "bench_ret": 0.0921
-   },
-   {
-    "date": "2022-10-18",
-    "pick_ret": 0.3439,
-    "bench_ret": 0.076
-   },
-   {
-    "date": "2022-10-25",
-    "pick_ret": 0.2184,
-    "bench_ret": 0.0291
-   },
-   {
-    "date": "2022-11-01",
-    "pick_ret": 0.2126,
-    "bench_ret": 0.0634
-   },
-   {
-    "date": "2022-11-08",
-    "pick_ret": 0.1284,
-    "bench_ret": 0.0689
-   },
-   {
-    "date": "2022-11-15",
-    "pick_ret": 0.0002,
-    "bench_ret": 0.0408
-   },
-   {
-    "date": "2022-11-22",
-    "pick_ret": 0.0214,
-    "bench_ret": 0.0131
-   },
-   {
-    "date": "2022-11-30",
-    "pick_ret": 0.0214,
-    "bench_ret": 0.0026
-   },
-   {
-    "date": "2022-12-07",
-    "pick_ret": 0.1869,
-    "bench_ret": 0.0518
-   },
-   {
-    "date": "2022-12-14",
-    "pick_ret": -0.0197,
-    "bench_ret": 0.0409
-   },
-   {
-    "date": "2022-12-21",
-    "pick_ret": 0.2058,
-    "bench_ret": 0.0611
-   },
-   {
-    "date": "2022-12-29",
-    "pick_ret": 0.5352,
-    "bench_ret": 0.0966
-   },
-   {
-    "date": "2023-01-06",
-    "pick_ret": 0.7099,
-    "bench_ret": 0.1024
-   },
-   {
-    "date": "2023-01-13",
-    "pick_ret": 0.4305,
-    "bench_ret": 0.1067
-   },
-   {
-    "date": "2023-01-23",
-    "pick_ret": 0.3832,
-    "bench_ret": 0.0817
-   },
-   {
-    "date": "2023-01-30",
-    "pick_ret": 0.8286,
-    "bench_ret": 0.1077
-   },
-   {
-    "date": "2023-02-06",
-    "pick_ret": 0.4265,
-    "bench_ret": 0.0726
-   },
-   {
-    "date": "2023-02-13",
-    "pick_ret": 0.3168,
-    "bench_ret": 0.0932
-   },
-   {
-    "date": "2023-02-21",
-    "pick_ret": 0.3804,
-    "bench_ret": 0.1394
-   },
-   {
-    "date": "2023-02-28",
-    "pick_ret": 0.3255,
-    "bench_ret": 0.1559
-   },
-   {
-    "date": "2023-03-07",
-    "pick_ret": 0.9573,
-    "bench_ret": 0.1335
-   },
-   {
-    "date": "2023-03-14",
-    "pick_ret": 0.7039,
-    "bench_ret": 0.1455
-   },
-   {
-    "date": "2023-03-21",
-    "pick_ret": 0.6711,
-    "bench_ret": 0.0992
-   },
-   {
-    "date": "2023-03-28",
-    "pick_ret": 0.4648,
-    "bench_ret": 0.1163
-   },
-   {
-    "date": "2023-04-04",
-    "pick_ret": 0.4184,
-    "bench_ret": 0.0966
-   },
-   {
-    "date": "2023-04-12",
-    "pick_ret": 0.4081,
-    "bench_ret": 0.0904
-   },
-   {
-    "date": "2023-04-19",
-    "pick_ret": 0.7383,
-    "bench_ret": 0.0697
-   },
-   {
-    "date": "2023-04-26",
-    "pick_ret": 0.7441,
-    "bench_ret": 0.0536
-   },
-   {
-    "date": "2023-05-03",
-    "pick_ret": 0.1554,
-    "bench_ret": 0.0339
-   },
-   {
-    "date": "2023-05-10",
-    "pick_ret": 0.6369,
-    "bench_ret": 0.0533
-   },
-   {
-    "date": "2023-05-17",
-    "pick_ret": 0.183,
-    "bench_ret": 0.0516
-   },
-   {
-    "date": "2023-05-24",
-    "pick_ret": 0.3845,
-    "bench_ret": 0.0322
-   },
-   {
-    "date": "2023-06-01",
-    "pick_ret": 0.0131,
-    "bench_ret": -0.0064
-   },
-   {
-    "date": "2023-06-08",
-    "pick_ret": 0.0489,
-    "bench_ret": 0.0197
-   },
-   {
-    "date": "2023-06-15",
-    "pick_ret": 0.0254,
-    "bench_ret": 0.0158
-   },
-   {
-    "date": "2023-06-23",
-    "pick_ret": 0.0569,
-    "bench_ret": 0.0437
-   },
-   {
-    "date": "2023-06-30",
-    "pick_ret": 0.0166,
-    "bench_ret": 0.0225
-   },
-   {
-    "date": "2023-07-10",
-    "pick_ret": 0.1295,
-    "bench_ret": 0.0317
-   },
-   {
-    "date": "2023-07-17",
-    "pick_ret": 0.0295,
-    "bench_ret": 0.0407
-   },
-   {
-    "date": "2023-07-24",
-    "pick_ret": 0.0935,
-    "bench_ret": 0.0316
-   },
-   {
-    "date": "2023-07-31",
-    "pick_ret": 0.0318,
-    "bench_ret": 0.0424
-   },
-   {
-    "date": "2023-08-07",
-    "pick_ret": 0.0506,
-    "bench_ret": 0.0396
-   },
-   {
-    "date": "2023-08-14",
-    "pick_ret": 0.0037,
-    "bench_ret": 0.0655
-   },
-   {
-    "date": "2023-08-21",
-    "pick_ret": 0.047,
-    "bench_ret": 0.1024
-   },
-   {
-    "date": "2023-08-28",
-    "pick_ret": 0.0869,
-    "bench_ret": 0.1116
-   },
-   {
-    "date": "2023-09-05",
-    "pick_ret": 0.098,
-    "bench_ret": 0.0992
-   },
-   {
-    "date": "2023-09-12",
-    "pick_ret": 0.5674,
-    "bench_ret": 0.1255
-   },
-   {
-    "date": "2023-09-19",
-    "pick_ret": 0.1998,
-    "bench_ret": 0.1196
-   },
-   {
-    "date": "2023-09-26",
-    "pick_ret": 0.29,
-    "bench_ret": 0.1883
-   },
-   {
-    "date": "2023-10-03",
-    "pick_ret": 0.2824,
-    "bench_ret": 0.2008
-   },
-   {
-    "date": "2023-10-10",
-    "pick_ret": 0.2427,
-    "bench_ret": 0.1875
-   },
-   {
-    "date": "2023-10-17",
-    "pick_ret": 0.1593,
-    "bench_ret": 0.1841
-   },
-   {
-    "date": "2023-10-24",
-    "pick_ret": 0.1533,
-    "bench_ret": 0.225
-   },
-   {
-    "date": "2023-10-31",
-    "pick_ret": 0.2946,
-    "bench_ret": 0.2427
-   },
-   {
-    "date": "2023-11-07",
-    "pick_ret": 0.1171,
-    "bench_ret": 0.1787
-   },
-   {
-    "date": "2023-11-14",
-    "pick_ret": -0.0412,
-    "bench_ret": 0.1171
-   },
-   {
-    "date": "2023-11-21",
-    "pick_ret": 0.0432,
-    "bench_ret": 0.1175
-   },
-   {
-    "date": "2023-11-29",
-    "pick_ret": 0.0184,
-    "bench_ret": 0.1028
-   },
-   {
-    "date": "2023-12-06",
-    "pick_ret": 0.1305,
-    "bench_ret": 0.1403
-   },
-   {
-    "date": "2023-12-13",
-    "pick_ret": 0.3362,
-    "bench_ret": 0.1277
-   },
-   {
-    "date": "2023-12-20",
-    "pick_ret": 0.0401,
-    "bench_ret": 0.1295
-   },
-   {
-    "date": "2023-12-28",
-    "pick_ret": 0.141,
-    "bench_ret": 0.0945
-   },
-   {
-    "date": "2024-01-05",
-    "pick_ret": 0.4594,
-    "bench_ret": 0.1396
-   },
-   {
-    "date": "2024-01-12",
-    "pick_ret": -0.0099,
-    "bench_ret": 0.1359
-   },
-   {
-    "date": "2024-01-22",
-    "pick_ret": 0.1052,
-    "bench_ret": 0.1266
-   },
-   {
-    "date": "2024-01-29",
-    "pick_ret": 0.3952,
-    "bench_ret": 0.1081
-   },
-   {
-    "date": "2024-02-05",
-    "pick_ret": 0.2011,
-    "bench_ret": 0.1275
-   },
-   {
-    "date": "2024-02-12",
-    "pick_ret": 0.384,
-    "bench_ret": 0.1213
-   },
-   {
-    "date": "2024-02-20",
-    "pick_ret": 0.2693,
-    "bench_ret": 0.1184
-   },
-   {
-    "date": "2024-02-27",
-    "pick_ret": 0.2326,
-    "bench_ret": 0.0759
-   },
-   {
-    "date": "2024-03-05",
-    "pick_ret": 0.0904,
-    "bench_ret": 0.0212
-   },
-   {
-    "date": "2024-03-12",
-    "pick_ret": 0.0139,
-    "bench_ret": 0.0327
-   },
-   {
-    "date": "2024-03-19",
-    "pick_ret": 0.0093,
-    "bench_ret": 0.083
-   },
-   {
-    "date": "2024-03-26",
-    "pick_ret": -0.0132,
-    "bench_ret": 0.0794
-   },
-   {
-    "date": "2024-04-03",
-    "pick_ret": -0.0807,
-    "bench_ret": 0.0609
-   },
-   {
-    "date": "2024-04-10",
-    "pick_ret": -0.0941,
-    "bench_ret": 0.0649
-   },
-   {
-    "date": "2024-04-17",
-    "pick_ret": 0.1099,
-    "bench_ret": 0.1219
-   },
-   {
-    "date": "2024-04-24",
-    "pick_ret": 0.0812,
-    "bench_ret": 0.1304
-   },
-   {
-    "date": "2024-05-01",
-    "pick_ret": 0.3978,
-    "bench_ret": 0.1376
-   },
-   {
-    "date": "2024-05-08",
-    "pick_ret": 0.1291,
-    "bench_ret": 0.1086
-   },
-   {
-    "date": "2024-05-15",
-    "pick_ret": 0.1963,
-    "bench_ret": 0.0955
-   },
-   {
-    "date": "2024-05-22",
-    "pick_ret": 0.267,
-    "bench_ret": 0.1025
-   },
-   {
-    "date": "2024-05-30",
-    "pick_ret": 0.1761,
-    "bench_ret": 0.1141
-   },
-   {
-    "date": "2024-06-06",
-    "pick_ret": 0.1767,
-    "bench_ret": 0.0803
-   },
-   {
-    "date": "2024-06-13",
-    "pick_ret": 0.1441,
-    "bench_ret": 0.1013
-   },
-   {
-    "date": "2024-06-21",
-    "pick_ret": 0.1445,
-    "bench_ret": 0.0828
-   },
-   {
-    "date": "2024-06-28",
-    "pick_ret": 0.2034,
-    "bench_ret": 0.1028
-   },
-   {
-    "date": "2024-07-08",
-    "pick_ret": 0.1431,
-    "bench_ret": 0.0922
-   },
-   {
-    "date": "2024-07-15",
-    "pick_ret": 0.0734,
-    "bench_ret": 0.0804
-   },
-   {
-    "date": "2024-07-22",
-    "pick_ret": 0.0808,
-    "bench_ret": 0.0553
-   },
-   {
-    "date": "2024-07-29",
-    "pick_ret": 0.2644,
-    "bench_ret": 0.1051
-   },
-   {
-    "date": "2024-08-05",
-    "pick_ret": 1.4966,
-    "bench_ret": 0.1458
-   },
-   {
-    "date": "2024-08-12",
-    "pick_ret": 0.2885,
-    "bench_ret": 0.092
-   },
-   {
-    "date": "2024-08-19",
-    "pick_ret": 0.1523,
-    "bench_ret": 0.0786
-   },
-   {
-    "date": "2024-08-26",
-    "pick_ret": 0.2209,
-    "bench_ret": 0.0803
-   },
-   {
-    "date": "2024-09-03",
-    "pick_ret": 0.2367,
-    "bench_ret": 0.0921
-   },
-   {
-    "date": "2024-09-10",
-    "pick_ret": -0.0895,
-    "bench_ret": 0.1043
-   },
-   {
-    "date": "2024-09-17",
-    "pick_ret": 0.0595,
-    "bench_ret": 0.0904
-   },
-   {
-    "date": "2024-09-24",
-    "pick_ret": 0.1135,
-    "bench_ret": 0.0389
-   },
-   {
-    "date": "2024-10-01",
-    "pick_ret": 0.0819,
-    "bench_ret": 0.0235
-   },
-   {
-    "date": "2024-10-08",
-    "pick_ret": 0.0521,
-    "bench_ret": -0.0264
-   },
-   {
-    "date": "2024-10-15",
-    "pick_ret": 0.0616,
-    "bench_ret": -0.0241
-   },
-   {
-    "date": "2024-10-22",
-    "pick_ret": 0.0791,
-    "bench_ret": -0.0238
-   },
-   {
-    "date": "2024-10-29",
-    "pick_ret": -0.0085,
-    "bench_ret": -0.0278
-   },
-   {
-    "date": "2024-11-05",
-    "pick_ret": -0.0254,
-    "bench_ret": -0.0564
-   },
-   {
-    "date": "2024-11-12",
-    "pick_ret": 0.034,
-    "bench_ret": -0.1184
-   },
-   {
-    "date": "2024-11-19",
-    "pick_ret": 0.0123,
-    "bench_ret": -0.073
-   },
-   {
-    "date": "2024-11-26",
-    "pick_ret": -0.0598,
-    "bench_ret": -0.0693
-   },
-   {
-    "date": "2024-12-04",
-    "pick_ret": -0.029,
-    "bench_ret": -0.0694
-   },
-   {
-    "date": "2024-12-11",
-    "pick_ret": -0.0047,
-    "bench_ret": -0.0275
-   },
-   {
-    "date": "2024-12-18",
-    "pick_ret": 0.1509,
-    "bench_ret": -0.0051
-   },
-   {
-    "date": "2024-12-26",
-    "pick_ret": 0.0532,
-    "bench_ret": -0.0209
-   },
-   {
-    "date": "2025-01-03",
-    "pick_ret": 0.1216,
-    "bench_ret": 0.0097
-   },
-   {
-    "date": "2025-01-13",
-    "pick_ret": 0.2325,
-    "bench_ret": 0.0241
-   },
-   {
-    "date": "2025-01-21",
-    "pick_ret": 0.0842,
-    "bench_ret": -0.004
-   },
-   {
-    "date": "2025-01-28",
-    "pick_ret": 0.04,
-    "bench_ret": 0.0226
-   },
-   {
-    "date": "2025-02-04",
-    "pick_ret": 0.072,
-    "bench_ret": 0.0311
-   },
-   {
-    "date": "2025-02-11",
-    "pick_ret": 0.2538,
-    "bench_ret": 0.0289
-   },
-   {
-    "date": "2025-02-19",
-    "pick_ret": 0.2541,
-    "bench_ret": 0.0269
-   },
-   {
-    "date": "2025-02-26",
-    "pick_ret": 0.3254,
-    "bench_ret": 0.0696
-   },
-   {
-    "date": "2025-03-05",
-    "pick_ret": 0.4051,
-    "bench_ret": 0.0781
-   },
-   {
-    "date": "2025-03-12",
-    "pick_ret": 0.0652,
-    "bench_ret": 0.1512
-   },
-   {
-    "date": "2025-03-19",
-    "pick_ret": 0.0155,
-    "bench_ret": 0.1297
-   },
-   {
-    "date": "2025-03-26",
-    "pick_ret": 0.207,
-    "bench_ret": 0.132
-   },
-   {
-    "date": "2025-04-02",
-    "pick_ret": 0.3323,
-    "bench_ret": 0.1371
-   },
-   {
-    "date": "2025-04-09",
-    "pick_ret": 0.5976,
-    "bench_ret": 0.197
-   },
-   {
-    "date": "2025-04-16",
-    "pick_ret": 0.6432,
-    "bench_ret": 0.2511
-   },
-   {
-    "date": "2025-04-24",
-    "pick_ret": 0.5744,
-    "bench_ret": 0.2103
-   },
-   {
-    "date": "2025-05-01",
-    "pick_ret": 1.041,
-    "bench_ret": 0.1975
-   },
-   {
-    "date": "2025-05-08",
-    "pick_ret": 0.8478,
-    "bench_ret": 0.1924
-   },
-   {
-    "date": "2025-05-15",
-    "pick_ret": 1.386,
-    "bench_ret": 0.1275
-   },
-   {
-    "date": "2025-05-22",
-    "pick_ret": 0.7438,
-    "bench_ret": 0.1468
-   },
-   {
-    "date": "2025-05-30",
-    "pick_ret": 1.4188,
-    "bench_ret": 0.1656
-   },
-   {
-    "date": "2025-06-06",
-    "pick_ret": 1.2223,
-    "bench_ret": 0.1326
-   },
-   {
-    "date": "2025-06-13",
-    "pick_ret": 1.1398,
-    "bench_ret": 0.1462
-   },
-   {
-    "date": "2025-06-23",
-    "pick_ret": 0.9375,
-    "bench_ret": 0.1024
-   },
-   {
-    "date": "2025-06-30",
-    "pick_ret": 0.873,
-    "bench_ret": 0.0979
-   },
-   {
-    "date": "2025-07-08",
-    "pick_ret": 0.56,
-    "bench_ret": 0.1015
-   },
-   {
-    "date": "2025-07-15",
-    "pick_ret": 0.3832,
-    "bench_ret": 0.1053
-   },
-   {
-    "date": "2025-07-22",
-    "pick_ret": 0.5644,
-    "bench_ret": 0.0737
-   },
-   {
-    "date": "2025-07-29",
-    "pick_ret": 0.2618,
-    "bench_ret": 0.0878
-   },
-   {
-    "date": "2025-08-05",
-    "pick_ret": -0.0475,
-    "bench_ret": 0.0957
-   },
-   {
-    "date": "2025-08-12",
-    "pick_ret": 0.0368,
-    "bench_ret": 0.0825
-   },
-   {
-    "date": "2025-08-19",
-    "pick_ret": 0.0733,
-    "bench_ret": 0.0601
-   },
-   {
-    "date": "2025-08-26",
-    "pick_ret": 0.2291,
-    "bench_ret": 0.0793
-   },
-   {
-    "date": "2025-09-03",
-    "pick_ret": -0.0152,
-    "bench_ret": 0.0728
-   },
-   {
-    "date": "2025-09-10",
-    "pick_ret": -0.1583,
+    "date": "2021-07-08",
+    "pick_ret": 0.092,
     "bench_ret": 0.0627
    },
    {
-    "date": "2025-09-17",
-    "pick_ret": -0.2615,
-    "bench_ret": 0.0426
+    "date": "2021-07-15",
+    "pick_ret": 0.2308,
+    "bench_ret": 0.0709
    },
    {
-    "date": "2025-09-24",
-    "pick_ret": -0.2077,
+    "date": "2021-07-22",
+    "pick_ret": -0.0261,
+    "bench_ret": 0.0459
+   },
+   {
+    "date": "2021-07-29",
+    "pick_ret": 0.0043,
+    "bench_ret": 0.0831
+   },
+   {
+    "date": "2021-08-05",
+    "pick_ret": 0.0638,
+    "bench_ret": 0.0823
+   },
+   {
+    "date": "2021-08-12",
+    "pick_ret": 0.1929,
+    "bench_ret": 0.0565
+   },
+   {
+    "date": "2021-08-19",
+    "pick_ret": 0.2606,
+    "bench_ret": 0.0288
+   },
+   {
+    "date": "2021-08-26",
+    "pick_ret": 0.0062,
+    "bench_ret": -0.0269
+   },
+   {
+    "date": "2021-09-02",
+    "pick_ret": -0.0769,
+    "bench_ret": 0.0116
+   },
+   {
+    "date": "2021-09-10",
+    "pick_ret": -0.0166,
+    "bench_ret": 0.0288
+   },
+   {
+    "date": "2021-09-17",
+    "pick_ret": 0.0812,
+    "bench_ret": 0.0095
+   },
+   {
+    "date": "2021-09-24",
+    "pick_ret": -0.0454,
+    "bench_ret": -0.0374
+   },
+   {
+    "date": "2021-10-01",
+    "pick_ret": -0.1567,
+    "bench_ret": 0.0015
+   },
+   {
+    "date": "2021-10-08",
+    "pick_ret": -0.0721,
+    "bench_ret": -0.03
+   },
+   {
+    "date": "2021-10-15",
+    "pick_ret": -0.1995,
+    "bench_ret": -0.0134
+   },
+   {
+    "date": "2021-10-22",
+    "pick_ret": -0.0564,
+    "bench_ret": -0.0054
+   },
+   {
+    "date": "2021-10-29",
+    "pick_ret": -0.0501,
+    "bench_ret": -0.0163
+   },
+   {
+    "date": "2021-11-05",
+    "pick_ret": -0.1357,
+    "bench_ret": -0.042
+   },
+   {
+    "date": "2021-11-12",
+    "pick_ret": -0.1486,
+    "bench_ret": -0.062
+   },
+   {
+    "date": "2021-11-19",
+    "pick_ret": -0.118,
+    "bench_ret": -0.0907
+   },
+   {
+    "date": "2021-11-29",
+    "pick_ret": -0.2802,
+    "bench_ret": -0.1124
+   },
+   {
+    "date": "2021-12-06",
+    "pick_ret": -0.1347,
+    "bench_ret": -0.102
+   },
+   {
+    "date": "2021-12-13",
+    "pick_ret": -0.2123,
+    "bench_ret": -0.1382
+   },
+   {
+    "date": "2021-12-20",
+    "pick_ret": 0.2285,
+    "bench_ret": -0.1459
+   },
+   {
+    "date": "2021-12-28",
+    "pick_ret": -0.1472,
+    "bench_ret": -0.1312
+   },
+   {
+    "date": "2022-01-04",
+    "pick_ret": -0.3003,
+    "bench_ret": -0.1402
+   },
+   {
+    "date": "2022-01-11",
+    "pick_ret": -0.3627,
+    "bench_ret": -0.2044
+   },
+   {
+    "date": "2022-01-19",
+    "pick_ret": -0.0879,
+    "bench_ret": -0.1694
+   },
+   {
+    "date": "2022-01-26",
+    "pick_ret": -0.0552,
+    "bench_ret": -0.1215
+   },
+   {
+    "date": "2022-02-02",
+    "pick_ret": -0.1439,
+    "bench_ret": -0.1622
+   },
+   {
+    "date": "2022-02-09",
+    "pick_ret": -0.0536,
+    "bench_ret": -0.1712
+   },
+   {
+    "date": "2022-02-16",
+    "pick_ret": -0.0767,
+    "bench_ret": -0.1151
+   },
+   {
+    "date": "2022-02-24",
+    "pick_ret": -0.0508,
+    "bench_ret": -0.0618
+   },
+   {
+    "date": "2022-03-03",
+    "pick_ret": -0.1257,
+    "bench_ret": -0.0477
+   },
+   {
+    "date": "2022-03-10",
+    "pick_ret": -0.1432,
+    "bench_ret": -0.0116
+   },
+   {
+    "date": "2022-03-17",
+    "pick_ret": -0.1316,
+    "bench_ret": -0.0312
+   },
+   {
+    "date": "2022-03-24",
+    "pick_ret": 0.0879,
+    "bench_ret": -0.0839
+   },
+   {
+    "date": "2022-03-31",
+    "pick_ret": 0.0707,
+    "bench_ret": -0.127
+   },
+   {
+    "date": "2022-04-07",
+    "pick_ret": -0.0592,
+    "bench_ret": -0.1098
+   },
+   {
+    "date": "2022-04-14",
+    "pick_ret": -0.0552,
+    "bench_ret": -0.1118
+   },
+   {
+    "date": "2022-04-22",
+    "pick_ret": -0.0329,
+    "bench_ret": -0.1203
+   },
+   {
+    "date": "2022-04-29",
+    "pick_ret": -0.1075,
+    "bench_ret": -0.1189
+   },
+   {
+    "date": "2022-05-06",
+    "pick_ret": 0.0041,
+    "bench_ret": -0.0919
+   },
+   {
+    "date": "2022-05-13",
+    "pick_ret": 0.119,
+    "bench_ret": -0.088
+   },
+   {
+    "date": "2022-05-20",
+    "pick_ret": -0.009,
+    "bench_ret": -0.0604
+   },
+   {
+    "date": "2022-05-27",
+    "pick_ret": -0.0349,
+    "bench_ret": -0.0844
+   },
+   {
+    "date": "2022-06-06",
+    "pick_ret": 0.0619,
+    "bench_ret": -0.0974
+   },
+   {
+    "date": "2022-06-13",
+    "pick_ret": 0.1132,
+    "bench_ret": 0.0551
+   },
+   {
+    "date": "2022-06-21",
+    "pick_ret": 0.2941,
+    "bench_ret": 0.0483
+   },
+   {
+    "date": "2022-06-28",
+    "pick_ret": 0.243,
+    "bench_ret": 0.0535
+   },
+   {
+    "date": "2022-07-06",
+    "pick_ret": 0.46,
+    "bench_ret": 0.0589
+   },
+   {
+    "date": "2022-07-13",
+    "pick_ret": 0.2154,
+    "bench_ret": 0.0349
+   },
+   {
+    "date": "2022-07-20",
+    "pick_ret": 0.1602,
+    "bench_ret": -0.0272
+   },
+   {
+    "date": "2022-07-27",
+    "pick_ret": 0.1777,
+    "bench_ret": -0.0444
+   },
+   {
+    "date": "2022-08-03",
+    "pick_ret": 0.0401,
+    "bench_ret": -0.0797
+   },
+   {
+    "date": "2022-08-10",
+    "pick_ret": 0.2494,
+    "bench_ret": -0.0691
+   },
+   {
+    "date": "2022-08-17",
+    "pick_ret": 0.2148,
+    "bench_ret": -0.0808
+   },
+   {
+    "date": "2022-08-24",
+    "pick_ret": 0.2402,
+    "bench_ret": -0.0301
+   },
+   {
+    "date": "2022-08-31",
+    "pick_ret": 0.0819,
+    "bench_ret": 0.0415
+   },
+   {
+    "date": "2022-09-08",
+    "pick_ret": 0.1262,
+    "bench_ret": 0.0279
+   },
+   {
+    "date": "2022-09-15",
+    "pick_ret": 0.2162,
+    "bench_ret": 0.0631
+   },
+   {
+    "date": "2022-09-22",
+    "pick_ret": 0.3299,
+    "bench_ret": 0.0677
+   },
+   {
+    "date": "2022-09-29",
+    "pick_ret": 0.1717,
+    "bench_ret": 0.0936
+   },
+   {
+    "date": "2022-10-06",
+    "pick_ret": 0.0625,
     "bench_ret": 0.0464
    },
    {
-    "date": "2025-10-01",
-    "pick_ret": -0.0908,
-    "bench_ret": 0.0236
+    "date": "2022-10-13",
+    "pick_ret": 0.2165,
+    "bench_ret": 0.0791
    },
    {
-    "date": "2025-10-08",
-    "pick_ret": -0.1139,
-    "bench_ret": 0.0033
+    "date": "2022-10-20",
+    "pick_ret": 0.4096,
+    "bench_ret": 0.0772
    },
    {
-    "date": "2025-10-15",
-    "pick_ret": -0.2276,
-    "bench_ret": -0.0069
+    "date": "2022-10-27",
+    "pick_ret": 0.138,
+    "bench_ret": 0.064
    },
    {
-    "date": "2025-10-22",
-    "pick_ret": -0.2148,
-    "bench_ret": -0.016
+    "date": "2022-11-03",
+    "pick_ret": 0.1748,
+    "bench_ret": 0.1035
    },
    {
-    "date": "2025-10-29",
-    "pick_ret": 0.516,
-    "bench_ret": -0.0458
+    "date": "2022-11-10",
+    "pick_ret": 0.1909,
+    "bench_ret": 0.0458
    },
    {
-    "date": "2025-11-05",
-    "pick_ret": 0.3663,
-    "bench_ret": 0.0042
+    "date": "2022-11-17",
+    "pick_ret": 0.0561,
+    "bench_ret": 0.0474
    },
    {
-    "date": "2025-11-12",
-    "pick_ret": -0.0777,
-    "bench_ret": 0.0278
+    "date": "2022-11-25",
+    "pick_ret": 0.04,
+    "bench_ret": 0.0356
    },
    {
-    "date": "2025-11-19",
-    "pick_ret": 0.3902,
-    "bench_ret": 0.0702
+    "date": "2022-12-02",
+    "pick_ret": 0.1206,
+    "bench_ret": 0.0159
    },
    {
-    "date": "2025-11-26",
-    "pick_ret": 0.5349,
-    "bench_ret": 0.0582
+    "date": "2022-12-09",
+    "pick_ret": 0.0198,
+    "bench_ret": 0.0482
    },
    {
-    "date": "2025-12-04",
-    "pick_ret": 0.4044,
-    "bench_ret": 0.07
+    "date": "2022-12-16",
+    "pick_ret": 0.207,
+    "bench_ret": 0.0882
    },
    {
-    "date": "2025-12-11",
-    "pick_ret": 0.291,
-    "bench_ret": 0.087
-   },
-   {
-    "date": "2025-12-18",
-    "pick_ret": 1.2014,
-    "bench_ret": 0.099
-   },
-   {
-    "date": "2025-12-26",
-    "pick_ret": 1.151,
+    "date": "2022-12-23",
+    "pick_ret": 0.4799,
     "bench_ret": 0.0938
    },
    {
-    "date": "2026-01-05",
-    "pick_ret": 1.0258,
-    "bench_ret": 0.0698
+    "date": "2023-01-03",
+    "pick_ret": 0.4651,
+    "bench_ret": 0.1176
    },
    {
-    "date": "2026-01-12",
-    "pick_ret": 0.7823,
-    "bench_ret": 0.0651
+    "date": "2023-01-10",
+    "pick_ret": 0.4321,
+    "bench_ret": 0.1071
    },
    {
-    "date": "2026-01-20",
-    "pick_ret": -0.0048,
-    "bench_ret": 0.0994
+    "date": "2023-01-18",
+    "pick_ret": 0.2758,
+    "bench_ret": 0.117
    },
    {
-    "date": "2026-01-27",
-    "pick_ret": 0.2924,
-    "bench_ret": 0.0662
+    "date": "2023-01-25",
+    "pick_ret": 0.4733,
+    "bench_ret": 0.0902
    },
    {
-    "date": "2026-02-03",
-    "pick_ret": 0.3665,
-    "bench_ret": 0.0847
+    "date": "2023-02-01",
+    "pick_ret": 0.5399,
+    "bench_ret": 0.0795
    },
    {
-    "date": "2026-02-10",
-    "pick_ret": 0.7035,
-    "bench_ret": 0.0867
+    "date": "2023-02-08",
+    "pick_ret": 0.699,
+    "bench_ret": 0.086
    },
    {
-    "date": "2026-02-18",
-    "pick_ret": 0.6683,
-    "bench_ret": 0.0912
+    "date": "2023-02-15",
+    "pick_ret": 0.6314,
+    "bench_ret": 0.1008
    },
    {
-    "date": "2026-02-25",
-    "pick_ret": 0.4117,
-    "bench_ret": 0.0695
+    "date": "2023-02-23",
+    "pick_ret": 0.117,
+    "bench_ret": 0.1382
    },
    {
-    "date": "2026-03-04",
-    "pick_ret": 0.3864,
-    "bench_ret": 0.1262
+    "date": "2023-03-02",
+    "pick_ret": 0.6667,
+    "bench_ret": 0.1336
    },
    {
-    "date": "2026-03-11",
-    "pick_ret": 0.2736,
-    "bench_ret": 0.1406
+    "date": "2023-03-09",
+    "pick_ret": 0.5322,
+    "bench_ret": 0.1402
    },
    {
-    "date": "2026-03-18",
-    "pick_ret": 0.3707,
-    "bench_ret": 0.1611
+    "date": "2023-03-16",
+    "pick_ret": 0.5857,
+    "bench_ret": 0.1121
    },
    {
-    "date": "2026-03-25",
-    "pick_ret": 0.2523,
-    "bench_ret": 0.1647
+    "date": "2023-03-23",
+    "pick_ret": 0.7494,
+    "bench_ret": 0.1234
    },
    {
-    "date": "2026-04-01",
-    "pick_ret": 0.3994,
-    "bench_ret": 0.1606
+    "date": "2023-03-30",
+    "pick_ret": 0.4461,
+    "bench_ret": 0.1146
    },
    {
-    "date": "2026-04-09",
-    "pick_ret": -0.0413,
-    "bench_ret": 0.1189
+    "date": "2023-04-06",
+    "pick_ret": 0.5206,
+    "bench_ret": 0.0843
    },
    {
-    "date": "2026-04-16",
-    "pick_ret": -0.1045,
-    "bench_ret": 0.0725
+    "date": "2023-04-14",
+    "pick_ret": 0.4571,
+    "bench_ret": 0.0888
    },
    {
-    "date": "2026-04-23",
-    "pick_ret": -0.1197,
-    "bench_ret": 0.0841
+    "date": "2023-04-21",
+    "pick_ret": 0.5915,
+    "bench_ret": 0.0475
    },
    {
-    "date": "2026-04-30",
-    "pick_ret": -0.1172,
-    "bench_ret": 0.0614
+    "date": "2023-04-28",
+    "pick_ret": 0.5194,
+    "bench_ret": 0.0312
    },
    {
-    "date": "2026-05-07",
-    "pick_ret": -0.0228,
-    "bench_ret": 0.0633
+    "date": "2023-05-05",
+    "pick_ret": 0.5229,
+    "bench_ret": 0.0295
    },
    {
-    "date": "2026-05-14",
-    "pick_ret": 0.0152,
-    "bench_ret": 0.029
+    "date": "2023-05-12",
+    "pick_ret": 0.5901,
+    "bench_ret": 0.0547
    },
    {
-    "date": "2026-05-21",
-    "pick_ret": -0.2632,
-    "bench_ret": 0.0418
+    "date": "2023-05-19",
+    "pick_ret": 0.0762,
+    "bench_ret": 0.0205
    },
    {
-    "date": "2026-05-29",
-    "pick_ret": 0.0509,
-    "bench_ret": 0.0216
+    "date": "2023-05-26",
+    "pick_ret": 0.049,
+    "bench_ret": -0.0162
    },
    {
-    "date": "2026-06-05",
-    "pick_ret": -0.3308,
+    "date": "2023-06-05",
+    "pick_ret": 0.0395,
+    "bench_ret": 0.0103
+   },
+   {
+    "date": "2023-06-12",
+    "pick_ret": 0.1203,
+    "bench_ret": 0.0019
+   },
+   {
+    "date": "2023-06-20",
+    "pick_ret": -0.0257,
+    "bench_ret": 0.0272
+   },
+   {
+    "date": "2023-06-27",
+    "pick_ret": 0.0211,
     "bench_ret": 0.0413
    },
    {
-    "date": "2026-06-12",
-    "pick_ret": -0.3275,
-    "bench_ret": 0.0253
+    "date": "2023-07-05",
+    "pick_ret": 0.0296,
+    "bench_ret": 0.0332
    },
    {
-    "date": "2026-06-22",
-    "pick_ret": -0.4222,
-    "bench_ret": -0.02
+    "date": "2023-07-12",
+    "pick_ret": 0.012,
+    "bench_ret": 0.0296
+   },
+   {
+    "date": "2023-07-19",
+    "pick_ret": 0.092,
+    "bench_ret": 0.0336
+   },
+   {
+    "date": "2023-07-26",
+    "pick_ret": 0.1329,
+    "bench_ret": 0.0411
+   },
+   {
+    "date": "2023-08-02",
+    "pick_ret": 0.0535,
+    "bench_ret": 0.0508
+   },
+   {
+    "date": "2023-08-09",
+    "pick_ret": 0.0827,
+    "bench_ret": 0.0646
+   },
+   {
+    "date": "2023-08-16",
+    "pick_ret": 0.0784,
+    "bench_ret": 0.076
+   },
+   {
+    "date": "2023-08-23",
+    "pick_ret": 0.128,
+    "bench_ret": 0.0975
+   },
+   {
+    "date": "2023-08-30",
+    "pick_ret": 0.5034,
+    "bench_ret": 0.0733
+   },
+   {
+    "date": "2023-09-07",
+    "pick_ret": 0.4724,
+    "bench_ret": 0.1222
+   },
+   {
+    "date": "2023-09-14",
+    "pick_ret": 0.7234,
+    "bench_ret": 0.11
+   },
+   {
+    "date": "2023-09-21",
+    "pick_ret": 0.7979,
+    "bench_ret": 0.1748
+   },
+   {
+    "date": "2023-09-28",
+    "pick_ret": 0.31,
+    "bench_ret": 0.1853
+   },
+   {
+    "date": "2023-10-05",
+    "pick_ret": 0.1972,
+    "bench_ret": 0.2112
+   },
+   {
+    "date": "2023-10-12",
+    "pick_ret": 0.1584,
+    "bench_ret": 0.1841
+   },
+   {
+    "date": "2023-10-19",
+    "pick_ret": 0.1794,
+    "bench_ret": 0.2252
+   },
+   {
+    "date": "2023-10-26",
+    "pick_ret": 0.3622,
+    "bench_ret": 0.27
+   },
+   {
+    "date": "2023-11-02",
+    "pick_ret": 0.2382,
+    "bench_ret": 0.2053
+   },
+   {
+    "date": "2023-11-09",
+    "pick_ret": -0.0056,
+    "bench_ret": 0.1785
+   },
+   {
+    "date": "2023-11-16",
+    "pick_ret": 0.2679,
+    "bench_ret": 0.1018
+   },
+   {
+    "date": "2023-11-24",
+    "pick_ret": 0.1184,
+    "bench_ret": 0.1186
+   },
+   {
+    "date": "2023-12-01",
+    "pick_ret": 0.1531,
+    "bench_ret": 0.116
+   },
+   {
+    "date": "2023-12-08",
+    "pick_ret": 0.335,
+    "bench_ret": 0.1343
+   },
+   {
+    "date": "2023-12-15",
+    "pick_ret": 0.1863,
+    "bench_ret": 0.1238
+   },
+   {
+    "date": "2023-12-22",
+    "pick_ret": 0.2267,
+    "bench_ret": 0.1157
+   },
+   {
+    "date": "2024-01-02",
+    "pick_ret": 0.2605,
+    "bench_ret": 0.114
+   },
+   {
+    "date": "2024-01-09",
+    "pick_ret": 0.1,
+    "bench_ret": 0.127
+   },
+   {
+    "date": "2024-01-17",
+    "pick_ret": 0.0802,
+    "bench_ret": 0.1549
+   },
+   {
+    "date": "2024-01-24",
+    "pick_ret": 0.0402,
+    "bench_ret": 0.1234
+   },
+   {
+    "date": "2024-01-31",
+    "pick_ret": 0.2547,
+    "bench_ret": 0.1369
+   },
+   {
+    "date": "2024-02-07",
+    "pick_ret": 0.1458,
+    "bench_ret": 0.1279
+   },
+   {
+    "date": "2024-02-14",
+    "pick_ret": 0.2821,
+    "bench_ret": 0.1175
+   },
+   {
+    "date": "2024-02-22",
+    "pick_ret": 0.1819,
+    "bench_ret": 0.0669
+   },
+   {
+    "date": "2024-02-29",
+    "pick_ret": 0.249,
+    "bench_ret": 0.0836
+   },
+   {
+    "date": "2024-03-07",
+    "pick_ret": -0.0888,
+    "bench_ret": 0.0082
+   },
+   {
+    "date": "2024-03-14",
+    "pick_ret": -0.0248,
+    "bench_ret": 0.0592
+   },
+   {
+    "date": "2024-03-21",
+    "pick_ret": -0.0362,
+    "bench_ret": 0.0724
+   },
+   {
+    "date": "2024-03-28",
+    "pick_ret": 0.0177,
+    "bench_ret": 0.0643
+   },
+   {
+    "date": "2024-04-05",
+    "pick_ret": -0.2744,
+    "bench_ret": 0.0575
+   },
+   {
+    "date": "2024-04-12",
+    "pick_ret": 0.1001,
+    "bench_ret": 0.0922
+   },
+   {
+    "date": "2024-04-19",
+    "pick_ret": 0.0008,
+    "bench_ret": 0.1503
+   },
+   {
+    "date": "2024-04-26",
+    "pick_ret": 0.0408,
+    "bench_ret": 0.1266
+   },
+   {
+    "date": "2024-05-03",
+    "pick_ret": 0.0995,
+    "bench_ret": 0.1116
+   },
+   {
+    "date": "2024-05-10",
+    "pick_ret": 0.1673,
+    "bench_ret": 0.1067
+   },
+   {
+    "date": "2024-05-17",
+    "pick_ret": 0.248,
+    "bench_ret": 0.1015
+   },
+   {
+    "date": "2024-05-24",
+    "pick_ret": 0.2095,
+    "bench_ret": 0.0952
+   },
+   {
+    "date": "2024-06-03",
+    "pick_ret": 0.1444,
+    "bench_ret": 0.0799
+   },
+   {
+    "date": "2024-06-10",
+    "pick_ret": 0.1406,
+    "bench_ret": 0.1142
+   },
+   {
+    "date": "2024-06-17",
+    "pick_ret": 0.2069,
+    "bench_ret": 0.087
+   },
+   {
+    "date": "2024-06-25",
+    "pick_ret": 0.2037,
+    "bench_ret": 0.0877
+   },
+   {
+    "date": "2024-07-02",
+    "pick_ret": 0.16,
+    "bench_ret": 0.095
+   },
+   {
+    "date": "2024-07-10",
+    "pick_ret": 0.0844,
+    "bench_ret": 0.081
+   },
+   {
+    "date": "2024-07-17",
+    "pick_ret": 0.2146,
+    "bench_ret": 0.0828
+   },
+   {
+    "date": "2024-07-24",
+    "pick_ret": 0.5752,
+    "bench_ret": 0.0928
+   },
+   {
+    "date": "2024-07-31",
+    "pick_ret": 0.4505,
+    "bench_ret": 0.0697
+   },
+   {
+    "date": "2024-08-07",
+    "pick_ret": 0.8499,
+    "bench_ret": 0.1365
+   },
+   {
+    "date": "2024-08-14",
+    "pick_ret": 0.7553,
+    "bench_ret": 0.0907
+   },
+   {
+    "date": "2024-08-21",
+    "pick_ret": 0.1378,
+    "bench_ret": 0.0886
+   },
+   {
+    "date": "2024-08-28",
+    "pick_ret": 0.0984,
+    "bench_ret": 0.0857
+   },
+   {
+    "date": "2024-09-05",
+    "pick_ret": 0.6125,
+    "bench_ret": 0.1054
+   },
+   {
+    "date": "2024-09-12",
+    "pick_ret": -0.0786,
+    "bench_ret": 0.0928
+   },
+   {
+    "date": "2024-09-19",
+    "pick_ret": 0.1993,
+    "bench_ret": 0.0524
+   },
+   {
+    "date": "2024-09-26",
+    "pick_ret": 0.0312,
+    "bench_ret": 0.0364
+   },
+   {
+    "date": "2024-10-03",
+    "pick_ret": -0.019,
+    "bench_ret": 0.0123
+   },
+   {
+    "date": "2024-10-10",
+    "pick_ret": -0.0402,
+    "bench_ret": -0.0244
+   },
+   {
+    "date": "2024-10-17",
+    "pick_ret": 0.2492,
+    "bench_ret": -0.0298
+   },
+   {
+    "date": "2024-10-24",
+    "pick_ret": 0.0069,
+    "bench_ret": -0.0394
+   },
+   {
+    "date": "2024-10-31",
+    "pick_ret": 0.0001,
+    "bench_ret": -0.1107
+   },
+   {
+    "date": "2024-11-07",
+    "pick_ret": 0.024,
+    "bench_ret": -0.1021
+   },
+   {
+    "date": "2024-11-14",
+    "pick_ret": 0.0066,
+    "bench_ret": -0.133
+   },
+   {
+    "date": "2024-11-21",
+    "pick_ret": -0.0629,
+    "bench_ret": -0.0706
+   },
+   {
+    "date": "2024-11-29",
+    "pick_ret": -0.0397,
+    "bench_ret": -0.0633
+   },
+   {
+    "date": "2024-12-06",
+    "pick_ret": -0.0599,
+    "bench_ret": -0.0404
+   },
+   {
+    "date": "2024-12-13",
+    "pick_ret": 0.0012,
+    "bench_ret": -0.0145
+   },
+   {
+    "date": "2024-12-20",
+    "pick_ret": 0.0724,
+    "bench_ret": -0.0016
+   },
+   {
+    "date": "2024-12-30",
+    "pick_ret": 0.0168,
+    "bench_ret": 0.0107
+   },
+   {
+    "date": "2025-01-07",
+    "pick_ret": 0.1243,
+    "bench_ret": 0.022
+   },
+   {
+    "date": "2025-01-15",
+    "pick_ret": 0.143,
+    "bench_ret": 0.0055
+   },
+   {
+    "date": "2025-01-23",
+    "pick_ret": 0.0831,
+    "bench_ret": -0.0043
+   },
+   {
+    "date": "2025-01-30",
+    "pick_ret": 0.0946,
+    "bench_ret": 0.0257
+   },
+   {
+    "date": "2025-02-06",
+    "pick_ret": 0.0509,
+    "bench_ret": 0.0324
+   },
+   {
+    "date": "2025-02-13",
+    "pick_ret": 0.2192,
+    "bench_ret": 0.0298
+   },
+   {
+    "date": "2025-02-21",
+    "pick_ret": 0.2597,
+    "bench_ret": 0.0582
+   },
+   {
+    "date": "2025-02-28",
+    "pick_ret": 0.446,
+    "bench_ret": 0.0646
+   },
+   {
+    "date": "2025-03-07",
+    "pick_ret": 0.1378,
+    "bench_ret": 0.0987
+   },
+   {
+    "date": "2025-03-14",
+    "pick_ret": 0.132,
+    "bench_ret": 0.1471
+   },
+   {
+    "date": "2025-03-21",
+    "pick_ret": 0.1545,
+    "bench_ret": 0.124
+   },
+   {
+    "date": "2025-03-28",
+    "pick_ret": 0.4335,
+    "bench_ret": 0.165
+   },
+   {
+    "date": "2025-04-04",
+    "pick_ret": 0.6579,
+    "bench_ret": 0.2774
+   },
+   {
+    "date": "2025-04-11",
+    "pick_ret": 0.8105,
+    "bench_ret": 0.2276
+   },
+   {
+    "date": "2025-04-21",
+    "pick_ret": 0.8209,
+    "bench_ret": 0.292
+   },
+   {
+    "date": "2025-04-28",
+    "pick_ret": 0.5604,
+    "bench_ret": 0.2017
+   },
+   {
+    "date": "2025-05-05",
+    "pick_ret": 1.4577,
+    "bench_ret": 0.1886
+   },
+   {
+    "date": "2025-05-12",
+    "pick_ret": 0.7335,
+    "bench_ret": 0.1212
+   },
+   {
+    "date": "2025-05-19",
+    "pick_ret": 1.3574,
+    "bench_ret": 0.1174
+   },
+   {
+    "date": "2025-05-27",
+    "pick_ret": 0.8912,
+    "bench_ret": 0.1469
+   },
+   {
+    "date": "2025-06-03",
+    "pick_ret": 0.0597,
+    "bench_ret": 0.1457
+   },
+   {
+    "date": "2025-06-10",
+    "pick_ret": 0.0038,
+    "bench_ret": 0.1143
+   },
+   {
+    "date": "2025-06-17",
+    "pick_ret": 0.4133,
+    "bench_ret": 0.1256
+   },
+   {
+    "date": "2025-06-25",
+    "pick_ret": 1.0528,
+    "bench_ret": 0.0839
+   },
+   {
+    "date": "2025-07-02",
+    "pick_ret": 1.0847,
+    "bench_ret": 0.094
+   },
+   {
+    "date": "2025-07-10",
+    "pick_ret": 0.4258,
+    "bench_ret": 0.0901
+   },
+   {
+    "date": "2025-07-17",
+    "pick_ret": 0.5542,
+    "bench_ret": 0.0824
+   },
+   {
+    "date": "2025-07-24",
+    "pick_ret": 0.309,
+    "bench_ret": 0.081
+   },
+   {
+    "date": "2025-07-31",
+    "pick_ret": -0.0526,
+    "bench_ret": 0.0878
+   },
+   {
+    "date": "2025-08-07",
+    "pick_ret": 0.1137,
+    "bench_ret": 0.0916
+   },
+   {
+    "date": "2025-08-14",
+    "pick_ret": 0.1456,
+    "bench_ret": 0.0708
+   },
+   {
+    "date": "2025-08-21",
+    "pick_ret": 0.0532,
+    "bench_ret": 0.0853
+   },
+   {
+    "date": "2025-08-28",
+    "pick_ret": -0.0035,
+    "bench_ret": 0.0718
+   },
+   {
+    "date": "2025-09-05",
+    "pick_ret": -0.0558,
+    "bench_ret": 0.0489
+   },
+   {
+    "date": "2025-09-12",
+    "pick_ret": -0.1536,
+    "bench_ret": 0.0377
+   },
+   {
+    "date": "2025-09-19",
+    "pick_ret": -0.158,
+    "bench_ret": 0.0368
+   },
+   {
+    "date": "2025-09-26",
+    "pick_ret": -0.0908,
+    "bench_ret": 0.0354
+   },
+   {
+    "date": "2025-10-03",
+    "pick_ret": -0.0849,
+    "bench_ret": 0.0036
+   },
+   {
+    "date": "2025-10-10",
+    "pick_ret": 0.5042,
+    "bench_ret": 0.0122
+   },
+   {
+    "date": "2025-10-17",
+    "pick_ret": 0.5204,
+    "bench_ret": -0.0236
+   },
+   {
+    "date": "2025-10-24",
+    "pick_ret": -0.2805,
+    "bench_ret": -0.0623
+   },
+   {
+    "date": "2025-10-31",
+    "pick_ret": 0.375,
+    "bench_ret": -0.0334
+   },
+   {
+    "date": "2025-11-07",
+    "pick_ret": -0.0605,
+    "bench_ret": 0.0234
+   },
+   {
+    "date": "2025-11-14",
+    "pick_ret": 0.3463,
+    "bench_ret": 0.0557
+   },
+   {
+    "date": "2025-11-21",
+    "pick_ret": 0.9797,
+    "bench_ret": 0.0865
+   },
+   {
+    "date": "2025-12-01",
+    "pick_ret": 0.9046,
+    "bench_ret": 0.057
+   },
+   {
+    "date": "2025-12-08",
+    "pick_ret": 0.6764,
+    "bench_ret": 0.0827
+   },
+   {
+    "date": "2025-12-15",
+    "pick_ret": 0.4235,
+    "bench_ret": 0.086
+   },
+   {
+    "date": "2025-12-22",
+    "pick_ret": 0.3489,
+    "bench_ret": 0.0931
+   },
+   {
+    "date": "2025-12-30",
+    "pick_ret": 0.8506,
+    "bench_ret": 0.1035
+   },
+   {
+    "date": "2026-01-07",
+    "pick_ret": 0.2319,
+    "bench_ret": 0.0673
+   },
+   {
+    "date": "2026-01-14",
+    "pick_ret": -0.0282,
+    "bench_ret": 0.0844
+   },
+   {
+    "date": "2026-01-22",
+    "pick_ret": 0.0287,
+    "bench_ret": 0.0643
+   },
+   {
+    "date": "2026-01-29",
+    "pick_ret": 0.4372,
+    "bench_ret": 0.0738
+   },
+   {
+    "date": "2026-02-05",
+    "pick_ret": 0.5576,
+    "bench_ret": 0.1096
+   },
+   {
+    "date": "2026-02-12",
+    "pick_ret": 0.3596,
+    "bench_ret": 0.1026
+   },
+   {
+    "date": "2026-02-20",
+    "pick_ret": 0.3177,
+    "bench_ret": 0.0722
+   },
+   {
+    "date": "2026-02-27",
+    "pick_ret": 0.5337,
+    "bench_ret": 0.0812
+   },
+   {
+    "date": "2026-03-06",
+    "pick_ret": 0.3536,
+    "bench_ret": 0.1439
+   },
+   {
+    "date": "2026-03-13",
+    "pick_ret": 0.4659,
+    "bench_ret": 0.1759
+   },
+   {
+    "date": "2026-03-20",
+    "pick_ret": 0.3342,
+    "bench_ret": 0.1744
+   },
+   {
+    "date": "2026-03-27",
+    "pick_ret": 0.5285,
+    "bench_ret": 0.2139
+   },
+   {
+    "date": "2026-04-06",
+    "pick_ret": 0.3037,
+    "bench_ret": 0.1718
+   },
+   {
+    "date": "2026-04-13",
+    "pick_ret": -0.0482,
+    "bench_ret": 0.1119
+   },
+   {
+    "date": "2026-04-20",
+    "pick_ret": -0.0723,
+    "bench_ret": 0.0761
+   },
+   {
+    "date": "2026-04-27",
+    "pick_ret": -0.1103,
+    "bench_ret": 0.0794
+   },
+   {
+    "date": "2026-05-04",
+    "pick_ret": -0.113,
+    "bench_ret": 0.0725
+   },
+   {
+    "date": "2026-05-11",
+    "pick_ret": -0.0672,
+    "bench_ret": 0.0538
+   },
+   {
+    "date": "2026-05-18",
+    "pick_ret": -0.1392,
+    "bench_ret": 0.0346
+   },
+   {
+    "date": "2026-05-26",
+    "pick_ret": 0.0265,
+    "bench_ret": 0.0139
+   },
+   {
+    "date": "2026-06-02",
+    "pick_ret": 0.0507,
+    "bench_ret": -0.0039
+   },
+   {
+    "date": "2026-06-09",
+    "pick_ret": -0.385,
+    "bench_ret": -0.0013
+   },
+   {
+    "date": "2026-06-16",
+    "pick_ret": 0.0359,
+    "bench_ret": 0.0067
+   },
+   {
+    "date": "2026-06-24",
+    "pick_ret": -0.4211,
+    "bench_ret": -0.0609
    }
   ]
  },
@@ -2572,57 +2562,112 @@
   {
    "week": "2026-11-18",
    "symbol": "MU",
-   "entry": 701.9,
-   "latest": 701.9,
-   "return": 0.0,
-   "nifty_return": 0.0,
-   "days_held": 0,
+   "entry": 705.27,
+   "latest": 594.51,
+   "return": -0.157,
+   "nifty_return": -0.0564,
+   "days_held": 2,
    "complete": false,
    "predicted_q50": 0.307
   },
   {
    "week": "2026-11-18",
    "symbol": "FIX",
-   "entry": 1156.0,
-   "latest": 1156.0,
-   "return": 0.0,
-   "nifty_return": 0.0,
-   "days_held": 0,
+   "entry": 1140.59,
+   "latest": 1042.47,
+   "return": -0.086,
+   "nifty_return": -0.0564,
+   "days_held": 2,
    "complete": false,
    "predicted_q50": 0.184
   },
   {
    "week": "2026-11-18",
    "symbol": "ANET",
-   "entry": 188.07,
-   "latest": 188.07,
-   "return": 0.0,
-   "nifty_return": 0.0,
-   "days_held": 0,
+   "entry": 193.94,
+   "latest": 167.62,
+   "return": -0.1357,
+   "nifty_return": -0.0564,
+   "days_held": 2,
    "complete": false,
    "predicted_q50": 0.1781
   },
   {
    "week": "2026-11-18",
    "symbol": "GEV",
-   "entry": 789.01,
-   "latest": 789.01,
-   "return": 0.0,
-   "nifty_return": 0.0,
-   "days_held": 0,
+   "entry": 772.22,
+   "latest": 699.33,
+   "return": -0.0944,
+   "nifty_return": -0.0564,
+   "days_held": 2,
    "complete": false,
    "predicted_q50": 0.1385
   },
   {
    "week": "2026-11-18",
    "symbol": "CRL",
-   "entry": 335.26,
-   "latest": 335.26,
+   "entry": 333.25,
+   "latest": 314.32,
+   "return": -0.0568,
+   "nifty_return": -0.0564,
+   "days_held": 2,
+   "complete": false,
+   "predicted_q50": 0.1508
+  },
+  {
+   "week": "2026-11-20",
+   "symbol": "MU",
+   "entry": 594.51,
+   "latest": 594.51,
    "return": 0.0,
    "nifty_return": 0.0,
    "days_held": 0,
    "complete": false,
-   "predicted_q50": 0.1508
+   "predicted_q50": 0.3341
+  },
+  {
+   "week": "2026-11-20",
+   "symbol": "NTAP",
+   "entry": 157.65,
+   "latest": 157.65,
+   "return": 0.0,
+   "nifty_return": 0.0,
+   "days_held": 0,
+   "complete": false,
+   "predicted_q50": 0.2167
+  },
+  {
+   "week": "2026-11-20",
+   "symbol": "FIX",
+   "entry": 1042.47,
+   "latest": 1042.47,
+   "return": 0.0,
+   "nifty_return": 0.0,
+   "days_held": 0,
+   "complete": false,
+   "predicted_q50": 0.1328
+  },
+  {
+   "week": "2026-11-20",
+   "symbol": "CRL",
+   "entry": 314.32,
+   "latest": 314.32,
+   "return": 0.0,
+   "nifty_return": 0.0,
+   "days_held": 0,
+   "complete": false,
+   "predicted_q50": 0.1873
+  },
+  {
+   "week": "2026-11-20",
+   "symbol": "ILMN",
+   "entry": 192.82,
+   "latest": 192.82,
+   "return": 0.0,
+   "nifty_return": 0.0,
+   "days_held": 0,
+   "complete": false,
+   "predicted_q50": 0.1791
   }
  ]
 }
