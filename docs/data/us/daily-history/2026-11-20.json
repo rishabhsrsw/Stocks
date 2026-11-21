@@ -1,0 +1,464 @@
+{
+ "market": "US",
+ "generated_at": "2026-11-21T03:37:16+00:00",
+ "as_of": "2026-11-20",
+ "horizon_days": 10,
+ "eligible_size": 476,
+ "picks": [
+  {
+   "symbol": "DDOG",
+   "name": "Datadog",
+   "sector": "Information Technology",
+   "price": 157.37,
+   "final_score": 0.8859,
+   "model_score": 0.9746,
+   "news_score": 0.0625,
+   "forecast": {
+    "2w": {
+     "q10": -0.1235,
+     "q50": 0.0295,
+     "q90": 0.1845,
+     "p_beat_nifty": 0.5462
+    }
+   },
+   "reasons": [
+    "RSI 25: oversold, bounce candidate"
+   ],
+   "risk": {
+    "volatility_63d": 0.6868,
+    "atr_pct": 0.081
+   },
+   "news": {
+    "n_articles": 36,
+    "headlines": [
+     {
+      "title": "Datadog falls 5.46% in Friday's session",
+      "source": "Global Banking & Finance Review",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFAxV1dPSHprS3Bmb244N0lTVzFkNHZ4T0l5OW9aSzc2OTVyTU9OMldVSVgwTWY4alFnVlBZTm01VHpfcUstRFFYajdxbkdTaGI1Z1loVVNXdnhycWl0YmsyY004LThXSkNBcGRCbXlTWk9vaDVjdzNMWGxn?oc=5",
+      "published": "2026-11-20T22:21:19+00:00",
+      "sentiment": -0.296
+     },
+     {
+      "title": "S&P 500 After-Hours Gainers: DDOG, HBAN Lead Postmarket Session",
+      "source": "ChartMill",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPVWx1V0NRcUpFNTV5LW1hVzdHVXBsbXAxWjBFdWVURHJkcG9lbzlBWDNsQ2NqYkQwMGNRSXhkZnB2d0p5dklqNnhheTRETVJPVnpSTlBjVjhYbjVBYzJ2NmJZaVFaWkxoVTN0M3VhUklxc0VXeE1GWEd4dHZpU0dkVEJ3bTA0WFFEc292b3lueEE2TV9hWDR3cWhHaURRY2NMSks4eGJ2bTNCRWM4RXVUWUpB?oc=5",
+      "published": "2026-11-20T22:05:56+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Datadog, Inc. (DDOG) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB2aklMaXZuYkI3VWtwUjBCb20wSmNyT0FhZWJYajVPeTlVMGFRNTNJNWN4blo4azFRODlSZEV3bVY4RlJwTHVUcS00ZVl3RWZWUGJXdU53M3lVcHltaUZSa1VB?oc=5",
+      "published": "2026-11-20T14:03:41+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Is Datadog Stock a Buy After Its 14% Post Earnings Sell-Off?",
+      "source": "The Motley Fool",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPa2hTanNDYTRfTmxvUWJtdkV3VUFTWGpXc1RhT1ZPaGc5QkRLSC1ibTZReDFPb2FqYU9pZWh6ZlUtczhlYXVEZk9jT1o4ZWhEdUlBdm04VUFhVUF5ZG9LSWtuQ0ZaQW9VdS16NFNVV3pkWGV4V2JXZ3lKeE4taGQ5bG8xNDRuYTRYak9CSERpd3JDeWVYRjBPbVhmeW1hTjBmZWs0?oc=5",
+      "published": "2026-11-20T10:30:02+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "Datadog vs. Figma: Which Technology Stock Is a Better Buy for 2027?",
+      "source": "The Motley Fool",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNSTc0MFRhak56ZXNzVFMwbEkwVko4Yy1BWnJnTW9JYkJaRF9pbnlQR3E5RnB2QklvVF9GcDNpcUhrXy1KNExRNldvRGJwMHpHQ2NNMnhwdW5DRDZScnhSQWhpWVZkTjExbWhIWExkeGRPLUFHa2xnY2tNeUJUTGxzWm5QcTlhc3JlMHFWRFBMT01SdkZ2a2RaSVlXS0ZHXzN1eXNFZ0xpamZCUHpNRXd0bXJLY1dGbnJl?oc=5",
+      "published": "2026-11-18T14:20:02+00:00",
+      "sentiment": 0.625
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    222.99,
+    227.67,
+    242.93,
+    236.98,
+    237.04,
+    223.84,
+    209.23,
+    214.76,
+    212.93,
+    210.23,
+    225.27,
+    221.72,
+    221.21,
+    230.05,
+    230.27,
+    230.79,
+    236.0,
+    229.92,
+    245.05,
+    247.48,
+    251.49,
+    256.92,
+    268.13,
+    268.7,
+    268.56,
+    273.85,
+    276.46,
+    277.22,
+    276.42,
+    278.24,
+    271.34,
+    273.8,
+    293.26,
+    287.29,
+    283.34,
+    269.33,
+    266.25,
+    247.11,
+    260.36,
+    256.43,
+    273.09,
+    257.75,
+    269.65,
+    280.24,
+    280.82,
+    278.41,
+    265.84,
+    235.27,
+    216.1,
+    220.52,
+    188.72,
+    174.6,
+    179.04,
+    179.62,
+    178.4,
+    184.38,
+    184.46,
+    184.16,
+    172.86,
+    165.18,
+    167.11,
+    166.46,
+    157.37
+   ]
+  },
+  {
+   "symbol": "LYB",
+   "name": "LyondellBasell",
+   "sector": "Materials",
+   "price": 55.84,
+   "final_score": 0.8701,
+   "model_score": 0.9152,
+   "news_score": 0.3799,
+   "forecast": {
+    "2w": {
+     "q10": -0.0728,
+     "q50": 0.0196,
+     "q90": 0.1145,
+     "p_beat_nifty": 0.5593
+    }
+   },
+   "reasons": [
+    "RSI 33: oversold, bounce candidate"
+   ],
+   "risk": {
+    "volatility_63d": 0.3436,
+    "atr_pct": 0.0434
+   },
+   "news": {
+    "n_articles": 32,
+    "headlines": [
+     {
+      "title": "A Look at LyondellBasell Industries NV (LYB) After 4.0% Decline -- GF Value $70.35 vs Price $55.84",
+      "source": "GuruFocus",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOdy1Rb2w0d2lEZEw1OEQ2MVBDMi1Rb0tpaHJMbV9FMEtGMkllZmdlZy1OVGE0eTRUX0s4ZWdPOHdjbEF4MkxJenNCNkhQRHJFcXM1amYzMkRsbWVxVVdWZHBPVDZ4enBGS0dxY0dheUM3WjJRN3RaTnpHWmlYWnN3VEIwdEhGeThEYnRaLTNYOWtPN0JiOHJGd1JsMmh5cVV4bGY2aGNTV1g0andRYjdSTFFBVkRBRjNpODZVNldlV1R2MFBk?oc=5",
+      "published": "2026-11-21T02:06:16+00:00",
+      "sentiment": 0.713
+     },
+     {
+      "title": "LYB: LyondellBasell Industries NV filed SEC Form 8-K: Leadership Update, Financial Statements and Exhibits",
+      "source": "Quantisnow",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQQ2RzTXFuQUhSVlZzeGNoMVI2VHg2LVAtT1NmUzhNR1pBTExOcVBlTlE4czE4dE5PeVhuXzVpdm1IVzFjNTJvMlFBTkNuS2p5RmxVYWdFVXhSVko3SVUzREo4cTNuZ25lT2tRTURxbV9MX1Bpb1h3dW9RV2xaTFhjaHJaWjR6NDVrb1l5OEs1WmVSQnU4Z3VlOE51SkdXZExWRGtwMFc4MmQ0bXF3QXBmVENWSlhiNkNTQWc?oc=5",
+      "published": "2026-11-20T21:20:34+00:00",
+      "sentiment": 0.694
+     },
+     {
+      "title": "A cash award at LyondellBasell (LYB) hinges on an executive staying through Dec. 31, 2027.",
+      "source": "Stock Titan",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOY3dDZVRONG5rN1JfSjJXSERkZkRIYUE2X2h2cGNZZnRMR3QzTHBGWUtaTDNkblNpSmRoNF9fc0VjUEotSHZnWkItZ1Rib0N4WV9ZcWFjZzJ5dUJOckFlZE1qLU16MEhwcVptejNMNXBLQjFiMWZqUnNrLVBLblpaRWNEajZZWWxqMkZOQ2ViOEQxUkxCLU0xWW1PWktONTZkRGhIZUNMc3JmRTE4ZU0zMVNTUGVZSHF4Nnc?oc=5",
+      "published": "2026-11-20T21:19:20+00:00",
+      "sentiment": 0.849
+     },
+     {
+      "title": "LyondellBasell Approves Executive Retention Awards Amid Portfolio Transformation",
+      "source": "TipRanks",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNcXZ6dWt1UDRYaUxsNXlKQWpCUUx3V3ZWRy1mc3RKZHJHeHhGdnh2cExTSWw5M1JpT0ZQVTlsSW1WdXBYUFp1d2lDYWVfZUg1MGZKNnJxdWhSZEVTR3p2VFJfcXc1Nzlqd2Fxa3FFQWw5Y01OclQ2bVVkSDlRdVViTkVwNm1XMEM3bHNwUVB0bHZQRFhJT3Z4Z2xnZml0eUVIMlgtdFNSZE9faGp0RDQ0QWlQSDhJZWpORW1PSHNWZ0RpUXpSWVpQU2lhdXk?oc=5",
+      "published": "2026-11-20T14:54:05+00:00",
+      "sentiment": 0.691
+     },
+     {
+      "title": "LyondellBasell (LYB) Declares Quarterly Dividend of $0.69, Yielding 4.74%",
+      "source": "GuruFocus",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPTUVvVkZ2N1Q1ZnhLRE5DYi1YeEZEdm13N0gxQ1c5dkVib2tLbEpuLWNJLUVJeTZxTlNLQ2pDQkdFVWhpM1RwcFVFVHpBaUNEeFM4UlREYzM4TTFBTU9pa3JyQm5adnFQajRHQlJkaHI3MUwyeERfRjduUU9YWUx5S09sdFBxVjRSdG5nQlA2Zy1tUlRBTHMwVFdFeFI4S3A3dzBGUDFheGk?oc=5",
+      "published": "2026-11-20T12:17:24+00:00",
+      "sentiment": 0.774
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    62.55,
+    62.62,
+    63.06,
+    63.67,
+    65.08,
+    65.17,
+    66.57,
+    64.76,
+    63.52,
+    64.59,
+    64.51,
+    64.3,
+    63.69,
+    62.75,
+    65.43,
+    64.9,
+    64.25,
+    61.93,
+    60.24,
+    59.24,
+    59.97,
+    60.18,
+    58.14,
+    58.27,
+    58.18,
+    57.47,
+    57.78,
+    58.58,
+    59.22,
+    58.93,
+    58.49,
+    60.34,
+    60.03,
+    59.41,
+    60.01,
+    61.17,
+    62.67,
+    64.01,
+    63.71,
+    63.96,
+    63.27,
+    65.37,
+    66.45,
+    67.35,
+    67.43,
+    67.13,
+    65.37,
+    68.64,
+    66.88,
+    66.09,
+    62.96,
+    61.63,
+    60.72,
+    59.5,
+    60.6,
+    62.58,
+    63.88,
+    64.43,
+    61.67,
+    60.69,
+    58.46,
+    58.19,
+    55.84
+   ]
+  },
+  {
+   "symbol": "IBKR",
+   "name": "Interactive Brokers",
+   "sector": "Financials",
+   "price": 71.19,
+   "final_score": 0.8682,
+   "model_score": 0.9432,
+   "news_score": 0.1364,
+   "forecast": {
+    "2w": {
+     "q10": -0.0738,
+     "q50": 0.0225,
+     "q90": 0.1331,
+     "p_beat_nifty": 0.5619
+    }
+   },
+   "reasons": [
+    "RSI 34: oversold, bounce candidate"
+   ],
+   "risk": {
+    "volatility_63d": 0.4406,
+    "atr_pct": 0.05
+   },
+   "news": {
+    "n_articles": 39,
+    "headlines": [
+     {
+      "title": "Interactive Brokers Group (IBKR) On A Missing Follow Through Narrative And An About Right Valuation",
+      "source": "Simply Wall St",
+      "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQZ3hUd25CSWdyaWphRVhaSlFBM2gteVZ1VjE1bmZWX2g2dmlfRWhhc2VLb2s5Y1RZN3RUbS0yX2Y2TDk4Q3hIR3dzUGZhSkdQWFpoNjJZdWNuZEFvQ29OMklydllDR0k1Q21FSC0tWHlWbzVLMnhlX29IcHRVZ2ZNcExzWktuQUpJUnIwZ3BxNVB4SnBYUk5lOWlWTWhVRWFSUUNOYm1wcFBNM0NXellvdThZTkY0TFBhbkVNRlJVb3NRNHdkQUdEU0d5Ym5KQzQtQ2o0RHNPUkl2UTFBTEVXTzlxVE83VHU3RkZqdVc4NA?oc=5",
+      "published": "2026-11-21T02:11:46+00:00",
+      "sentiment": -0.296
+     },
+     {
+      "title": "Interactive Brokers Group Inc (IBKR) Shares Fall 5.9% -- What GF Score of 81 Tells Investors",
+      "source": "GuruFocus",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLXlFYXV1THhEemRXWXdUaDBuYnNseVdsbFBMaUJ1LUlmREZlTjd2b1J1UlBCYURBTThVc0lib1NkNXMyZzhWaUk2ZGZUd01OY3Q1dVNKWkNUWjc1dHJta0h6WUxiSWVQUXgzcFFKOWdPSnlIWWhwdkEtOEpsVVYzeUdrcUszRURqOUVNTzBOVEFrOU9GSHdjWjJ1Yzc1cjZ2SGEwaVM4Ui1WRjNVamoxUnpYTjNFVzBpRW5MTzZCOWtrUQ?oc=5",
+      "published": "2026-11-21T00:56:05+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "COIN Lags Industry, Trades at a Premium: Buy, Hold or Sell the Stock?",
+      "source": "TradingView",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQZWJYVjM2YTVSWDQtZG5kb3hPM0VmMHYyTmVwa2EtX1ZlSGZXbnRNei0zZ05TQmdTQmVlSXZuajU2RnN5R3FuTzAxVWc4OXgxeWNDYnVIVEZsT3ZwelRobWpyWlhUTG5SUWphSndwRlFzaUtNRXB3YlZMdDc2YUtMTnI3VWVKUER0dHUxczdMYWI2dzlILTBrWmkwV25lczRHUHpyaEJEN3hLUWdGRlZiaDUweEFkN0xjajU2TVhB?oc=5",
+      "published": "2026-11-20T16:38:00+00:00",
+      "sentiment": -0.361
+     },
+     {
+      "title": "Interactive Brokers posts lower trading activity: IBKR remains under pressure",
+      "source": "Traders Union",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPalEzMjByZjBSSGhHbGJON29IYUZMYzVwcjRRZm9WQ2o0cGxwa1lwNXNwaXowYWlabDlpa2VTVWNqeS1NdmRSQXlPOWs4T2Z4NkNkS2JTTm9tTndLRHZwOXBqdU56TWhvN2FCWWZKYXVSS3Z0dHRqdzU4TkJWcnREVGN2V2VLUjNrNTZJWWhfZFNCY2YyYmdieGRB?oc=5",
+      "published": "2026-11-20T16:29:31+00:00",
+      "sentiment": -0.527
+     },
+     {
+      "title": "Interactive Brokers (IBKR) Stock Price Prediction: Weak momentum meets constructive consolidation near support",
+      "source": "Blockchain News",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNODhjRWlrSV9ZMzdpa2lobXFOanI1a1BLMERvamFILS1YWGU5NExwejNMZVN4ZG8ya2FFUVJuUUVsTzFxeUppSU52RWg0WkdmeFllOElNNnN6b0xsUFpCeXRfR21vTWZEZlJlUndKRDV2eVJwR0JQNjlNWlEtcjQ0clAwTWhuNm02U3ppWGdwYmxpd1o3MkxRM3kwb0ZYRFg5SFdpNHhlc1lIZ0pBZW1lZA?oc=5",
+      "published": "2026-11-20T12:36:00+00:00",
+      "sentiment": 0.052
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    98.1,
+    96.93,
+    96.46,
+    95.75,
+    97.2,
+    90.39,
+    89.12,
+    92.95,
+    92.62,
+    90.97,
+    90.28,
+    89.42,
+    91.37,
+    90.75,
+    88.8,
+    86.74,
+    88.38,
+    90.69,
+    93.21,
+    91.88,
+    91.56,
+    89.82,
+    89.24,
+    87.08,
+    86.18,
+    85.42,
+    85.81,
+    88.3,
+    89.05,
+    90.58,
+    87.74,
+    86.47,
+    87.87,
+    87.89,
+    87.49,
+    84.14,
+    86.03,
+    82.69,
+    81.35,
+    82.91,
+    85.33,
+    82.28,
+    80.28,
+    80.59,
+    82.25,
+    83.54,
+    81.77,
+    76.9,
+    74.83,
+    77.46,
+    77.88,
+    72.73,
+    75.82,
+    77.57,
+    77.59,
+    82.49,
+    81.33,
+    81.79,
+    78.43,
+    76.46,
+    76.45,
+    75.65,
+    71.19
+   ]
+  }
+ ],
+ "backtest": {
+  "horizon": "2w",
+  "period_start": "2021-11-12",
+  "period_end": "2026-11-06",
+  "n_weeks": 251,
+  "avg_pick_return": 0.0053834363784027355,
+  "avg_pick_excess": 0.0014486949242789675,
+  "avg_universe_return": 0.004924727160974518,
+  "avg_benchmark_return": 0.003934741454123768,
+  "pick_hit_rate": 0.5205843293492696,
+  "pick_beat_benchmark_rate": 0.4754316069057105,
+  "weeks_top5_beat_benchmark": 0.49800796812749004,
+  "mean_ic": -0.012176286840910796,
+  "ic_t_stat": -0.65195597891033,
+  "q10_q90_coverage": 0.8387691295046898,
+  "chained_cagr_picks": 0.10942132362824886,
+  "chained_cagr_benchmark": 0.0809322197140363,
+  "decile_excess": {
+   "0": 0.003368843461547524,
+   "1": 0.0011066595362154098,
+   "2": 0.0010529005537619754,
+   "3": 0.0013560184907156726,
+   "4": 0.0009478539076964624,
+   "5": 0.0005800729892170048,
+   "6": 0.0007051033205126288,
+   "7": 0.0002149125009008129,
+   "8": 0.0010992035073058915,
+   "9": -0.0005814907983288845
+  },
+  "trend_check": {
+   "top5": {
+    "downtrend": {
+     "n": 266,
+     "avg_excess": 0.0055210326248737555,
+     "avg_return": 0.012908377851709753,
+     "share_positive": 0.5451127819548872,
+     "p10_return": -0.08946083744068517
+    },
+    "no_downtrend": {
+     "n": 487,
+     "avg_excess": 0.0009172230053649894,
+     "avg_return": 0.0029661480251120566,
+     "share_positive": 0.5051334702258727,
+     "p10_return": -0.10541814482413127
+    }
+   },
+   "high_score": {
+    "downtrend": {
+     "n": 8858,
+     "avg_excess": 0.0029235972961629826,
+     "avg_return": 0.009612346269781191,
+     "share_positive": 0.5517046737412509,
+     "p10_return": -0.0847809644979336
+    },
+    "no_downtrend": {
+     "n": 19557,
+     "avg_excess": -0.0012086333733012024,
+     "avg_return": 0.0018921879343292115,
+     "share_positive": 0.5125530500588025,
+     "p10_return": -0.07575299872513172
+    }
+   }
+  },
+  "round_trip_cost": 0.002
+ }
+}
