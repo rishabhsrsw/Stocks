@@ -1,0 +1,472 @@
+{
+ "market": "US",
+ "generated_at": "2026-11-24T06:32:48+00:00",
+ "as_of": "2026-11-23",
+ "horizon_days": 10,
+ "eligible_size": 470,
+ "picks": [
+  {
+   "symbol": "BBY",
+   "name": "Best Buy",
+   "sector": "Consumer Discretionary",
+   "price": 97.0,
+   "final_score": 0.8883,
+   "model_score": 0.9051,
+   "news_score": 0.6423,
+   "forecast": {
+    "2w": {
+     "q10": -0.1218,
+     "q50": 0.0117,
+     "q90": 0.1247,
+     "p_beat_nifty": 0.5845
+    }
+   },
+   "reasons": [
+    "Short-term dip (-6.1% this week) inside a long-term uptrend",
+    "Strong 6-month momentum (+57%, top 1% of universe)",
+    "Outperforming S&P 500 by +21% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)",
+    "RSI 48: momentum without being overbought"
+   ],
+   "risk": {
+    "volatility_63d": 0.4375,
+    "atr_pct": 0.0438
+   },
+   "news": {
+    "n_articles": 40,
+    "headlines": [
+     {
+      "title": "5 Retail and Tech Earnings Charts to Watch This Week",
+      "source": "TradingView",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPUVdic0RDSWJfNnFTdk8xVFFwbUNWak4zV3FMeWEtU1k2cExGS3Z1TTAwTnZZT0ZCNlNRV05POG1hLUF5MjhGQkJlRXQxZUg3N2Y2aldkSWdTZ0JFTTE0eFZLYzJlRTdLV2pLMHNJZ0NMS0Z2RGctYXl0SzQyc3BFeXE3OE5ET2NDQlktOHpVaWhtOXZTQ24tX2lpS0VxZ0d6aF80NmFRMV9teEg5?oc=5",
+      "published": "2026-11-23T23:27:00+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Best Buy's First Report Card Under Bonfig Lands as Holiday Season Kicks Off",
+      "source": "BigGo Finance",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1MSldGSWlCNTlsTWRjVFlURERjdmU3cFJ1QWVMTzkybW9pYWMwVGdBZlVKMFdmcG9LNy1ESERQY3lua3o1YkJRZ0Rmb1R5XzE5T1czU1hLOGh4Z2VqaU1lX2hhcDdMNDA4Wk9CM3pMeEQtVkx2QXc?oc=5",
+      "published": "2026-11-23T22:35:00+00:00",
+      "sentiment": 0.784
+     },
+     {
+      "title": "Best Buy Q3 earnings preview: What Wall Street expects from new CEO Jason Bonfig amid crucial holiday season",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPVFQ1OHJ0NENJMkhBY1YxU0t2TlcxMnByLWJDdjhHWF95ZkJVUkRteHlTSVJNb29DMXRSYVhxcGhtMEdYU0RxVmEteUJyeTJzanVaUk9zMEtRclhoQmZhR1g3d19md2VfODBKbEtvTVJnMDdSREpLZE9Rc0tpYVNUZ2N6cnplaW5ueXBKOFRrNFdablh3R29oaXVaVXUwWTZ1a25fb1lQZW1ZMnRfeS1LTi1CalZlSmQ5aWRPeldZeVV2SFBwaElLY28tTV9JMHIyTHVsXzlEMlJYa0sxUnh4YU54TzVSdU8wbzNqd3IxU0s2RXJUSjRr?oc=5",
+      "published": "2026-11-23T21:58:38+00:00",
+      "sentiment": 0.844
+     },
+     {
+      "title": "$1,000 Invested in Best Buy 10 Years Ago Nearly Tripled. Here\u2019s What It\u2019s Worth",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQclVNcUt3SG5oUDFlemYwLUdCVFptVHZpWVNlVnRRWVdPd0pKQVAxZEw2S2ZNOFdZZ0JQNlNJUlR2WEh3WXdfOGFfZzRRR3hqRXhjV2hjRHpaNW56QmJrazRSdGp3Y3doV2o3MFBBTktLcTJYWUg2Q0lNLUNfUHZaZFdzMVdOLU12RVVjeFoxRXhPZw?oc=5",
+      "published": "2026-11-23T18:17:13+00:00",
+      "sentiment": 0.807
+     },
+     {
+      "title": "Can an 8.6% Five-Session Stock Slide Cool Holiday Shopping Signals From Best Buy (NYSE:BBY), SPDR S&P Retail ETF (NYSEARCA:XRT), Vanguard Total Stock Market ETF (NYSEARCA:VTI) and Consumer Discretionary Select Sector SPDR Fund (NYSE",
+      "source": "Kalkine",
+      "link": "https://news.google.com/rss/articles/CBMi9gJBVV95cUxOQnJ6OWk1b2xhOUF2MTFHOWJPMzV4OXZ3R0ladTdSZkRzSlFSTkpqZDhvUjVDdXlCYVFSS3dPZ2YzYV9IWTI2cEF0a3ZNaVB6M1A5QnNQOTNhRndXN3lmWVBMX0RITldqdWNGeDgyZERlSExDVmYzX2NvR2E3TkRud3B2RFpULVljXy1lZ1hPdWxRbmVGeDFnbkNSVTlkNDkxQTNxTFhoNjZoMjE0OXFvczRFTEVQY1VuQ2xsNWNVekFqODd1T1BaTzcwQUVfQjM1MmFnbUZuVkFJbVZnZWE4X2E1c3FTUGZTNHpabUtRSWtEclZMQVBpcWFhM2xVNUI2M3hOdXZSVlJURFBXSUVlandWTm1DYjF6ZkU3R2Q4bzR3TjBKMC1lb2RuWnNCYzhxV1RQbmMzSXpEUldNcjFBdGZvM3VMUzZuaFBQbHEwcFZjQUprWFQ4RnZ4VDZ4ZFRFeDYtdXExdHUtRUFiNW96VVU3U3FFUQ?oc=5",
+      "published": "2026-11-23T14:32:00+00:00",
+      "sentiment": 0.886
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    86.53,
+    82.69,
+    81.58,
+    79.32,
+    81.77,
+    86.1,
+    86.58,
+    89.33,
+    88.4,
+    87.12,
+    87.18,
+    89.86,
+    93.85,
+    92.27,
+    91.49,
+    94.56,
+    92.85,
+    93.22,
+    94.82,
+    90.8,
+    91.0,
+    90.51,
+    89.91,
+    88.75,
+    88.24,
+    87.7,
+    87.97,
+    87.39,
+    84.85,
+    84.59,
+    88.4,
+    87.01,
+    86.99,
+    87.96,
+    89.1,
+    94.17,
+    92.63,
+    91.13,
+    93.89,
+    94.12,
+    99.83,
+    99.87,
+    97.95,
+    98.5,
+    96.96,
+    100.39,
+    95.65,
+    96.14,
+    93.87,
+    101.36,
+    99.4,
+    99.63,
+    106.28,
+    104.1,
+    105.16,
+    103.41,
+    104.07,
+    103.35,
+    98.4,
+    100.31,
+    99.27,
+    97.95,
+    97.0
+   ]
+  },
+  {
+   "symbol": "PSX",
+   "name": "Phillips 66",
+   "sector": "Energy",
+   "price": 237.22,
+   "final_score": 0.8836,
+   "model_score": 0.9686,
+   "news_score": 0.0875,
+   "forecast": {
+    "2w": {
+     "q10": -0.1007,
+     "q50": 0.0146,
+     "q90": 0.1053,
+     "p_beat_nifty": 0.6579
+    }
+   },
+   "reasons": [
+    "Short-term dip (-8.5% this week) inside a long-term uptrend",
+    "RSI 34: oversold, bounce candidate",
+    "Strong 6-month momentum (+38%, top 5% of universe)",
+    "Outperforming S&P 500 by +6% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.3538,
+    "atr_pct": 0.0431
+   },
+   "news": {
+    "n_articles": 39,
+    "headlines": [
+     {
+      "title": "PSX Nov 2027 270.000 put (PSX271119P00270000) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE0yVU11RHZwSXh1UU80ZGdrRTZDUmtKUm9NU0YwZndZQlZ2VjI1MzJjVGZSNko1Qm5uQ1E1c1hFNTZFcTlBVnVlSTc3dzVidngtckdvbnlseWxuMDlRSzRvV1JXbGw?oc=5",
+      "published": "2026-11-23T16:28:21+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "PSX Dec 2026 270.000 call (PSX261211C00270000) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5EdXFqckQwU2JobXc0aHdfMXlxYXJEZ3BxNzNEejNadmFUaDNPNGdHMmJHNUY1MGJUeUtFNjlhSkZaby1YelpWS0Jod0ZCdG9sdDNYbXU5amlPdjhwdUJtR2Zjem8?oc=5",
+      "published": "2026-11-23T08:25:14+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "PSX Jan 2029 145.000 call (PSX290119C00145000) Interactive Stock Chart - Yahoo Finance",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE45ZjBJTkE5ZTlBNEpGNGYzNFRJODNTY0lMUFNENU1oZEpxSUR6Y3Iwd0xFclpISDhtaFlTUHZacDNQOG9zVmJPRDgwd1VaSmtrUjdyZkpMWlhTY0U5endUSVZCVk1kaDhoazFvVQ?oc=5",
+      "published": "2026-11-23T01:25:30+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Phillips 66 vs. Valero: Which Dividend Can Better Survive Falling Refining Margins?",
+      "source": "24/7 Wall St.",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQT1phMkNLWTJHcjZKNmdtWF9Uejd1aC1HTUYxX3JMOTBVUWJMRkRyZmJVT3lqWFZnVy1PbC0zZXdLVmdyV2otamppU1JwdGxJQjJSSmRMT2ZWeDU5ODZ6MUh3aVdRTDROdl9hOC0wQ0t0VDgwZDg0ZDNyTEdjaUFMTUZpS1BCekxyZXZpZnlkMnAzOEdoODd4NVdTckx5Nzc1ZWhmSWNmcEFoMnJqNVhhN3Z2MHZWTFRRdUNGSHpQUzh6QQ?oc=5",
+      "published": "2026-11-21T22:17:00+00:00",
+      "sentiment": 0.511
+     },
+     {
+      "title": "Phillips 66 stock underperforms Friday when compared to competitors",
+      "source": "MarketWatch",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOOEk3UURBejBLMGFrN2VFSUp1U0VTS2FMUjhTZXhZV25JVUpuX1dCclk1aUt2QUhxOGxVOW1ydWEwQnlfOTZPNWRBZEtmRDZXZlAxNVdRZ3FwTlk0N2FEOGtzSGxYYWdxUm15ZUNUUF85eFRFOXZpNzdTVVROLTM1MW93and3WnF5N2dBbVIxZU9rQW5QeDh6aEpTLVRreU1scUtMaHNiYnhwRjdQRGp3S2dLV0ZiQ0FlcWxBb2FJVTRyVVJxRXc?oc=5",
+      "published": "2026-11-20T21:40:00+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    240.99,
+    238.59,
+    242.76,
+    245.32,
+    250.73,
+    254.78,
+    253.36,
+    253.79,
+    257.82,
+    259.45,
+    257.19,
+    258.15,
+    255.75,
+    263.58,
+    263.28,
+    272.81,
+    271.74,
+    260.41,
+    255.47,
+    255.17,
+    254.56,
+    254.44,
+    252.26,
+    250.96,
+    254.01,
+    262.88,
+    263.23,
+    268.34,
+    268.41,
+    270.23,
+    280.16,
+    276.76,
+    280.03,
+    291.24,
+    295.77,
+    287.72,
+    291.67,
+    289.07,
+    289.54,
+    288.59,
+    283.18,
+    281.73,
+    287.38,
+    267.16,
+    272.36,
+    272.21,
+    281.39,
+    273.64,
+    270.55,
+    258.31,
+    245.78,
+    244.47,
+    251.73,
+    249.42,
+    257.36,
+    261.57,
+    263.55,
+    259.29,
+    256.93,
+    244.83,
+    242.71,
+    239.33,
+    237.22
+   ]
+  },
+  {
+   "symbol": "LYB",
+   "name": "LyondellBasell",
+   "sector": "Materials",
+   "price": 54.74,
+   "final_score": 0.869,
+   "model_score": 0.9152,
+   "news_score": 0.3685,
+   "forecast": {
+    "2w": {
+     "q10": -0.0984,
+     "q50": 0.0107,
+     "q90": 0.0993,
+     "p_beat_nifty": 0.6029
+    }
+   },
+   "reasons": [
+    "RSI 31: oversold, bounce candidate"
+   ],
+   "risk": {
+    "volatility_63d": 0.3366,
+    "atr_pct": 0.0447
+   },
+   "news": {
+    "n_articles": 27,
+    "headlines": [
+     {
+      "title": "Yvonne van der Laan\u2019s award of 11,805 stock units at LyondellBasell (LYB) vests Nov. 19, 2029.",
+      "source": "Stock Titan",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPWWFKNlNnQzBfY0Q5Z2hYOG05cndCNFFCbDZmR1RQQlYwV2RIVng4NmxfbktCMDk1enpFTDBMLWNGVHl5TFdSQ09lbGJsaUZSR3VlaDlCTHhKaHFnUnQtYlVHRnRkUWVFOENjcWJuWWFCSk1jUVd6bjczamNYcG1CM0lBZzRTeHVhQUNfdFFISHhLMmtNSTBKMlFqbjN0ME5VYWR3TVdaR0pIczd5Z3UwZGhfRzE3VkJPSGQ5ZXpBUWs?oc=5",
+      "published": "2026-11-23T21:09:41+00:00",
+      "sentiment": 0.849
+     },
+     {
+      "title": "LyondellBasell stock: Company declares $0.69 dividend - ad-hoc-news.de",
+      "source": "ad-hoc-news.de",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNZGRvWUtleUtVdk5vbDlTdndVRDBMU3Y3LVRDV0Uxb2RtamVPbFlKdl9tVl93cE1WeEZqQ0Y3b2J5aGs4MG5RY3ZDelUwWm9GeXNrS3JxVDFYYzNGaEhrOVB6Y0pLN2tmM3ZtY2lWaWVKRVNjdGVHNFhNcDdvcmdLaE5tVGVnZWVnZWcxUk9ucy1rblFaMWdiRmw2am5fLUZTUEtFUnhxcGhERTdWLUJpYmt4LVQ?oc=5",
+      "published": "2026-11-22T12:23:59+00:00",
+      "sentiment": 0.25
+     },
+     {
+      "title": "Trading Systems Reacting to (LYB) Volatility",
+      "source": "Stock Traders Daily",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOVTI4cklLdUlyUzRmYjlTS2pFNGRpNDNnWVZzUTZ1Um9nd3FHU0pvQVg0TWhSd2ZXX0lMZWJEQkJjeXEyMzQzWUltVzJHQ3lPX0RnUkhlZXJfc3RqWDF4S2JTNXBNOGViNElmTS1ZRWRSOHpIbV8yTFZZWGdJRUhSZ1RPRnB0SjF0LWxwT05VT3Z6TFlVZWxrb3VIMHdBM1hIUXhpQy1GN1BnNWliNkFneWdBWTJkQkpVa3FYMVpqUlU?oc=5",
+      "published": "2026-11-22T08:50:02+00:00",
+      "sentiment": 0.694
+     },
+     {
+      "title": "LyondellBasell Industries NV (DLY.HA) latest stock news and headlines",
+      "source": "Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4zVHMxb0VZN0RPMHBEVExOaWxtVW14S0Fib2EzckQ3bEZWMVByOVcxNjE1TUdmeW9BWmFxZkEtbVNVRTF6OHRRU1drcTFYd0ZqU2d0RV9pUk1fRzg?oc=5",
+      "published": "2026-11-21T13:33:54+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "A Look at LyondellBasell Industries NV (LYB) After 4.0% Decline -- GF Value $70.35 vs Price $55.84",
+      "source": "GuruFocus",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOdy1Rb2w0d2lEZEw1OEQ2MVBDMi1Rb0tpaHJMbV9FMEtGMkllZmdlZy1OVGE0eTRUX0s4ZWdPOHdjbEF4MkxJenNCNkhQRHJFcXM1amYzMkRsbWVxVVdWZHBPVDZ4enBGS0dxY0dheUM3WjJRN3RaTnpHWmlYWnN3VEIwdEhGeThEYnRaLTNYOWtPN0JiOHJGd1JsMmh5cVV4bGY2aGNTV1g0andRYjdSTFFBVkRBRjNpODZVNldlV1R2MFBk?oc=5",
+      "published": "2026-11-21T03:55:04+00:00",
+      "sentiment": 0.713
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    62.62,
+    63.06,
+    63.67,
+    65.08,
+    65.17,
+    66.57,
+    64.76,
+    63.52,
+    64.59,
+    64.51,
+    64.3,
+    63.69,
+    62.75,
+    65.43,
+    64.9,
+    64.25,
+    61.93,
+    60.24,
+    59.24,
+    59.97,
+    60.18,
+    58.14,
+    58.27,
+    58.18,
+    57.47,
+    57.78,
+    58.58,
+    59.22,
+    58.93,
+    58.49,
+    60.34,
+    60.03,
+    59.41,
+    60.01,
+    61.17,
+    62.67,
+    64.01,
+    63.71,
+    63.96,
+    63.27,
+    65.37,
+    66.45,
+    67.35,
+    67.43,
+    67.13,
+    65.37,
+    68.64,
+    66.88,
+    66.09,
+    62.96,
+    61.63,
+    60.72,
+    59.5,
+    60.6,
+    62.58,
+    63.88,
+    64.43,
+    61.67,
+    60.69,
+    58.46,
+    58.19,
+    55.84,
+    54.74
+   ]
+  }
+ ],
+ "backtest": {
+  "horizon": "2w",
+  "period_start": "2021-11-15",
+  "period_end": "2026-11-09",
+  "n_weeks": 251,
+  "avg_pick_return": 0.011760489258844433,
+  "avg_pick_excess": 0.007682012097109185,
+  "avg_universe_return": 0.005025449238976934,
+  "avg_benchmark_return": 0.004078477161735249,
+  "pick_hit_rate": 0.5325365205843293,
+  "pick_beat_benchmark_rate": 0.5152722443559097,
+  "weeks_top5_beat_benchmark": 0.545816733067729,
+  "mean_ic": 0.008656083692631674,
+  "ic_t_stat": 0.4480872147858738,
+  "q10_q90_coverage": 0.8116335513595787,
+  "chained_cagr_picks": 0.41755135115393616,
+  "chained_cagr_benchmark": 0.09096956611544971,
+  "decile_excess": {
+   "0": 0.001325334224948531,
+   "1": 0.0002559340231284997,
+   "2": 0.0010580043934169823,
+   "3": 3.9425545822714076e-05,
+   "4": -2.0747872295904355e-05,
+   "5": 0.0002396499529082162,
+   "6": 0.0017739925605574753,
+   "7": 0.0007163519267985728,
+   "8": 0.0017890005088790283,
+   "9": 0.0022479007871805076
+  },
+  "trend_check": {
+   "top5": {
+    "downtrend": {
+     "n": 253,
+     "avg_excess": -0.00023448480102048237,
+     "avg_return": 0.007463800471716349,
+     "share_positive": 0.5533596837944664,
+     "p10_return": -0.09521257765824753
+    },
+    "no_downtrend": {
+     "n": 500,
+     "avg_excess": 0.0051367781518729585,
+     "avg_return": 0.007383632409441407,
+     "share_positive": 0.524,
+     "p10_return": -0.10224643846497192
+    }
+   },
+   "high_score": {
+    "downtrend": {
+     "n": 8698,
+     "avg_excess": 0.004773105561884263,
+     "avg_return": 0.012076066602149544,
+     "share_positive": 0.5632329271096804,
+     "p10_return": -0.08401288717000605
+    },
+    "no_downtrend": {
+     "n": 18780,
+     "avg_excess": 0.0007018542410522696,
+     "avg_return": 0.002442362120818791,
+     "share_positive": 0.5087859424920128,
+     "p10_return": -0.07742903726322561
+    }
+   }
+  },
+  "round_trip_cost": 0.002
+ }
+}
