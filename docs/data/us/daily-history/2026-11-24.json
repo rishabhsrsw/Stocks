@@ -1,0 +1,466 @@
+{
+ "market": "US",
+ "generated_at": "2026-11-25T05:12:25+00:00",
+ "as_of": "2026-11-24",
+ "horizon_days": 10,
+ "eligible_size": 470,
+ "picks": [
+  {
+   "symbol": "VLO",
+   "name": "Valero Energy",
+   "sector": "Energy",
+   "price": 324.67,
+   "final_score": 0.9121,
+   "model_score": 0.9846,
+   "news_score": 0.2438,
+   "forecast": {
+    "2w": {
+     "q10": -0.1319,
+     "q50": 0.0072,
+     "q90": 0.1223,
+     "p_beat_nifty": 0.6134
+    }
+   },
+   "reasons": [
+    "Short-term dip (-10.4% this week) inside a long-term uptrend",
+    "RSI 31: oversold, bounce candidate",
+    "Strong 6-month momentum (+36%, top 8% of universe)",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.4399,
+    "atr_pct": 0.0444
+   },
+   "news": {
+    "n_articles": 33,
+    "headlines": [
+     {
+      "title": "Erste Group Bank Comments on Valero Energy FY2027 Earnings",
+      "source": "MarketBeat",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOUDdkRi0zbjBjM3lySmo5aEhpZHpZWkpuMWFHZWU4TEpFbEhiS3JiMFhmNXR0dG43SjdZVGdlUzZGOXJMZDRvZExxeDRDVWcwQVVjUVpGZTAtZ09WUnA3TzVwelVqX2I3b2ZUbVFGejhLbjd5Y3VDRm5adnNQSzZVTy1kbnhGcE5mZ1hJd3lhdk15cWdlbHp5OXNzdldlT055NG5uU2F5YzVqa09QdkgtOEZCTkQ5UUJ1X2l4NDBmSQ?oc=5",
+      "published": "2026-11-24T13:03:20+00:00",
+      "sentiment": 0.273
+     },
+     {
+      "title": "Brokers Issue Forecasts for Valero Energy FY2026 Earnings",
+      "source": "MarketBeat",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQVUVaVE52MjR6Q3ppYWd5LWx5bFZCeGpRSmxETkFHT0RabW50NjJEVUw2dFVfWElFQnRTMDFmOUc3QmN1bDZmTlI5cFhaX1ZaSjRWOW0tVDFLSU0xd3kxTk8zVGhTazFYdHNJYWI1WnNuVmhZYVNJSGtOTUZoOFJta0VRTlUwdkhmLUR5QURVNmxqZTRQVXR5NkVvVUR6RWVTMzZMOHNaV0VYUmllcldRVHdkdGhkNHJOeVgyX1pB?oc=5",
+      "published": "2026-11-23T06:29:03+00:00",
+      "sentiment": 0.273
+     },
+     {
+      "title": "Valero (VLO) Stock May Be Undervalued As Refining Margins Ease",
+      "source": "Simply Wall St",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPOEtUTGUtS1hTMTBfamg3ODhiM0pIUS1jR2RuTzVsaG5OOXNfVXN2aWRlZlFjS1NUT1BYSGZ5Q2hHYW45TThqeENnSzQ1eEt1eXNxcGI1VC1pVWlNcWhFaVptak9HQzlIZWlWWWpaMmtyQmtXWFh1VHFNV2JaaG1SWjBTS0dxZ2lBdzllZ0tLb2Y4NnN5LXdod0s1eEo3b1M5U0xOOG55X0lRa1kzYnB5bWMtQnNMTUcxMnViX0NZVWhWc3NJNjFUbkd2TdIBywFBVV95cUxPOEtUTGUtS1hTMTBfamg3ODhiM0pIUS1jR2RuTzVsaG5OOXNfVXN2aWRlZlFjS1NUT1BYSGZ5Q2hHYW45TThqeENnSzQ1eEt1eXNxcGI1VC1pVWlNcWhFaVptak9HQzlIZWlWWWpaMmtyQmtXWFh1VHFNV2JaaG1SWjBTS0dxZ2lBdzllZ0tLb2Y4NnN5LXdod0s1eEo3b1M5U0xOOG55X0lRa1kzYnB5bWMtQnNMTUcxMnViX0NZVWhWc3NJNjFUbkd2TQ?oc=5",
+      "published": "2026-11-22T12:08:04+00:00",
+      "sentiment": 0.361
+     },
+     {
+      "title": "Valero Energy Corporation $VLO Shares Sold by State Street Corp",
+      "source": "MarketBeat",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNMzYySjB4RTY2aEZDRXVZQ1IyU2dsRjc2STQ2WWIyYXVaTFVIcXFOTDl0WnktWEJHMF9EWXB2YUl3dUYzM1ZoaWNVaVpSRDNQbTc2OUF4eUctSF9ObzlhMHE2VkppUnNlT3NpRVdlTV9TSWtzbjY0QWJaVXRQVHUtWjUyUjRhREpiWFd6MXZfYTdldENDekNHei1KX2tFRWx3NGI1TlVXN0UwS0ZXYzFCaWx4XzlOVmxjRG1Mc3V6Zmk?oc=5",
+      "published": "2026-11-21T13:50:33+00:00",
+      "sentiment": 0.511
+     },
+     {
+      "title": "Why Everyone Is Watching Valero Energy (VLO) Right Now",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPVW51YVR1Z2tJTUY5a0ZRME9hdzFIMnRhM010WE1acXVIbjFrUVZkdDJhVmFFTTRBWi1haktwZ3YyaFNaVmtwNWRWZEpuXzhNWDZOT0phUzJlRERvaVY1M0EzQXlDdnZOWkNoVjU5M3FsNWlWc3VSN1pYV18yNDNSM1kwOXYyUmJ6a3lvd3RDR2ZqVi1FNHA4?oc=5",
+      "published": "2026-11-20T09:07:42+00:00",
+      "sentiment": 0.273
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    345.33,
+    351.08,
+    357.61,
+    360.67,
+    364.76,
+    369.34,
+    369.37,
+    381.46,
+    387.53,
+    384.03,
+    389.0,
+    381.55,
+    395.59,
+    401.81,
+    411.03,
+    411.77,
+    391.84,
+    375.77,
+    374.47,
+    381.47,
+    385.77,
+    388.15,
+    386.31,
+    386.2,
+    406.97,
+    404.82,
+    417.8,
+    417.69,
+    422.56,
+    442.18,
+    432.17,
+    434.41,
+    454.8,
+    458.11,
+    442.44,
+    443.09,
+    431.73,
+    431.84,
+    435.16,
+    424.73,
+    417.75,
+    425.21,
+    385.93,
+    387.06,
+    383.17,
+    398.2,
+    380.07,
+    386.24,
+    364.01,
+    349.95,
+    345.19,
+    355.45,
+    349.43,
+    362.39,
+    373.58,
+    378.45,
+    368.38,
+    362.44,
+    342.45,
+    337.23,
+    332.96,
+    328.2,
+    324.67
+   ]
+  },
+  {
+   "symbol": "NTAP",
+   "name": "NetApp",
+   "sector": "Information Technology",
+   "price": 163.0,
+   "final_score": 0.881,
+   "model_score": 0.9626,
+   "news_score": 0.1092,
+   "forecast": {
+    "2w": {
+     "q10": -0.1384,
+     "q50": 0.0087,
+     "q90": 0.1469,
+     "p_beat_nifty": 0.594
+    }
+   },
+   "reasons": [
+    "Short-term dip (-5.8% this week) inside a long-term uptrend",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.5704,
+    "atr_pct": 0.0686
+   },
+   "news": {
+    "n_articles": 40,
+    "headlines": [
+     {
+      "title": "Why is NetApp stock down 5.4% today?",
+      "source": "Traders Union",
+      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNUG40YWhKRlh0VWpoOHFxMVQzNEpscExVVUozRkV6LVM5RFFyNXFoZDRoV3NWYjZKcWI3cF9qRk5ETTV5c0prRkJpNTJ5SnhyckJhSERheWFqX2dQVld4ejdjNXJqVkxqeTZBY19WY2d5aUNOZmdsZ1N4MFliRXk1RHl4ODhlVXdSWHBFeUFPNWRodzA?oc=5",
+      "published": "2026-11-24T20:30:34+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Knowles, Arista Networks, TD SYNNEX, Avnet, and NetApp shares are falling, what you need to know",
+      "source": "TradingView",
+      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNUHdmTVJYUjRjN3pNblV3UUV6N0Zib2xtNWVYM2VaMlNBZ0loR25QaHBRN1lIcjR6dWhoeWxoa2x0NDd1UTlkeFZiVWF3NEhNVGs0Rm0ydGlzVXdIUUl2bm5kaUVyekxPRDJjR3VEZTVwX2VRSE5YMVBPUHprS3hfZzJwY1FvNW1abDhfc0NwU3N2NERzYmZ0WWNJM05lWXFUZXhIU1dOR05aZ1EtVnh4UlUxS3M3eFplekJWQWMtTTNxTHlfcEpjRllqVjM2X2xlRTl3b01UMFBUMFFDNXdIcS1hOEdXZm8?oc=5",
+      "published": "2026-11-24T20:01:08+00:00",
+      "sentiment": 0.153
+     },
+     {
+      "title": "NTAP Dec 2026 170.000 put (NTAP261218P00170000) stock price, news, quote and history",
+      "source": "Yahoo Finance Australia",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5PdlJMNWtGYWc0Z2p4c3dmRld2OUVHUjNzeUEyRnAzdVI4ZDNYN1JXRG9oaC1ISDQ5dWNmQkpvcmJPSHRyQlVwNHFSX0l5TEp6UFZEZmJlRElMWWE3U2x1REZUb1h0Zw?oc=5",
+      "published": "2026-11-24T16:47:42+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "NTAP Jan 2027 150.000 put (NTAP270115P00150000) interactive stock chart",
+      "source": "Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE96TmxHRmVpQ2l1dzhrbGhYLTZ6bFFnTThtc0xFc1U1SG9xdVpVVWVPOVVMTDgyVF94eHcta2dZemhRcVJTVERJOEgzaGNsSzYzc3lKaHg2R0tOdkFXM3ZUVHVUNGtGNXBmX0ZvRFB3?oc=5",
+      "published": "2026-11-24T14:03:43+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "NTAP Dec 2026 160.000 call (NTAP261218C00160000) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9oTHZHekNzMzdfa2xoVk4xR1dzQVY1WU1mR2lyOGlsLVlRTkdmZVI4Z3FBOGd5bzNUcUoxZjlaZlhiRGpZRmpOM1JUcHEtSmRnSGw0amJ1cjVHM0MzdHVtQXhDVjgtdw?oc=5",
+      "published": "2026-11-24T12:23:54+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    190.21,
+    186.6,
+    184.87,
+    182.75,
+    180.36,
+    184.96,
+    185.17,
+    188.7,
+    184.32,
+    183.19,
+    198.83,
+    187.86,
+    189.5,
+    191.06,
+    196.48,
+    197.34,
+    197.7,
+    192.48,
+    195.89,
+    196.8,
+    200.7,
+    203.95,
+    208.71,
+    209.61,
+    214.57,
+    225.76,
+    223.27,
+    227.94,
+    235.24,
+    230.53,
+    237.15,
+    239.18,
+    239.01,
+    222.2,
+    214.7,
+    203.8,
+    207.37,
+    209.97,
+    217.21,
+    212.51,
+    215.48,
+    222.08,
+    227.58,
+    223.66,
+    218.42,
+    199.18,
+    185.26,
+    190.78,
+    187.67,
+    169.38,
+    169.19,
+    176.07,
+    175.99,
+    183.12,
+    186.08,
+    181.37,
+    177.85,
+    173.04,
+    172.19,
+    170.18,
+    157.65,
+    171.64,
+    163.0
+   ]
+  },
+  {
+   "symbol": "DVA",
+   "name": "DaVita",
+   "sector": "Health Care",
+   "price": 164.17,
+   "final_score": 0.8561,
+   "model_score": 0.9405,
+   "news_score": 0.037,
+   "forecast": {
+    "2w": {
+     "q10": -0.1157,
+     "q50": 0.006,
+     "q90": 0.1066,
+     "p_beat_nifty": 0.5863
+    }
+   },
+   "reasons": [],
+   "risk": {
+    "volatility_63d": 0.4093,
+    "atr_pct": 0.0431
+   },
+   "news": {
+    "n_articles": 38,
+    "headlines": [
+     {
+      "title": "DVA261120P00180000 interactive stock chart | DVA Nov 2026 180.000 put stock",
+      "source": "Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1RbnpEYXFNbkNsV3pKcE15X0RQVDR2TnBic2tjYmJSX0ZDV0dCSDh1VzQ0ZUR1bVY4ZVdUVHJCalp4cXBZOTh6ZzNfZ3QxbzdWVVZDRWtBSWpDZHZsNk1HeDZhQQ?oc=5",
+      "published": "2026-11-24T05:14:09+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "DaVita Inc. (DVA) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE50Y3pBenZUdTFVVmRMclFlSTBzV291VHdqRU5FNFRUVWdadFRzVGE1dk43U0ZaYXVxQlJpY2hUa0dpZHl3dTF1MnVjbEVUYnVF?oc=5",
+      "published": "2026-11-23T22:03:23+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "DVA Nov 2026 155.000 put (DVA261120P00155000) interactive stock chart",
+      "source": "Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9jM0VJWTZheWszVEFwbEhkZ2w5TDg0MlRBUDNUY2I5RENPQjRzTVdlZzUtWU5kWHNXT3FkMDZuNzZsSmg0SjNiOTNhYTBkTngyT1BOVkVnWG1VX1Y1ZzZKdHNtT0hnZWNDcGFveg?oc=5",
+      "published": "2026-11-21T03:01:18+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Is DaVita (DVA) Cheap After Its Expanded HD Rollout Reached All U.S. Centers?",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxORmhhbTlZR2hwanpDREVWS2hPNlRNU2w2XzkzdkNRdTltYmhVb2dVQUFuY2I2QUJUeXhkZ1pkeUhXYm83dUcySEl2eVNad2dLdHBFT2dNZ0JkcU5xTS1lSTd5b1VpcWVqSDkwbXBNNzVDTHN0bzBDd1FxZ1BORU03bnpPYnJKLUxjelczd1ZfSFczT3M?oc=5",
+      "published": "2026-11-21T02:10:00+00:00",
+      "sentiment": 0.103
+     },
+     {
+      "title": "DVA Feb 2027 190.000 call (DVA270219C00190000) interactive stock chart",
+      "source": "Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9NNFlaUHJnMjl2emdUbmIzNjVnRXA0dG91bzY0by1tbzNrWEZPQk00Y3dpNUtTVklIUTB0YldkZy1hbTZUczllN05seW13ZEdlRjItQjgwYmNWMkpEcDVoVW16a0lzS3dGREtzZQ?oc=5",
+      "published": "2026-11-20T23:33:54+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    178.88,
+    180.68,
+    176.01,
+    176.14,
+    179.39,
+    181.66,
+    183.99,
+    180.06,
+    183.01,
+    181.33,
+    181.55,
+    189.32,
+    190.9,
+    193.86,
+    183.09,
+    183.86,
+    182.34,
+    183.72,
+    183.14,
+    174.67,
+    178.47,
+    178.07,
+    175.19,
+    174.92,
+    176.35,
+    178.69,
+    178.72,
+    180.4,
+    176.78,
+    177.02,
+    179.25,
+    181.78,
+    182.08,
+    180.7,
+    189.16,
+    187.31,
+    187.0,
+    175.35,
+    176.81,
+    186.1,
+    183.64,
+    184.03,
+    181.69,
+    183.93,
+    193.31,
+    187.5,
+    185.74,
+    182.17,
+    192.66,
+    194.82,
+    191.35,
+    185.54,
+    179.28,
+    183.5,
+    174.07,
+    174.56,
+    174.22,
+    173.0,
+    161.79,
+    156.34,
+    161.03,
+    159.76,
+    164.17
+   ]
+  }
+ ],
+ "backtest": {
+  "horizon": "2w",
+  "period_start": "2021-11-16",
+  "period_end": "2026-11-10",
+  "n_weeks": 251,
+  "avg_pick_return": 0.005787029452582982,
+  "avg_pick_excess": 0.0017971187604104205,
+  "avg_universe_return": 0.004968424618616584,
+  "avg_benchmark_return": 0.003989910692172563,
+  "pick_hit_rate": 0.5205843293492696,
+  "pick_beat_benchmark_rate": 0.5059760956175299,
+  "weeks_top5_beat_benchmark": 0.5258964143426295,
+  "mean_ic": 0.0018598144712598428,
+  "ic_t_stat": 0.10014207915995693,
+  "q10_q90_coverage": 0.848564612980176,
+  "chained_cagr_picks": 0.025369045486186126,
+  "chained_cagr_benchmark": 0.08903903111905609,
+  "decile_excess": {
+   "0": 0.001107907539329208,
+   "1": 0.00046658662416473005,
+   "2": 0.0019348632072786471,
+   "3": 0.0010141082496568391,
+   "4": 0.0009702399903469154,
+   "5": 0.0006398629422729898,
+   "6": 0.0015600373778443,
+   "7": 0.0003800996186433458,
+   "8": 0.0013799008063884628,
+   "9": 0.0003142946898735448
+  },
+  "trend_check": {
+   "top5": {
+    "downtrend": {
+     "n": 268,
+     "avg_excess": 0.003907506242984427,
+     "avg_return": 0.011337994119265199,
+     "share_positive": 0.5373134328358209,
+     "p10_return": -0.11496052673733372
+    },
+    "no_downtrend": {
+     "n": 485,
+     "avg_excess": -0.0036040558121930516,
+     "avg_return": -0.001515330038249357,
+     "share_positive": 0.5072164948453608,
+     "p10_return": -0.13145390764536735
+    }
+   },
+   "high_score": {
+    "downtrend": {
+     "n": 9229,
+     "avg_excess": 0.00466144892645151,
+     "avg_return": 0.013314667520274623,
+     "share_positive": 0.5822949398634738,
+     "p10_return": -0.07836403192302252
+    },
+    "no_downtrend": {
+     "n": 17995,
+     "avg_excess": -0.0006656262053561881,
+     "avg_return": 0.0015865554462540482,
+     "share_positive": 0.5123089747151987,
+     "p10_return": -0.08354846364927053
+    }
+   }
+  },
+  "round_trip_cost": 0.002
+ }
+}
