@@ -1,0 +1,467 @@
+{
+ "market": "US",
+ "generated_at": "2026-11-26T04:32:27+00:00",
+ "as_of": "2026-11-25",
+ "horizon_days": 10,
+ "eligible_size": 472,
+ "picks": [
+  {
+   "symbol": "TWLO",
+   "name": "Twilio",
+   "sector": "Information Technology",
+   "price": 180.79,
+   "final_score": 0.8668,
+   "model_score": 0.9459,
+   "news_score": 0.1009,
+   "forecast": {
+    "2w": {
+     "q10": -0.1118,
+     "q50": 0.0264,
+     "q90": 0.1847,
+     "p_beat_nifty": 0.5852
+    }
+   },
+   "reasons": [
+    "RSI 34: oversold, bounce candidate"
+   ],
+   "risk": {
+    "volatility_63d": 0.6881,
+    "atr_pct": 0.0655
+   },
+   "news": {
+    "n_articles": 34,
+    "headlines": [
+     {
+      "title": "Here's How Much $100 Invested In Twilio 10 Years Ago Would Be Worth Today",
+      "source": "Benzinga",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQMk1YN3htRjNIZE1WMEI5a1lRdVAwMWNpQlc2VzBrNGh4bEJLWGt2V3RBTjlLbDhLUzhSWGw1MmVCZTQweE1jdlJ4UUF5cERoaE9oc0MyMUtEZk0wN2l0a040cWtqT3B1VnYyZmc1Ty04TW5BaUREcklyWjNsbnk4NUlBYmlkV2M2S19sLUlRcmU2ZUpFZFhiYjM4VzZYTlFEVENhSGxZOGhMRnBrNUZVVDhXei0?oc=5",
+      "published": "2026-11-25T22:00:14+00:00",
+      "sentiment": 0.226
+     },
+     {
+      "title": "Twilio Inc. $TWLO Position Trimmed by Sachem Head Capital Management LP",
+      "source": "MarketBeat",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPdC1uangwLTVYOUx1TDQzV2VIZE5jWGNXT1JaRXdhcEg5NmhiWkhPWW5Mc3ZJaXVFYUhPRmtISDAybnhvTDBWaWtBUm9kbzh0NkdaWGdhQUxSc0dCN1RibTlvYU1PeDV4ZmlYS3psRHpkRDJURmJRY2NYSGNGWWFtcWtkOGNhekpKRjdiNWtCdFFLYXBUT1dzN2ZMbExoRVFSS0xPNkdVMm9tNGNPZTBwd0dhZkpPMzlvYmtEN3E4RHRtTEtxclN1V0VR?oc=5",
+      "published": "2026-11-25T11:41:07+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Twilio: 'Buy' At Nearly Half Off, Strength Is Durable",
+      "source": "Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxORU9sZ3pzUjY3NTMzN2R4b3JYYjNTTWFKNzMtNkM2d2dNdERPaFNZNzlsZFdzTGlxdFJjSHQyQ2tvMDdCQnRIOVBQQTRLek1pZ2Flc2ktT2VqOS1ITlF1V2t4SWRxRU1Wdi1oMTZyUWdwNnNPNTBUS0VpOXFiOTUteFkzQmt5QVFEOUFSLXpuZ3Z0MjA0?oc=5",
+      "published": "2026-11-23T23:53:21+00:00",
+      "sentiment": 0.66
+     },
+     {
+      "title": "Cloudflare, Tenable, Fastly, DLocal, and Twilio stocks trade up, what you need to know",
+      "source": "The Globe and Mail",
+      "link": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNRzE3QmQxdFhQUnVXa1V3RmxLSm5YbEcwWnFhVjBrbVdiaVhZb1FwS3paOWYwb25uc0laQ1RlZUgzZ0tyTklIaFFpZ2ZEYmQ5RURkWndKWHlxTzA1Vzh0bXZ3UTl5N0p3Q3JocTNaRElVZWdxWkZIamVGVEY3eVFkRzUzSDE4MnkwS2JVTllSN2pxamhXWmRJcUNyOFBBWEdZa3NXVU1DZDdaZTNOcDItMGxfUElkbzc5bXlaV2ZhcVF5WTRKSFhGUlBhS2swN2NfbThMTlFYdHl1cTFNRzE1Rk95QUt3ZXJfdnQzQzJqQzFVRFlST3VFSA?oc=5",
+      "published": "2026-11-23T17:26:53+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Twilio Inc. $TWLO Stock Sold by State Street Corp",
+      "source": "MarketBeat",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOTjBRdmtfVkx3c1FKY1Z0NW5kLWpOT2R3X2hXVVZXMmpIczZXYmVDZ1FSQy1MXzI2VXhHLWRPb283VTAyWV9IUHMySnVxX0xvaVRDekl1VTFSbFQ4b3o4UjB3ZXAwZWQ0NGIxSHZiZVBIRlZYdUJDVFNsM1l1eWRHM3U5WkdkZWVFdDFWYW9aUi1pbHNSRnROSllOUVltTG85YzFOUHdzN0h5cGp0?oc=5",
+      "published": "2026-11-23T10:28:25+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    237.78,
+    235.63,
+    228.65,
+    226.75,
+    240.48,
+    232.98,
+    225.89,
+    227.19,
+    231.13,
+    227.35,
+    231.88,
+    242.16,
+    238.88,
+    246.24,
+    243.84,
+    266.06,
+    284.53,
+    290.7,
+    299.66,
+    275.8,
+    286.98,
+    290.78,
+    292.46,
+    301.27,
+    294.58,
+    300.91,
+    280.41,
+    273.0,
+    275.77,
+    289.47,
+    282.66,
+    281.59,
+    271.12,
+    273.4,
+    244.37,
+    257.29,
+    258.69,
+    266.68,
+    253.63,
+    261.79,
+    263.65,
+    254.56,
+    253.77,
+    241.9,
+    205.03,
+    207.6,
+    213.77,
+    213.5,
+    200.96,
+    202.02,
+    206.64,
+    214.21,
+    219.48,
+    212.21,
+    211.21,
+    199.42,
+    194.13,
+    195.93,
+    178.78,
+    172.1,
+    184.43,
+    180.61,
+    180.79
+   ]
+  },
+  {
+   "symbol": "MPC",
+   "name": "Marathon Petroleum",
+   "sector": "Energy",
+   "price": 346.27,
+   "final_score": 0.8615,
+   "model_score": 0.9439,
+   "news_score": 0.0638,
+   "forecast": {
+    "2w": {
+     "q10": -0.1026,
+     "q50": 0.0268,
+     "q90": 0.1424,
+     "p_beat_nifty": 0.6078
+    }
+   },
+   "reasons": [
+    "Short-term dip (-7.4% this week) inside a long-term uptrend",
+    "RSI 29: oversold, bounce candidate",
+    "Strong 6-month momentum (+39%, top 6% of universe)",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.4275,
+    "atr_pct": 0.047
+   },
+   "news": {
+    "n_articles": 39,
+    "headlines": [
+     {
+      "title": "Marathon Petroleum Corp. (MPC) Drives Strong Quarterly Gains for Energy Basket",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOWHlPNWFsY2plQUFMNWdTY1hyeTAzQmZrTEZySy1UV012SzhvUlR6Z012U1Rpd1JfTUE1RjM2aDNCX1Z0S0hqU3FncVozU3JaRjZ0U05PLTNKWVF5WDlkOGdfS2d1S3d3NWRVc0JERGE0QjkyMVVmbnlpTnBYekNDYV9aQ3BZeml2dWItUTdYLVhjdHhZNFE?oc=5",
+      "published": "2026-11-25T17:59:05+00:00",
+      "sentiment": 0.765
+     },
+     {
+      "title": "Marathon Petroleum: Looks Cheap On Windfall Earnings, But Fairly Priced On 2028 Earnings",
+      "source": "Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPYnhldFRnMzlsT292OFRMbGUtdXVEcF9VQmVwUUNHaEhFVlZ1dU1raWtkZGJGUG1RVzFlSk5rcjV6NlVsd2RacDBmSnN6aTBtU2J3cVhnZXlyR3RMWG1sNm1OS3laOVBSd2hvUkdmbUJ0RHZEZ2ZmNFhpTGlIQ19odmZOdDNmSUtacThLUTVoUlc4YVNwWHZ5QkJQOHlFX2RFbDZpN3hjTDNnOUtBdEV6aWtmNlVhd2tiV2gwbnF5ZW5KT29JOFE?oc=5",
+      "published": "2026-11-25T12:57:55+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "7 Red Days In A Row: Marathon Petroleum Stock Is Down 14%",
+      "source": "Trefis",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNUTA1VVB2QlNBMl91RUFmS2tER2w4YXhBOXRtZDhkOEs1aWtzWVR4WFNTTDZUVGdsWHZfTlJtZE02a2RCSkkxX19ocDdRQ3RuckdCNER5NFJaaFJ1aDcxUXdkV1RCM1pRU1NKV2lkVjk2NHpZaERHUHkzUWNHR2ZHT0pUV0plSllXXzRNNWZFcGlvcUN2TU9hZ2FSa2oxRE56QzVROUNwemxrVGdVdFhxbnRHMDhzZw?oc=5",
+      "published": "2026-11-25T06:59:19+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "MPC Dec 2027 390.000 put (MPC271217P00390000) stock price, news, quote and history",
+      "source": "Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBDWWQxY3hjcTVuX3FjMTE0ck95eHlialhJdEFMZ3lUcHh5bFJEeUZfeHJPQlZWQkhxUzQwdmtjWXYyWjBVX0VvUVZDS3ZTbXFpRTVSS1NxLVNtODJkOGswUnBzbFM?oc=5",
+      "published": "2026-11-24T22:58:56+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "MPC Dec 2027 370.000 call (MPC271217C00370000) stock price, news, quote and history",
+      "source": "Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1jdTlyMVoweUZLUHhCQ3NYOTE0Z1pqSURRNm42YjhrN2poR2hXQ2lkTktnZElyMUxCRkJMaXFadGdSVllEOTRrREJ0V0hFV2h0VXE3UGpMMWxwUDJ5MHJSb3RBYWE?oc=5",
+      "published": "2026-11-24T22:04:30+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    367.8,
+    372.28,
+    381.94,
+    385.92,
+    386.63,
+    387.82,
+    396.66,
+    398.33,
+    391.33,
+    394.83,
+    395.35,
+    409.7,
+    412.77,
+    420.79,
+    423.71,
+    401.26,
+    388.6,
+    387.3,
+    389.86,
+    392.43,
+    388.36,
+    390.94,
+    394.32,
+    418.98,
+    421.16,
+    432.26,
+    431.16,
+    441.03,
+    462.05,
+    453.76,
+    457.53,
+    475.65,
+    483.57,
+    475.59,
+    476.74,
+    472.37,
+    473.72,
+    466.68,
+    458.0,
+    455.95,
+    469.33,
+    434.77,
+    439.54,
+    431.31,
+    443.49,
+    429.19,
+    426.15,
+    391.59,
+    376.27,
+    371.7,
+    388.8,
+    388.47,
+    401.72,
+    411.7,
+    413.5,
+    401.07,
+    394.51,
+    373.86,
+    367.93,
+    367.19,
+    357.69,
+    355.16,
+    346.27
+   ]
+  },
+  {
+   "symbol": "BG",
+   "name": "Bunge Global",
+   "sector": "Consumer Staples",
+   "price": 88.15,
+   "final_score": 0.8593,
+   "model_score": 0.9419,
+   "news_score": 0.0575,
+   "forecast": {
+    "2w": {
+     "q10": -0.082,
+     "q50": 0.0253,
+     "q90": 0.1243,
+     "p_beat_nifty": 0.6035
+    }
+   },
+   "reasons": [
+    "RSI 35: oversold, bounce candidate"
+   ],
+   "risk": {
+    "volatility_63d": 0.3679,
+    "atr_pct": 0.0389
+   },
+   "news": {
+    "n_articles": 26,
+    "headlines": [
+     {
+      "title": "Bunge Global SA Director Mark N. Zenuk Acquires 2,500 Shares at $91.98 on November 24, 2026",
+      "source": "Kalkine Media",
+      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQdHJyOGIySXdrMDF4TFFfRTdxM1Y5Q1B6ZnRXQ3VTaGNQTFRZS3h6WFM0MUM2RjFUbjJheXNZOFBCZFo0UEJiaXZGNUVyQjdwMXIyejRBNGZoMUNxVy1lQjFXSmlGYTZPZG5fa2pJQ3NpY1RZeGloTndLSDJiR2xVSkM3U1cxd2hVZjYwNnctWDE0aEdaaDhxWjNmSWRnLWhqd2h5NE1VdXB3ZEw2XzR2bEM0M2VsdlVoWjZwN2V3c1EzdGx3enlDN2xLYWF4dw?oc=5",
+      "published": "2026-11-25T22:52:32+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "Inside the Third Quarter Results, Segment Earnings and 2026 Outlook: Bunge (NYSE:BG) Stock Actively Traded Today",
+      "source": "kalkine.com",
+      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNUHl1TkhFcVBmN2NqNnFNREcwSjU2RXc3d1k0a002M1phaHAzQ0FRTTVqaVV4cjczUHRkdEhNTndpT1NId1J6bVFqc3VfckYxMUM5TUlhTzhsbVM3d3VJSnlhOTR6c0Z4ZlRjbDZOd3BFeXZRT1lVLXRNS1JCX041OWpycEUzOTJzYXlaZG5FQ3RJeDJkSW1vaU53al9hQUg1TWVIX25aU2ZKdzBFVExaWXdSdWpiTVQ2X2NMR3M1Mld4T3lrbzJ5WHBlNlZtTWxKbXEtUzV6TUo?oc=5",
+      "published": "2026-11-25T20:43:00+00:00",
+      "sentiment": 0.318
+     },
+     {
+      "title": "Bunge Global (NYSE:BG) Bounces 7% Off a 52-Week Low Without Any Company News, While a Director Added to His Holdings",
+      "source": "kalkine.ca",
+      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPWktyc2w1TU9rMTdKUTltdkFDOVhWMW5hZkFuU3AtbUZPMUU0UVJRY01qX2xsamF5MmlocEZEZ0E3QTZYWWlFQzV5YmdlTlhKSUZKd3ZWMmRoNm84bU5EaVV6eS1fbTdUUHgycnlRU0wyeHpYN0NPMnVxZWlUamhrTFA0aUwteFRNUWFPdUxyZTFRSmV3RlBScnN4TmdOZmJiSk5HdVdUR29NQVZDNGZ0bnJfVmVvNnNURG12OTVqcGhmR3o0RExhbU4ySzNOeFh3RWUtcDcwMWtQRmJu?oc=5",
+      "published": "2026-11-25T20:36:00+00:00",
+      "sentiment": -0.273
+     },
+     {
+      "title": "Zevia, Bunge Global, and Coca-Cola Consolidated shares skyrocket and plummet, what you need to know",
+      "source": "TradingView",
+      "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOTkFvZnBKQm5fZ1FFMmNsbkRodmYyd3RPelZFckVuZHh4U21wR3Z6bUJSV1hSRmx1djg1NHRKUF9GTVh0RGt0V1lyVUdSOGM1bFIxWFowNlgwWTJRejd4TkdBMjdpRFlMQVMxNFJjSFMwUUVybmY3b0VtOHgtdk45TVYyMEpObHhwaGdiWFNBcGZKM2oxSERxREVqVE1UOEFULU9WWFhqUno3eUY3TUtpUGtVRFExeC1IRlhqN1RDOFNuOEJqcTQ4dzVlVTVVUDAzaFNwc0pjUjB5THRBLWtpNmtoQ3N3MWtmUTAtclhB?oc=5",
+      "published": "2026-11-25T18:35:42+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "Bunge Global (BG) Forms Enerseed With GDM, Is The Stock 41% Undervalued?",
+      "source": "Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQbFlzU0R4aTd5dlA4TFI1aTRBaDJobGVHTjZBejJ0a0JqNlB4blJpalFVNnpSWEpzZUtPLVR4NW9uWjFsdnJVZnZXYkZkQ2NpNVJ2MElyWks1S2N1TmJ0V0NvaUtkZ3dpa1pfcDZVYkZIME9DS1lxM3k5Tm8tV0VpLVN5aWcwVjktUEhMM0xsYmlfT3AzbEJLQ1lIRQ?oc=5",
+      "published": "2026-11-24T23:23:47+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    114.64,
+    115.37,
+    120.16,
+    121.97,
+    119.25,
+    117.85,
+    122.99,
+    122.6,
+    123.68,
+    121.52,
+    120.35,
+    120.87,
+    116.28,
+    118.44,
+    114.74,
+    111.79,
+    109.2,
+    110.67,
+    109.41,
+    108.21,
+    108.27,
+    107.35,
+    106.17,
+    105.83,
+    105.94,
+    106.54,
+    106.55,
+    104.74,
+    107.04,
+    101.98,
+    103.46,
+    106.78,
+    108.12,
+    106.23,
+    105.37,
+    102.36,
+    102.25,
+    101.49,
+    102.4,
+    102.47,
+    101.48,
+    100.62,
+    100.07,
+    95.32,
+    95.94,
+    93.53,
+    94.03,
+    96.3,
+    97.82,
+    98.38,
+    100.44,
+    98.7,
+    99.55,
+    99.25,
+    100.91,
+    98.3,
+    95.6,
+    93.19,
+    91.75,
+    90.9,
+    91.97,
+    84.06,
+    88.15
+   ]
+  }
+ ],
+ "backtest": {
+  "horizon": "2w",
+  "period_start": "2021-11-17",
+  "period_end": "2026-11-11",
+  "n_weeks": 251,
+  "avg_pick_return": 0.005853367386607753,
+  "avg_pick_excess": 0.0019176425802504167,
+  "avg_universe_return": 0.004962538472802704,
+  "avg_benchmark_return": 0.0039357248063573375,
+  "pick_hit_rate": 0.5245683930942895,
+  "pick_beat_benchmark_rate": 0.49535192563081004,
+  "weeks_top5_beat_benchmark": 0.5099601593625498,
+  "mean_ic": 0.012403889266323713,
+  "ic_t_stat": 0.6505145684826266,
+  "q10_q90_coverage": 0.8470903736364982,
+  "chained_cagr_picks": -0.007289326590493306,
+  "chained_cagr_benchmark": 0.08905190332491442,
+  "decile_excess": {
+   "0": -2.3722096548924337e-05,
+   "1": 0.001481949383560743,
+   "2": 0.0005964752070899701,
+   "3": 3.9211448954871415e-05,
+   "4": 0.0006143752512901933,
+   "5": 0.0006479258812112483,
+   "6": 0.0018320484519851442,
+   "7": 0.002039762424158422,
+   "8": 0.001859089554457307,
+   "9": 0.0011825576715100614
+  },
+  "trend_check": {
+   "top5": {
+    "downtrend": {
+     "n": 255,
+     "avg_excess": 0.0055078774919313815,
+     "avg_return": 0.01363557077244331,
+     "share_positive": 0.5568627450980392,
+     "p10_return": -0.0947160977183879
+    },
+    "no_downtrend": {
+     "n": 498,
+     "avg_excess": -0.0023287974382056624,
+     "avg_return": -0.0005395625131925444,
+     "share_positive": 0.4859437751004016,
+     "p10_return": -0.11182113035529069
+    }
+   },
+   "high_score": {
+    "downtrend": {
+     "n": 8300,
+     "avg_excess": 0.004181373085519802,
+     "avg_return": 0.010861256640533147,
+     "share_positive": 0.5578313253012048,
+     "p10_return": -0.0805311203417699
+    },
+    "no_downtrend": {
+     "n": 18855,
+     "avg_excess": 0.00032297986476276355,
+     "avg_return": 0.0027786695321966033,
+     "share_positive": 0.5125961283479183,
+     "p10_return": -0.07566447500287918
+    }
+   }
+  },
+  "round_trip_cost": 0.002
+ }
+}
