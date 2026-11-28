@@ -1,0 +1,474 @@
+{
+ "market": "US",
+ "generated_at": "2026-11-28T04:23:30+00:00",
+ "as_of": "2026-11-27",
+ "horizon_days": 10,
+ "eligible_size": 472,
+ "picks": [
+  {
+   "symbol": "VLO",
+   "name": "Valero Energy",
+   "sector": "Energy",
+   "price": 329.39,
+   "final_score": 0.8529,
+   "model_score": 0.9178,
+   "news_score": 0.1865,
+   "forecast": {
+    "2w": {
+     "q10": -0.0909,
+     "q50": 0.0071,
+     "q90": 0.1226,
+     "p_beat_nifty": 0.6345
+    }
+   },
+   "reasons": [
+    "RSI 35: oversold, bounce candidate",
+    "Strong 6-month momentum (+36%, top 8% of universe)",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.4405,
+    "atr_pct": 0.0411
+   },
+   "news": {
+    "n_articles": 32,
+    "headlines": [
+     {
+      "title": "Valero Energy: The Juice Isn\u2019t Worth The Squeeze (NYSE:VLO)",
+      "source": "Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPeGJiTzVyTXNMUC1vTV9NeUZOTGJ0QTFSYkNWQUdZQ2ZFQVh6SlNNT09qRXBGQmR4WWhBbGRZRFgzZmM4YnVKYUh0d0lXdk5YVWtQSlQ2N1RYZnFSU08xcWp5RF9fV3dqZkZsVGJZeUZQdllBdnhkYWxFTTlVTlQySjhrbFRjWnFpLUJnU29qSUhvdw?oc=5",
+      "published": "2026-11-27T18:32:20+00:00",
+      "sentiment": 0.459
+     },
+     {
+      "title": "Valero breaks losing streak, but 'hold rating', and $300 warning loom",
+      "source": "Seeking Alpha",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNSU5SWXlGcHJXZ1NENEJEODlkNll3T0M2bmd2Z3Ywak55TTY0NXV5MTdYSjVVanZlbE81TUlIRUxHdHlqT0oxSEFDU0hPMEQ1TGtRaVNDYzNYYUxMcnJZYjVxRFd4WUh6eml6MkVfcUJ2RzdWSUdRc2ZyMHpoSXJRZ1FMQzYzSXU2cHNrNFVXcHZ5eW5vVjFYQmNrTWJxOUpvSnNDag?oc=5",
+      "published": "2026-11-27T17:37:09+00:00",
+      "sentiment": -0.751
+     },
+     {
+      "title": "Valero Energy Corporation (VLO) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1kQTNsYk1BTENpLW80bl9LM3c4UHJKTWVWUG8wSXBDMkk0OFlfaXNjNzVVMjJQMTJRZ0hEcS0ycXN4bmtyVGlicnc5Z0ZJTTFH?oc=5",
+      "published": "2026-11-26T21:14:30+00:00",
+      "sentiment": 0.273
+     },
+     {
+      "title": "8 Red Days In A Row: Valero Energy Stock Is Down 15%",
+      "source": "Trefis",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQNDkzOXpXeG8ySzFqZ0VpcFF5UjFMTzNpYTdxb2owTHdjY21DRTFhbVBaTGJISlBGZlMycHBBbGtqY2pZeUFzMUZRUHVrZl9RVFZMN25FOEVqTTEzUktjM3lVbHg1TGZqemRPb0JfcWZNcjUyMlJZVThPNWphcGQwVGJ6Nng1enR4bTBtN0ROU19wQ055UjZWR2Z1WkRXNTB4TjhEMkl3VDMzQk1WNUVz?oc=5",
+      "published": "2026-11-26T13:05:21+00:00",
+      "sentiment": 0.273
+     },
+     {
+      "title": "Tradr to Launch Six New Leveraged ETFs",
+      "source": "Quantisnow",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNc25jMUs1X3gxODFVbjlYeVBweEdFQThoaUN4U2RIaExSZjJLVmZYcmpXVzB0ZG13N1dCT3hjTkJDd2pTMmFIby0wQzU2cVE4TmpOSFJMdWdDOC1adWVDeXdBQTFZV2UybEtaWHpRM1JOeVA2SXdlZXZrM19PMzJaZ0w0ekF4TjUw?oc=5",
+      "published": "2026-11-25T11:56:27+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    357.61,
+    360.67,
+    364.76,
+    369.34,
+    369.37,
+    381.46,
+    387.53,
+    384.03,
+    389.0,
+    381.55,
+    395.59,
+    401.81,
+    411.03,
+    411.77,
+    391.84,
+    375.77,
+    374.47,
+    381.47,
+    385.77,
+    388.15,
+    386.31,
+    386.2,
+    406.97,
+    404.82,
+    417.8,
+    417.69,
+    422.56,
+    442.18,
+    432.17,
+    434.41,
+    454.8,
+    458.11,
+    442.44,
+    443.09,
+    431.73,
+    431.84,
+    435.16,
+    424.73,
+    417.75,
+    425.21,
+    385.93,
+    387.06,
+    383.17,
+    398.2,
+    380.07,
+    386.24,
+    364.01,
+    349.95,
+    345.19,
+    355.45,
+    349.43,
+    362.39,
+    373.58,
+    378.45,
+    368.38,
+    362.44,
+    342.45,
+    337.23,
+    332.96,
+    328.2,
+    324.67,
+    323.0,
+    329.39
+   ]
+  },
+  {
+   "symbol": "OKTA",
+   "name": "Okta, Inc.",
+   "sector": "Information Technology",
+   "price": 207.46,
+   "final_score": 0.8259,
+   "model_score": 0.8851,
+   "news_score": 0.1784,
+   "forecast": {
+    "2w": {
+     "q10": -0.144,
+     "q50": 0.013,
+     "q90": 0.1755,
+     "p_beat_nifty": 0.5591
+    }
+   },
+   "reasons": [
+    "MACD positive: short-term momentum turning up",
+    "Volume 1.4x its 6-month average",
+    "Strong 6-month momentum (+68%, top 0% of universe)",
+    "Outperforming S&P 500 by +30% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)"
+   ],
+   "risk": {
+    "volatility_63d": 0.728,
+    "atr_pct": 0.0687
+   },
+   "news": {
+    "n_articles": 39,
+    "headlines": [
+     {
+      "title": "Okta Drops 10% in a Month: Should Investors Buy the Stock on the Dip?",
+      "source": "The Globe and Mail",
+      "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNRU1DQnF2M1d5RGJGZHVPTjdJU21SS1BVT2RlZFVJek4zdHc1aFFnVFluNFY4dWE3SG5LcktsSlQ3YnFwYVY5QUdWOE1sUEtrXzJlclVjSF9KUTFVdTFzb2tzaHhpdUxjYkFCRHpPUUdlS1NuQUNYV21wTWdteWxGX25XNnY0bGxmRkhreXlvazBMcmw5aVRONGlGQjBlaTU2QzliVm9vVHF5NFBnLXdJRGZxQnlMa3UxTUlkbmRxeFVxTzZ2MHdLQ0IwNjZXai04SmJyOVZBZXhmTWxkNnNueEI1elQtNWZ1?oc=5",
+      "published": "2026-11-28T03:25:03+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "AI Fighter Okta Leads 8 To IBD's Top Stock Screens",
+      "source": "Investor's Business Daily",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQbFkwWGxwQmF5WVEzdzAyd2hzQ3NucVlwcmhBdTBReVJiMFQ2RERvZm8zQWdEWVRfSlVFekJjSmlNbnNwMGhVdS02RGUyazVDbUdsMWg2b21nTGI4QUswdG5ueVZpTTJCaGd4MUd2N1g4bldPUklCSm5kdjFaZFZKZHlLNGlZbUxlVUxaVGxB?oc=5",
+      "published": "2026-11-27T23:58:00+00:00",
+      "sentiment": 0.34
+     },
+     {
+      "title": "Okta Earnings Are Imminent; These Most Accurate Analysts Revise Forecasts Ahead Of Earnings Call",
+      "source": "Benzinga",
+      "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPaFd3UW5ESVBGQjRRanM1a1ZzNllBYzZzeGphYzVBZVRpQURxZVg3eGRmRThlMlgyVkhWYlJmbEFZT182WEhtYVkybkNRNlhyTWhRZkp6QW9OZjE1MXJUMXZfLTVpdXJ6V0V2Nzg5SU5GSFMtTVBlR0VNVTFKOFRzRHVIYWdMUzQ2ZVJrVm9IWjlCd1BWeTBRZXc3a2RLSlFhd2I3UG5PdWJjeGtNY0QyZVhBN0w3NlFzekc5UTZkejI2Tl9GY01abzNoZlgxb2hSam9LWl9YU0wxVENVcEpQVHhhSUI3MHF2THVTNDhyejFVcS1GRmEzZWttZklfQTlFNEE?oc=5",
+      "published": "2026-11-27T12:10:07+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Management Raised the Bar For Okta Stock; Does The Chart Agree?",
+      "source": "Trefis",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOSDRWMXFJMUM0VzEyN0Jla0R0eXd6RzJJM3BSamZnMnItalVvVWJqdDNaNVQ2N1Q0SHJNN0lxM2wtX29lZzFjOHc0UUk3Y0NxQ0hsWWU4X1B4dlVsdUNYUDJiRXE2YzdCX0ZMblZCLUNiNU5qejBGcllMNlREY09OZ0JZLV9jMVFVWTc1QnFBSVlleU9GVlFGS2FqbG5iUFhlbU9GM1c1d3NrZFFJMTZ0ZVQ1UmphU3dMNmZ2SVVvTQ?oc=5",
+      "published": "2026-11-27T10:18:33+00:00",
+      "sentiment": 0.361
+     },
+     {
+      "title": "OKTA Nov 2026 280.000 call (OKTA261127C00280000) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1ORWZpRzRFa2swbVd3dVJud1hCNzV1bF82WE9xbVBGdlc2TXEtUm8yS3dJbW1qOVM4M1BqZVpWZ3B1clRqbHg3MW5ZODc5a1E2Z3pCcDlLYlljcXFuWW1lVm5UQVEzdw?oc=5",
+      "published": "2026-11-26T07:09:14+00:00",
+      "sentiment": 0.0
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    173.04,
+    166.43,
+    163.15,
+    170.42,
+    170.6,
+    167.6,
+    172.74,
+    171.11,
+    166.5,
+    186.45,
+    190.45,
+    188.12,
+    190.02,
+    182.37,
+    191.33,
+    196.62,
+    205.36,
+    206.64,
+    195.19,
+    202.18,
+    204.88,
+    209.11,
+    212.63,
+    211.49,
+    218.29,
+    218.67,
+    218.0,
+    220.21,
+    232.13,
+    227.08,
+    226.53,
+    211.91,
+    208.52,
+    187.26,
+    189.93,
+    194.02,
+    208.64,
+    201.33,
+    213.05,
+    220.01,
+    226.07,
+    222.66,
+    221.86,
+    208.24,
+    184.87,
+    189.68,
+    191.05,
+    171.16,
+    168.69,
+    177.57,
+    178.36,
+    182.25,
+    182.54,
+    182.87,
+    178.22,
+    174.54,
+    195.61,
+    206.85,
+    191.46,
+    206.28,
+    198.12,
+    201.77,
+    207.46
+   ]
+  },
+  {
+   "symbol": "CRL",
+   "name": "Charles River Laboratories",
+   "sector": "Health Care",
+   "price": 337.39,
+   "final_score": 0.8021,
+   "model_score": 0.8664,
+   "news_score": 0.0903,
+   "forecast": {
+    "2w": {
+     "q10": -0.086,
+     "q50": 0.0087,
+     "q90": 0.1432,
+     "p_beat_nifty": 0.5592
+    }
+   },
+   "reasons": [
+    "Holding near its 20-day average in an uptrend",
+    "Strong 6-month momentum (+87%, top 0% of universe)",
+    "Outperforming S&P 500 by +21% over 3 months",
+    "Price above rising 200-day average (uptrend, golden-cross alignment)",
+    "RSI 52: momentum without being overbought"
+   ],
+   "risk": {
+    "volatility_63d": 0.5065,
+    "atr_pct": 0.0427
+   },
+   "news": {
+    "n_articles": 26,
+    "headlines": [
+     {
+      "title": "After paying cash to exercise stock options, an officer at Charles River (CRL) proposes selling 5,850 shares.",
+      "source": "Stock Titan",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQLTdMSVlpRG5XOG51VDlGZHRlbEpPMlRVdU9lV2xRbkhOUlgtOU1XUHFiNF9iQksxM3pPRndVR1hkZno4WWJxZGU3WkQxcDdTZ2szZTN0Q1ZEMm5xaU1rdkh5cWk5VUcyNm40U0lZWmk4Y1NObzhna0tBOVFadnJpa1ZPbjRKZnN6NE5aa09wMzhfQUlyTmJOdXVERzQtZm9POENXTDFLb1ViVTZNd0RqZDJ2QkFKcU5xcmRoUA?oc=5",
+      "published": "2026-11-27T18:04:56+00:00",
+      "sentiment": 0.296
+     },
+     {
+      "title": "The 211 Charles River (CRL) shares Nancy C. Andrews proposes to sell came from a stock option exercise.",
+      "source": "Stock Titan",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNT3ktVGlWdldTa3Rfcjl6SkFjNEk4bjhQRGwxQTRmSTNmcHZMVERXSHY1RDdlUmZCR0tRR3VFSzZPaGlaTm92U0lpbkh6bUtwbjllYlE0Vi1tLUZhd2JXdl9VZENGOVNsSGpmaGdZYmFJajdCdWMwTXlYUFljcmZrSF9SNE04VVAxRWhEWUphV2hjZlhwZDJFMm9oUWNTb25yc3gxanhqdXRhclU0WHFaaTZ4Vi1xcWZVVWk5Yg?oc=5",
+      "published": "2026-11-27T18:03:03+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Charles River Laboratories International, Inc. (CRL) Stock Price, News, Quote & History",
+      "source": "Yahoo! Finance Canada",
+      "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBWNjZiX1RHMlVLSnZGeFZLNDV0Z1pYZnNYYlYyR3BwQ2FHZjlEMWwtdUhpUWZOS3A4cGNJNmM4TThIX2t0SHdpcnJwdTFEa2J5?oc=5",
+      "published": "2026-11-27T15:26:14+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "CRL Dec 2026 180.000 put (CRL261218P00180000) stock price, news, quote and history",
+      "source": "Yahoo Finance UK",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE4zT0tXQkhSVXdLa1NmWWFnYjU0N1dieHFMN1VWSkNuTzVOU3NRZHVRLWJ4dWZhU1I2WlE4LWIxbmFKSmd0WGF0V0w2S3VyLXJMcVZUQzU5SDR6WHBobVlQMW9tZmo?oc=5",
+      "published": "2026-11-27T04:50:28+00:00",
+      "sentiment": 0.0
+     },
+     {
+      "title": "Zydus Life shares dip 3% on USFDA's CRL to new drug; MOFSL stays 'neutral'",
+      "source": "Business Standard",
+      "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNYnlDWHlzWGNZNVdheW43RFFMWjhZZjFhTTRTX2hvQ1dEUkpERnk1X1ZhNWxfdFdwY1Z5dVQ0emRrakhDRkhxUlJHbmF0U1FRU0hrTkJvaGZadUE0Vm4yMzFZb3VnYkpTOHlkeTFDajVUNUtHRVVDX0YxejJKcDQ4M2FOTnBmMU9vbUMxeHBDcWlFZ3FaRDBlT3FqMVJfdklrYXNRbXZnWko4RlJyXzAtcnhrVlFISDJQVEhDVEZ4UWdCY0czUmRjVTJvQ1NNTmI1SnlONzhEU0tVUXPSAeABQVVfeXFMTlB3RkZ4UDVkYnA4OF9MUklEVjRqVUZITWxoT19valV5eDBZUTNnN2hUUEdqZHJGTFhack1xaE1mM3oyNldCSGVHb3M0bkNGNlpLWXZHTE9xcTRVSVI1YjNOVHUyck80RTQ4d2NBRFR3Nm5YZjBqdU9ITmZCT2dqMXBWY3YyVklBN0RPVV9xT0g1WnNQMU9taHRoOHZDT3RHbVZ5WHNkcU51WjRzSzlFbzJVWVNYT0oxOHRCUGNJbEJmeGJRZWFZVmJ5VjA1ZUpUUlFnTEtrd01uWUs5RXFtZFU?oc=5",
+      "published": "2026-11-27T04:08:02+00:00",
+      "sentiment": 0.296
+     }
+    ],
+    "llm": null
+   },
+   "chart": [
+    288.24,
+    282.34,
+    291.76,
+    293.35,
+    288.5,
+    280.76,
+    278.35,
+    273.0,
+    278.26,
+    273.11,
+    272.88,
+    273.41,
+    281.67,
+    278.06,
+    279.01,
+    285.11,
+    277.33,
+    294.44,
+    292.84,
+    294.59,
+    295.96,
+    295.01,
+    286.83,
+    290.19,
+    310.77,
+    304.96,
+    300.3,
+    298.0,
+    301.79,
+    301.86,
+    299.02,
+    302.0,
+    306.24,
+    300.15,
+    300.02,
+    315.45,
+    344.87,
+    339.66,
+    345.37,
+    357.27,
+    358.84,
+    373.98,
+    376.1,
+    359.41,
+    338.54,
+    351.87,
+    326.29,
+    313.02,
+    337.52,
+    353.34,
+    345.8,
+    342.69,
+    340.81,
+    337.97,
+    335.52,
+    332.16,
+    333.25,
+    327.93,
+    314.32,
+    338.26,
+    336.13,
+    332.08,
+    337.39
+   ]
+  }
+ ],
+ "backtest": {
+  "horizon": "2w",
+  "period_start": "2021-11-18",
+  "period_end": "2026-11-12",
+  "n_weeks": 251,
+  "avg_pick_return": 0.005057774023864691,
+  "avg_pick_excess": 0.0010564741096786942,
+  "avg_universe_return": 0.005045041803133129,
+  "avg_benchmark_return": 0.004001299914185996,
+  "pick_hit_rate": 0.5431606905710491,
+  "pick_beat_benchmark_rate": 0.47675962815405043,
+  "weeks_top5_beat_benchmark": 0.5378486055776892,
+  "mean_ic": -0.015470248431337704,
+  "ic_t_stat": -0.8783358017878361,
+  "q10_q90_coverage": 0.819261050916899,
+  "chained_cagr_picks": 0.11931111154112006,
+  "chained_cagr_benchmark": 0.09177028717064561,
+  "decile_excess": {
+   "0": 0.002607044901555119,
+   "1": 0.001930223991148554,
+   "2": 0.0014867178862935336,
+   "3": 0.0013013013055562877,
+   "4": 0.0006490447566046521,
+   "5": 2.856076275290207e-05,
+   "6": 0.0009599279769561884,
+   "7": 0.0003247240046844597,
+   "8": 0.0008997005750003977,
+   "9": 0.000203623414760233
+  },
+  "trend_check": {
+   "top5": {
+    "downtrend": {
+     "n": 272,
+     "avg_excess": 0.0016525301920660054,
+     "avg_return": 0.007233742908079222,
+     "share_positive": 0.5294117647058824,
+     "p10_return": -0.0987578491731472
+    },
+    "no_downtrend": {
+     "n": 481,
+     "avg_excess": -0.0012445096211776755,
+     "avg_return": 0.001863367669106026,
+     "share_positive": 0.5384615384615384,
+     "p10_return": -0.11147634108578042
+    }
+   },
+   "high_score": {
+    "downtrend": {
+     "n": 8689,
+     "avg_excess": 0.0029786815837408503,
+     "avg_return": 0.00791975259230984,
+     "share_positive": 0.5431004718609737,
+     "p10_return": -0.08635736262043209
+    },
+    "no_downtrend": {
+     "n": 19070,
+     "avg_excess": -0.0008871610028969439,
+     "avg_return": 0.0030062166029361653,
+     "share_positive": 0.5167802831672784,
+     "p10_return": -0.0779434336078291
+    }
+   }
+  },
+  "round_trip_cost": 0.002
+ }
+}
